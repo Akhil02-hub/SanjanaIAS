@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Dashboard · SanjanaIAS</title>
+    <meta name="description" content="SanjanaIAS — your daily guide to understanding the world for UPSC.">
+    <link rel="icon"
+        href="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2214%22%20fill%3D%22%230e1a33%22%2F%3E%3Cpath%20d%3D%22M18%2044V20h6l8%2013%208-13h6v24h-6V31l-8%2012-8-12v13z%22%20fill%3D%22%2360a5fa%22%2F%3E%3C%2Fsvg%3E">
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        /* Set theme before paint to avoid a flash. */
+        (function () {
+            try {
+                var t = localStorage.getItem('sanjana.theme');
+                if (!t) t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+                document.documentElement.setAttribute('data-theme', t);
+            } catch (e) { }
+        })();
+    </script>
+</head>
+
+<body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <header class="site-header">
+        <button class="icon-btn nav-toggle" id="navToggle" aria-label="Open navigation" type="button">☰</button>
+        <a class="brand" href="#/dashboard">
+            <svg width="30" height="30" viewBox="0 0 64 64" aria-hidden="true">
+                <rect width="64" height="64" rx="16" fill="#0e1a33" />
+                <path d="M16 46V18h7l9 14 9-14h7v28h-7V30l-9 13-9-13v16z" fill="#60a5fa" />
+                <circle cx="50" cy="16" r="5" fill="#f59e0b" />
+            </svg>
+            <span class="brand-text"><strong>SanjanaIAS</strong><em>Study Intelligence</em></span>
+        </a>
+        <button class="search-trigger" id="searchTrigger" type="button" aria-label="Search">
+            <span>Search any topic, event, policy or concept…</span><kbd>Ctrl K</kbd>
+        </button>
+        <div class="header-right">
+            <span class="updated" id="lastUpdated"></span>
+            <button class="icon-btn" id="authBtn" type="button" aria-label="Account">👤</button>
+            <button class="icon-btn" id="themeToggle" type="button" aria-label="Toggle dark mode">◐</button>
+        </div>
+    </header>
+
+    <div class="layout">
+        <aside id="sidebar" class="sidebar">
+            <div class="nav-group">
+                <h4>Daily</h4>
+                <a class="nav-item" data-page="dashboard" href="#/dashboard"><span class="ico"
+                        aria-hidden="true">▦</span>Dashboard</a>
+                <a class="nav-item" data-page="briefing" href="#/briefing"><span class="ico"
+                        aria-hidden="true">☀</span>Daily Briefing</a>
+            </div>
+            <div class="nav-group">
+                <h4>Research</h4>
+                <a class="nav-item" data-page="world" href="#/world"><span class="ico"
+                        aria-hidden="true">◍</span>World</a>
+                <a class="nav-item" data-page="india" href="#/india"><span class="ico"
+                        aria-hidden="true">◉</span>India</a>
+                <a class="nav-item" data-page="telangana" href="#/telangana"><span class="ico"
+                        aria-hidden="true">◈</span>Telangana</a>
+            </div>
+            <div class="nav-group">
+                <h4>Learn</h4>
+                <a class="nav-item" data-page="syllabus" href="#/syllabus"><span class="ico"
+                        aria-hidden="true">▤</span>Syllabus Explorer</a>
+                <a class="nav-item" data-page="ai-tutor" href="#/ai-tutor"><span class="ico"
+                        aria-hidden="true">✦</span>Sanjana AI</a>
+            </div>
+            <div class="nav-group">
+                <h4>Practise</h4>
+                <a class="nav-item" data-page="prelims" href="#/prelims"><span class="ico"
+                        aria-hidden="true">✓</span>Prelims Practice</a>
+                <a class="nav-item" data-page="mains" href="#/mains"><span class="ico" aria-hidden="true">✎</span>Mains
+                    Practice</a>
+            </div>
+            <div class="nav-group">
+                <h4>Personal</h4>
+                <a class="nav-item" data-page="library" href="#/library"><span class="ico" aria-hidden="true">❑</span>My
+                    Library</a>
+                <a class="nav-item" data-page="revision" href="#/revision"><span class="ico"
+                        aria-hidden="true">↻</span>Revision</a>
+                <a class="nav-item" data-page="progress" href="#/progress"><span class="ico"
+                        aria-hidden="true">▥</span>Progress</a>
+            </div>
+        </aside>
+
+        <main id="main" class="content" tabindex="-1">
+            <div class="skeleton tall"></div>
+        </main>
+    </div>
+
+    <nav class="bottom-nav" aria-label="Primary">
+        <a data-page="dashboard" href="#/dashboard"><span class="ico" aria-hidden="true">▦</span>Home</a>
+        <a data-page="world" href="#/world"><span class="ico" aria-hidden="true">◍</span>World</a>
+        <a data-page="india" href="#/india"><span class="ico" aria-hidden="true">◉</span>India</a>
+        <a data-page="telangana" href="#/telangana"><span class="ico" aria-hidden="true">◈</span>Telangana</a>
+        <a data-page="ai-tutor" href="#/ai-tutor"><span class="ico" aria-hidden="true">✦</span>AI</a>
+    </nav>
+
+    <footer class="site-footer">
+        <p><strong>SanjanaIAS</strong> — Understand the world. Prepare for the future.</p>
+        <p>An independent educational platform. Not affiliated with UPSC or the Government of India.
+            Content is compiled from public sources; always verify against the original document before relying on it.
+        </p>
+        <p><a href="#/syllabus">Syllabus Explorer</a> · <a href="#/library">My Library</a> ·
+            <a href="#/revision">Revision</a> · <a href="#/progress">Progress</a>
+        </p>
+    </footer>
+
+    <div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-label="Search SanjanaIAS">
+        <div class="overlay-box">
+            <div class="overlay-head">
+                <input type="search" id="overlayInput" placeholder="Search topics, events, policies, schemes…"
+                    aria-label="Search">
+                <button class="icon-btn" id="overlayClose" type="button" aria-label="Close search">✕</button>
+            </div>
+            <div class="overlay-filters" id="overlayFilters">
+                <button class="chip chip-btn active" data-region="" type="button">All</button>
+                <button class="chip chip-btn" data-region="world" type="button">World</button>
+                <button class="chip chip-btn" data-region="india" type="button">India</button>
+                <button class="chip chip-btn" data-region="telangana" type="button">Telangana</button>
+            </div>
+            <div class="overlay-results" id="overlayResults"></div>
+        </div>
+    </div>
+
+    <div class="auth-modal" id="authModal" role="dialog" aria-modal="true" aria-label="Account">
+        <div class="auth-box">
+            <button class="icon-btn auth-close" id="authClose" type="button" aria-label="Close">✕</button>
+            <div id="authBody"></div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>

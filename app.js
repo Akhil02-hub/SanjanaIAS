@@ -1,0 +1,2551 @@
+/* SanjanaIAS — single-file application.
+   Sections:
+     1. Illustrations (inline SVG data URIs)
+     2. Seed data (news, sources, syllabus, questions)
+     3. Utilities
+     4. Storage
+     5. RSS / Classifier / Dedupe / Relevance (also used by the collector under Node)
+     6. Search engine
+     7. Renderers (card, listRow, chips)
+     8. Article renderer
+     9. Tutor, Revision
+    10. Page functions
+    11. Shell wiring + router + boot
+    12. Exports (for the Node collector)                                         */
+(function (root) {
+    'use strict';
+
+    var SUPABASE_URL = 'https://lbcxwmyppnmnezyxyvon.supabase.co';
+    var SUPABASE_ANON_KEY = 'sb_publishable_8acY7UihRJ2tSpW3zmFDUA_n24G5Ayq';
+    var supabaseClient = null;
+    if (typeof supabase !== 'undefined' && supabase.createClient
+        && SUPABASE_URL !== 'https://lbcxwmyppnmnezyxyvon.supabase.co') {
+        supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    }
+
+    var SI_AUTH = {
+        user: null,
+        ready: false,
+        listeners: [],
+
+        onChange: function (fn) { SI_AUTH.listeners.push(fn); },
+        _emit: function () { SI_AUTH.listeners.forEach(function (f) { try { f(SI_AUTH.user); } catch (e) { } }); },
+
+        init: async function () {
+            if (!supabaseClient) { SI_AUTH.ready = true; return null; }
+            try {
+                var s = await supabaseClient.auth.getSession();
+                SI_AUTH.user = (s && s.data && s.data.session) ? s.data.session.user : null;
+                supabaseClient.auth.onAuthStateChange(function (_event, session) {
+                    SI_AUTH.user = session ? session.user : null;
+                    SI_AUTH._emit();
+                });
+            } catch (e) { /* offline */ }
+            SI_AUTH.ready = true;
+            return SI_AUTH.user;
+        },
+
+        username: function () {
+            if (!SI_AUTH.user) return null;
+            var m = (SI_AUTH.user.email || '').match(/^(.*)@sanjana\.local$/);
+            return m ? m[1] : null;
+        },
+
+        signUp: async function (username, password, sq, sa) {
+            if (!supabaseClient) return { error: 'Auth is not configured.' };
+            if (!/^[a-z0-9_]{3,24}$/i.test(username)) return { error: 'Username must be 3–24 letters, numbers, underscores.' };
+            if (password.length < 8) return { error: 'Password must be at least 8 characters.' };
+            if (!sq || !sa) return { error: 'Security question and answer are required.' };
+
+            var email = username.toLowerCase() + '@sanjana.local';
+            var r = await supabaseClient.auth.signUp({ email: email, password: password });
+            if (r.error) return { error: 'Could not create account. Try a different username.' };
+
+            var sess = await supabaseClient.auth.getSession();
+            if (!sess.data.session) {
+                var lr = await supabaseClient.auth.signInWithPassword({ email: email, password: password });
+                if (lr.error) return { error: 'Account created, but please log in.' };
+            }
+            var pr = await supabaseClient.rpc('create_profile', {
+                p_username: username.toLowerCase(),
+                p_sq: sq,
+                p_sa: sa
+            });
+            if (pr.error) return { error: 'Account created, but profile setup failed. Contact admin.' };
+            SI_AUTH.user = (await supabaseClient.auth.getSession()).data.session.user;
+            SI_AUTH._emit();
+            return { ok: true };
+        },
+
+        signIn: async function (username, password) {
+            if (!supabaseClient) return { error: 'Auth is not configured.' };
+            var email = username.toLowerCase() + '@sanjana.local';
+            var r = await supabaseClient.auth.signInWithPassword({ email: email, password: password });
+            if (r.error) return { error: 'Username or password is incorrect.' };
+            SI_AUTH.user = r.data.user;
+            SI_AUTH._emit();
+            return { ok: true };
+        },
+
+        signOut: async function () {
+            if (supabaseClient) await supabaseClient.auth.signOut();
+            SI_AUTH.user = null;
+            SI_AUTH._emit();
+        },
+
+        getSecurityQuestion: async function (username) {
+            if (!supabaseClient) return null;
+            var r = await supabaseClient.rpc('get_security_question', { p_username: username.toLowerCase() });
+            return r.error ? null : r.data;
+        },
+
+        verifyAnswer: async function (username, answer) {
+            if (!supabaseClient) return false;
+            var r = await supabaseClient.rpc('verify_security_answer', { p_username: username.toLowerCase(), p_answer: answer });
+            return !r.error && r.data === true;
+        },
+
+        resetPassword: async function (username, answer, newPassword) {
+            if (!supabaseClient) return { error: 'Auth is not configured.' };
+            if (newPassword.length < 8) return { error: 'Password must be at least 8 characters.' };
+            var r = await supabaseClient.functions.invoke('reset-password', {
+                body: { username: username.toLowerCase(), answer: answer, new_password: newPassword }
+            });
+            if (r.error || !r.data || !r.data.ok) return { error: 'Reset failed. Check your answer.' };
+            return { ok: true };
+        }
+    };
+
+    /* ============================================================
+       1. Illustrations
+       ============================================================ */
+    function svgData(label, color) {
+        var s = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450">' +
+            '<rect width="800" height="450" fill="' + color + '"/>' +
+            '<text x="400" y="238" text-anchor="middle" fill="#ffffff" font-family="Georgia,serif" ' +
+            'font-size="34" letter-spacing="10">' + label + '</text></svg>';
+        return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(s);
+    }
+    var ILLUSTRATIONS = {
+        world: svgData('WORLD', '#1e3a8a'),
+        india: svgData('INDIA', '#065f46'),
+        telangana: svgData('TELANGANA', '#7c2d12'),
+        default: svgData('SANJANAIAS', '#0e1a33')
+    };
+
+    /* ============================================================
+       2. Seed data
+       ============================================================ */
+    var SEED_NEWS = {
+        updated: '2026-11-09T06:00:00.000Z',
+        health: { checked: 0, failed: 0, note: 'Seed library — run the collector workflow to populate live data.' },
+        topics: [
+            {
+                id: 'world-climate-finance-goal',
+                title: 'Climate Finance After 2025: Testing the New Collective Quantified Goal',
+                region: 'world', regions: ['world'],
+                category: 'Environment',
+                tags: ['Climate Finance', 'UNFCCC', 'International Relations', 'Environmental Governance'],
+                gsPapers: ['GS II', 'GS III'],
+                summary: 'Negotiators are testing whether the post-2025 climate finance architecture can move from headline pledges to predictable, accessible flows that developing countries can actually draw on.',
+                whyItMatters: 'Climate finance connects international institutions (GS II) with environmental governance and India\'s development needs (GS III). It is a recurring theme in both Prelims and Mains.',
+                image: null, imageCredit: 'SanjanaIAS category illustration',
+                readTime: 6, published: '2026-11-09', updated: '2026-11-09',
+                importance: 88,
+                importanceReason: 'Directly maps to GS II and GS III; high exam recurrence.',
+                curated: true,
+                sources: [
+                    { title: 'Climate action news', publisher: 'UN News', url: 'https://news.un.org/en/', type: 'primary', date: '2026-11-08' },
+                    { title: 'Climate change', publisher: 'World Bank', url: 'https://www.worldbank.org/en/topic/climatechange', type: 'context', date: '2026-11-07' },
+                    { title: 'COP coverage', publisher: 'BBC News', url: 'https://www.bbc.com/news/science_and_environment', type: 'reporting', date: '2026-11-08' }
+                ],
+                sections: {
+                    event: 'Parties to the UNFCCC are working through the operational details of the post-2025 climate finance goal: how much, from whom, in what form, and how delivery will be tracked and verified.',
+                    background: 'Earlier commitments set a floor of USD 100 billion a year, which developed countries reported as met only after delays. The newer goal shifts attention from the headline number to the quality of finance — grants vs loans, adaptation vs mitigation, and access for the most vulnerable states.',
+                    causes: 'Developing countries argue that adaptation need far exceeds available concessional finance, while contributor countries face fiscal constraints and insist on a wider donor base.',
+                    stakeholders: 'UNFCCC parties, the COP presidency, multilateral development banks, the Green Climate Fund and Adaptation Fund, small island states, LDCs, India, EU and the US.',
+                    timeline: [
+                        { date: '2009', text: 'Developed countries commit to mobilising USD 100 billion a year by 2020.' },
+                        { date: '2021', text: 'The target is formally extended to 2025 after being missed.' },
+                        { date: '2024', text: 'A new collective quantified goal is agreed in outline.' },
+                        { date: '2026', text: 'Negotiators work on access modalities, reporting standards and grant share.' }
+                    ],
+                    data: [
+                        { label: 'Prior annual target', value: 'USD 100 billion (2020, extended to 2025)' },
+                        { label: 'Core dispute', value: 'Grant share, adaptation balance and contributor base' },
+                        { label: 'Key institution', value: 'Green Climate Fund / Adaptation Fund' }
+                    ],
+                    geography: 'Vulnerable geographies — small island developing states, the Sahel, the Himalayan arc and India\'s coastal deltas — face the highest adaptation costs relative to fiscal capacity.',
+                    india: 'India frames climate finance as an equity issue: it seeks grant-based adaptation support, technology transfer and recognition of its per-capita emissions profile, while resisting any expansion of the contributor base that would reclassify it as a donor.',
+                    telangana: 'State-level relevance runs through heat stress, urban flooding and dryland agriculture, which shape Telangana\'s adaptation finance needs.',
+                    challenges: 'Finance is often loan-based, adding debt stress; access procedures are slow; reporting definitions differ; adaptation remains underfunded relative to mitigation.',
+                    solutions: 'Common reporting standards, a defined grant floor, direct access for sub-national and community institutions, and reform of MDB balance sheets.',
+                    upsc: 'GS II — international institutions and agreements. GS III — environmental governance, climate change and conservation.',
+                    prelimsNotes: [
+                        'UNFCCC secretariat is based in Bonn.',
+                        'Green Climate Fund is headquartered in Songdo, South Korea.',
+                        'The Adaptation Fund was established under the Kyoto Protocol.',
+                        'Common but differentiated responsibilities is a core UNFCCC principle.'
+                    ],
+                    mainsNotes: [
+                        'Argue that the quality of climate finance matters as much as the quantum.',
+                        'Use the grant-versus-loan distinction as a concrete example.',
+                        'Link adaptation finance to India\'s federal structure and state action plans.'
+                    ]
+                }
+            },
+            {
+                id: 'world-unsc-reform',
+                title: 'UN Security Council Reform: The Permanent-Member Question Returns',
+                region: 'world', regions: ['world', 'india'],
+                category: 'International Relations',
+                tags: ['UN Reform', 'UNSC', 'Multilateralism', 'G4'],
+                gsPapers: ['GS II'],
+                summary: 'Renewed debate over expanding the Security Council\'s permanent membership — including India\'s claim — tests how far multilateral reform can move without amending the UN Charter.',
+                whyItMatters: 'Institutional reform of the UN is a standard GS II theme and a frequent Mains question on multilateralism.',
+                image: null, imageCredit: 'SanjanaIAS category illustration',
+                readTime: 5, published: '2026-11-08', updated: '2026-11-08',
+                importance: 84, importanceReason: 'Direct GS II international relations link; high Mains recurrence.',
+                curated: true,
+                sources: [
+                    { title: 'Security Council', publisher: 'United Nations', url: 'https://www.un.org/securitycouncil/', type: 'primary', date: '2026-11-07' },
+                    { title: 'UN reform coverage', publisher: 'The Hindu', url: 'https://www.thehindu.com/news/international/', type: 'reporting', date: '2026-11-08' }
+                ],
+                sections: {
+                    event: 'Discussions on Security Council reform have returned to the question of permanent membership — its size, the veto, and regional-representation criteria — with the G4 pressing for expansion in both categories.',
+                    background: 'The Council has had five permanent members since 1945. Charter amendment requires a two-thirds majority in the General Assembly and ratification by two-thirds of member states, including all permanent members.',
+                    causes: 'The gap between the 1945 power structure and today\'s distribution of economic and demographic weight drives demand; the veto makes existing members reluctant to dilute their position.',
+                    stakeholders: 'G4 (India, Brazil, Germany, Japan), African Union\'s Ezulwini Consensus, Uniting for Consensus, the P5, and the UN Secretariat.',
+                    timeline: [
+                        { date: '1945', text: 'Security Council created with five permanent members.' },
+                        { date: '1993', text: 'General Assembly establishes an open-ended working group on reform.' },
+                        { date: '2005', text: 'G4 pushes a reform draft; Uniting for Consensus counters it.' },
+                        { date: '2026', text: 'Intergovernmental Negotiations resume with text-based discussion.' }
+                    ],
+                    data: [
+                        { label: 'Permanent members', value: '5 (China, France, Russia, UK, US)' },
+                        { label: 'Amendment requirement', value: 'Two-thirds of the Assembly plus ratification by two-thirds of members' },
+                        { label: 'Africa\'s demand', value: 'Two permanent seats with veto and two additional non-permanent seats' }
+                    ],
+                    geography: 'Regional blocs are the negotiating units — African Group, GRULAC, Asia-Pacific, WEOG — so geography determines who claims a seat.',
+                    india: 'India argues a Council reflecting 1945 realities cannot claim legitimacy in 2026, and links its claim to population, peacekeeping contributions and its role in the Global South.',
+                    telangana: 'No direct state-level implication; relevant only as part of national foreign-policy framing.',
+                    challenges: 'Veto resistance from incumbents, competing regional claims, and the absence of a single reform text.',
+                    solutions: 'Text-based negotiations, an intermediate approach with longer-term renewable seats, and a clear timeline linked to the UN\'s 80th-anniversary processes.',
+                    upsc: 'GS II — important international institutions, agencies and fora; bilateral, regional and global groupings and agreements involving India.',
+                    prelimsNotes: [
+                        'UNSC has 15 members: 5 permanent and 10 non-permanent elected for two years.',
+                        'The veto is not named in the UN Charter; it is the concurring-vote requirement in Article 27.',
+                        'The Ezulwini Consensus sets out the African common position.'
+                    ],
+                    mainsNotes: [
+                        'Frame reform as a legitimacy question, not only representation.',
+                        'Use the Charter amendment procedure as a concrete institutional constraint.'
+                    ]
+                }
+            },
+            {
+                id: 'world-ai-governance-framework',
+                title: 'Frontier AI Governance: From Voluntary Pledges to Binding Rules',
+                region: 'world', regions: ['world'],
+                category: 'Science & Technology',
+                tags: ['Artificial Intelligence', 'Technology Governance', 'Digital Policy'],
+                gsPapers: ['GS III'],
+                summary: 'Governments are moving from voluntary AI safety commitments towards disclosure, audit and liability rules for frontier models — with consequences for innovation, security and the Global South\'s access to compute.',
+                whyItMatters: 'GS III science and technology plus GS IV ethical dimensions. AI governance is new and rising in exam probability.',
+                image: null, imageCredit: 'SanjanaIAS category illustration',
+                readTime: 6, published: '2026-11-07', updated: '2026-11-08',
+                importance: 80, importanceReason: 'Emerging GS III theme with GS IV overlap; rising exam probability.',
+                curated: true,
+                sources: [
+                    { title: 'Technology and AI', publisher: 'UN News', url: 'https://news.un.org/en/', type: 'primary', date: '2026-11-06' },
+                    { title: 'AI governance explainer', publisher: 'The Guardian', url: 'https://www.theguardian.com/technology', type: 'reporting', date: '2026-11-07' }
+                ],
+                sections: {
+                    event: 'Several jurisdictions are drafting rules requiring developers of large frontier models to disclose training-compute thresholds, publish safety evaluations and accept third-party audits before release.',
+                    background: 'Voluntary commitments and safety institutes emerged first. They lacked enforcement and comparable evaluations, pushing regulators towards statutory duties.',
+                    causes: 'Rapid capability gains, dual-use risks in biosecurity and cyber offence, and concerns about market concentration in compute and data.',
+                    stakeholders: 'National regulators, frontier labs, open-source developers, civil society, the UN\'s AI advisory body, and developing countries seeking equitable compute access.',
+                    timeline: [
+                        { date: '2023', text: 'First wave of voluntary frontier-model safety commitments.' },
+                        { date: '2024', text: 'National AI safety institutes established in several countries.' },
+                        { date: '2026', text: 'Draft statutory disclosure and audit requirements circulated.' }
+                    ],
+                    data: [
+                        { label: 'Common regulatory trigger', value: 'Training compute above a defined threshold' },
+                        { label: 'Key instrument', value: 'Pre-release evaluation plus post-market monitoring' },
+                        { label: 'Equity issue', value: 'Concentration of compute capacity in a few economies' }
+                    ],
+                    geography: 'Compute infrastructure clusters in a small number of data-centre regions, giving those jurisdictions de facto regulatory leverage over global model development.',
+                    india: 'India seeks policy space for its AI mission, access to compute, and standards that do not exclude Indian developers through compliance costs designed elsewhere.',
+                    telangana: 'Hyderabad\'s emerging AI and data-centre cluster makes state-level skilling and safety-compliance capacity directly relevant.',
+                    challenges: 'Regulatory divergence, immature audit methods, open-source liability questions, and the risk that safety evaluation entrenches incumbents.',
+                    solutions: 'International standards harmonisation, tiered obligations by risk, public compute access, and mandatory incident reporting.',
+                    upsc: 'GS III — science and technology, developments and applications; indigenisation and new technology. GS IV — ethics in technology.',
+                    prelimsNotes: [
+                        'Frontier models are distinguished by scale of compute and generality of capability.',
+                        'Model audits are not yet standardised internationally.',
+                        'No binding global AI treaty exists yet.'
+                    ],
+                    mainsNotes: [
+                        'Balance innovation and safety without treating them as opposites.',
+                        'Raise the equity dimension: compute access for the Global South.'
+                    ]
+                }
+            },
+            {
+                id: 'india-rbi-mpc-stance',
+                title: 'RBI\'s Monetary Policy Stance: Balancing Inflation, Growth and the Rupee',
+                region: 'india', regions: ['india'],
+                category: 'Economy',
+                tags: ['Monetary Policy', 'Inflation', 'RBI', 'Macroeconomic Policy'],
+                gsPapers: ['GS III'],
+                summary: 'The Monetary Policy Committee\'s stance reflects a three-way trade-off between bringing inflation to target, supporting growth and managing external-sector pressure on the rupee.',
+                whyItMatters: 'Monetary policy is a standing GS III theme and a frequent Prelims source for policy rates and institutional mandates.',
+                image: null, imageCredit: 'SanjanaIAS category illustration',
+                readTime: 5, published: '2026-11-09', updated: '2026-11-09',
+                importance: 86, importanceReason: 'Core GS III macroeconomics; frequent Prelims and Mains material.',
+                curated: true,
+                sources: [
+                    { title: 'Press releases and monetary policy statements', publisher: 'Reserve Bank of India', url: 'https://www.rbi.org.in/', type: 'primary', date: '2026-11-09' },
+                    { title: 'Economy coverage', publisher: 'The Indian Express', url: 'https://indianexpress.com/section/business/', type: 'reporting', date: '2026-11-09' }
+                ],
+                sections: {
+                    event: 'The MPC\'s stance and voting pattern, together with the Governor\'s commentary on liquidity and transmission, define the near-term direction of borrowing costs.',
+                    background: 'The committee operates under a flexible inflation-targeting framework, with CPI as the nominal anchor and a target band around 4 per cent.',
+                    causes: 'Food-price volatility, uneven transmission through bank lending rates, global financial conditions and currency pressure constrain the policy choice.',
+                    stakeholders: 'Borrowers, banks, non-bank lenders, exporters, the Union government\'s borrowing programme, and state budgets carrying market-linked debt.',
+                    timeline: [
+                        { date: '2016', text: 'Flexible inflation-targeting framework formalised through a statutory amendment.' },
+                        { date: '2020', text: 'Extraordinary accommodation during the pandemic.' },
+                        { date: '2022–23', text: 'Withdrawal of accommodation as inflation rose.' },
+                        { date: '2026', text: 'Stance settled around a data-dependent holding position.' }
+                    ],
+                    data: [
+                        { label: 'Inflation target', value: '4 per cent CPI, with a ±2 per cent tolerance band' },
+                        { label: 'Committee composition', value: 'Six members — three from RBI, three appointed by the Central Government' },
+                        { label: 'Tie-breaking', value: 'Governor holds the casting vote' }
+                    ],
+                    geography: 'Food inflation is regionally uneven, so the headline number can mask very different pressure in producing versus consuming states.',
+                    india: 'The RBI weighs growth momentum against unanchored inflation expectations, while the government\'s fiscal path shapes the borrowing calendar the RBI must manage.',
+                    telangana: 'State market borrowings and irrigation-linked spending interact with the broader rate environment; higher yields raise the cost of state capital expenditure.',
+                    challenges: 'Supply-side food shocks do not respond to interest rates; transmission is incomplete; external volatility constrains cuts even when growth softens.',
+                    solutions: 'Supply-side management, clearer communication, liquidity tools to improve transmission, and coordination with fiscal policy.',
+                    upsc: 'GS III — Indian economy, growth, monetary policy and inflation. Prelims — institutions, instruments and mandates.',
+                    prelimsNotes: [
+                        'The MPC was created through an amendment to the RBI Act, 1934.',
+                        'The repo rate is the policy rate; reverse repo and SDF absorb liquidity at the other end.',
+                        'CPI is compiled by the National Statistical Office under MoSPI.'
+                    ],
+                    mainsNotes: [
+                        'Explain the limits of monetary policy when inflation is supply-driven.',
+                        'Discuss transmission gaps and the role of liquidity management.'
+                    ]
+                }
+            },
+            {
+                id: 'india-green-hydrogen-progress',
+                title: 'National Green Hydrogen Mission: Capacity, Costs and the Off-take Question',
+                region: 'india', regions: ['india'],
+                category: 'Environment',
+                tags: ['Green Hydrogen', 'Energy Transition', 'Renewable Energy', 'Industrial Policy'],
+                gsPapers: ['GS III', 'GS II'],
+                summary: 'The mission\'s progress now turns less on electrolyser capacity announcements and more on securing firm off-take, cheap renewable power and port-linked export infrastructure.',
+                whyItMatters: 'Combines energy security, industrial policy and climate commitments — a strong GS III anchor.',
+                image: null, imageCredit: 'SanjanaIAS category illustration',
+                readTime: 6, published: '2026-11-08', updated: '2026-11-08',
+                importance: 82, importanceReason: 'GS III energy, environment and industry; strong Mains utility.',
+                curated: true,
+                sources: [
+                    { title: 'Press Information Bureau releases', publisher: 'PIB', url: 'https://pib.gov.in/', type: 'primary', date: '2026-11-07' },
+                    { title: 'Energy coverage', publisher: 'The Hindu', url: 'https://www.thehindu.com/sci-tech/energy-and-environment/', type: 'reporting', date: '2026-11-08' }
+                ],
+                sections: {
+                    event: 'Progress on electrolyser manufacturing and green hydrogen production is being assessed against contracted demand, not announced capacity alone.',
+                    background: 'The mission was designed to make India a global hub for green hydrogen production, use and export, backed by incentives for electrolyser manufacturing and production-linked support.',
+                    causes: 'Falling renewable tariffs, hard-to-abate sectors needing substitutes, and export markets beginning to price carbon intensity.',
+                    stakeholders: 'MNRE, oil marketing companies, fertiliser producers, steel makers, electrolyser manufacturers, port authorities and state electricity regulators.',
+                    timeline: [
+                        { date: '2023', text: 'Mission approved with a defined outlay and phased targets.' },
+                        { date: '2024', text: 'Electrolyser and production-linked incentive schemes notified.' },
+                        { date: '2025', text: 'First tranche of capacity allocations.' },
+                        { date: '2026', text: 'Focus shifts to off-take agreements and delivered cost.' }
+                    ],
+                    data: [
+                        { label: 'Mission structure', value: 'Two tracks — electrolyser manufacturing and green hydrogen production' },
+                        { label: 'Key cost driver', value: 'Round-the-clock renewable power and electrolyser utilisation' },
+                        { label: 'Demand anchors', value: 'Refining, fertiliser and steel' }
+                    ],
+                    geography: 'Coastal states with port access and high renewable potential — Gujarat, Andhra Pradesh, Tamil Nadu and Odisha — attract the largest project pipelines.',
+                    india: 'The policy dilemma is whether to mandate blending for domestic industry before costs fall, or prioritise export contracts that improve utilisation.',
+                    telangana: 'Industrial base and solar capacity make the state a potential producer, though land and water for electrolysis constrain siting.',
+                    challenges: 'High levelised cost, water intensity, electrolyser import dependence, weak domestic off-take and uncertain export demand.',
+                    solutions: 'Blending mandates with sunset clauses, cheaper finance, dedicated renewable zones, and cluster-based demand aggregation.',
+                    upsc: 'GS III — infrastructure, energy, conservation, environmental pollution, effects of liberalisation.',
+                    prelimsNotes: [
+                        'Green hydrogen is produced by electrolysis of water using renewable electricity.',
+                        'Grey hydrogen uses natural gas without carbon capture; blue hydrogen adds capture and storage.',
+                        'Electrolyser efficiency is measured in kWh per kilogram of hydrogen.'
+                    ],
+                    mainsNotes: [
+                        'Discuss why production incentives alone are insufficient without off-take certainty.',
+                        'Link to India\'s NDCs and industrial decarbonisation.'
+                    ]
+                }
+            },
+            {
+                id: 'india-right-to-shelter',
+                title: 'Right to Shelter: Urban Homelessness and Article 21 Jurisprudence',
+                region: 'india', regions: ['india'],
+                category: 'Polity',
+                tags: ['Fundamental Rights', 'Article 21', 'Urban Governance', 'Judiciary'],
+                gsPapers: ['GS II', 'GS I'],
+                summary: 'Judicial reasoning on urban homelessness connects the right to life under Article 21 with municipal duties, shelter capacity and the constitutional meaning of dignity.',
+                whyItMatters: 'Classic GS II polity question on judicial interpretation of fundamental rights, with GS I urbanisation links.',
+                image: null, imageCredit: 'SanjanaIAS category illustration',
+                readTime: 5, published: '2026-11-07', updated: '2026-11-08',
+                importance: 78, importanceReason: 'GS II fundamental rights and judiciary; steady Prelims and Mains relevance.',
+                curated: true,
+                sources: [
+                    { title: 'Judgments and orders', publisher: 'Supreme Court of India', url: 'https://www.sci.gov.in/', type: 'primary', date: '2026-11-07' },
+                    { title: 'Legal coverage', publisher: 'The Indian Express', url: 'https://indianexpress.com/section/india/', type: 'reporting', date: '2026-11-07' }
+                ],
+                sections: {
+                    event: 'Orders on urban shelter capacity direct municipal bodies to account for existing shelter infrastructure and to plan before demolition or eviction drives proceed.',
+                    background: 'The right to shelter has been read into Article 21 through a line of cases beginning in the 1980s, which treated dignified housing as inseparable from the right to life.',
+                    causes: 'Rapid urbanisation without matching low-cost housing, unclear municipal responsibility, and eviction practices that displace residents without alternative arrangements.',
+                    stakeholders: 'Urban local bodies, state housing departments, the Union Ministry of Housing and Urban Affairs, residents\' collectives and civil society.',
+                    timeline: [
+                        { date: '1981', text: 'Early articulation of the right to livelihood and shelter as part of Article 21.' },
+                        { date: '1990s', text: 'Cases link dignity and shelter in urban planning contexts.' },
+                        { date: '2010s', text: 'Shelter and rehabilitation framed as enforceable municipal obligations.' },
+                        { date: '2026', text: 'Orders emphasise capacity assessment before displacement.' }
+                    ],
+                    data: [
+                        { label: 'Constitutional anchor', value: 'Article 21 — protection of life and personal liberty' },
+                        { label: 'Directive context', value: 'Articles 39 and 46 inform the interpretation' },
+                        { label: 'Executing authority', value: 'Urban local bodies under state municipal law' }
+                    ],
+                    geography: 'Shelter stress concentrates in metropolitan cores and peri-urban fringes where land values and rental markets push low-income households outward.',
+                    india: 'The policy question is how to convert a judicially recognised right into operational municipal standards without freezing legitimate urban planning.',
+                    telangana: 'Hyderabad\'s shelter capacity and the pace of redevelopment in the old city raise the same questions in a state context.',
+                    challenges: 'Unclear municipal finance, weak data on homeless populations, tension between redevelopment and in-situ rehabilitation.',
+                    solutions: 'Shelter capacity audits, statutory timelines before eviction, rental housing support, and data systems that count hidden homelessness.',
+                    upsc: 'GS II — judiciary; fundamental rights; government policies. GS I — urbanisation, poverty, developmental issues.',
+                    prelimsNotes: [
+                        'Article 21 has been expansively interpreted to include the right to shelter, livelihood and a clean environment.',
+                        'Municipalities derive their powers from state legislation and Part IXA of the Constitution.',
+                        'The right to shelter is a right to adequate shelter consistent with dignity, not an absolute right to a house.'
+                    ],
+                    mainsNotes: [
+                        'Use the dignity–shelter–Article 21 chain as the analytical spine.',
+                        'Distinguish judicial recognition from enforceable municipal capacity.'
+                    ]
+                }
+            },
+            {
+                id: 'telangana-kaleshwaram-water',
+                title: 'Kaleshwaram and Godavari Water Sharing: Engineering, Ecology and Federalism',
+                region: 'telangana', regions: ['telangana'],
+                category: 'Irrigation',
+                tags: ['Inter-State Water Disputes', 'Irrigation', 'Godavari', 'Federalism'],
+                gsPapers: ['GS I', 'GS II'],
+                summary: 'Operational questions around the Kaleshwaram lift irrigation project bring together inter-state water sharing, ecological limits and the political economy of large irrigation infrastructure.',
+                whyItMatters: 'Inter-state water disputes are a standard GS II federalism question with a clear GS I geography dimension.',
+                image: null, imageCredit: 'SanjanaIAS category illustration',
+                readTime: 6, published: '2026-11-09', updated: '2026-11-09',
+                importance: 85, importanceReason: 'Strong GS II federalism and GS I geography linkage; high Mains utility.',
+                curated: true,
+                sources: [
+                    { title: 'State government announcements', publisher: 'Government of Telangana', url: 'https://www.telangana.gov.in/', type: 'primary', date: '2026-11-08' },
+                    { title: 'Telangana coverage', publisher: 'Deccan Chronicle', url: 'https://www.deccanchronicle.com/', type: 'reporting', date: '2026-11-09' }
+                ],
+                sections: {
+                    event: 'Operational decisions about lift stages, storage levels and cropping allocations keep the project in public debate, alongside questions about the ecological carrying capacity of the Godavari basin.',
+                    background: 'Kaleshwaram is a large lift irrigation scheme intended to move Godavari water into the Godavari and Krishna basins to support irrigation and drinking water supply, within the framework of inter-state agreements and tribunal awards.',
+                    causes: 'Recurring drought stress in upland districts, the ambition to expand irrigated area, and the political salience of water delivery to agriculture.',
+                    stakeholders: 'Government of Telangana, neighbouring riparian states, the Godavari Water Disputes Tribunal framework, farmers\' associations, and environmental groups.',
+                    timeline: [
+                        { date: '2014', text: 'Telangana is formed; irrigation becomes a flagship policy area.' },
+                        { date: '2019', text: 'Kaleshwaram is inaugurated and begins phased operation.' },
+                        { date: '2020s', text: 'Operational and ecological questions surface during flood and dry years.' },
+                        { date: '2026', text: 'Debate focuses on lift-stage operation and basin allocation compliance.' }
+                    ],
+                    data: [
+                        { label: 'River basin', value: 'Godavari' },
+                        { label: 'Project type', value: 'Lift irrigation with multiple stages' },
+                        { label: 'Dispute framework', value: 'Inter-State River Water Disputes Act, 1956' }
+                    ],
+                    geography: 'The Godavari rises in the Western Ghats and traverses the Deccan plateau; lift schemes must raise water across significant elevation to reach upland command areas.',
+                    india: 'The Union government\'s role is largely through the tribunal framework and the 1956 Act, since water is a state subject.',
+                    telangana: 'The project is central to irrigation expansion, but the fiscal cost of pumping, the reliability of flows in dry years and compliance with basin allocations define its long-term viability.',
+                    challenges: 'High energy cost of lifting, variable monsoon flows, ecological stress on the river, unresolved inter-state allocations.',
+                    solutions: 'Efficient pumping and solarisation, groundwater recharge alongside surface storage, transparent flow accounting, basin-level planning.',
+                    upsc: 'GS II — federal structure, inter-state relations. GS I — geographical features and water resources.',
+                    prelimsNotes: [
+                        'Water is a state subject under Entry 17 of the State List; inter-state rivers fall under Entry 56 of the Union List.',
+                        'The Inter-State River Water Disputes Act, 1956 governs tribunal composition and awards.',
+                        'The Godavari is the second-longest river in India after the Ganga.'
+                    ],
+                    mainsNotes: [
+                        'Frame large lift irrigation as a fiscal and ecological, not only engineering, choice.',
+                        'Use the state-subject/union-list distinction to explain the federal division of responsibility.'
+                    ]
+                }
+            },
+            {
+                id: 'telangana-ai-city-ecosystem',
+                title: 'Hyderabad\'s AI Cluster: Skilling, Data Centres and the Next IT Wave',
+                region: 'telangana', regions: ['telangana', 'india'],
+                category: 'Technology',
+                tags: ['Information Technology', 'Startups', 'Data Centres', 'Skill Development'],
+                gsPapers: ['GS III'],
+                summary: 'Hyderabad\'s technology corridor is shifting from IT services towards AI development, data-centre investment and deep-tech startups, raising questions about skills, power demand and water use.',
+                whyItMatters: 'GS III economic development and technology; a good state-level example for Mains on IT-led growth.',
+                image: null, imageCredit: 'SanjanaIAS category illustration',
+                readTime: 5, published: '2026-11-08', updated: '2026-11-08',
+                importance: 76, importanceReason: 'GS III industry and technology with strong regional exemplar value.',
+                curated: true,
+                sources: [
+                    { title: 'IT and industries releases', publisher: 'Government of Telangana', url: 'https://www.telangana.gov.in/', type: 'primary', date: '2026-11-07' },
+                    { title: 'Hyderabad business coverage', publisher: 'The Indian Express', url: 'https://indianexpress.com/section/cities/hyderabad/', type: 'reporting', date: '2026-11-08' }
+                ],
+                sections: {
+                    event: 'New investment commitments in data centres and AI development, alongside state skilling programmes, are reshaping the composition of Hyderabad\'s technology employment.',
+                    background: 'The city built its position on IT services and life sciences. The shift towards AI and data infrastructure changes both the skill mix and the city\'s resource requirements.',
+                    causes: 'Global demand for compute capacity, availability of land and power, and a pipeline of engineering graduates from state universities.',
+                    stakeholders: 'State IT department, T-Hub and incubators, private developers, universities, and residents affected by data-centre resource demand.',
+                    timeline: [
+                        { date: '1990s', text: 'HITEC City establishes the IT services base.' },
+                        { date: '2015', text: 'T-Hub anchors the startup ecosystem.' },
+                        { date: '2020s', text: 'Data-centre and AI investment announcements accelerate.' },
+                        { date: '2026', text: 'Focus shifts to applied AI skills and compute-linked infrastructure.' }
+                    ],
+                    data: [
+                        { label: 'Sector shift', value: 'From IT services to AI, data centres and deep tech' },
+                        { label: 'Key constraint', value: 'Power and water for data-centre cooling' },
+                        { label: 'Skill gap', value: 'Applied AI and systems engineering' }
+                    ],
+                    geography: 'The corridor\'s growth is constrained by groundwater availability and transmission capacity, not by land supply alone.',
+                    india: 'Hyderabad is one node in a national competition among states for data-centre and AI investment.',
+                    telangana: 'The state\'s policy question is whether to subsidise compute infrastructure or to invest first in skilling and applied research that raises ecosystem value.',
+                    challenges: 'Water scarcity, power tariffs, curriculum lag, and the risk of low-value back-office work displacing high-skill claims.',
+                    solutions: 'Industry-aligned curricula, green data-centre standards, treated-water reuse for cooling, targeted deep-tech funding.',
+                    upsc: 'GS III — indigenisation, new technology, industrial policy. GS I — urbanisation.',
+                    prelimsNotes: [
+                        'Data centres are highly water- and power-intensive, mainly for cooling.',
+                        'T-Hub is a state-backed startup incubator in Hyderabad.',
+                        'Hyderabad forms part of the southern logistics network of the Delhi–Mumbai Industrial Corridor.'
+                    ],
+                    mainsNotes: [
+                        'Use Hyderabad as a concrete example of IT-led urban growth and its resource limits.',
+                        'Argue for skilling-led policy over pure subsidy competition.'
+                    ]
+                }
+            },
+            {
+                id: 'telangana-caste-survey-policy',
+                title: 'Telangana\'s Caste Survey and the Politics of Quantified Social Justice',
+                region: 'telangana', regions: ['telangana', 'india'],
+                category: 'Polity',
+                tags: ['Social Justice', 'Census', 'Reservation', 'Governance'],
+                gsPapers: ['GS II', 'GS I'],
+                summary: 'A state-level caste survey shifts welfare and reservation debates from asserted to measured deprivation, raising legal, federal and data-quality questions.',
+                whyItMatters: 'GS II social justice, governance and constitutional law; a strong contemporary GS I society example.',
+                image: null, imageCredit: 'SanjanaIAS category illustration',
+                readTime: 6, published: '2026-11-07', updated: '2026-11-08',
+                importance: 83, importanceReason: 'GS II social justice and governance; contemporary and high-value for Mains.',
+                curated: true,
+                sources: [
+                    { title: 'Socio Economic Outlook and state reports', publisher: 'Government of Telangana', url: 'https://www.telangana.gov.in/reports/', type: 'primary', date: '2026-11-06' },
+                    { title: 'State politics coverage', publisher: 'The Hindu', url: 'https://www.thehindu.com/news/national/telangana/', type: 'reporting', date: '2026-11-07' }
+                ],
+                sections: {
+                    event: 'The state has moved from survey design and enumeration towards interpreting findings, with welfare targeting and reservation policy as the likely instruments.',
+                    background: 'India\'s decennial census has not published caste-wise data since 1931, so state-level surveys have become the main route to quantified deprivation data.',
+                    causes: 'Persistent gaps between reservation categories and actual socioeconomic outcomes, and demand from groups seeking recognition of their deprivation.',
+                    stakeholders: 'State government, Backward Classes commissions, the judiciary, civil society, and the Union government on census policy.',
+                    timeline: [
+                        { date: '2011', text: 'Socio-Economic and Caste Census conducted but caste data not fully published.' },
+                        { date: '2024', text: 'Telangana announces a comprehensive household caste survey.' },
+                        { date: '2025', text: 'Enumeration completed and report prepared.' },
+                        { date: '2026', text: 'Policy interpretation and legal scrutiny begin.' }
+                    ],
+                    data: [
+                        { label: 'Primary method', value: 'Household enumeration by enumerators' },
+                        { label: 'Legal route for reservation changes', value: 'State legislation plus Ninth Schedule protection where required' },
+                        { label: 'Key constraint', value: 'Total reservation ceiling of 50 per cent under current interpretation' }
+                    ],
+                    geography: 'Deprivation is unevenly distributed across districts, so state-level averages can mask concentrated disadvantage.',
+                    india: 'The survey feeds a wider national argument about whether caste enumeration should return to the census, and how states may use such data within the constitutional framework.',
+                    telangana: 'The state must convert survey findings into legally defensible policy — a task requiring both data quality and compliance with reservation jurisprudence.',
+                    challenges: 'Enumerator error, self-reporting bias, legal limits on exceeding the reservation ceiling, and political contestation of categories.',
+                    solutions: 'Independent data validation, transparent methodology publication, graduated welfare measures, and clarity on the legal route.',
+                    upsc: 'GS II — welfare schemes, vulnerable sections, government policies. GS I — social empowerment and poverty.',
+                    prelimsNotes: [
+                        'Caste is enumerated only in the separate Socio-Economic and Caste Census, not in the main population tables since 1931.',
+                        'Article 15(4) and Article 16(4) permit special provisions for backward classes.',
+                        'The 50 per cent ceiling derives from Indra Sawhney (1992), subject to later exceptions.'
+                    ],
+                    mainsNotes: [
+                        'Distinguish between data for welfare targeting and data for reservation — different legal tests.',
+                        'Discuss data quality and methodology as a governance issue, not only a political one.'
+                    ]
+                }
+            }
+        ]
+    };
+
+    var SEED_SOURCES = {
+        sources: [
+            { id: 'un-news', name: 'UN News', level: 'primary', region: 'world', feed: 'https://news.un.org/feed/subscribe/en/news/all/rss.xml', enabled: true },
+            { id: 'un-geneva', name: 'UN Geneva', level: 'primary', region: 'world', feed: 'https://www.ungeneva.org/en/news-media/rss', enabled: true },
+            { id: 'who', name: 'WHO', level: 'primary', region: 'world', feed: 'https://www.who.int/rss-feeds/news-english.xml', enabled: true },
+            { id: 'world-bank', name: 'World Bank', level: 'primary', region: 'world', feed: 'https://www.worldbank.org/en/news/rss', enabled: true },
+            { id: 'imf', name: 'IMF', level: 'primary', region: 'world', feed: 'https://www.imf.org/en/News/RSS', enabled: true },
+            { id: 'pib', name: 'PIB', level: 'primary', region: 'india', feed: 'https://pib.gov.in/RssMain.aspx?ModId=6&Lang=1&Regid=3', enabled: true },
+            { id: 'rbi', name: 'RBI', level: 'primary', region: 'india', feed: 'https://rbi.org.in/pressreleases_rss.xml', enabled: true },
+            { id: 'bbc-world', name: 'BBC News — World', level: 'reporting', region: 'world', feed: 'https://feeds.bbci.co.uk/news/world/rss.xml', enabled: true },
+            { id: 'guardian-world', name: 'The Guardian — World', level: 'reporting', region: 'world', feed: 'https://www.theguardian.com/world/rss', enabled: true },
+            { id: 'ie-world', name: 'Indian Express — World', level: 'reporting', region: 'world', feed: 'https://indianexpress.com/section/world/feed/', enabled: true },
+            { id: 'ie-india', name: 'Indian Express — India', level: 'reporting', region: 'india', feed: 'https://indianexpress.com/section/india/feed/', enabled: true },
+            { id: 'ie-hyderabad', name: 'Indian Express — Hyderabad', level: 'reporting', region: 'telangana', feed: 'https://indianexpress.com/section/cities/hyderabad/feed/', enabled: true },
+            { id: 'hindu-national', name: 'The Hindu — National', level: 'reporting', region: 'india', feed: 'https://www.thehindu.com/news/national/feeder/default.rss', enabled: true },
+            { id: 'hindu-international', name: 'The Hindu — International', level: 'reporting', region: 'world', feed: 'https://www.thehindu.com/news/international/feeder/default.rss', enabled: true }
+        ]
+    };
+
+    var SEED_SYLLABUS = {
+        papers: [
+            {
+                code: 'GS I', name: 'Heritage, History, Geography and Society', areas: [
+                    'Indian culture — art forms, literature and architecture',
+                    'Modern Indian history and the freedom struggle',
+                    'Post-independence consolidation and reorganisation',
+                    'World history and major social/economic developments',
+                    'Indian society — diversity, social empowerment, communalism, regionalism, secularism',
+                    'Physical geography of the world and India',
+                    'Distribution of key natural resources',
+                    'Urbanisation, poverty and developmental issues',
+                    'Effects of globalisation on Indian society'
+                ]
+            },
+            {
+                code: 'GS II', name: 'Governance, Constitution, Polity, Social Justice, IR', areas: [
+                    'Indian Constitution — historical underpinnings, features, amendments, basic structure',
+                    'Fundamental rights, directive principles and fundamental duties',
+                    'Federal structure and devolution of powers',
+                    'Separation of powers and dispute redressal mechanisms',
+                    'Parliament, state legislatures, executive and judiciary',
+                    'Government policies, interventions and welfare schemes',
+                    'Statutory, regulatory and quasi-judicial bodies',
+                    'Governance, transparency and accountability',
+                    'Poverty, health, education and vulnerable sections',
+                    'India and its neighbourhood relations',
+                    'Bilateral, regional and global groupings and agreements',
+                    'Important international institutions, agencies and fora'
+                ]
+            },
+            {
+                code: 'GS III', name: 'Technology, Economic Development, Environment, Security', areas: [
+                    'Indian economy — growth, development and employment',
+                    'Inclusive growth and issues arising from it',
+                    'Government budgeting and fiscal policy',
+                    'Banking, monetary policy and financial markets',
+                    'Agriculture, MSP, irrigation and food processing',
+                    'Infrastructure — energy, ports, roads, airports, railways',
+                    'Investment models and industrial policy',
+                    'Science and technology — developments and applications',
+                    'Conservation, environmental pollution and degradation',
+                    'Climate change and disaster management',
+                    'Internal security, cyber security and border management',
+                    'Role of external state and non-state actors in security'
+                ]
+            },
+            {
+                code: 'GS IV', name: 'Ethics, Integrity and Aptitude', areas: [
+                    'Ethics and human interface — essence, determinants and consequences',
+                    'Attitude, aptitude and foundational values for civil service',
+                    'Emotional intelligence and its application',
+                    'Contributions of moral thinkers and philosophers',
+                    'Public and private administration — ethics and accountability',
+                    'Probity in governance and corruption',
+                    'Case studies on ethical dilemmas in public administration'
+                ]
+            },
+            {
+                code: 'Prelims', name: 'Objective Examination — GS Paper I and CSAT Paper II', areas: [
+                    'Current events of national and international importance',
+                    'Indian history, art and culture',
+                    'Indian and world geography',
+                    'Indian polity and governance',
+                    'Economic and social development',
+                    'Environmental ecology, biodiversity and climate change',
+                    'General science',
+                    'CSAT — comprehension, logical reasoning and basic numeracy'
+                ]
+            }
+        ]
+    };
+
+    var SEED_QUESTIONS = {
+        prelims: [
+            {
+                id: 'p1', topicId: 'world-climate-finance-goal', paper: 'GS III',
+                question: 'With reference to the Green Climate Fund, consider the following statements: 1) It was established under the Kyoto Protocol. 2) Its headquarters is in Songdo, South Korea. 3) It funds both mitigation and adaptation projects. Which is/are correct?',
+                options: ['1 and 2 only', '2 and 3 only', '1 and 3 only', '1, 2 and 3'], answer: 1,
+                explanation: 'The Green Climate Fund was established under the UNFCCC, not the Kyoto Protocol — the Adaptation Fund belongs to the Kyoto Protocol. GCF is headquartered in Songdo and funds both mitigation and adaptation.'
+            },
+            {
+                id: 'p2', topicId: 'world-unsc-reform', paper: 'GS II',
+                question: 'The \'veto\' in the UN Security Council is best described as:',
+                options: ['A power expressly granted by Article 27(3) to negative any resolution', 'The requirement of a concurring vote of all permanent members on non-procedural matters', 'A rule that requires unanimity among all fifteen members', 'A power exercisable only on matters of admission of new members'], answer: 1,
+                explanation: 'The word \'veto\' does not appear in the Charter. It is a consequence of the Article 27(3) requirement that decisions on non-procedural matters carry the concurring votes of all permanent members.'
+            },
+            {
+                id: 'p3', topicId: 'world-ai-governance-framework', paper: 'GS III',
+                question: 'Which of the following best explains the term \'frontier model\' in AI governance discussions?',
+                options: ['Any model trained on national language corpora', 'A model whose scale and generality create significant dual-use risk', 'A model restricted to public-sector use', 'A model that has passed a statutory safety audit'], answer: 1,
+                explanation: 'Frontier models are distinguished mainly by scale of compute and generality of capability, which is why regulation tends to trigger above a compute threshold.'
+            },
+            {
+                id: 'p4', topicId: 'india-rbi-mpc-stance', paper: 'GS III',
+                question: 'Consider the following about the Monetary Policy Committee: 1) It has six members. 2) The Governor has a casting vote in case of a tie. 3) It was constituted under the RBI Act, 1934 as amended. Which is/are correct?',
+                options: ['1 and 2 only', '2 and 3 only', '1 and 3 only', '1, 2 and 3'], answer: 3,
+                explanation: 'All three are correct. The MPC has six members (three from RBI, three appointed by the Central Government), the Governor casts the deciding vote, and the framework was created by amending the RBI Act, 1934.'
+            },
+            {
+                id: 'p5', topicId: 'india-green-hydrogen-progress', paper: 'GS III',
+                question: 'Green hydrogen is produced primarily by:',
+                options: ['Steam methane reforming without carbon capture', 'Electrolysis of water using renewable electricity', 'Coal gasification with carbon capture', 'Partial oxidation of heavy petroleum residues'], answer: 1,
+                explanation: 'Green hydrogen uses electrolysis powered by renewable electricity. Steam methane reforming produces grey hydrogen; adding carbon capture yields blue hydrogen.'
+            },
+            {
+                id: 'p6', topicId: 'india-right-to-shelter', paper: 'GS II',
+                question: 'The right to shelter in India is best understood as:',
+                options: ['An express fundamental right under Article 19', 'A right read into Article 21 as part of the right to life with dignity', 'A fundamental duty under Article 51A', 'A statutory right created by the Municipalities Act'], answer: 1,
+                explanation: 'It is a judicially recognised component of Article 21 — the right to life and personal liberty read to include dignity, and through it, adequate shelter. It is not expressly enumerated.'
+            },
+            {
+                id: 'p7', topicId: 'telangana-kaleshwaram-water', paper: 'GS II',
+                question: 'With reference to inter-state river water disputes in India: 1) Water is a state subject. 2) Inter-state rivers fall under Entry 56 of the Union List. 3) Tribunals are constituted under the Inter-State River Water Disputes Act, 1956. Which is/are correct?',
+                options: ['1 and 2 only', '2 and 3 only', '1 and 3 only', '1, 2 and 3'], answer: 3,
+                explanation: 'All three are correct. Entry 17 of the State List covers water, Entry 56 of the Union List covers regulation of inter-state rivers, and tribunals are set up under the 1956 Act.'
+            },
+            {
+                id: 'p8', topicId: 'telangana-ai-city-ecosystem', paper: 'GS III',
+                question: 'Data centres are best described as which kind of infrastructure in resource terms?',
+                options: ['Low-power, water-neutral facilities', 'High-power facilities with significant cooling water demand', 'Facilities that consume no grid electricity', 'Facilities that require no land beyond the building footprint'], answer: 1,
+                explanation: 'Data centres are power-intensive, and a large share of that power and water goes into cooling — which is why siting debates focus on grid and groundwater capacity.'
+            },
+            {
+                id: 'p9', topicId: 'telangana-caste-survey-policy', paper: 'GS II',
+                question: 'Which of the following is correct about caste enumeration in India\'s decennial census?',
+                options: ['Caste-wise data has been published in every census since 1951', 'Caste-wise population tables have not been published since 1931', 'Caste enumeration is prohibited by the Constitution', 'Only Scheduled Castes and Scheduled Tribes are ever counted'], answer: 1,
+                explanation: 'Caste-wise population tables have not been published since the 1931 census, apart from SC/ST counts. This is why state-level caste surveys became the main route to quantified deprivation data.'
+            },
+            {
+                id: 'p10', topicId: 'world-climate-finance-goal', paper: 'GS III',
+                question: 'The principle of \'common but differentiated responsibilities\' is associated with:',
+                options: ['The Kyoto Protocol only', 'The UNFCCC and subsequent climate agreements', 'The Montreal Protocol', 'The Basel Convention'], answer: 1,
+                explanation: 'CBDR is a founding principle of the UNFCCC (1992) and is carried into subsequent agreements, shaping how obligations are distributed between developed and developing countries.'
+            },
+            {
+                id: 'p11', topicId: 'world-unsc-reform', paper: 'GS II',
+                question: 'The Ezulwini Consensus is associated with:',
+                options: ['The African common position on UN Security Council reform', 'A climate finance mechanism for small island states', 'A trade facilitation agreement at the WTO', 'A nuclear non-proliferation framework'], answer: 0,
+                explanation: 'The Ezulwini Consensus sets out Africa\'s common position on UN reform, including two permanent seats with veto power for the continent.'
+            },
+            {
+                id: 'p12', topicId: 'india-rbi-mpc-stance', paper: 'GS III',
+                question: 'The Consumer Price Index used as the nominal anchor for India\'s inflation target is compiled by:',
+                options: ['The Reserve Bank of India', 'The National Statistical Office under MoSPI', 'NITI Aayog', 'The Ministry of Finance'], answer: 1,
+                explanation: 'CPI is compiled by the National Statistical Office, which functions under the Ministry of Statistics and Programme Implementation. The RBI targets it but does not compile it.'
+            }
+        ],
+        mains: [
+            {
+                id: 'm1', topicId: 'world-climate-finance-goal', paper: 'GS III', marks: 15,
+                question: 'Discuss the significance of climate finance for developing countries. How far does the shift from headline pledges to measurable, accessible flows address their concerns?',
+                checklist: ['Defined climate finance and its sources', 'Explained the adaptation vs mitigation imbalance', 'Discussed grant vs loan distinction', 'Referenced a specific institution or fund', 'Concluded with an actionable reform suggestion'],
+                approach: {
+                    intro: 'Define climate finance as flows that support mitigation and adaptation, and locate it within the UNFCCC\'s equity architecture.',
+                    body: ['Scale and predictability: why headline pledges underperform the actual need', 'Quality of finance: grants versus loans and the debt-stress risk for vulnerable economies', 'Adaptation deficit: why mitigation-heavy portfolios leave the most exposed states underfunded', 'Access barriers: accreditation procedures, co-financing requirements and direct access'],
+                    conclusion: 'Link finance quality to the credibility of the multilateral climate regime, and recommend a defined grant floor with common reporting standards.'
+                }
+            },
+            {
+                id: 'm2', topicId: 'world-unsc-reform', paper: 'GS II', marks: 15,
+                question: '“The demand for UN Security Council reform is a demand for legitimacy, not merely representation.” Critically examine.',
+                checklist: ['Explained the Council\'s composition', 'Discussed the Charter amendment procedure', 'Cited the G4 and Ezulwini positions', 'Addressed the veto question', 'Balanced representation with effectiveness'],
+                approach: {
+                    intro: 'Frame the Council\'s 1945 composition against present-day power distribution.',
+                    body: ['Representation argument: regions and populations currently unrepresented in permanent membership', 'Legitimacy argument: decisions that bind all members without consent of most of them', 'Institutional constraint: Article 108 amendment procedure and P5 ratification', 'Competing regional claims that complicate a single expansion formula', 'Effectiveness question: would expansion make the Council slower?'],
+                    conclusion: 'Argue for text-based negotiation and an intermediate model, and link reform to the UN\'s wider credibility.'
+                }
+            },
+            {
+                id: 'm3', topicId: 'world-ai-governance-framework', paper: 'GS III', marks: 15,
+                question: 'Examine the case for binding regulation of frontier AI models. What safeguards are needed to ensure that such regulation does not entrench existing technological advantage?',
+                checklist: ['Defined frontier models', 'Discussed dual-use risk', 'Addressed regulatory divergence', 'Raised the Global South equity concern', 'Proposed a specific safeguard'],
+                approach: {
+                    intro: 'Define frontier models by scale and generality, and note the shift from voluntary commitments to statutory duties.',
+                    body: ['Risk case: biosecurity, cyber offence and information integrity', 'Why voluntarism failed: incomparable evaluations and no enforcement', 'Compliance cost as a barrier to entry for smaller developers', 'Compute concentration and its geopolitical consequences', 'Safeguards: tiered obligations, public compute, harmonised standards, mutual recognition'],
+                    conclusion: 'Regulation should be risk-proportionate and internationally interoperable so that safety does not become a euphemism for market closure.'
+                }
+            },
+            {
+                id: 'm4', topicId: 'india-rbi-mpc-stance', paper: 'GS III', marks: 15,
+                question: '“Monetary policy is a blunt instrument against supply-side inflation.” Discuss in the context of India\'s inflation-targeting framework.',
+                checklist: ['Explained the inflation-targeting framework', 'Distinguished demand-pull from cost-push inflation', 'Discussed transmission', 'Mentioned food inflation', 'Suggested supply-side complements'],
+                approach: {
+                    intro: 'Set out the statutory framework: CPI anchor, target band and the MPC\'s mandate.',
+                    body: ['Why interest rates act on demand rather than supply', 'Food and fuel shocks as persistent sources of headline volatility', 'Transmission gaps through bank lending and non-bank channels', 'Coordination with fiscal policy and supply-side management', 'Communication as a policy tool'],
+                    conclusion: 'Monetary policy remains necessary for anchoring expectations, but it must be complemented by supply-side reform.'
+                }
+            },
+            {
+                id: 'm5', topicId: 'india-green-hydrogen-progress', paper: 'GS III', marks: 15,
+                question: 'Evaluate the National Green Hydrogen Mission\'s progress. Why does off-take certainty matter as much as production capacity?',
+                checklist: ['Described the mission\'s two tracks', 'Discussed levelised cost', 'Addressed off-take and demand aggregation', 'Mentioned water and land constraints', 'Linked to NDCs and industrial decarbonisation'],
+                approach: {
+                    intro: 'Summarise the mission\'s objective and its two-track incentive design.',
+                    body: ['Cost drivers: renewable power price and electrolyser utilisation', 'The missing demand side: why capacity without contracts idles', 'Hard-to-abate sectors as anchor buyers', 'Water and land as siting constraints', 'Export market opportunities and carbon-intensity pricing'],
+                    conclusion: 'Recommend blending mandates with sunset clauses and cluster-based demand aggregation.'
+                }
+            },
+            {
+                id: 'm6', topicId: 'india-right-to-shelter', paper: 'GS II', marks: 15,
+                question: 'Trace the judicial recognition of the right to shelter in India. What institutional gaps prevent its realisation at the municipal level?',
+                checklist: ['Cited Article 21', 'Traced the dignity–shelter link', 'Identified municipal capacity gaps', 'Discussed eviction practices', 'Proposed a concrete institutional fix'],
+                approach: {
+                    intro: 'Locate the right to shelter within the expansive interpretation of Article 21.',
+                    body: ['Evolution from livelihood to dignity to shelter', 'The gap between judicial recognition and statutory duty', 'Municipal finance and planning capacity', 'Data gaps on hidden homelessness', 'Eviction practice and the absence of mandatory prior assessment'],
+                    conclusion: 'Recommend statutory shelter-capacity audits and timelines before displacement.'
+                }
+            },
+            {
+                id: 'm7', topicId: 'telangana-kaleshwaram-water', paper: 'GS II', marks: 15,
+                question: 'Large lift irrigation projects solve a geographic problem but create a fiscal and ecological one. Examine with reference to the Godavari basin.',
+                checklist: ['Explained the geographic rationale for lift irrigation', 'Discussed energy cost', 'Addressed inter-state allocation', 'Raised ecological concerns', 'Proposed a basin-level planning approach'],
+                approach: {
+                    intro: 'Explain why upland command areas require lifting, and what that implies physically.',
+                    body: ['Energy intensity of multi-stage pumping', 'Fiscal implications for state budgets', 'Inter-state allocation framework under the 1956 Act', 'Ecological flows and river health', 'Groundwater recharge and conjunctive use as complements'],
+                    conclusion: 'Argue for transparent flow accounting and basin-level planning over project-by-project optimisation.'
+                }
+            },
+            {
+                id: 'm8', topicId: 'telangana-ai-city-ecosystem', paper: 'GS III', marks: 15,
+                question: '“Competing for data-centre investment is not the same as building an AI economy.” Discuss with reference to Hyderabad\'s technology ecosystem.',
+                checklist: ['Distinguished infrastructure from capability', 'Discussed skilling', 'Mentioned resource constraints', 'Raised the risk of low-value work', 'Proposed a policy alternative'],
+                approach: {
+                    intro: 'Describe Hyderabad\'s transition from IT services towards AI and data infrastructure.',
+                    body: ['Data centres as capital-intensive but low-employment infrastructure', 'The skills mismatch in applied AI', 'Power and water constraints', 'Risk of incentive competition producing stranded assets', 'Alternative: research funding, curriculum reform and green infrastructure standards'],
+                    conclusion: 'Shift from subsidy competition to capability building, with measurable skilling outcomes.'
+                }
+            },
+            {
+                id: 'm9', topicId: 'telangana-caste-survey-policy', paper: 'GS II', marks: 15,
+                question: 'State-level caste surveys raise both governance and constitutional questions. Discuss.',
+                checklist: ['Explained the data gap since 1931', 'Distinguished welfare targeting from reservation', 'Discussed the 50 per cent ceiling', 'Addressed methodology and data quality', 'Proposed a legal and administrative way forward'],
+                approach: {
+                    intro: 'Locate the survey in the long gap in published caste-wise census data.',
+                    body: ['Welfare targeting: Article 15(4) and 16(4) as enabling provisions', 'Reservation: the Indra Sawhney ceiling and later exceptions', 'Methodology risks: self-reporting, enumerator bias, category contestation', 'Federal dimension: states acting where the census does not', 'Transparency and independent validation as trust-building measures'],
+                    conclusion: 'Argue that data quality and legal clarity together determine whether quantified social justice is achievable.'
+                }
+            }
+        ]
+    };
+
+    /* ============================================================
+       3. Utilities
+       ============================================================ */
+    function $(sel, rootEl) { return (rootEl || document).querySelector(sel); }
+    function $$(sel, rootEl) { return Array.prototype.slice.call((rootEl || document).querySelectorAll(sel)); }
+    function esc(s) {
+        return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+            return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+        });
+    }
+    function fmtDate(iso) {
+        if (!iso) return '—';
+        var d = new Date(iso);
+        if (isNaN(d)) return '—';
+        return d.toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' });
+    }
+    function fmtRelative(iso) {
+        var d = new Date(iso); if (isNaN(d)) return '';
+        var diff = (Date.now() - d.getTime()) / 3600000;
+        if (diff < 1) return 'just now';
+        if (diff < 24) return Math.round(diff) + 'h ago';
+        if (diff < 168) return Math.round(diff / 24) + 'd ago';
+        return fmtDate(iso);
+    }
+    function truncate(s, n) {
+        s = String(s || '');
+        return s.length > n ? s.slice(0, n - 1).trimEnd() + '…' : s;
+    }
+    function shuffle(a) {
+        var arr = a.slice();
+        for (var i = arr.length - 1; i > 0; i--) {
+            var j = Math.floor(Math.random() * (i + 1));
+            var t = arr[i]; arr[i] = arr[j]; arr[j] = t;
+        }
+        return arr;
+    }
+    function toast(msg) {
+        var el = $('.toast');
+        if (!el) { el = document.createElement('div'); el.className = 'toast'; document.body.appendChild(el); }
+        el.textContent = msg;
+        requestAnimationFrame(function () { el.classList.add('show'); });
+        clearTimeout(el._t);
+        el._t = setTimeout(function () { el.classList.remove('show'); }, 2200);
+    }
+    function topicImage(t) {
+        return t.image || ILLUSTRATIONS[t.region] || ILLUSTRATIONS.default;
+    }
+
+    /* ============================================================
+       4. Storage
+       ============================================================ */
+    var PREFIX = 'sanjana.';
+    function storeGet(key, fallback) {
+        try { var raw = localStorage.getItem(PREFIX + key); return raw ? JSON.parse(raw) : fallback; }
+        catch (e) { return fallback; }
+    }
+    function storeSet(key, value) {
+        try { localStorage.setItem(PREFIX + key, JSON.stringify(value)); } catch (e) { }
+    }
+    var _mem = {
+        bookmarks: [],
+        read: {},
+        notes: {},
+        missed: {},
+        mains: {},
+        quiz: { attempts: [], best: 0 },
+        days: []
+    };
+
+    function _requireLogin(action) {
+        if (SI_AUTH.user) return true;
+        toast('Please log in to ' + (action || 'continue') + '.');
+        if (typeof window._openAuthModal === 'function') window._openAuthModal();
+        return false;
+    }
+
+    function _cloud(table) { return supabaseClient ? supabaseClient.from(table) : null; }
+
+    async function _loadUserData() {
+        if (!SI_AUTH.user || !supabaseClient) {
+            _mem = { bookmarks: [], read: {}, notes: {}, missed: {}, mains: {}, quiz: { attempts: [], best: 0 }, days: [] };
+            return;
+        }
+        var uid = SI_AUTH.user.id;
+        try {
+            var [bm, notes, mains, rev, prog] = await Promise.all([
+                supabaseClient.from('bookmarks').select('topic_slug').eq('user_id', uid),
+                supabaseClient.from('notes').select('topic_slug,text,updated_at').eq('user_id', uid),
+                supabaseClient.from('mains_drafts').select('question_id,text,checklist').eq('user_id', uid),
+                supabaseClient.from('revision_entries').select('item_id,type,created_at').eq('user_id', uid),
+                supabaseClient.from('progress').select('quiz_attempts,active_days').eq('user_id', uid).maybeSingle()
+            ]);
+            _mem.bookmarks = (bm.data || []).map(function (r) { return r.topic_slug; });
+            _mem.notes = {};
+            (notes.data || []).forEach(function (r) { _mem.notes[r.topic_slug] = { text: r.text, at: new Date(r.updated_at).getTime() }; });
+            _mem.mains = {};
+            (mains.data || []).forEach(function (r) { _mem.mains[r.question_id] = Object.assign({ text: r.text, at: Date.now() }, r.checklist || {}); });
+            _mem.read = {};
+            _mem.missed = {};
+            (rev.data || []).forEach(function (r) {
+                var ts = new Date(r.created_at).getTime();
+                if (r.type === 'read') _mem.read[r.item_id] = ts;
+                if (r.type === 'missed') _mem.missed[r.item_id] = ts;
+            });
+            _mem.quiz = {
+                attempts: (prog.data && prog.data.quiz_attempts) || [],
+                best: ((prog.data && prog.data.quiz_attempts) || []).reduce(function (b, a) { return Math.max(b, a.score); }, 0)
+            };
+            _mem.days = (prog.data && prog.data.active_days) || [];
+        } catch (e) { console.warn('loadUserData failed', e); }
+    }
+
+    var SI_STORE = {
+        bookmarks: function () { return _mem.bookmarks.slice(); },
+        isBookmarked: function (id) { return _mem.bookmarks.indexOf(id) > -1; },
+        toggleBookmark: function (id) {
+            if (!_requireLogin('bookmark')) return false;
+            var i = _mem.bookmarks.indexOf(id);
+            var on;
+            if (i > -1) {
+                _mem.bookmarks.splice(i, 1); on = false;
+                _cloud('bookmarks').delete().eq('user_id', SI_AUTH.user.id).eq('topic_slug', id).then(function () { });
+            } else {
+                _mem.bookmarks.push(id); on = true;
+                _cloud('bookmarks').upsert({ user_id: SI_AUTH.user.id, topic_slug: id }).then(function () { });
+            }
+            return on;
+        },
+        deleteBookmark: function (id) {
+            if (!SI_AUTH.user) return;
+            _mem.bookmarks = _mem.bookmarks.filter(function (x) { return x !== id; });
+            _cloud('bookmarks').delete().eq('user_id', SI_AUTH.user.id).eq('topic_slug', id).then(function () { });
+        },
+
+        read: function () { return Object.assign({}, _mem.read); },
+        markRead: function (id) {
+            if (!_requireLogin('track progress')) return;
+            if (_mem.read[id]) return;
+            _mem.read[id] = Date.now();
+            _cloud('revision_entries').insert({ user_id: SI_AUTH.user.id, item_id: id, type: 'read' }).then(function () { });
+        },
+
+        notes: function () { return Object.assign({}, _mem.notes); },
+        saveNote: function (id, text) {
+            if (!_requireLogin('save notes')) return;
+            _mem.notes[id] = { text: text, at: Date.now() };
+            _cloud('notes').upsert({ user_id: SI_AUTH.user.id, topic_slug: id, text: text, updated_at: new Date().toISOString() }).then(function () { });
+        },
+        deleteNote: function (id) {
+            if (!SI_AUTH.user) return;
+            delete _mem.notes[id];
+            _cloud('notes').delete().eq('user_id', SI_AUTH.user.id).eq('topic_slug', id).then(function () { });
+        },
+
+        missed: function () { return Object.assign({}, _mem.missed); },
+        addMissed: function (id) {
+            if (!_requireLogin('track missed questions')) return;
+            if (_mem.missed[id]) return;
+            _mem.missed[id] = Date.now();
+            _cloud('revision_entries').insert({ user_id: SI_AUTH.user.id, item_id: id, type: 'missed' }).then(function () { });
+        },
+        removeMissed: function (id) {
+            if (!SI_AUTH.user) return;
+            delete _mem.missed[id];
+            _cloud('revision_entries').delete().eq('user_id', SI_AUTH.user.id).eq('item_id', id).eq('type', 'missed').then(function () { });
+        },
+
+        mains: function () { return Object.assign({}, _mem.mains); },
+        saveMains: function (id, patch) {
+            if (!_requireLogin('save drafts')) return;
+            _mem.mains[id] = Object.assign({}, _mem.mains[id], patch, { at: Date.now() });
+            var checklist = {};
+            Object.keys(_mem.mains[id]).forEach(function (k) { if (k.indexOf('c') === 0) checklist[k] = _mem.mains[id][k]; });
+            _cloud('mains_drafts').upsert({
+                user_id: SI_AUTH.user.id, question_id: id,
+                text: _mem.mains[id].text || '', checklist: checklist,
+                updated_at: new Date().toISOString()
+            }).then(function () { });
+        },
+        deleteMains: function (id) {
+            if (!SI_AUTH.user) return;
+            delete _mem.mains[id];
+            _cloud('mains_drafts').delete().eq('user_id', SI_AUTH.user.id).eq('question_id', id).then(function () { });
+        },
+
+        quiz: function () { return _mem.quiz; },
+        saveQuiz: function (attempt) {
+            if (!_requireLogin('save quiz results')) return;
+            _mem.quiz.attempts = (_mem.quiz.attempts || []).concat(attempt).slice(-50);
+            _mem.quiz.best = Math.max(_mem.quiz.best || 0, attempt.score);
+            _cloud('progress').upsert({ user_id: SI_AUTH.user.id, quiz_attempts: _mem.quiz.attempts, active_days: _mem.days }).then(function () { });
+        },
+
+        days: function () { return _mem.days.slice(); },
+        touchDay: function () {
+            if (!_requireLogin('track progress')) return;
+            var today = new Date().toISOString().slice(0, 10);
+            if (_mem.days.indexOf(today) === -1) {
+                _mem.days.push(today);
+                _cloud('progress').upsert({ user_id: SI_AUTH.user.id, quiz_attempts: _mem.quiz.attempts, active_days: _mem.days }).then(function () { });
+            }
+        },
+
+        cleanup: function () { return { bookmarks: _mem.bookmarks.length }; },
+
+        reset: async function () {
+            if (!SI_AUTH.user) return;
+            await Promise.all([
+                _cloud('bookmarks').delete().eq('user_id', SI_AUTH.user.id),
+                _cloud('notes').delete().eq('user_id', SI_AUTH.user.id),
+                _cloud('mains_drafts').delete().eq('user_id', SI_AUTH.user.id),
+                _cloud('revision_entries').delete().eq('user_id', SI_AUTH.user.id),
+                _cloud('progress').delete().eq('user_id', SI_AUTH.user.id)
+            ]);
+            _mem = { bookmarks: [], read: {}, notes: {}, missed: {}, mains: {}, quiz: { attempts: [], best: 0 }, days: [] };
+        }
+    };
+
+    /* ============================================================
+       5. RSS / Classifier / Dedupe / Relevance (also Node-usable)
+       ============================================================ */
+    var SI_RSS = (function () {
+        function decode(s) {
+            return String(s || '')
+                .replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, '$1')
+                .replace(/<[^>]+>/g, ' ')
+                .replace(/&nbsp;/g, ' ')
+                .replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>')
+                .replace(/&quot;/g, '"').replace(/&#39;|&apos;/g, "'")
+                .replace(/&hellip;/g, '…').replace(/&mdash;/g, '—').replace(/&ndash;/g, '–')
+                .replace(/\s+/g, ' ').trim();
+        }
+        function firstDate(str) {
+            var d = new Date(str);
+            return isNaN(d) ? null : d.toISOString();
+        }
+        function parseWithDOM(xmlText) {
+            if (typeof DOMParser === 'undefined') return [];
+            var doc = new DOMParser().parseFromString(xmlText, 'text/xml');
+            if (doc.querySelector('parsererror')) return [];
+            var nodes = Array.prototype.slice.call(doc.querySelectorAll('item, entry'));
+            return nodes.map(function (node) {
+                function pick(sel) { var el = node.querySelector(sel); return el ? (el.textContent || '').trim() : ''; }
+                var linkEl = node.querySelector('link');
+                var link = (linkEl && (linkEl.getAttribute('href') || linkEl.textContent)) || pick('guid');
+                return {
+                    title: decode(pick('title')),
+                    link: (link || '').trim(),
+                    description: decode(pick('description') || pick('summary') || pick('content')),
+                    published: firstDate(pick('pubDate') || pick('published') || pick('updated')),
+                    image: (node.querySelector('enclosure') && node.querySelector('enclosure').getAttribute('url')) ||
+                        (node.querySelector('media\\:content') && node.querySelector('media\\:content').getAttribute('url')) || ''
+                };
+            }).filter(function (i) { return i.title && i.link; });
+        }
+        function parseWithRegex(xmlText) {
+            var blocks = xmlText.match(/<(item|entry)[\s\S]*?<\/\1>/gi) || [];
+            return blocks.map(function (block) {
+                function tag(name) {
+                    var m = block.match(new RegExp('<' + name + '[^>]*>([\\s\\S]*?)</' + name + '>', 'i'));
+                    return m ? m[1] : '';
+                }
+                function attr(name, a) {
+                    var m = block.match(new RegExp('<' + name + '[^>]*' + a + '="([^"]+)"', 'i'));
+                    return m ? m[1] : '';
+                }
+                var link = attr('link', 'href') || decode(tag('link')) || decode(tag('guid'));
+                return {
+                    title: decode(tag('title')),
+                    link: link,
+                    description: decode(tag('description') || tag('summary') || tag('content')),
+                    published: firstDate(decode(tag('pubDate') || tag('published') || tag('updated'))),
+                    image: attr('media:content', 'url') || attr('enclosure', 'url') || ''
+                };
+            }).filter(function (i) { return i.title && i.link; });
+        }
+        return {
+            decode: decode,
+            parse: function (xmlText) {
+                var out = parseWithDOM(xmlText);
+                return out.length ? out : parseWithRegex(xmlText);
+            }
+        };
+    })();
+
+    var SI_CLASSIFY = (function () {
+        var RULES = [
+            { paper: 'GS I', category: 'Geography', words: ['river', 'monsoon', 'glacier', 'earthquake', 'cyclone', 'delta', 'plateau', 'forest cover', 'urbanisation', 'migration', 'tribe', 'heritage', 'culture', 'festival'] },
+            { paper: 'GS I', category: 'History', words: ['ancient', 'medieval', 'colonial', 'freedom movement', 'inscription', 'excavation', 'archaeolog'] },
+            { paper: 'GS II', category: 'Polity', words: ['parliament', 'bill', 'constitution', 'amendment', 'supreme court', 'high court', 'judgment', 'governor', 'election commission', 'panchayat', 'fundamental right', 'article 21'] },
+            { paper: 'GS II', category: 'Governance', words: ['scheme', 'policy', 'ministry', 'cabinet', 'governance', 'welfare', 'subsidy', 'mission', 'committee report', 'cag'] },
+            { paper: 'GS II', category: 'International Relations', words: ['bilateral', 'treaty', 'summit', 'united nations', 'unsc', 'g20', 'brics', 'wto', 'imf', 'world bank', 'who', 'diplomatic', 'foreign minister', 'sanctions', 'border talks'] },
+            { paper: 'GS III', category: 'Economy', words: ['rbi', 'inflation', 'repo rate', 'gdp', 'fiscal', 'budget', 'tax', 'gst', 'banking', 'npa', 'msme', 'trade deficit', 'fdi', 'capital market'] },
+            { paper: 'GS III', category: 'Environment', words: ['climate', 'cop', 'emission', 'biodiversity', 'pollution', 'wildlife', 'tiger', 'wetland', 'unfccc', 'green hydrogen', 'solar', 'renewable', 'conservation'] },
+            { paper: 'GS III', category: 'Science & Technology', words: ['isro', 'drdo', 'satellite', 'launch vehicle', 'artificial intelligence', 'semiconductor', 'biotech', 'genome', 'quantum', 'nuclear'] },
+            { paper: 'GS III', category: 'Security', words: ['defence', 'army', 'navy', 'air force', 'terror', 'cyber security', 'border', 'insurgency', 'drone', 'missile'] },
+            { paper: 'GS III', category: 'Agriculture', words: ['farmer', 'crop', 'irrigation', 'msp', 'fertiliser', 'kharif', 'rabi', 'agriculture'] },
+            { paper: 'GS IV', category: 'Ethics', words: ['ethics', 'integrity', 'probity', 'conflict of interest', 'corruption', 'accountability'] }
+        ];
+        var TELANGANA = ['telangana', 'hyderabad', 'warangal', 'karimnagar', 'nizamabad', 'khammam', 'nalgonda',
+            'medak', 'adilabad', 'mahbubnagar', 'rangareddy', 'siddipet', 'kaleshwaram', 'godavari', 'musi',
+            'charminar', 'secunderabad', 'telugu', 'golconda', 'nagarjuna sagar', 'srisailam'];
+        var INDIA = ['india', 'indian', 'parliament', 'lok sabha', 'rajya sabha', 'supreme court of india',
+            'rbi', 'pib', 'isro', 'upsc', 'delhi', 'mumbai', 'kolkata', 'chennai', 'bengaluru', 'union government',
+            'niti aayog', 'election commission of india'];
+        function hits(text, words) {
+            var t = text.toLowerCase();
+            return words.filter(function (w) { return t.indexOf(w) > -1; });
+        }
+        return {
+            RULES: RULES,
+            classify: function (input) {
+                var text = [input.title, input.description, input.summary].filter(Boolean).join(' ');
+                var tel = hits(text, TELANGANA);
+                var ind = hits(text, INDIA);
+                var region = 'world';
+                if (tel.length >= 1 && tel.length >= ind.length) region = 'telangana';
+                else if (ind.length >= 1) region = 'india';
+                var regions = [region];
+                if (region !== 'world' && hits(text, ['united nations', 'unsc', 'g20', 'wto', 'imf', 'world bank', 'bilateral', 'treaty']).length) {
+                    regions.push('world');
+                }
+                var matched = [];
+                var papers = {};
+                var category = 'General Studies';
+                RULES.forEach(function (rule) {
+                    var found = hits(text, rule.words);
+                    if (found.length) {
+                        papers[rule.paper] = true;
+                        matched.push({ category: rule.category, keywords: found });
+                        if (category === 'General Studies') category = rule.category;
+                    }
+                });
+                return {
+                    region: region,
+                    regions: regions,
+                    category: category,
+                    gsPapers: Object.keys(papers),
+                    tags: matched.slice(0, 4).map(function (m) { return m.category; }),
+                    matched: matched
+                };
+            }
+        };
+    })();
+
+    var SI_DEDUPE = (function () {
+        var STOP = {};
+        'a an the and or of for to in on at by with from as is are was were be been this that these those it its will would says said new after before over under into about india indian govt government today update latest news report'.split(' ').forEach(function (w) { STOP[w] = true; });
+        function normalizeTitle(title) {
+            return String(title || '').toLowerCase().replace(/[’']/g, '').replace(/[^a-z0-9\s]/g, ' ').replace(/\s+/g, ' ').trim();
+        }
+        function tokens(title) {
+            return normalizeTitle(title).split(' ').filter(function (w) { return w.length > 2 && !STOP[w]; });
+        }
+        function jaccard(a, b) {
+            var A = new Set(a), B = new Set(b);
+            if (!A.size || !B.size) return 0;
+            var inter = 0;
+            A.forEach(function (x) { if (B.has(x)) inter++; });
+            return inter / (A.size + B.size - inter);
+        }
+        function canonicalUrl(url) {
+            try {
+                var u = new URL(url);
+                ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'ref', 'fbclid'].forEach(function (p) { u.searchParams.delete(p); });
+                return (u.hostname.replace(/^www\./, '') + u.pathname).replace(/\/$/, '').toLowerCase();
+            } catch (e) { return String(url || '').toLowerCase(); }
+        }
+        function similarity(a, b) {
+            var ta = tokens(a.title), tb = tokens(b.title);
+            var titleScore = jaccard(ta, tb);
+            var descScore = jaccard(tokens(a.description || ''), tokens(b.description || ''));
+            var sameDay = a.published && b.published && String(a.published).slice(0, 10) === String(b.published).slice(0, 10);
+            return (titleScore * 0.7) + (descScore * 0.3) + (sameDay ? 0.05 : 0);
+        }
+        function isDuplicate(a, b, threshold) {
+            var t = typeof threshold === 'number' ? threshold : 0.55;
+            if (!a || !b) return false;
+            if (a.link && b.link && canonicalUrl(a.link) === canonicalUrl(b.link)) return true;
+            if (normalizeTitle(a.title) === normalizeTitle(b.title)) return true;
+            return similarity(a, b) >= t;
+        }
+        function group(items, threshold) {
+            var groups = [];
+            items.forEach(function (item) {
+                var found = groups.filter(function (g) { return isDuplicate(g.lead, item, threshold); })[0];
+                if (found) found.items.push(item);
+                else groups.push({ lead: item, items: [item] });
+            });
+            return groups;
+        }
+        return { normalizeTitle: normalizeTitle, tokens: tokens, jaccard: jaccard, similarity: similarity, isDuplicate: isDuplicate, group: group, canonicalUrl: canonicalUrl };
+    })();
+
+    var SI_RELEVANCE = (function () {
+        var WEIGHTS = { syllabusMatch: 30, nationalSignificance: 15, indiaImpact: 15, constitutionalLegal: 12, economicConsequence: 10, environmentSocial: 10, longTerm: 8, examRecurrence: 10 };
+        var SIGNALS = {
+            constitutionalLegal: ['supreme court', 'high court', 'judgment', 'article', 'amendment', 'act ', 'bill', 'constitution', 'tribunal'],
+            economicConsequence: ['rbi', 'inflation', 'gdp', 'budget', 'fiscal', 'trade', 'gst', 'investment', 'employment', 'tariff'],
+            environmentSocial: ['climate', 'emission', 'biodiversity', 'pollution', 'health', 'education', 'welfare', 'poverty', 'women', 'caste'],
+            longTerm: ['policy', 'mission', 'framework', 'reform', 'strategy', 'agreement', 'treaty', 'target 20'],
+            examRecurrence: ['international relations', 'polity', 'economy', 'environment', 'science and technology', 'security'],
+            nationalSignificance: ['parliament', 'president', 'prime minister', 'cabinet', 'election commission', 'niti aayog', 'union budget'],
+            indiaImpact: ['india', 'indian', 'new delhi', 'rupee', 'domestic']
+        };
+        var EXCLUDE = ['celebrity', 'box office', 'film review', 'cricket score', 'entertainment', 'horoscope', 'viral video'];
+        function has(text, words) { return words.some(function (w) { return text.indexOf(w) > -1; }); }
+        return {
+            score: function (topic) {
+                var text = [topic.title, topic.summary, topic.description, (topic.tags || []).join(' ')].filter(Boolean).join(' ').toLowerCase();
+                if (has(text, EXCLUDE)) return { score: 5, reasons: ['Matches an excluded category.'], excluded: true };
+                var reasons = [], total = 0;
+                if ((topic.gsPapers || []).length) { total += WEIGHTS.syllabusMatch; reasons.push('Maps to ' + topic.gsPapers.join(', ') + '.'); }
+                Object.keys(SIGNALS).forEach(function (key) {
+                    if (has(text, SIGNALS[key])) { total += WEIGHTS[key]; reasons.push('Signals ' + key.replace(/([A-Z])/g, ' $1').toLowerCase() + '.'); }
+                });
+                var value = Math.max(5, Math.min(100, Math.round(total * 100 / 110)));
+                if (!reasons.length) reasons.push('Generic coverage with no clear syllabus anchor.');
+                return { score: value, reasons: reasons, excluded: false };
+            },
+            WEIGHTS: WEIGHTS, EXCLUDE: EXCLUDE
+        };
+    })();
+
+    /* ============================================================
+       6. State + Search
+       ============================================================ */
+    var State = {
+        news: { updated: null, topics: SEED_NEWS.topics.slice() },
+        sources: SEED_SOURCES.sources.slice(),
+        syllabus: SEED_SYLLABUS.papers.slice(),
+        questions: SEED_QUESTIONS
+    };
+
+    function allTopics() { return State.news.topics.slice(); }
+    function getTopic(id) {
+        return State.news.topics.filter(function (t) { return t.id === id; })[0];
+    }
+    function byImportance(list) { return list.slice().sort(function (a, b) { return (b.importance || 0) - (a.importance || 0); }); }
+    function byDate(list) { return list.slice().sort(function (a, b) { return new Date(b.published || 0) - new Date(a.published || 0); }); }
+    function regionLabel(r) { return { world: 'World', india: 'India', telangana: 'Telangana' }[r] || r; }
+
+    function blobOf(t) {
+        if (!t._blob) {
+            var s = t.sections || {};
+            t._blob = [t.title, t.summary, t.whyItMatters, t.category, (t.tags || []).join(' '),
+            (t.gsPapers || []).join(' '), t.region,
+            s.event, s.background, s.india, s.telangana, s.upsc,
+            (s.prelimsNotes || []).join(' '), (s.mainsNotes || []).join(' ')]
+                .filter(Boolean).join(' ').toLowerCase();
+        }
+        return t._blob;
+    }
+    var SI_SEARCH = {
+        query: function (q, opts) {
+            opts = opts || {};
+            var words = String(q || '').toLowerCase().split(/[^a-z0-9]+/).filter(function (w) { return w.length > 1; });
+            if (!words.length) return [];
+            return allTopics()
+                .filter(function (t) {
+                    return !opts.region || t.region === opts.region || (Array.isArray(t.regions) && t.regions.indexOf(opts.region) > -1);
+                })
+                .map(function (t) {
+                    var title = String(t.title || '').toLowerCase();
+                    var summary = String(t.summary || '').toLowerCase();
+                    var body = blobOf(t);
+                    var score = 0;
+                    words.forEach(function (w) {
+                        if (title.indexOf(w) > -1) score += 6;
+                        if (summary.indexOf(w) > -1) score += 3;
+                        if (body.indexOf(w) > -1) score += 1;
+                    });
+                    if (t.importance) score += t.importance / 100;
+                    return { topic: t, score: score };
+                })
+                .filter(function (r) { return r.score > 0; })
+                .sort(function (a, b) { return b.score - a.score; })
+                .slice(0, opts.limit || 20);
+        },
+        related: function (topic, limit) {
+            var tags = new Set((topic.tags || []).concat(topic.gsPapers || []));
+            return allTopics()
+                .filter(function (t) { return t.id !== topic.id; })
+                .map(function (t) {
+                    var overlap = (t.tags || []).concat(t.gsPapers || []).filter(function (x) { return tags.has(x); }).length;
+                    return { topic: t, overlap: overlap };
+                })
+                .filter(function (r) { return r.overlap > 0; })
+                .sort(function (a, b) { return b.overlap - a.overlap; })
+                .slice(0, limit || 3)
+                .map(function (r) { return r.topic; });
+        }
+    };
+
+    /* ============================================================
+       7. Renderers
+       ============================================================ */
+    function chips(t) {
+        var gs = (t.gsPapers || []).map(function (p) { return '<span class="chip chip-gs">' + esc(p) + '</span>'; }).join('');
+        return gs + '<span class="chip">' + esc(t.category || 'General') + '</span>';
+    }
+    function card(t) {
+        var href = '#/article?id=' + encodeURIComponent(t.id);
+        var bm = SI_STORE.isBookmarked(t.id);
+        return '<article class="topic-card">' +
+            '<a class="card-media" href="' + href + '">' +
+            '<img src="' + esc(topicImage(t)) + '" alt="" loading="lazy">' +
+            '<span class="region-badge ' + esc(t.region) + '">' + esc(regionLabel(t.region)) + '</span>' +
+            '</a>' +
+            '<div class="card-body">' +
+            '<div class="chips">' + chips(t) + '</div>' +
+            '<h3 class="card-title"><a href="' + href + '">' + esc(t.title) + '</a></h3>' +
+            '<p class="card-summary">' + esc(truncate(t.summary, 160)) + '</p>' +
+            '<div class="card-foot">' +
+            '<span>' + fmtDate(t.published) + '</span><span>·</span>' +
+            '<span>' + (t.readTime || 5) + ' min read</span>' +
+            '<span class="dot"></span>' +
+            '<span>' + (t.sources || []).length + ' source' + ((t.sources || []).length === 1 ? '' : 's') + '</span>' +
+            '<button class="bm-btn ' + (bm ? 'on' : '') + '" data-bm="' + esc(t.id) + '" type="button" aria-label="Bookmark">' + (bm ? '★' : '☆') + '</button>' +
+            '</div>' +
+            '</div>' +
+            '</article>';
+    }
+    function listRow(t, i) {
+        var href = '#/article?id=' + encodeURIComponent(t.id);
+        return '<div class="list-row">' +
+            (i == null ? '' : '<span class="rank">' + String(i + 1).padStart(2, '0') + '</span>') +
+            '<div class="lr-body">' +
+            '<div class="chips">' + chips(t) + '</div>' +
+            '<h3><a href="' + href + '">' + esc(t.title) + '</a></h3>' +
+            '<p>' + esc(truncate(t.summary, 140)) + '</p>' +
+            '</div>' +
+            '<span class="lr-meta">' + fmtRelative(t.published) + '</span>' +
+            '</div>';
+    }
+
+    /* ============================================================
+       8. Article renderer
+       ============================================================ */
+    var ARTICLE_SECTIONS = [
+        ['event', 'The event'], ['background', 'Background'], ['causes', 'Causes'],
+        ['stakeholders', 'Important stakeholders'], ['timeline', 'Timeline'], ['data', 'Important data'],
+        ['geography', 'Geography'], ['india', "India's perspective"], ['telangana', 'Telangana connection'],
+        ['challenges', 'Challenges'], ['solutions', 'Possible solutions'], ['upsc', 'UPSC connection'],
+        ['prelimsNotes', 'Prelims notes'], ['mainsNotes', 'Mains notes']
+    ];
+    var SI_ARTICLE = {
+        render: function (root, id) {
+            var t = getTopic(id);
+            if (!t) {
+                root.innerHTML = '<div class="panel"><h1>Topic not found</h1>' +
+                    '<p class="fine">This research page does not exist in the library.</p>' +
+                    '<a class="btn" href="#/dashboard">Back to the dashboard</a></div>';
+                return;
+            }
+            SI_STORE.markRead(t.id);
+            var bm = SI_STORE.isBookmarked(t.id);
+            var note = (SI_STORE.notes()[t.id] || {}).text || '';
+            var s = t.sections || {};
+
+            function secHTML(key, label) {
+                var val = s[key];
+                if (!val || (Array.isArray(val) && !val.length)) return '';
+                var body = '';
+                if (key === 'timeline') {
+                    body = '<ul class="timeline">' + val.map(function (e) { return '<li><time>' + esc(e.date) + '</time>' + esc(e.text) + '</li>'; }).join('') + '</ul>';
+                } else if (key === 'data') {
+                    body = '<dl class="kv">' + val.map(function (d) { return '<dt>' + esc(d.label) + '</dt><dd>' + esc(d.value) + '</dd>'; }).join('') + '</dl>';
+                } else if (Array.isArray(val)) {
+                    body = '<ul>' + val.map(function (v) { return '<li>' + esc(v) + '</li>'; }).join('') + '</ul>';
+                } else {
+                    body = '<p>' + esc(val) + '</p>';
+                }
+                return '<section class="art-sec" id="sec-' + key + '"><h2>' + esc(label) + '</h2>' + body + '</section>';
+            }
+
+            function practiceHTML() {
+                var p = SEED_QUESTIONS.prelims.filter(function (q) { return q.topicId === t.id; });
+                var m = SEED_QUESTIONS.mains.filter(function (q) { return q.topicId === t.id; });
+                if (!p.length && !m.length) return '';
+                var out = '<section class="art-sec" id="sec-practice"><h2>Practice questions</h2>';
+                if (p.length) {
+                    out += '<h3>Prelims</h3><ol>' + p.map(function (q) { return '<li>' + esc(q.question) + '</li>'; }).join('') + '</ol>' +
+                        '<a class="btn" href="#/prelims">Attempt these MCQs</a>';
+                }
+                if (m.length) {
+                    out += '<h3 style="margin-top:16px">Mains</h3><ol>' + m.map(function (q) { return '<li>' + esc(q.question) + ' <span class="fine">(' + q.marks + ' marks)</span></li>'; }).join('') + '</ol>' +
+                        '<a class="btn" href="#/mains">Write an answer</a>';
+                }
+                return out + '</section>';
+            }
+
+            function sourcesHTML() {
+                var list = t.sources || [];
+                var out = '<section class="art-sec" id="sec-references"><h2>References</h2>';
+                if (list.length) {
+                    out += '<ul class="src-list">' + list.map(function (sr) {
+                        return '<li><span class="src-type">' + esc(sr.type || 'source') + '</span>' +
+                            '<a href="' + esc(sr.url) + '" target="_blank" rel="noopener noreferrer">' + esc(sr.title) + '</a>' +
+                            ' <span class="fine">— ' + esc(sr.publisher) + (sr.date ? ', ' + fmtDate(sr.date) : '') + '</span></li>';
+                    }).join('') + '</ul>';
+                } else {
+                    out += '<p class="fine">No sources recorded.</p>';
+                }
+                out += '<p class="fine">Two outlets repeating the same agency report are not treated as two independent confirmations.</p></section>';
+                return out;
+            }
+
+            root.innerHTML =
+                '<article>' +
+                '<header class="article-head">' +
+                '<div class="chips"><span class="chip">' + esc(regionLabel(t.region)) + '</span>' + chips(t) + '</div>' +
+                '<h1>' + esc(t.title) + '</h1>' +
+                '<p class="lede">' + esc(t.summary) + '</p>' +
+                '<div class="article-meta">' +
+                '<span>Published ' + fmtDate(t.published) + '</span><span>·</span>' +
+                '<span>Last updated ' + fmtDate(t.updated || t.published) + '</span><span>·</span>' +
+                '<span>' + (t.readTime || 5) + ' min read</span><span>·</span>' +
+                '<span>' + (t.sources || []).length + ' references</span>' +
+                (t.importance ? '<span>·</span><span>Relevance score ' + t.importance + '/100</span>' : '') +
+                '</div>' +
+                (t.curated ? '' : '<div class="banner">Auto-collected item. The summary is derived from the publisher description and has not been editorially verified.</div>') +
+                '<img class="article-hero" src="' + esc(topicImage(t)) + '" alt="">' +
+                '<p class="img-credit">' + esc(t.imageCredit || 'SanjanaIAS category illustration') + '</p>' +
+                '<div class="article-actions">' +
+                '<button class="btn ' + (bm ? 'btn-primary' : '') + '" id="bmBtn" type="button">' + (bm ? '★ Saved' : '☆ Save to library') + '</button>' +
+                '<a class="btn" href="#/ai-tutor">Ask Sanjana AI about this</a>' +
+                '<a class="btn" href="#/prelims">Practise Prelims</a>' +
+                '</div>' +
+                '</header>' +
+                '<div class="article-layout">' +
+                '<div class="article-body">' +
+                (t.whyItMatters ? '<section class="art-sec" id="sec-why"><h2>Why it matters for UPSC</h2><p>' + esc(t.whyItMatters) + '</p></section>' : '') +
+                ARTICLE_SECTIONS.map(function (pair) { return secHTML(pair[0], pair[1]); }).join('') +
+                practiceHTML() +
+                sourcesHTML() +
+                '<section class="art-sec" id="sec-notes"><h2>My notes</h2>' +
+                '<textarea id="noteBox" rows="5" placeholder="Write what you want to remember about this topic…">' + esc(note) + '</textarea>' +
+                '<p class="fine">Notes are stored in this browser only.</p>' +
+                '</section>' +
+                '</div>' +
+                '<nav class="toc" aria-label="On this page"><strong>On this page</strong>' +
+                (t.whyItMatters ? '<a data-scroll-to="sec-why">Why it matters</a>' : '') +
+                ARTICLE_SECTIONS.filter(function (p) { return s[p[0]]; }).map(function (p) {
+                    return '<a data-scroll-to="sec-' + p[0] + '">' + esc(p[1]) + '</a>';
+                }).join('') +
+                '<a data-scroll-to="sec-references">References</a>' +
+                '<a data-scroll-to="sec-notes">My notes</a>' +
+                '</nav>' +
+                '</div>' +
+                '</article>';
+
+            document.getElementById('bmBtn').addEventListener('click', function () {
+                var on = SI_STORE.toggleBookmark(t.id);
+                this.textContent = on ? '★ Saved' : '☆ Save to library';
+                this.classList.toggle('btn-primary', on);
+                toast(on ? 'Saved to My Library.' : 'Removed from My Library.');
+            });
+            var box = document.getElementById('noteBox');
+            box.addEventListener('change', function () {
+                SI_STORE.saveNote(t.id, box.value);
+                toast('Note saved.');
+            });
+            document.title = t.title + ' · SanjanaIAS';
+        }
+    };
+
+    /* ============================================================
+       9. Tutor + Revision
+       ============================================================ */
+    function intentOf(q) {
+        var s = q.toLowerCase();
+        if (/mcq|multiple choice|prelims question|quiz/.test(s)) return 'mcq';
+        if (/mains question|answer writing|15 marks|250 words/.test(s)) return 'mains';
+        if (/syllabus|gs paper|which paper/.test(s)) return 'syllabus';
+        if (/affect india|india'?s? (interest|perspective|stand)/.test(s)) return 'india';
+        if (/background|history|origin|why did/.test(s)) return 'background';
+        if (/timeline|chronolog|what happened/.test(s)) return 'timeline';
+        if (/simple|easy|beginner|explain/.test(s)) return 'explain';
+        return 'general';
+    }
+    function buildFromTopic(t, intent) {
+        var s = t.sections || {};
+        var head = '<h3>' + esc(t.title) + '</h3><div class="chips">' + chips(t) + '</div>';
+        var body = '';
+        if (intent === 'background') {
+            body = '<p>' + esc(s.background || t.summary) + '</p>';
+            if (s.causes) body += '<h4>Why it happened</h4><p>' + esc(s.causes) + '</p>';
+        } else if (intent === 'india') {
+            body = '<p>' + esc(s.india || 'No India-specific implication recorded yet.') + '</p>';
+            if (s.telangana) body += '<h4>Telangana angle</h4><p>' + esc(s.telangana) + '</p>';
+        } else if (intent === 'syllabus') {
+            body = '<p>This topic is tagged to <strong>' + esc((t.gsPapers || []).join(', ') || 'no paper yet') + '</strong>.</p>' +
+                '<p>' + esc(s.upsc || '') + '</p>';
+            if ((s.prelimsNotes || []).length) body += '<h4>Prelims facts</h4><ul>' + s.prelimsNotes.slice(0, 4).map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul>';
+        } else if (intent === 'timeline') {
+            var tl = s.timeline || [];
+            body = tl.length
+                ? '<ol>' + tl.map(function (e) { return '<li><strong>' + esc(e.date) + '</strong> — ' + esc(e.text) + '</li>'; }).join('') + '</ol>'
+                : '<p>No timeline recorded for this topic.</p>';
+        } else if (intent === 'mcq') {
+            var qs = SEED_QUESTIONS.prelims.filter(function (q) { return q.topicId === t.id; }).slice(0, 5);
+            body = qs.length
+                ? '<p>Practice questions from this topic:</p><ol>' + qs.map(function (q) { return '<li>' + esc(q.question) + '</li>'; }).join('') + '</ol>' +
+                '<p><a class="btn" href="#/prelims">Attempt with explanations</a></p>'
+                : '<p>No MCQs authored for this topic yet.</p>';
+        } else if (intent === 'mains') {
+            var ms = SEED_QUESTIONS.mains.filter(function (q) { return q.topicId === t.id; }).slice(0, 2);
+            body = ms.length ? ms.map(function (q) { return '<p><strong>' + q.marks + ' marks:</strong> ' + esc(q.question) + '</p>'; }).join('') : '<p>No Mains question attached to this topic yet.</p>';
+        } else {
+            body = '<p>' + esc(t.summary) + '</p>';
+            if (t.whyItMatters) body += '<h4>Why it matters for UPSC</h4><p>' + esc(t.whyItMatters) + '</p>';
+            if ((s.prelimsNotes || []).length) body += '<h4>Remember for Prelims</h4><ul>' + s.prelimsNotes.slice(0, 4).map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul>';
+        }
+        var srcs = (t.sources || []).slice(0, 3);
+        var srcHTML = srcs.length
+            ? '<div class="src">Sources: ' + srcs.map(function (sr) { return '<a href="' + esc(sr.url) + '" target="_blank" rel="noopener noreferrer">' + esc(sr.publisher) + '</a>'; }).join(' · ') + '</div>'
+            : '';
+        var related = SI_SEARCH.related(t, 3);
+        var relHTML = related.length
+            ? '<h4>Related in the library</h4><ul>' + related.map(function (r) { return '<li><a href="#/article?id=' + encodeURIComponent(r.id) + '">' + esc(r.title) + '</a></li>'; }).join('') + '</ul>'
+            : '';
+        return head + body + srcHTML +
+            '<p><a class="btn" href="#/article?id=' + encodeURIComponent(t.id) + '">Read the full research page</a></p>' + relHTML;
+    }
+    var SI_TUTOR = {
+        answer: function (q) {
+            var intent = intentOf(q);
+            var hits = SI_SEARCH.query(q, { limit: 3 });
+            if (!hits.length) {
+                return {
+                    html:
+                        '<h3>Not in the library yet</h3><p>No content in the SanjanaIAS collection matches “' + esc(q) + '”.</p>' +
+                        '<p>I only answer from content already collected here — I am not a general-purpose chatbot and I do not browse the internet.</p>' +
+                        '<h4>Try one of these</h4><ul>' + allTopics().slice(0, 4).map(function (t) {
+                            return '<li><a href="#/article?id=' + encodeURIComponent(t.id) + '">' + esc(t.title) + '</a></li>';
+                        }).join('') + '</ul>'
+                };
+            }
+            var html = buildFromTopic(hits[0].topic, intent);
+            if (hits.length > 1 && intent !== 'mcq' && intent !== 'mains') {
+                html += '<h4>Also relevant</h4><ul>' + hits.slice(1).map(function (h) {
+                    return '<li><a href="#/article?id=' + encodeURIComponent(h.topic.id) + '">' + esc(h.topic.title) + '</a></li>';
+                }).join('') + '</ul>';
+            }
+            html += '<div class="src">Grounded in ' + hits.length + ' SanjanaIAS topic' + (hits.length === 1 ? '' : 's') + '. No external model was used.</div>';
+            return { html: html };
+        }
+    };
+
+    var SI_REVISION = {
+        render: function (root) {
+            var cutoff30 = Date.now() - 30 * 86400000;
+            var read = SI_STORE.read();
+            var readIds = Object.keys(read)
+                .filter(function (id) { return read[id] > cutoff30; })
+                .sort(function (a, b) { return read[b] - read[a]; });
+            var readTopics = readIds.map(getTopic).filter(Boolean);
+            var missedMap = SI_STORE.missed();
+            var missedQs = Object.keys(missedMap)
+                .filter(function (id) { return missedMap[id] > cutoff30; })
+                .map(function (id) { return SEED_QUESTIONS.prelims.filter(function (q) { return q.id === id; })[0]; })
+                .filter(Boolean);
+            var bookmarks = SI_STORE.bookmarks().map(getTopic).filter(Boolean);
+            var weekAgo = Date.now() - 7 * 86400000;
+            var thisWeek = allTopics().filter(function (t) { return new Date(t.published || 0).getTime() > weekAgo; });
+
+            root.innerHTML =
+                '<section class="panel"><div class="panel-head"><h2>Continue reading</h2><span class="chip">' + readTopics.length + ' read</span></div>' +
+                (readTopics.length ? '<div class="card-grid">' + readTopics.slice(0, 6).map(card).join('') + '</div>' : '<p class="fine">Nothing read yet.</p>') +
+                '</section>' +
+                '<section class="panel"><div class="panel-head"><h2>Questions to retry</h2><span class="chip">' + missedQs.length + '</span></div>' +
+                (missedQs.length ? missedQs.map(function (q) {
+                    return '<div class="list-row"><div class="lr-body"><h3>' + esc(q.question) + '</h3><p>' + esc(q.explanation) + '</p></div>' +
+                        '<button class="btn" data-clear="' + esc(q.id) + '" type="button">Mark revised</button></div>';
+                }).join('') : '<p class="fine">No missed questions.</p>') +
+                '</section>' +
+                '<section class="panel"><div class="panel-head"><h2>Saved for later</h2><span class="chip">' + bookmarks.length + '</span></div>' +
+                (bookmarks.length ? '<div class="card-grid">' + bookmarks.slice(0, 6).map(card).join('') + '</div>' : '<p class="fine">No bookmarks yet.</p>') +
+                '</section>' +
+                '<section class="panel"><div class="panel-head"><h2>This week\'s collection</h2><span class="chip">' + thisWeek.length + '</span></div>' +
+                (thisWeek.length ? '<div class="card-grid">' + byImportance(thisWeek).slice(0, 6).map(card).join('') + '</div>' : '<p class="fine">No new topics in the last seven days.</p>') +
+                '</section>';
+
+            $$('[data-clear]', root).forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    SI_STORE.removeMissed(btn.dataset.clear);
+                    toast('Removed from the retry list.');
+                    SI_REVISION.render(root);
+                });
+            });
+        }
+    };
+
+    /* ============================================================
+       10. Pages
+       ============================================================ */
+    function sectionPage(region, container) {
+        var topics = allTopics().filter(function (t) {
+            return t.region === region || (Array.isArray(t.regions) && t.regions.indexOf(region) > -1);
+        });
+        container.innerHTML =
+            '<header class="page-head">' +
+            '<p class="eyebrow">' + esc(region === 'telangana' ? 'State Affairs' : region === 'india' ? 'National Affairs' : 'International Affairs') + '</p>' +
+            '<h1>' + esc(regionLabel(region)) + '</h1>' +
+            '<p class="lede">' + (region === 'world'
+                ? 'Global developments organised by UPSC relevance — international relations, organisations, economy, environment, security and society.'
+                : region === 'india'
+                    ? 'Parliament, policy, economy, judiciary, science, environment and security — each mapped to the GS papers.'
+                    : 'A dedicated state research desk — governance, irrigation, agriculture, industry, technology, education, environment and social issues.') + '</p>' +
+            '</header>' +
+            '<div class="filter-bar">' +
+            '<input type="search" id="localSearch" placeholder="Filter ' + regionLabel(region) + ' topics…" aria-label="Filter">' +
+            '<select id="paperFilter" aria-label="Paper"><option value="">All papers</option><option>GS I</option><option>GS II</option><option>GS III</option><option>GS IV</option><option>Prelims</option></select>' +
+            '<select id="sortFilter" aria-label="Sort"><option value="date">Newest first</option><option value="importance">Most important</option></select>' +
+            '</div>' +
+            '<p class="result-count" id="resultCount"></p>' +
+            '<div class="card-grid" id="grid"></div>' +
+            '<p class="disclaimer">' + (region === 'telangana'
+                ? 'Telangana state news is kept distinct from Andhra Pradesh, Hyderabad-region and national coverage.'
+                : region === 'india'
+                    ? 'Union government, national institutions and national events. State-specific coverage lives in the Telangana section.'
+                    : 'Coverage includes Asia & Indo-Pacific, Europe, North America, South America, Africa, the Middle East and international organisations.') + '</p>';
+
+        var grid = $('#grid', container);
+        var count = $('#resultCount', container);
+        var search = $('#localSearch', container);
+        var paper = $('#paperFilter', container);
+        var sort = $('#sortFilter', container);
+
+        function draw() {
+            var list = topics.slice();
+            if (paper.value) list = list.filter(function (t) { return (t.gsPapers || []).indexOf(paper.value) > -1; });
+            var q = search.value.trim().toLowerCase();
+            if (q) list = list.filter(function (t) {
+                return (t.title + ' ' + t.summary + ' ' + (t.tags || []).join(' ')).toLowerCase().indexOf(q) > -1;
+            });
+            list = sort.value === 'importance' ? byImportance(list) : byDate(list);
+            grid.innerHTML = list.map(card).join('') || '<p class="fine">Nothing matches these filters yet.</p>';
+            count.textContent = list.length + ' topic' + (list.length === 1 ? '' : 's') + ' in ' + regionLabel(region);
+        }
+        [search, paper, sort].forEach(function (el) { el.addEventListener('input', draw); });
+        draw();
+    }
+
+    var Pages = {
+        dashboard: function (main) {
+            var topics = allTopics();
+            var byRegion = function (r) { return topics.filter(function (t) { return t.region === r; }).length; };
+            var ranked = byImportance(topics);
+            var tod = ranked[0];
+
+            main.innerHTML =
+                '<section class="hero-block">' +
+                '<p class="eyebrow" id="todayLabel"></p>' +
+                '<h1>Good morning, Aspirant</h1>' +
+                '<p class="lede">Your world. Your nation. Your state. Your preparation.</p>' +
+                '<div class="stat-row">' +
+                '<div class="stat"><strong>' + String(byRegion('world')).padStart(2, '0') + '</strong><span>World topics</span></div>' +
+                '<div class="stat"><strong>' + String(byRegion('india')).padStart(2, '0') + '</strong><span>India topics</span></div>' +
+                '<div class="stat"><strong>' + String(byRegion('telangana')).padStart(2, '0') + '</strong><span>Telangana topics</span></div>' +
+                '</div>' +
+                '</section>' +
+                '<section class="panel"><div class="panel-head"><h2>Today\'s most important topics</h2><a class="link" href="#/briefing">Full briefing →</a></div>' +
+                '<div class="topic-list">' + ranked.slice(0, 5).map(function (t, i) { return listRow(t, i); }).join('') + '</div></section>' +
+                '<section class="split">' +
+                '<div class="panel"><div class="panel-head"><h2>Topic of the day</h2></div>' +
+                (tod ? '<a class="tod" href="#/article?id=' + encodeURIComponent(tod.id) + '">' +
+                    '<img src="' + esc(topicImage(tod)) + '" alt="">' +
+                    '<div><div class="chips">' + chips(tod) + '</div>' +
+                    '<h3>' + esc(tod.title) + '</h3><p>' + esc(tod.whyItMatters || tod.summary) + '</p>' +
+                    '<span class="link">Open complete research →</span></div></a>' : '<p class="fine">No topics yet.</p>') +
+                '</div>' +
+                '<div class="panel"><div class="panel-head"><h2>Today\'s preparation plan</h2></div>' +
+                '<ul class="plan">' +
+                '<li><a href="#/briefing">Read important topics</a><span>30 min</span></li>' +
+                '<li><a href="#/prelims">Prelims practice</a><span>15 min</span></li>' +
+                '<li><a href="#/mains">Mains answer practice</a><span>15 min</span></li>' +
+                '</ul>' +
+                '<p class="fine">Design example durations, not prescribed study time.</p>' +
+                '<a class="btn btn-primary block" href="#/ai-tutor">Ask Sanjana AI about today\'s news</a>' +
+                '</div>' +
+                '</section>' +
+                '<section class="panel"><div class="panel-head"><h2>Browse by region</h2></div>' +
+                '<div class="region-tiles">' +
+                '<a class="region-tile world" href="#/world"><span>World</span><small>' + byRegion('world') + ' topics</small></a>' +
+                '<a class="region-tile india" href="#/india"><span>India</span><small>' + byRegion('india') + ' topics</small></a>' +
+                '<a class="region-tile telangana" href="#/telangana"><span>Telangana</span><small>' + byRegion('telangana') + ' topics</small></a>' +
+                '</div>' +
+                '</section>' +
+                '<section class="panel"><div class="panel-head"><h2>Latest across SanjanaIAS</h2><a class="link" href="#/world">All research →</a></div>' +
+                '<div class="card-grid">' + byDate(topics).slice(0, 6).map(card).join('') + '</div></section>' +
+                '<p class="disclaimer">SanjanaIAS is an independent educational platform. It is not affiliated with UPSC or the Government of India. Sample topics marked <em>illustrative</em> demonstrate layout and classification.</p>';
+
+            var el = $('#todayLabel');
+            if (el) el.textContent = new Date().toLocaleDateString('en-IN', { weekday: 'long', day: '2-digit', month: 'long', year: 'numeric' });
+        },
+
+        world: function (main) { sectionPage('world', main); },
+        india: function (main) { sectionPage('india', main); },
+        telangana: function (main) { sectionPage('telangana', main); },
+
+        briefing: function (main) {
+            var topics = allTopics();
+            var ranked = byImportance(topics);
+            var tod = ranked[0];
+            var facts = [];
+            topics.forEach(function (t) { (t.sections && t.sections.data || []).forEach(function (d) { facts.push({ data: d, topic: t }); }); });
+
+            main.innerHTML =
+                '<header class="page-head"><p class="eyebrow">Consolidated daily report</p><h1>Daily Briefing</h1>' +
+                '<p class="lede">' + new Date().toLocaleDateString('en-IN', { weekday: 'long', day: '2-digit', month: 'long', year: 'numeric' }) + '</p></header>' +
+                '<section class="panel"><div class="panel-head"><h2>Part A — Today\'s most important topics</h2></div>' +
+                '<div class="topic-list">' + (ranked.slice(0, 6).map(function (t, i) { return listRow(t, i); }).join('') || '<p class="fine">No topics collected yet.</p>') + '</div></section>' +
+                '<section class="panel"><div class="panel-head"><h2>Part B — Geographic summaries</h2></div>' +
+                '<div class="three-col">' +
+                ['world', 'india', 'telangana'].map(function (r) {
+                    var list = byImportance(topics.filter(function (t) { return t.region === r; })).slice(0, 3);
+                    return '<div class="mini-col"><h3>' + regionLabel(r) + '</h3><ul class="mini-list">' +
+                        (list.length ? list.map(function (t) {
+                            return '<li><a href="#/article?id=' + encodeURIComponent(t.id) + '">' + esc(t.title) + '</a></li>';
+                        }).join('') : '<li class="fine">Nothing collected yet.</li>') + '</ul></div>';
+                }).join('') +
+                '</div></section>' +
+                '<section class="panel"><div class="panel-head"><h2>Part C — Topic of the day, in depth</h2></div>' +
+                (tod ? '<h3>' + esc(tod.title) + '</h3><div class="chips">' + chips(tod) + '</div>' +
+                    '<p>' + esc(tod.sections && tod.sections.event || tod.summary) + '</p>' +
+                    '<p class="fine">' + esc(tod.sections && tod.sections.india || '') + '</p>' +
+                    '<a class="btn" href="#/article?id=' + encodeURIComponent(tod.id) + '">Read the full research page</a>'
+                    : '<p class="fine">No topic available.</p>') +
+                '</section>' +
+                '<section class="panel"><div class="panel-head"><h2>Part D — Important facts</h2></div>' +
+                '<ul class="fact-list">' +
+                (facts.slice(0, 8).map(function (f) {
+                    return '<li><strong>' + esc(f.data.label) + ':</strong> ' + esc(f.data.value) +
+                        ' <a class="mini-link" href="#/article?id=' + encodeURIComponent(f.topic.id) + '">source</a></li>';
+                }).join('') || '<li class="fine">No facts collected yet.</li>') +
+                '</ul></section>' +
+                '<section class="split">' +
+                '<div class="panel"><div class="panel-head"><h2>Part E — Daily quiz</h2></div>' +
+                '<p class="fine">Questions drawn from the day\'s collected topics.</p>' +
+                '<a class="btn btn-primary" href="#/prelims">Start today\'s quiz</a></div>' +
+                '<div class="panel"><div class="panel-head"><h2>Part F — Daily revision</h2></div>' +
+                '<p class="fine">A quick recap of topics you previously studied.</p>' +
+                '<a class="btn" href="#/revision">Open revision tracker</a></div>' +
+                '</section>' +
+                '<p class="disclaimer">Counts reflect the current local library.</p>';
+        },
+
+        article: function (main, params) {
+            SI_ARTICLE.render(main, params.id);
+        },
+
+        syllabus: function (main) {
+            main.innerHTML =
+                '<header class="page-head"><p class="eyebrow">GS Paper I – IV mapping</p><h1>Syllabus Explorer</h1>' +
+                '<p class="lede">Each topic is tagged to a GS paper and to Prelims-relevant facts. This view reverses the mapping.</p></header>' +
+                State.syllabus.map(function (p) {
+                    var linked = allTopics().filter(function (t) { return (t.gsPapers || []).indexOf(p.code) > -1; });
+                    return '<details class="panel syllabus-block" ' + (p.code === 'GS II' ? 'open' : '') + '>' +
+                        '<summary><strong>' + esc(p.code) + '</strong> — ' + esc(p.name) + ' <span class="chip">' + linked.length + ' topics</span></summary>' +
+                        '<p class="fine">' + esc(p.note || '') + '</p>' +
+                        '<ul class="syllabus-areas">' + p.areas.map(function (a) { return '<li><strong>' + esc(a) + '</strong></li>'; }).join('') + '</ul>' +
+                        '<div class="card-grid compact">' +
+                        (linked.slice(0, 6).map(card).join('') || '<p class="fine">No topics collected for this paper yet.</p>') +
+                        '</div></details>';
+                }).join('') +
+                '<p class="disclaimer">Syllabus areas are maintained from official UPSC notification headings. Topic counts reflect only content collected by SanjanaIAS.</p>';
+        },
+
+        'ai-tutor': function (main) {
+            main.innerHTML =
+                '<header class="page-head"><p class="eyebrow">UPSC-focused learning assistant</p><h1>Sanjana AI Tutor</h1>' +
+                '<p class="lede">Answers are retrieved from the SanjanaIAS library and cite their sources. It is a grounded study assistant, not a general-purpose chatbot.</p></header>' +
+                '<div class="notice"><strong>How this works:</strong> Sanjana AI searches topics already collected by SanjanaIAS and builds an answer from their summaries, notes and sources. No external language model is connected — it cannot reason about content outside this library, and it will say so.</div>' +
+                '<div class="chat-shell">' +
+                '<div class="chat-log" id="chatLog" aria-live="polite"></div>' +
+                '<form class="chat-form" id="chatForm">' +
+                '<input id="chatInput" type="text" autocomplete="off" placeholder="Ask about a topic, e.g. “Why is the Strait of Hormuz important for India?”" aria-label="Ask Sanjana">' +
+                '<button class="btn btn-primary" type="submit">Ask</button>' +
+                '</form>' +
+                '<div class="suggestions" id="suggestions"></div>' +
+                '</div>';
+
+            var log = $('#chatLog', main);
+            var input = $('#chatInput', main);
+            var form = $('#chatForm', main);
+            var sug = $('#suggestions', main);
+
+            function add(html, cls) {
+                var div = document.createElement('div');
+                div.className = 'msg ' + (cls || '');
+                div.innerHTML = html;
+                log.appendChild(div);
+                log.scrollTop = log.scrollHeight;
+                return div;
+            }
+            add('<p>Hello. Ask me about any topic in today\'s library — I will point you to the summary, the UPSC relevance and the original sources.</p>', 'bot');
+
+            var presets = ['Explain today\'s most important topic', 'How does this affect India?', 'Give me 5 Prelims MCQs', 'Ask me a difficult Mains question', 'What is the syllabus connection?'];
+            sug.innerHTML = presets.map(function (p) { return '<button class="chip chip-btn" type="button">' + esc(p) + '</button>'; }).join('');
+            sug.addEventListener('click', function (e) {
+                var b = e.target.closest('button'); if (!b) return;
+                input.value = b.textContent; form.requestSubmit();
+            });
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                var q = input.value.trim(); if (!q) return;
+                add('<p class="you">' + esc(q) + '</p>', 'user');
+                input.value = '';
+                var pending = add('<p class="typing">Searching the SanjanaIAS library…</p>', 'bot');
+                setTimeout(function () {
+                    pending.innerHTML = SI_TUTOR.answer(q).html;
+                }, 260);
+            });
+        },
+
+        prelims: function (main) {
+            main.innerHTML =
+                '<header class="page-head"><p class="eyebrow">MCQs and factual revision</p><h1>Prelims Practice</h1>' +
+                '<p class="lede">Daily MCQs, topic-wise tests, with an explanation for every option.</p></header>' +
+                '<div class="quiz-toolbar">' +
+                '<select id="quizTopic" aria-label="Choose topic"><option value="">All topics</option></select>' +
+                '<select id="quizCount" aria-label="Number of questions"><option value="5">5 questions</option><option value="10" selected>10 questions</option></select>' +
+                '<button class="btn btn-primary" id="startQuiz">Start quiz</button>' +
+                '</div>' +
+                '<div id="quizStage" class="panel"><p class="fine">Choose a topic and press Start quiz.</p></div>' +
+                '<div id="quizResult"></div>';
+
+            var bank = SEED_QUESTIONS.prelims;
+            var topicSel = $('#quizTopic', main);
+            var stage = $('#quizStage', main);
+            var result = $('#quizResult', main);
+
+            allTopics().forEach(function (t) {
+                var o = document.createElement('option');
+                o.value = t.id;
+                o.textContent = t.title.length > 60 ? t.title.slice(0, 58) + '…' : t.title;
+                topicSel.appendChild(o);
+            });
+
+            var state = null;
+            function start() {
+                var topicId = topicSel.value;
+                var n = Number($('#quizCount', main).value);
+                var pool = topicId ? bank.filter(function (q) { return q.topicId === topicId; }) : bank.slice();
+                if (!pool.length) pool = bank.slice();
+                pool = shuffle(pool).slice(0, n);
+                if (!pool.length) { stage.innerHTML = '<p class="fine">No questions in the bank yet.</p>'; return; }
+                state = { list: pool, i: 0, score: 0, answered: false, answers: [] };
+                result.innerHTML = '';
+                render();
+            }
+            function render() {
+                var q = state.list[state.i];
+                var topic = getTopic(q.topicId);
+                stage.innerHTML =
+                    '<div class="quiz-meta"><span class="chip">Question ' + (state.i + 1) + ' / ' + state.list.length + '</span>' +
+                    '<span class="chip">' + esc(q.paper) + '</span>' +
+                    (topic ? '<a class="chip chip-link" href="#/article?id=' + encodeURIComponent(topic.id) + '">' + esc(topic.title.slice(0, 48)) + '…</a>' : '') + '</div>' +
+                    '<h2 class="quiz-q">' + esc(q.question) + '</h2>' +
+                    '<div class="options" id="options">' +
+                    q.options.map(function (o, idx) {
+                        return '<button class="option" data-idx="' + idx + '" type="button"><span class="opt-key">' + 'abcd'[idx] + '</span>' + esc(o) + '</button>';
+                    }).join('') +
+                    '</div>' +
+                    '<div id="feedback"></div>' +
+                    '<div class="quiz-actions"><button class="btn btn-primary" id="nextQ" disabled>Next</button></div>';
+
+                $('#options', stage).addEventListener('click', function (e) {
+                    var b = e.target.closest('.option'); if (!b || state.answered) return;
+                    var pick = Number(b.dataset.idx);
+                    state.answered = true;
+                    var correct = pick === q.answer;
+                    if (correct) state.score++;
+                    state.answers.push({ qid: q.id, pick: pick, correct: correct });
+                    $$('.option', stage).forEach(function (el, idx) {
+                        el.classList.add('locked');
+                        if (idx === q.answer) el.classList.add('correct');
+                        if (idx === pick && !correct) el.classList.add('wrong');
+                    });
+                    $('#feedback', stage).innerHTML = '<div class="explain ' + (correct ? 'ok' : 'bad') + '"><strong>' + (correct ? 'Correct.' : 'Not quite.') + '</strong> ' + esc(q.explanation) + '</div>';
+                    if (!correct) SI_STORE.addMissed(q.id);
+                    var next = $('#nextQ', stage);
+                    next.disabled = false;
+                    next.textContent = state.i + 1 < state.list.length ? 'Next question' : 'Finish';
+                });
+                $('#nextQ', stage).addEventListener('click', function () {
+                    state.i++; state.answered = false;
+                    if (state.i < state.list.length) render(); else finish();
+                });
+            }
+            function finish() {
+                var total = state.list.length;
+                var pct = Math.round((state.score / total) * 100);
+                SI_STORE.saveQuiz({ at: Date.now(), score: state.score, total: total, answers: state.answers });
+                stage.innerHTML = '<p class="fine">Quiz complete. Start another whenever you like.</p>';
+                result.innerHTML = '<div class="panel score-panel"><h2>' + state.score + ' / ' + total + ' correct — ' + pct + '%</h2>' +
+                    '<div class="bar"><span style="width:' + pct + '%"></span></div>' +
+                    '<p class="fine">Wrong answers were added to your revision list.</p>' +
+                    '<div class="row-actions"><a class="btn" href="#/revision">Review missed questions</a>' +
+                    '<button class="btn btn-primary" id="againBtn" type="button">Try again</button></div></div>';
+                $('#againBtn', result).addEventListener('click', start);
+            }
+            $('#startQuiz', main).addEventListener('click', start);
+        },
+
+        mains: function (main) {
+            main.innerHTML =
+                '<header class="page-head"><p class="eyebrow">Analytical questions and answer writing</p><h1>Mains Practice</h1>' +
+                '<p class="lede">Write your answer, check it against a structured self-evaluation list, then compare with the model approach.</p></header>' +
+                '<div class="mains-layout">' +
+                '<div class="mains-list" id="mainsList"></div>' +
+                '<div class="mains-work" id="mainsWork"><p class="fine">Select a question to begin.</p></div>' +
+                '</div>' +
+                '<p class="disclaimer">Automated answer evaluation requires a language model. Until one is connected, SanjanaIAS provides a structured self-evaluation checklist — it does not grade your answer.</p>';
+
+            var bank = SEED_QUESTIONS.mains;
+            var list = $('#mainsList', main);
+            var work = $('#mainsWork', main);
+            var saved = SI_STORE.mains();
+
+            list.innerHTML = bank.map(function (q) {
+                return '<button class="mains-item" data-id="' + q.id + '" type="button">' +
+                    '<span class="chip">' + esc(q.paper) + '</span>' +
+                    '<span class="chip">' + q.marks + ' marks</span>' +
+                    (saved[q.id] ? '<span class="chip chip-ok">draft saved</span>' : '') +
+                    '<p>' + esc(q.question) + '</p></button>';
+            }).join('') || '<p class="fine">No Mains questions yet.</p>';
+
+            list.addEventListener('click', function (e) {
+                var b = e.target.closest('.mains-item'); if (!b) return;
+                renderQ(b.dataset.id);
+            });
+
+            function renderQ(id) {
+                var q = bank.filter(function (x) { return x.id === id; })[0]; if (!q) return;
+                var topic = getTopic(q.topicId);
+                var draft = (SI_STORE.mains()[id] || {});
+                work.innerHTML =
+                    '<h2>' + esc(q.question) + '</h2>' +
+                    '<div class="chips"><span class="chip">' + esc(q.paper) + '</span><span class="chip">' + q.marks + ' marks</span>' +
+                    (topic ? '<a class="chip chip-link" href="#/article?id=' + encodeURIComponent(topic.id) + '">' + esc(topic.title.slice(0, 50)) + '…</a>' : '') + '</div>' +
+                    '<label class="field-label" for="answerBox">Your answer</label>' +
+                    '<textarea id="answerBox" class="answer-box" placeholder="Introduction → body → challenges → way forward → conclusion">' + esc(draft.text || '') + '</textarea>' +
+                    '<div class="word-count"><span id="wordCount">0</span> words · target ' + (q.marks * 15) + '</div>' +
+                    '<h3>Self-evaluation checklist</h3>' +
+                    '<ul class="checklist" id="checklist">' +
+                    (q.checklist || []).map(function (c, i) {
+                        return '<li><label><input type="checkbox" data-i="' + i + '" ' + (draft['c' + i] ? 'checked' : '') + '> ' + esc(c) + '</label></li>';
+                    }).join('') +
+                    '</ul>' +
+                    '<div class="row-actions"><button class="btn btn-primary" id="saveBtn" type="button">Save draft</button>' +
+                    '<button class="btn" id="revealBtn" type="button">Show model approach</button></div>' +
+                    '<div id="approachBox" hidden><h3>Model approach</h3>' +
+                    '<p><strong>Introduction:</strong> ' + esc(q.approach.intro) + '</p>' +
+                    '<ol>' + q.approach.body.map(function (b) { return '<li>' + esc(b) + '</li>'; }).join('') + '</ol>' +
+                    '<p><strong>Conclusion:</strong> ' + esc(q.approach.conclusion) + '</p></div>';
+
+                var box = $('#answerBox', work);
+                var wc = $('#wordCount', work);
+                function update() { wc.textContent = box.value.trim().split(/\s+/).filter(Boolean).length; }
+                box.addEventListener('input', update); update();
+
+                $('#saveBtn', work).addEventListener('click', function () {
+                    var data = { text: box.value };
+                    $$('#checklist input', work).forEach(function (inp) { data['c' + inp.dataset.i] = inp.checked; });
+                    SI_STORE.saveMains(id, data);
+                    toast('Draft saved to My Library.');
+                });
+                $('#revealBtn', work).addEventListener('click', function () {
+                    $('#approachBox', work).hidden = false;
+                });
+            }
+        },
+
+        library: function (main) {
+            main.innerHTML =
+                '<header class="page-head"><p class="eyebrow">Saved and personal</p><h1>My Library</h1>' +
+                '<p class="lede">Bookmarks, notes and Mains drafts. Stored in this browser; it does not sync between devices.</p></header>' +
+                '<div class="tabs" id="tabs">' +
+                '<button class="tab active" data-tab="bookmarks" type="button">Bookmarks</button>' +
+                '<button class="tab" data-tab="notes" type="button">Notes</button>' +
+                '<button class="tab" data-tab="mains" type="button">Mains drafts</button>' +
+                '<button class="tab" data-tab="reset" type="button">Data</button>' +
+                '</div>' +
+                '<div id="tabBody"></div>';
+
+            var body = $('#tabBody', main);
+            function draw(tab) {
+                if (tab === 'bookmarks') {
+                    var bmIds = SI_STORE.bookmarks();
+                    body.innerHTML = '<div class="card-grid">' + (bmIds.map(function (id) {
+                        var t = getTopic(id);
+                        if (!t) {
+                            return '<div class="panel" style="display:flex;justify-content:space-between;align-items:center;gap:12px;">' +
+                                '<span class="fine">Topic no longer available (expired)</span>' +
+                                '<button class="btn btn-sm danger" data-del-bm="' + esc(id) + '" type="button">Delete</button></div>';
+                        }
+                        return '<div class="bm-wrap">' + card(t) +
+                            '<button class="btn btn-sm danger" data-del-bm="' + esc(t.id) + '" type="button">Delete bookmark</button></div>';
+                    }).join('') || '<p class="fine">Nothing bookmarked yet. Use the ☆ on any card.</p>') + '</div>';
+                    $$('[data-del-bm]', body).forEach(function (b) {
+                        b.addEventListener('click', function () {
+                            SI_STORE.deleteBookmark(b.dataset.delBm);
+                            toast('Bookmark deleted.');
+                            draw('bookmarks');
+                        });
+                    });
+                } else if (tab === 'notes') {
+                    var notes = SI_STORE.notes();
+                    var noteIds = Object.keys(notes);
+                    body.innerHTML = noteIds.map(function (id) {
+                        var t = getTopic(id);
+                        var heading = t
+                            ? '<h3><a href="#/article?id=' + encodeURIComponent(t.id) + '">' + esc(t.title) + '</a></h3>'
+                            : '<p class="fine">Topic no longer available</p>';
+                        return '<div class="panel note-row">' + heading +
+                            '<textarea data-note="' + esc(id) + '" rows="4">' + esc(notes[id].text) + '</textarea>' +
+                            '<p class="fine">Last saved ' + fmtDate(new Date(notes[id].at).toISOString()) + '</p>' +
+                            '<button class="btn btn-sm danger" data-del-note="' + esc(id) + '" type="button">Delete note</button></div>';
+                    }).join('') || '<p class="fine">No notes yet.</p>';
+                    $$('textarea[data-note]', body).forEach(function (ta) {
+                        ta.addEventListener('change', function () { SI_STORE.saveNote(ta.dataset.note, ta.value); toast('Note saved.'); });
+                    });
+                    $$('[data-del-note]', body).forEach(function (b) {
+                        b.addEventListener('click', function () {
+                            if (!confirm('Delete this note?')) return;
+                            SI_STORE.deleteNote(b.dataset.delNote);
+                            toast('Note deleted.');
+                            draw('notes');
+                        });
+                    });
+                } else if (tab === 'mains') {
+                    var drafts = SI_STORE.mains();
+                    var rows2 = Object.keys(drafts).map(function (id) { return { q: SEED_QUESTIONS.mains.filter(function (q) { return q.id === id; })[0], d: drafts[id] }; }).filter(function (r) { return r.q; });
+                    body.innerHTML = rows2.map(function (r) {
+                        return '<div class="panel"><p class="fine">' + esc(r.q.paper) + ' · ' + r.q.marks + ' marks</p>' +
+                            '<h3>' + esc(r.q.question) + '</h3>' +
+                            '<p class="answer-preview">' + esc((r.d.text || '').slice(0, 400)) + ((r.d.text || '').length > 400 ? '…' : '') + '</p>' +
+                            '<div class="row-actions"><a class="btn" href="#/mains">Continue writing →</a>' +
+                            '<button class="btn btn-sm danger" data-del-mains="' + r.q.id + '" type="button">Delete draft</button></div></div>';
+                    }).join('') || '<p class="fine">No Mains drafts saved.</p>';
+                    $$('[data-del-mains]', body).forEach(function (b) {
+                        b.addEventListener('click', function () {
+                            if (!confirm('Delete this draft?')) return;
+                            SI_STORE.deleteMains(b.dataset.delMains);
+                            toast('Draft deleted.');
+                            draw('mains');
+                        });
+                    });
+                } else if (tab === 'reset') {
+                    body.innerHTML = '<div class="panel"><h3>Local data</h3>' +
+                        '<p class="fine">Everything SanjanaIAS knows about you lives in this browser only.</p>' +
+                        '<button class="btn danger" id="resetBtn" type="button">Erase all local data</button></div>';
+                    $('#resetBtn', body).addEventListener('click', function () {
+                        if (confirm('Erase bookmarks, notes, drafts and progress?')) { SI_STORE.reset(); toast('Local data erased.'); draw('bookmarks'); }
+                    });
+                }
+            }
+            $('#tabs', main).addEventListener('click', function (e) {
+                var b = e.target.closest('.tab'); if (!b) return;
+                $$('.tab', main).forEach(function (t) { t.classList.toggle('active', t === b); });
+                draw(b.dataset.tab);
+            });
+            draw('bookmarks');
+        },
+
+        revision: function (main) {
+            main.innerHTML =
+                '<header class="page-head"><p class="eyebrow">Daily · Weekly · Monthly</p><h1>Revision</h1>' +
+                '<p class="lede">Read topics and missed questions from the last 30 days. Older entries drop off automatically.</p></header>' +
+                '<div id="revisionRoot"></div>';
+            SI_REVISION.render($('#revisionRoot', main));
+        },
+
+        progress: function (main) {
+            var topics = allTopics();
+            var read = SI_STORE.read();
+            var days = SI_STORE.days();
+            var quiz = SI_STORE.quiz();
+            var bm = SI_STORE.bookmarks();
+            var missed = SI_STORE.missed();
+            var readCount = topics.filter(function (t) { return read[t.id]; }).length;
+            var pct = topics.length ? Math.round((readCount / topics.length) * 100) : 0;
+
+            function regionBar(r) {
+                var all = topics.filter(function (t) { return t.region === r; });
+                var done = all.filter(function (t) { return read[t.id]; }).length;
+                var p = all.length ? Math.round((done / all.length) * 100) : 0;
+                return '<div class="progress-row"><span>' + regionLabel(r) + '</span><div class="bar"><span style="width:' + p + '%"></span></div><span class="fine">' + done + '/' + all.length + '</span></div>';
+            }
+
+            main.innerHTML =
+                '<header class="page-head"><p class="eyebrow">Study and practice history</p><h1>Progress</h1>' +
+                '<p class="lede">A private, local record of what you have read and practised.</p></header>' +
+                '<div class="stat-row">' +
+                '<div class="stat"><strong>' + readCount + '</strong><span>topics read</span></div>' +
+                '<div class="stat"><strong>' + bm.length + '</strong><span>bookmarks</span></div>' +
+                '<div class="stat"><strong>' + (quiz.best || 0) + '</strong><span>best quiz score</span></div>' +
+                '<div class="stat"><strong>' + days.length + '</strong><span>active days</span></div>' +
+                '</div>' +
+                '<div class="panel"><h2>Library coverage</h2>' +
+                '<div class="progress-row"><span>Overall</span><div class="bar"><span style="width:' + pct + '%"></span></div><span class="fine">' + pct + '%</span></div>' +
+                regionBar('world') + regionBar('india') + regionBar('telangana') +
+                '</div>' +
+                '<div class="panel"><h2>Recent quiz attempts</h2>' +
+                ((quiz.attempts || []).slice(-8).reverse().map(function (a) {
+                    return '<div class="attempt"><span>' + fmtDate(new Date(a.at).toISOString()) + '</span><strong>' + a.score + '/' + a.total + '</strong></div>';
+                }).join('') || '<p class="fine">No attempts yet.</p>') +
+                '</div>' +
+                '<div class="panel"><h2>Needs another review</h2>' +
+                (Object.keys(missed).length ? '<a class="btn" href="#/revision">' + Object.keys(missed).length + ' missed questions →</a>' : '<p class="fine">Nothing flagged. Good.</p>') +
+                '</div>';
+        }
+    };
+
+    /* ============================================================
+       11. Shell wiring + router + boot
+       ============================================================ */
+    var PAGE_TITLES = {
+        dashboard: 'Dashboard', world: 'World', india: 'India', telangana: 'Telangana',
+        briefing: 'Daily Briefing', article: 'Research', syllabus: 'Syllabus Explorer',
+        'ai-tutor': 'Sanjana AI Tutor', prelims: 'Prelims Practice', mains: 'Mains Practice',
+        library: 'My Library', revision: 'Revision', progress: 'Progress'
+    };
+
+    function parseHash() {
+        var hash = location.hash.slice(1) || '/';
+        if (hash === '' || hash === '/') return { page: 'dashboard', params: {} };
+        if (hash.charAt(0) === '/') hash = hash.slice(1);
+        var qIdx = hash.indexOf('?');
+        var path = qIdx > -1 ? hash.slice(0, qIdx) : hash;
+        var query = qIdx > -1 ? hash.slice(qIdx + 1) : '';
+        var params = {};
+        query.split('&').filter(Boolean).forEach(function (pair) {
+            var parts = pair.split('=');
+            params[decodeURIComponent(parts[0])] = decodeURIComponent(parts[1] || '');
+        });
+        return { page: path || 'dashboard', params: params };
+    }
+
+    function markActive(page) {
+        $$('.nav-item, .bottom-nav a').forEach(function (a) {
+            var target = a.dataset.page;
+            a.classList.toggle('active', target === page);
+        });
+    }
+
+    function route() {
+        var r = parseHash();
+        var page = r.page;
+        var main = $('#main');
+        if (!Pages[page]) page = 'dashboard';
+        markActive(page);
+        document.title = (PAGE_TITLES[page] || 'SanjanaIAS') + ' · SanjanaIAS';
+        window.scrollTo(0, 0);
+        document.body.classList.remove('nav-open');
+        try { Pages[page](main, r.params); }
+        catch (err) {
+            console.error('[SanjanaIAS] page error:', err);
+            main.innerHTML = '<div class="panel"><h1>Something went wrong</h1><p class="fine">' + esc(String(err && err.message || err)) + '</p>' +
+                '<a class="btn" href="#/dashboard">Back to dashboard</a></div>';
+        }
+    }
+
+    function wireShell() {
+        /* Theme toggle */
+        $('#themeToggle').addEventListener('click', function () {
+            var next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', next);
+            try { localStorage.setItem('sanjana.theme', next); } catch (e) { }
+        });
+
+        /* Mobile nav toggle */
+        $('#navToggle').addEventListener('click', function () { document.body.classList.toggle('nav-open'); });
+        $('#sidebar').addEventListener('click', function (e) {
+            if (e.target.closest('a')) document.body.classList.remove('nav-open');
+        });
+
+        /* Search overlay */
+        var overlay = $('#overlay');
+        var input = $('#overlayInput');
+        var results = $('#overlayResults');
+        var region = '';
+
+        function renderResults() {
+            var q = input.value.trim();
+            if (!q) { results.innerHTML = '<p class="res-empty">Start typing to search the SanjanaIAS library.</p>'; return; }
+            var hits = SI_SEARCH.query(q, { region: region, limit: 12 });
+            results.innerHTML = hits.length ? hits.map(function (h) {
+                return '<a class="res-item" href="#/article?id=' + encodeURIComponent(h.topic.id) + '">' +
+                    '<strong>' + esc(h.topic.title) + '</strong>' +
+                    '<span>' + esc(regionLabel(h.topic.region)) + ' · ' + esc(h.topic.category) + ' · ' + (h.topic.gsPapers || []).join(', ') + '</span></a>';
+            }).join('') : '<p class="res-empty">No match in the collected library yet. Try a broader term.</p>';
+        }
+        function openSearch() { overlay.classList.add('open'); setTimeout(function () { input.focus(); }, 30); renderResults(); }
+        function closeSearch() { overlay.classList.remove('open'); }
+
+        $('#searchTrigger').addEventListener('click', openSearch);
+        $('#overlayClose').addEventListener('click', closeSearch);
+        overlay.addEventListener('click', function (e) { if (e.target === overlay) closeSearch(); });
+        input.addEventListener('input', renderResults);
+        $('#overlayFilters').addEventListener('click', function (e) {
+            var b = e.target.closest('button'); if (!b) return;
+            region = b.dataset.region;
+            $$('#overlayFilters button').forEach(function (x) { x.classList.toggle('active', x === b); });
+            renderResults();
+        });
+        document.addEventListener('keydown', function (e) {
+            if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); openSearch(); }
+            if (e.key === 'Escape') { closeSearch(); document.body.classList.remove('nav-open'); }
+        });
+        results.addEventListener('click', function (e) {
+            if (e.target.closest('a')) closeSearch();
+        });
+
+        /* Bookmark delegation */
+        document.addEventListener('click', function (e) {
+            var b = e.target.closest('[data-bm]');
+            if (!b) return;
+            e.preventDefault();
+            var on = SI_STORE.toggleBookmark(b.dataset.bm);
+            b.classList.toggle('on', on);
+            b.textContent = on ? '★' : '☆';
+            toast(on ? 'Saved to My Library.' : 'Removed from My Library.');
+        });
+
+        /* Smooth-scroll delegation for the article TOC */
+        document.addEventListener('click', function (e) {
+            var a = e.target.closest('[data-scroll-to]');
+            if (!a) return;
+            e.preventDefault();
+            var el = document.getElementById(a.dataset.scrollTo);
+            if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+    }
+
+    async function loadFeed() {
+        /* 1. Supabase (preferred when configured) */
+        if (supabaseClient) {
+            try {
+                var cutoff = new Date(Date.now() - 7 * 86400000).toISOString().slice(0, 10);
+                var sb = await supabaseClient
+                    .from('topics')
+                    .select('*')
+                    .or('published.gte.' + cutoff + ',curated.eq.true')
+                    .order('published', { ascending: false });
+                if (!sb.error && Array.isArray(sb.data) && sb.data.length) {
+                    State.news = {
+                        updated: new Date().toISOString(),
+                        topics: sb.data.map(function (row) {
+                            return {
+                                id: row.slug || row.id,
+                                title: row.title,
+                                region: row.region,
+                                regions: row.regions || [row.region],
+                                category: row.category,
+                                tags: row.tags || [],
+                                gsPapers: row.gs_papers || [],
+                                summary: row.summary,
+                                whyItMatters: row.why_it_matters,
+                                image: row.image,
+                                imageCredit: row.image_credit,
+                                readTime: row.read_time || 5,
+                                published: row.published,
+                                updated: row.updated,
+                                importance: row.importance || 0,
+                                importanceReason: row.importance_reason,
+                                curated: !!row.curated,
+                                sources: row.sources || [],
+                                sections: row.sections || {}
+                            };
+                        })
+                    };
+                    return;
+                }
+            } catch (e) {
+                /* fall through to JSON / seed */
+            }
+        }
+
+        /* 2. Static JSON (written by the collector) */
+        try {
+            var res = await fetch('data/news.json', { cache: 'no-store' });
+            if (res.ok) {
+                var json = await res.json();
+                if (json && Array.isArray(json.topics) && json.topics.length) {
+                    var c7 = new Date(Date.now() - 7 * 86400000).toISOString().slice(0, 10);
+                    json.topics = json.topics.filter(function (t) {
+                        return t.curated || (t.published || '') >= c7;
+                    });
+                    State.news = json;
+                    return;
+                }
+            }
+        } catch (e) {
+            /* file:// or offline — fall back to seed */
+        }
+
+        /* 3. Seed */
+        State.news = SEED_NEWS;
+    }
+
+    async function boot() {
+        wireShell();
+        wireAuthUI();
+        await loadFeed();
+        await SI_AUTH.init();
+        await _loadUserData();
+        SI_AUTH.onChange(async function () {
+            await _loadUserData();
+            route();
+        });
+        var upd = $('#lastUpdated');
+        if (upd && State.news.updated) upd.textContent = 'Updated ' + fmtRelative(State.news.updated);
+        if (SI_AUTH.user) SI_STORE.touchDay();
+        route();
+        window.addEventListener('hashchange', route);
+        document.dispatchEvent(new CustomEvent('si:ready'));
+    }
+
+    function wireAuthUI() {
+        var modal = document.getElementById('authModal');
+        var body = document.getElementById('authBody');
+        var btn = document.getElementById('authBtn');
+        var closeBtn = document.getElementById('authClose');
+        if (!modal || !btn) return;
+
+        function open() {
+            if (SI_AUTH.user) renderAccount();
+            else renderLogin();
+            modal.classList.add('open');
+        }
+        function close() { modal.classList.remove('open'); }
+
+        window._openAuthModal = open;
+        btn.addEventListener('click', open);
+        closeBtn.addEventListener('click', close);
+        modal.addEventListener('click', function (e) { if (e.target === modal) close(); });
+
+        function renderLogin() {
+            body.innerHTML =
+                '<h2>Log in</h2>' +
+                '<label for="auUsername">Username</label><input id="auUsername" type="text" autocomplete="username">' +
+                '<label for="auPassword">Password</label><input id="auPassword" type="password" autocomplete="current-password">' +
+                '<p class="auth-error" id="auError"></p>' +
+                '<button class="btn btn-primary block" id="auLogin" type="button">Log in</button>' +
+                '<a class="auth-link" id="auToSignup">Create an account</a>' +
+                '<a class="auth-link" id="auToForgot">Forgot password?</a>';
+
+            document.getElementById('auLogin').addEventListener('click', async function () {
+                var u = document.getElementById('auUsername').value.trim();
+                var p = document.getElementById('auPassword').value;
+                var err = document.getElementById('auError');
+                err.textContent = '';
+                if (!u || !p) { err.textContent = 'Username or password is incorrect.'; return; }
+                var r = await SI_AUTH.signIn(u, p);
+                if (r.error) { err.textContent = r.error; return; }
+                close();
+                toast('Welcome back, ' + u + '.');
+            });
+            document.getElementById('auToSignup').addEventListener('click', renderSignup);
+            document.getElementById('auToForgot').addEventListener('click', renderForgot);
+        }
+
+        function renderSignup() {
+            body.innerHTML =
+                '<h2>Create account</h2>' +
+                '<label for="auUsername">Username</label><input id="auUsername" type="text" autocomplete="username" placeholder="3–24 letters, numbers, underscores">' +
+                '<label for="auPassword">Password</label><input id="auPassword" type="password" autocomplete="new-password" placeholder="At least 8 characters">' +
+                '<label for="auSQ">Security question</label>' +
+                '<select id="auSQ">' +
+                '<option>What is your mother\'s maiden name?</option>' +
+                '<option>What was the name of your first pet?</option>' +
+                '<option>What city were you born in?</option>' +
+                '<option>What is your favourite book?</option>' +
+                '<option>What was your first school?</option>' +
+                '</select>' +
+                '<label for="auSA">Security answer</label><input id="auSA" type="text" autocomplete="off">' +
+                '<p class="auth-error" id="auError"></p>' +
+                '<button class="btn btn-primary block" id="auSignup" type="button">Create account</button>' +
+                '<a class="auth-link" id="auToLogin">Already have an account? Log in</a>';
+
+            document.getElementById('auSignup').addEventListener('click', async function () {
+                var u = document.getElementById('auUsername').value.trim();
+                var p = document.getElementById('auPassword').value;
+                var sq = document.getElementById('auSQ').value;
+                var sa = document.getElementById('auSA').value.trim();
+                var err = document.getElementById('auError');
+                err.textContent = '';
+                var r = await SI_AUTH.signUp(u, p, sq, sa);
+                if (r.error) { err.textContent = r.error; return; }
+                close();
+                toast('Account created. You are logged in.');
+            });
+            document.getElementById('auToLogin').addEventListener('click', renderLogin);
+        }
+
+        function renderForgot() {
+            body.innerHTML =
+                '<h2>Reset password</h2>' +
+                '<label for="auUsername">Username</label><input id="auUsername" type="text" autocomplete="username">' +
+                '<button class="btn block" id="auLookup" type="button">Next</button>' +
+                '<p class="auth-error" id="auError"></p>' +
+                '<a class="auth-link" id="auToLogin">Back to login</a>';
+            document.getElementById('auToLogin').addEventListener('click', renderLogin);
+            document.getElementById('auLookup').addEventListener('click', async function () {
+                var u = document.getElementById('auUsername').value.trim();
+                var err = document.getElementById('auError');
+                err.textContent = '';
+                if (!u) { err.textContent = 'Enter your username.'; return; }
+                var sq = await SI_AUTH.getSecurityQuestion(u);
+                if (!sq) { err.textContent = 'No account found.'; return; }
+                renderAnswerStep(u, sq);
+            });
+        }
+
+        function renderAnswerStep(username, question) {
+            body.innerHTML =
+                '<h2>Reset password</h2>' +
+                '<p class="auth-user">Username: <strong>' + esc(username) + '</strong></p>' +
+                '<label for="auSA">' + esc(question) + '</label><input id="auSA" type="text" autocomplete="off">' +
+                '<label for="auNewPass">New password</label><input id="auNewPass" type="password" autocomplete="new-password" placeholder="At least 8 characters">' +
+                '<p class="auth-error" id="auError"></p>' +
+                '<button class="btn btn-primary block" id="auReset" type="button">Reset password</button>' +
+                '<a class="auth-link" id="auToLogin">Back to login</a>';
+            document.getElementById('auToLogin').addEventListener('click', renderLogin);
+            document.getElementById('auReset').addEventListener('click', async function () {
+                var sa = document.getElementById('auSA').value.trim();
+                var np = document.getElementById('auNewPass').value;
+                var err = document.getElementById('auError');
+                err.textContent = '';
+                var r = await SI_AUTH.resetPassword(username, sa, np);
+                if (r.error) { err.textContent = r.error; return; }
+                toast('Password reset. You can log in now.');
+                renderLogin();
+            });
+        }
+
+        function renderAccount() {
+            var u = SI_AUTH.username();
+            body.innerHTML =
+                '<h2>Your account</h2>' +
+                '<p class="auth-user">Logged in as <strong>' + esc(u) + '</strong></p>' +
+                '<button class="btn danger block" id="auLogout" type="button">Log out</button>' +
+                '<button class="btn block" id="auErase" type="button" style="margin-top:8px">Erase all my data</button>';
+            document.getElementById('auLogout').addEventListener('click', async function () {
+                await SI_AUTH.signOut();
+                _mem = { bookmarks: [], read: {}, notes: {}, missed: {}, mains: {}, quiz: { attempts: [], best: 0 }, days: [] };
+                close(); route(); toast('Logged out.');
+            });
+            document.getElementById('auErase').addEventListener('click', async function () {
+                if (!confirm('Erase bookmarks, notes, drafts, revision and progress?')) return;
+                await SI_STORE.reset();
+                close(); route(); toast('All your data erased.');
+            });
+        }
+    }
+
+    if (typeof document !== 'undefined') {
+        if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
+        else boot();
+    }
+
+    /* ============================================================
+       12. Exports
+       ============================================================ */
+    var exported = {
+        SI_RSS: SI_RSS,
+        SI_CLASSIFY: SI_CLASSIFY,
+        SI_DEDUPE: SI_DEDUPE,
+        SI_RELEVANCE: SI_RELEVANCE,
+        SI_STORE: SI_STORE,
+        SI_SEARCH: SI_SEARCH,
+        SI_ARTICLE: SI_ARTICLE,
+        SI_TUTOR: SI_TUTOR,
+        SI_REVISION: SI_REVISION,
+        SEED_NEWS: SEED_NEWS,
+        SEED_SOURCES: SEED_SOURCES,
+        SEED_SYLLABUS: SEED_SYLLABUS,
+        SEED_QUESTIONS: SEED_QUESTIONS,
+        ILLUSTRATIONS: ILLUSTRATIONS,
+        State: State
+    };
+
+    if (typeof module === 'object' && module.exports) {
+        module.exports = exported;
+    } else {
+        Object.keys(exported).forEach(function (k) { root[k] = exported[k]; });
+    }
+})(typeof self !== 'undefined' ? self : globalThis);
