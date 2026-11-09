@@ -88,7 +88,7 @@ function buildTopic(group, source) {
     }));
 
     return {
-        id: slug(lead.title) + '-' + Math.random().toString(36).slice(2, 7),
+        id: slug(lead.title).slice(0, 50) + '-' + (lead.published ? lead.published.slice(0, 10) : new Date().toISOString().slice(0, 10)),
         title: lead.title,
         region: cls.region,
         regions: cls.regions,
@@ -142,7 +142,7 @@ async function main() {
 
     for (const source of registry.sources) {
         if (!source.enabled || !source.feed) {
-            health.sources.push({ id: source.id, name: source.name, status: 'not-configured' });
+            health.sources.push({ id: source.id, name: source.name, status: 'not-configured', checked: now });
             continue;
         }
         try {
@@ -175,11 +175,16 @@ async function main() {
     }
 
     const merged = curated.concat(collected, fresh).sort((a, b) => (b.importance || 0) - (a.importance || 0));
-    const payload = { updated: now, health, topics: merged.slice(0, 400) };
+
+    // Only update the timestamp if topics actually changed
+    const existingStr = JSON.stringify(existing.topics || []);
+    const newStr = JSON.stringify(merged.slice(0, 400));
+    const updatedTime = existingStr !== newStr ? now : (existing.updated || now);
+
+    const payload = { updated: updatedTime, health, topics: merged.slice(0, 400) };
 
     fs.mkdirSync(DATA, { recursive: true });
     fs.writeFileSync(path.join(DATA, 'news.json'), JSON.stringify(payload, null, 2) + '\n');
-    fs.writeFileSync(path.join(DATA, 'health.json'), JSON.stringify(health, null, 2) + '\n');
 
     console.log('SanjanaIAS collector complete.');
     console.log('  sources ok:    ', health.succeeded);

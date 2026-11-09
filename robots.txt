@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://sanjanaias.vercel.app/sitemap.xml

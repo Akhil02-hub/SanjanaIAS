@@ -1,6 +1,6 @@
 name: Collect news
 
-on:
+"on":
   schedule:
     - cron: "0 * * * *"
   workflow_dispatch:
@@ -21,7 +21,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          fetch-depth: 1
 
       - name: Set up Node
         uses: actions/setup-node@v4
@@ -33,22 +33,13 @@ jobs:
 
       - name: Validate generated data
         run: |
-          node -e "
-            const fs=require('fs');
-            const p='data/news.json';
-            if(!fs.existsSync(p)){console.error('news.json missing');process.exit(1);}
-            const d=JSON.parse(fs.readFileSync(p,'utf8'));
-            if(!Array.isArray(d.topics)){console.error('topics is not an array');process.exit(1);}
-            const bad=d.topics.filter(t=>!t.id||!t.title||!t.region);
-            if(bad.length){console.error('Malformed topics:',bad.length);process.exit(1);}
-            console.log('Validated',d.topics.length,'topics.');
-          "
+          node -e "const fs=require('fs'); const p='data/news.json'; if(!fs.existsSync(p)){console.error('news.json missing');process.exit(1);} const d=JSON.parse(fs.readFileSync(p,'utf8')); if(!Array.isArray(d.topics)){console.error('topics is not an array');process.exit(1);} const bad=d.topics.filter(t=>!t.id||!t.title||!t.region); if(bad.length){console.error('Malformed topics:',bad.length);process.exit(1);} console.log('Validated',d.topics.length,'topics.');"
 
       - name: Commit changes
         run: |
           git config user.name  "SanjanaIAS Collector"
           git config user.email "actions@users.noreply.github.com"
-          git add data/news.json data/health.json
+          git add data/news.json
           if git diff --staged --quiet; then
             echo "No changes to commit."
           else

@@ -56,7 +56,7 @@
             if (password.length < 8) return { error: 'Password must be at least 8 characters.' };
             if (!sq || !sa) return { error: 'Security question and answer are required.' };
 
-            var email = username.includes('@') ? username.toLowerCase() : username.toLowerCase() + 'amarachinthaakhil@gmail.com';
+            var email = username.includes('@') ? username.toLowerCase() : username.toLowerCase() + '@sanjana.local';
             var r = await supabaseClient.auth.signUp({ email: email, password: password });
             if (r.error) return { error: 'Could not create account. Try a different username.' };
 
@@ -78,7 +78,7 @@
 
         signIn: async function (username, password) {
             if (!supabaseClient) return { error: 'Auth is not configured.' };
-            var email = username.includes('@') ? username.toLowerCase() : username.toLowerCase() + 'amarachinthaakhil@gmail.com';
+            var email = username.includes('@') ? username.toLowerCase() : username.toLowerCase() + '@sanjana.local';
             var r = await supabaseClient.auth.signInWithPassword({ email: email, password: password });
             if (r.error) return { error: 'Username or password is incorrect.' };
             SI_AUTH.user = r.data.user;
@@ -496,7 +496,7 @@
             var [bm, notes, mains, rev, prog] = await Promise.all([
                 supabaseClient.from('bookmarks').select('topic_slug').eq('user_id', uid),
                 supabaseClient.from('notes').select('topic_slug,text,updated_at').eq('user_id', uid),
-                supabaseClient.from('mains_drafts').select('question_id,text,checklist').eq('user_id', uid),
+                supabaseClient.from('mains_drafts').select('question_id,text,checklist,updated_at').eq('user_id', uid),
                 supabaseClient.from('revision_entries').select('item_id,type,created_at').eq('user_id', uid),
                 supabaseClient.from('progress').select('quiz_attempts,active_days').eq('user_id', uid).maybeSingle()
             ]);
@@ -504,7 +504,7 @@
             _mem.notes = {};
             (notes.data || []).forEach(function (r) { _mem.notes[r.topic_slug] = { text: r.text, at: new Date(r.updated_at).getTime() }; });
             _mem.mains = {};
-            (mains.data || []).forEach(function (r) { _mem.mains[r.question_id] = Object.assign({ text: r.text, at: Date.now() }, r.checklist || {}); });
+            (mains.data || []).forEach(function (r) { _mem.mains[r.question_id] = Object.assign({ text: r.text, at: new Date(r.updated_at).getTime() }, r.checklist || {}); });
             _mem.read = {};
             _mem.missed = {};
             (rev.data || []).forEach(function (r) {
@@ -1046,7 +1046,7 @@
                 sourcesHTML() +
                 '<section class="art-sec" id="sec-notes"><h2>My notes</h2>' +
                 '<textarea id="noteBox" rows="5" placeholder="Write what you want to remember about this topic…">' + esc(note) + '</textarea>' +
-                '<p class="fine">Notes are stored in this browser only.</p>' +
+                '<p class="fine">Notes are securely saved to your account.</p>' +
                 '</section>' +
                 '</div>' +
                 '<nav class="toc" aria-label="On this page"><strong>On this page</strong>' +
@@ -1276,7 +1276,7 @@
                 '<section class="split">' +
                 '<div class="panel"><div class="panel-head"><h2>Topic of the day</h2></div>' +
                 (tod ? '<a class="tod" href="#/article?id=' + encodeURIComponent(tod.id) + '">' +
-                    '<img src="' + esc(topicImage(tod)) + '" alt="">' +
+                    '<img src="' + esc(topicImage(tod)) + '" alt="" onerror="this.onerror=null; this.src=\'' + (ILLUSTRATIONS[tod.region] || ILLUSTRATIONS.default) + '\'">' +
                     '<div><div class="chips">' + chips(tod) + '</div>' +
                     '<h3>' + esc(tod.title) + '</h3><p>' + esc(tod.whyItMatters || tod.summary) + '</p>' +
                     '<span class="link">Open complete research →</span></div></a>' : '<p class="fine">No topics yet.</p>') +
@@ -1305,8 +1305,40 @@
             var el = $('#todayLabel');
             if (el) el.textContent = new Date().toLocaleDateString('en-IN', { weekday: 'long', day: '2-digit', month: 'long', year: 'numeric' });
         },
+        subjects: function (main) {
+            var subjects = [
+                { name: 'Indian Polity & Governance', keywords: ['polity', 'governance', 'constitution'] },
+                { name: 'Indian Economy & Agriculture', keywords: ['economy', 'agriculture', 'banking'] },
+                { name: 'Environment & Ecology', keywords: ['environment', 'ecology', 'climate'] },
+                { name: 'Science & Technology', keywords: ['science & technology', 'science', 'technology'] },
+                { name: 'International Relations', keywords: ['international relations'] },
+                { name: 'History, Art & Culture', keywords: ['history', 'art & culture', 'culture'] },
+                { name: 'Geography & Disaster Management', keywords: ['geography', 'disaster'] },
+                { name: 'Social Issues & Schemes', keywords: ['social', 'welfare', 'scheme'] }
+            ];
+
+            var html = '<header class="page-head"><p class="eyebrow">UPSC Core Subjects</p><h1>Subject-wise Current Affairs</h1><p class="lede">Current affairs integrated directly across the core static General Studies syllabus.</p></header>';
+
+            subjects.forEach(function (subj) {
+                var matchedTopics = allTopics().filter(function (t) {
+                    var text = (t.category + ' ' + (t.tags || []).join(' ')).toLowerCase();
+                    return subj.keywords.some(function (k) { return text.indexOf(k) > -1; });
+                });
+
+                html += '<section class="panel"><div class="panel-head"><h2>' + subj.name + '</h2><span class="chip">' + matchedTopics.length + ' topics</span></div>';
+                if (matchedTopics.length) {
+                    html += '<div class="card-grid">' + matchedTopics.slice(0, 6).map(card).join('') + '</div>';
+                } else {
+                    html += '<p class="fine">No topics collected for this subject yet.</p>';
+                }
+                html += '</section>';
+            });
+
+            main.innerHTML = html;
+        },
 
         world: function (main) { sectionPage('world', main); },
+
         india: function (main) { sectionPage('india', main); },
         telangana: function (main) { sectionPage('telangana', main); },
 
@@ -1602,7 +1634,7 @@
         library: function (main) {
             main.innerHTML =
                 '<header class="page-head"><p class="eyebrow">Saved and personal</p><h1>My Library</h1>' +
-                '<p class="lede">Bookmarks, notes and Mains drafts. Stored in this browser; it does not sync between devices.</p></header>' +
+                '<p class="lede">Bookmarks, notes and Mains drafts synced to your account.</p></header>' +
                 '<div class="tabs" id="tabs">' +
                 '<button class="tab active" data-tab="bookmarks" type="button">Bookmarks</button>' +
                 '<button class="tab" data-tab="notes" type="button">Notes</button>' +
@@ -1678,8 +1710,12 @@
                     body.innerHTML = '<div class="panel"><h3>Local data</h3>' +
                         '<p class="fine">Everything SanjanaIAS knows about you lives in this browser only.</p>' +
                         '<button class="btn danger" id="resetBtn" type="button">Erase all local data</button></div>';
-                    $('#resetBtn', body).addEventListener('click', function () {
-                        if (confirm('Erase bookmarks, notes, drafts and progress?')) { SI_STORE.reset(); toast('Local data erased.'); draw('bookmarks'); }
+                    $('#resetBtn', body).addEventListener('click', async function () {
+                        if (confirm('Erase bookmarks, notes, drafts and progress?')) {
+                            await SI_STORE.reset();
+                            toast('Local data erased.');
+                            draw('bookmarks');
+                        }
                     });
                 }
             }
@@ -1718,7 +1754,7 @@
 
             main.innerHTML =
                 '<header class="page-head"><p class="eyebrow">Study and practice history</p><h1>Progress</h1>' +
-                '<p class="lede">A private, local record of what you have read and practised.</p></header>' +
+                '<p class="lede">A private record of what you have read and practised, synced to your account.</p></header>' +
                 '<div class="stat-row">' +
                 '<div class="stat"><strong>' + readCount + '</strong><span>topics read</span></div>' +
                 '<div class="stat"><strong>' + bm.length + '</strong><span>bookmarks</span></div>' +
@@ -1744,7 +1780,7 @@
        11. Shell wiring + router + boot
        ============================================================ */
     var PAGE_TITLES = {
-        dashboard: 'Dashboard', world: 'World', india: 'India', telangana: 'Telangana',
+        dashboard: 'Overview', subjects: 'Subjects', world: 'World', india: 'India', telangana: 'Telangana',
         briefing: 'Daily Briefing', article: 'Research', syllabus: 'Syllabus Explorer',
         'ai-tutor': 'Sanjana AI Tutor', prelims: 'Prelims Practice', mains: 'Mains Practice',
         library: 'My Library', revision: 'Revision', progress: 'Progress'
@@ -1845,6 +1881,10 @@
             var b = e.target.closest('[data-bm]');
             if (!b) return;
             e.preventDefault();
+            if (!SI_AUTH.user) {
+                _requireLogin('bookmark');
+                return;
+            }
             var on = SI_STORE.toggleBookmark(b.dataset.bm);
             b.classList.toggle('on', on);
             b.textContent = on ? '★' : '☆';
@@ -1999,7 +2039,7 @@
             body.innerHTML =
                 '<form id="signupForm">' +
                 '<div style="text-align:center; margin-bottom: 16px;">' +
-                '<img src="logo.png" alt="Logo" width="48" height="48" style="border-radius: 12px; margin: 0 auto;">' +
+                '<img src="log.png" alt="Logo" width="48" height="48" style="border-radius: 12px; margin: 0 auto;">' +
                 '</div>' +
                 '<h2>Create account</h2>' +
                 '<label for="auUsername">Username</label><input id="auUsername" type="text" autocomplete="username" placeholder="3–24 letters, numbers, underscores">' +
