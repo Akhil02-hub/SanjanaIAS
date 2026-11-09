@@ -1,0 +1,115 @@
+{
+  "checked": "2026-11-09T18:01:28.695Z",
+  "sources": [
+    {
+      "id": "un-news",
+      "name": "UN News",
+      "status": "failed",
+      "error": "HTTP 404",
+      "checked": "2026-11-09T18:01:28.695Z"
+    },
+    {
+      "id": "un-geneva",
+      "name": "UN Geneva",
+      "status": "no-new-articles",
+      "checked": "2026-11-09T18:01:28.695Z"
+    },
+    {
+      "id": "who",
+      "name": "WHO",
+      "status": "ok",
+      "items": 25,
+      "added": 25,
+      "checked": "2026-11-09T18:01:28.695Z"
+    },
+    {
+      "id": "world-bank",
+      "name": "World Bank",
+      "status": "failed",
+      "error": "HTTP 404",
+      "checked": "2026-11-09T18:01:28.695Z"
+    },
+    {
+      "id": "imf",
+      "name": "IMF",
+      "status": "failed",
+      "error": "HTTP 403",
+      "checked": "2026-11-09T18:01:28.695Z"
+    },
+    {
+      "id": "pib",
+      "name": "PIB",
+      "status": "ok",
+      "items": 20,
+      "added": 1,
+      "checked": "2026-11-09T18:01:28.695Z"
+    },
+    {
+      "id": "rbi",
+      "name": "RBI",
+      "status": "ok",
+      "items": 10,
+      "added": 1,
+      "checked": "2026-11-09T18:01:28.695Z"
+    },
+    {
+      "id": "bbc-world",
+      "name": "BBC News — World",
+      "status": "ok",
+      "items": 21,
+      "added": 21,
+      "checked": "2026-11-09T18:01:28.695Z"
+    },
+    {
+      "id": "guardian-world",
+      "name": "The Guardian — World",
+      "status": "ok",
+      "items": 25,
+      "added": 25,
+      "checked": "2026-11-09T18:01:28.695Z"
+    },
+    {
+      "id": "ie-world",
+      "name": "Indian Express — World",
+      "status": "ok",
+      "items": 25,
+      "added": 25,
+      "checked": "2026-11-09T18:01:28.695Z"
+    },
+    {
+      "id": "ie-india",
+      "name": "Indian Express — India",
+      "status": "ok",
+      "items": 25,
+      "added": 25,
+      "checked": "2026-11-09T18:01:28.695Z"
+    },
+    {
+      "id": "ie-hyderabad",
+      "name": "Indian Express — Hyderabad",
+      "status": "ok",
+      "items": 25,
+      "added": 25,
+      "checked": "2026-11-09T18:01:28.695Z"
+    },
+    {
+      "id": "hindu-national",
+      "name": "The Hindu — National",
+      "status": "ok",
+      "items": 25,
+      "added": 25,
+      "checked": "2026-11-09T18:01:28.695Z"
+    },
+    {
+      "id": "hindu-international",
+      "name": "The Hindu — International",
+      "status": "ok",
+      "items": 25,
+      "added": 24,
+      "checked": "2026-11-09T18:01:28.695Z"
+    }
+  ],
+  "succeeded": 10,
+  "failed": 3,
+  "newTopics": 197
+}

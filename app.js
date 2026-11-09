@@ -1968,7 +1968,7 @@
             body.innerHTML =
                 '<form id="loginForm">' +
                 '<div style="text-align:center; margin-bottom: 16px;">' +
-                '<img src="logo.png" alt="Logo" width="48" height="48" style="border-radius: 12px; margin: 0 auto;">' +
+                '<img src="log.png" alt="Logo" width="48" height="48" style="border-radius: 12px; margin: 0 auto;">' +
                 '</div>' +
                 '<h2>Log in</h2>' +
                 '<label for="auUsername">Username</label><input id="auUsername" type="text" autocomplete="username" required>' +
