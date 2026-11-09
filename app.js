@@ -18,8 +18,7 @@
     var SUPABASE_URL = 'https://lbcxwmyppnmnezyxyvon.supabase.co';
     var SUPABASE_ANON_KEY = 'sb_publishable_8acY7UihRJ2tSpW3zmFDUA_n24G5Ayq';
     var supabaseClient = null;
-    if (typeof supabase !== 'undefined' && supabase.createClient
-        && SUPABASE_URL !== 'https://lbcxwmyppnmnezyxyvon.supabase.co') {
+    if (typeof supabase !== 'undefined' && supabase.createClient) {
         supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
     }
 
@@ -53,11 +52,11 @@
 
         signUp: async function (username, password, sq, sa) {
             if (!supabaseClient) return { error: 'Auth is not configured.' };
-            if (!/^[a-z0-9_]{3,24}$/i.test(username)) return { error: 'Username must be 3–24 letters, numbers, underscores.' };
+            if (username.length < 3) return { error: 'Username must be at least 3 characters.' };
             if (password.length < 8) return { error: 'Password must be at least 8 characters.' };
             if (!sq || !sa) return { error: 'Security question and answer are required.' };
 
-            var email = username.toLowerCase() + '@sanjana.local';
+            var email = username.includes('@') ? username.toLowerCase() : username.toLowerCase() + '@sanjana.local';
             var r = await supabaseClient.auth.signUp({ email: email, password: password });
             if (r.error) return { error: 'Could not create account. Try a different username.' };
 
@@ -79,7 +78,7 @@
 
         signIn: async function (username, password) {
             if (!supabaseClient) return { error: 'Auth is not configured.' };
-            var email = username.toLowerCase() + '@sanjana.local';
+            var email = username.includes('@') ? username.toLowerCase() : username.toLowerCase() + '@sanjana.local';
             var r = await supabaseClient.auth.signInWithPassword({ email: email, password: password });
             if (r.error) return { error: 'Username or password is incorrect.' };
             SI_AUTH.user = r.data.user;
@@ -2421,15 +2420,18 @@
 
         function renderLogin() {
             body.innerHTML =
+                '<form id="loginForm">' +
                 '<h2>Log in</h2>' +
-                '<label for="auUsername">Username</label><input id="auUsername" type="text" autocomplete="username">' +
-                '<label for="auPassword">Password</label><input id="auPassword" type="password" autocomplete="current-password">' +
+                '<label for="auUsername">Username</label><input id="auUsername" type="text" autocomplete="username" required>' +
+                '<label for="auPassword">Password</label><input id="auPassword" type="password" autocomplete="current-password" required>' +
                 '<p class="auth-error" id="auError"></p>' +
-                '<button class="btn btn-primary block" id="auLogin" type="button">Log in</button>' +
+                '<button class="btn btn-primary block" type="submit">Log in</button>' +
+                '</form>' +
                 '<a class="auth-link" id="auToSignup">Create an account</a>' +
                 '<a class="auth-link" id="auToForgot">Forgot password?</a>';
 
-            document.getElementById('auLogin').addEventListener('click', async function () {
+            document.getElementById('loginForm').addEventListener('submit', async function (e) {
+                e.preventDefault();
                 var u = document.getElementById('auUsername').value.trim();
                 var p = document.getElementById('auPassword').value;
                 var err = document.getElementById('auError');
@@ -2446,6 +2448,7 @@
 
         function renderSignup() {
             body.innerHTML =
+                '<form id="signupForm">' +
                 '<h2>Create account</h2>' +
                 '<label for="auUsername">Username</label><input id="auUsername" type="text" autocomplete="username" placeholder="3–24 letters, numbers, underscores">' +
                 '<label for="auPassword">Password</label><input id="auPassword" type="password" autocomplete="new-password" placeholder="At least 8 characters">' +
@@ -2459,10 +2462,12 @@
                 '</select>' +
                 '<label for="auSA">Security answer</label><input id="auSA" type="text" autocomplete="off">' +
                 '<p class="auth-error" id="auError"></p>' +
-                '<button class="btn btn-primary block" id="auSignup" type="button">Create account</button>' +
+                '<button class="btn btn-primary block" type="submit">Create account</button>' +
+                '</form>' +
                 '<a class="auth-link" id="auToLogin">Already have an account? Log in</a>';
 
-            document.getElementById('auSignup').addEventListener('click', async function () {
+            document.getElementById('signupForm').addEventListener('submit', async function (e) {
+                e.preventDefault();
                 var u = document.getElementById('auUsername').value.trim();
                 var p = document.getElementById('auPassword').value;
                 var sq = document.getElementById('auSQ').value;
