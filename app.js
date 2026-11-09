@@ -926,6 +926,12 @@
         days: []
     };
 
+    function _getGuestCount(key) {
+        try { return parseInt(localStorage.getItem('sanjana.guest_' + key) || '0', 10); } catch (e) { return 0; }
+    }
+    function _incGuestCount(key) {
+        try { localStorage.setItem('sanjana.guest_' + key, _getGuestCount(key) + 1); } catch (e) { }
+    }
     function _requireLogin(action) {
         if (SI_AUTH.user) return true;
         toast('Please log in to ' + (action || 'continue') + '.');
@@ -1865,6 +1871,14 @@
             form.addEventListener('submit', function (e) {
                 e.preventDefault();
                 var q = input.value.trim(); if (!q) return;
+
+                // Limit guests to 1 question
+                if (!SI_AUTH.user && _getGuestCount('tutor') >= 1) {
+                    _requireLogin('ask more questions');
+                    return;
+                }
+                if (!SI_AUTH.user) _incGuestCount('tutor');
+
                 add('<p class="you">' + esc(q) + '</p>', 'user');
                 input.value = '';
                 var pending = add('<p class="typing">Searching the SanjanaIAS library…</p>', 'bot');
@@ -1900,6 +1914,13 @@
 
             var state = null;
             function start() {
+                // Limit guests to 1 quiz
+                if (!SI_AUTH.user && _getGuestCount('quiz') >= 1) {
+                    _requireLogin('take another quiz');
+                    return;
+                }
+                if (!SI_AUTH.user) _incGuestCount('quiz');
+
                 var topicId = topicSel.value;
                 var n = Number($('#quizCount', main).value);
                 var pool = topicId ? bank.filter(function (q) { return q.topicId === topicId; }) : bank.slice();
