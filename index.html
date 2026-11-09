@@ -6,8 +6,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Dashboard · SanjanaIAS</title>
     <meta name="description" content="SanjanaIAS — your daily guide to understanding the world for UPSC.">
-    <link rel="icon"
-        href="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2214%22%20fill%3D%22%230e1a33%22%2F%3E%3Cpath%20d%3D%22M18%2044V20h6l8%2013%208-13h6v24h-6V31l-8%2012-8-12v13z%22%20fill%3D%22%2360a5fa%22%2F%3E%3C%2Fsvg%3E">
+    <link rel="icon" href="logo.png">
     <link rel="stylesheet" href="styles.css">
     <script>
         /* Set theme before paint to avoid a flash. */
@@ -27,11 +26,8 @@
     <header class="site-header">
         <button class="icon-btn nav-toggle" id="navToggle" aria-label="Open navigation" type="button">☰</button>
         <a class="brand" href="#/dashboard">
-            <svg width="30" height="30" viewBox="0 0 64 64" aria-hidden="true">
-                <rect width="64" height="64" rx="16" fill="#0e1a33" />
-                <path d="M16 46V18h7l9 14 9-14h7v28h-7V30l-9 13-9-13v16z" fill="#60a5fa" />
-                <circle cx="50" cy="16" r="5" fill="#f59e0b" />
-            </svg>
+            <img src="logo.png" alt="SanjanaIAS Logo" width="32" height="32"
+                style="border-radius: 8px; object-fit: cover;">
             <span class="brand-text"><strong>SanjanaIAS</strong><em>Study Intelligence</em></span>
         </a>
         <button class="search-trigger" id="searchTrigger" type="button" aria-label="Search">
@@ -101,7 +97,10 @@
     </nav>
 
     <footer class="site-footer">
-        <p><strong>SanjanaIAS</strong> — Understand the world. Prepare for the future.</p>
+        <p style="display: flex; align-items: center; gap: 8px;">
+            <img src="logo.png" alt="Logo" width="24" height="24" style="border-radius: 4px;">
+            <strong>SanjanaIAS</strong> — Understand the world. Prepare for the future.
+        </p>
         <p>An independent educational platform. Not affiliated with UPSC or the Government of India.
             Content is compiled from public sources; always verify against the original document before relying on it.
         </p>
