@@ -2187,19 +2187,19 @@
         }
     }
 
-    // Intercept link clicks for SPA routing
-    document.addEventListener('click', function (e) {
-        var link = e.target.closest('a');
-        if (link && link.hostname === window.location.hostname && !link.target && link.getAttribute('href') && link.getAttribute('href').indexOf('http') !== 0) {
-            e.preventDefault();
-            window.history.pushState({}, '', link.getAttribute('href'));
-            route(); // Re-render the page
-        }
-    });
-
-    window.addEventListener('popstate', route);
-
     if (typeof document !== 'undefined') {
+        // Intercept link clicks for SPA routing
+        document.addEventListener('click', function (e) {
+            var link = e.target.closest('a');
+            if (link && link.hostname === window.location.hostname && !link.target && link.getAttribute('href') && link.getAttribute('href').indexOf('http') !== 0) {
+                e.preventDefault();
+                window.history.pushState({}, '', link.getAttribute('href'));
+                route(); // Re-render the page
+            }
+        });
+
+        window.addEventListener('popstate', route);
+
         if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
         else boot();
     }
