@@ -1,20 +1,21 @@
 {
-  "updated": "2026-11-09T19:21:52.472Z",
+  "updated": "2026-11-09T20:02:15.873Z",
   "health": {
-    "checked": "2026-11-09T19:21:52.472Z",
+    "checked": "2026-11-09T20:02:15.873Z",
     "sources": [
       {
         "id": "un-news",
         "name": "UN News",
-        "status": "failed",
-        "error": "HTTP 404",
-        "checked": "2026-11-09T19:21:52.472Z"
+        "status": "ok",
+        "items": 25,
+        "added": 25,
+        "checked": "2026-11-09T20:02:15.873Z"
       },
       {
         "id": "un-geneva",
         "name": "UN Geneva",
         "status": "no-new-articles",
-        "checked": "2026-11-09T19:21:52.472Z"
+        "checked": "2026-11-09T20:02:15.873Z"
       },
       {
         "id": "who",
@@ -22,21 +23,21 @@
         "status": "ok",
         "items": 25,
         "added": 24,
-        "checked": "2026-11-09T19:21:52.472Z"
+        "checked": "2026-11-09T20:02:15.873Z"
       },
       {
         "id": "world-bank",
         "name": "World Bank",
         "status": "failed",
         "error": "HTTP 404",
-        "checked": "2026-11-09T19:21:52.472Z"
+        "checked": "2026-11-09T20:02:15.873Z"
       },
       {
         "id": "imf",
         "name": "IMF",
         "status": "failed",
         "error": "HTTP 403",
-        "checked": "2026-11-09T19:21:52.472Z"
+        "checked": "2026-11-09T20:02:15.873Z"
       },
       {
         "id": "pib",
@@ -44,7 +45,7 @@
         "status": "ok",
         "items": 20,
         "added": 0,
-        "checked": "2026-11-09T19:21:52.472Z"
+        "checked": "2026-11-09T20:02:15.873Z"
       },
       {
         "id": "rbi",
@@ -52,7 +53,7 @@
         "status": "ok",
         "items": 10,
         "added": 0,
-        "checked": "2026-11-09T19:21:52.472Z"
+        "checked": "2026-11-09T20:02:15.873Z"
       },
       {
         "id": "bbc-world",
@@ -60,47 +61,44 @@
         "status": "ok",
         "items": 24,
         "added": 0,
-        "checked": "2026-11-09T19:21:52.472Z"
+        "checked": "2026-11-09T20:02:15.873Z"
       },
       {
         "id": "guardian-world",
         "name": "The Guardian — World",
         "status": "ok",
         "items": 25,
-        "added": 0,
-        "checked": "2026-11-09T19:21:52.472Z"
+        "added": 2,
+        "checked": "2026-11-09T20:02:15.873Z"
       },
       {
         "id": "ie-world",
         "name": "Indian Express — World",
-        "status": "ok",
-        "items": 25,
-        "added": 0,
-        "checked": "2026-11-09T19:21:52.472Z"
+        "status": "failed",
+        "error": "HTTP 403",
+        "checked": "2026-11-09T20:02:15.873Z"
       },
       {
         "id": "ie-india",
         "name": "Indian Express — India",
-        "status": "ok",
-        "items": 25,
-        "added": 0,
-        "checked": "2026-11-09T19:21:52.472Z"
+        "status": "failed",
+        "error": "HTTP 403",
+        "checked": "2026-11-09T20:02:15.873Z"
       },
       {
         "id": "ie-hyderabad",
         "name": "Indian Express — Hyderabad",
-        "status": "ok",
-        "items": 25,
-        "added": 0,
-        "checked": "2026-11-09T19:21:52.472Z"
+        "status": "failed",
+        "error": "HTTP 403",
+        "checked": "2026-11-09T20:02:15.873Z"
       },
       {
         "id": "hindu-national",
         "name": "The Hindu — National",
         "status": "ok",
         "items": 25,
-        "added": 1,
-        "checked": "2026-11-09T19:21:52.472Z"
+        "added": 2,
+        "checked": "2026-11-09T20:02:15.873Z"
       },
       {
         "id": "hindu-international",
@@ -108,12 +106,12 @@
         "status": "ok",
         "items": 25,
         "added": 0,
-        "checked": "2026-11-09T19:21:52.472Z"
+        "checked": "2026-11-09T20:02:15.873Z"
       }
     ],
-    "succeeded": 10,
-    "failed": 3,
-    "newTopics": 25
+    "succeeded": 8,
+    "failed": 5,
+    "newTopics": 53
   },
   "topics": [
     {
@@ -1966,6 +1964,63 @@
       "mainsQuestions": []
     },
     {
+      "id": "this-is-not-about-politics-this-is-about-people-un-2026-11-03",
+      "title": "‘This is not about politics. This is about people’: UN warns of impact of deadly drone strikes in Sudan",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "Security",
+      "tags": [
+        "Security"
+      ],
+      "gsPapers": [
+        "GS III"
+      ],
+      "summary": "Intensifying drone attacks on civilian infrastructure across Sudan are disrupting electricity, water and fuel supplies, putting lives at risk and hampering the delivery of humanitarian aid, the UN’s top official in the country has warned.&nbsp;",
+      "whyItMatters": "",
+      "image": "https://global.unitednations.entermediadb.net/assets/mediadb/services/module/asset/downloads/preset/Collections/Production%20Library/14-05-2026-UNOCHA-Sudan-05.jpg/image560x340cropped.jpg",
+      "imageCredit": "UN News",
+      "readTime": 3,
+      "published": "2026-11-03",
+      "updated": "2026-11-09",
+      "importance": 47,
+      "importanceReason": "Maps to GS III. Signals constitutional legal. Signals exam recurrence.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "‘This is not about politics. This is about people’: UN warns of impact of deadly drone strikes in Sudan",
+          "publisher": "UN News",
+          "url": "https://news.un.org/feed/view/en/story/2026/11/1168731",
+          "type": "primary",
+          "date": "2026-11-03"
+        }
+      ],
+      "sections": {
+        "event": "Intensifying drone attacks on civilian infrastructure across Sudan are disrupting electricity, water and fuel supplies, putting lives at risk and hampering the delivery of humanitarian aid, the UN’s top official in the country has warned.&nbsp;",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-03",
+            "text": "Reported by UN News"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to GS III.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
       "id": "nvidia-shares-tumble-over-investigation-into-huang-2026-11-09",
       "title": "Nvidia shares tumble over investigation into Huang's affair with alleged Chinese spy",
       "region": "world",
@@ -2422,6 +2477,409 @@
       "mainsQuestions": []
     },
     {
+      "id": "cop31-opens-in-antalya-can-climate-promises-finall-2026-11-09",
+      "title": "COP31 opens in Antalya: Can climate promises finally deliver results?",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "International Relations",
+      "tags": [
+        "International Relations",
+        "Environment"
+      ],
+      "gsPapers": [
+        "GS II",
+        "GS III"
+      ],
+      "summary": "Nearly 200 countries have arrived on Türkiye&#039;s Mediterranean coast for a climate summit with a different ambition: fewer grand declarations and more concrete decisions. With a powerful El Niño threatening to worsen extreme weather, negotiators face difficult questions over…",
+      "whyItMatters": "",
+      "image": "https://global.unitednations.entermediadb.net/assets/mediadb/services/module/asset/downloads/preset/Collections/Production%20Library/2026/11/9-11-26_COP31-opening-Stiell_UNFCCC.jpg/image560x340cropped.jpg",
+      "imageCredit": "UN News",
+      "readTime": 3,
+      "published": "2026-11-09",
+      "updated": "2026-11-09",
+      "importance": 45,
+      "importanceReason": "Maps to GS II, GS III. Signals environment social. Signals exam recurrence.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "COP31 opens in Antalya: Can climate promises finally deliver results?",
+          "publisher": "UN News",
+          "url": "https://news.un.org/feed/view/en/story/2026/11/1168763",
+          "type": "primary",
+          "date": "2026-11-09"
+        }
+      ],
+      "sections": {
+        "event": "Nearly 200 countries have arrived on Türkiye&#039;s Mediterranean coast for a climate summit with a different ambition: fewer grand declarations and more concrete decisions. With a powerful El Niño threatening to worsen extreme weather, negotiators face difficult questions over climate finance, clean energy and how to protect communities already living with the consequences of climate change.",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-09",
+            "text": "Reported by UN News"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to GS II, GS III.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "from-a-ship-frozen-into-arctic-ice-a-warning-to-wo-2026-11-06",
+      "title": "From a ship frozen into Arctic ice, a warning to world leaders: Trust the science",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "Environment",
+      "tags": [
+        "Environment"
+      ],
+      "gsPapers": [
+        "GS III"
+      ],
+      "summary": "Drifting through the polar darkness, a team of scientists is documenting a rapidly changing Arctic. As sea ice retreats and oil tankers move in, a conversation with the UN chief reveals why the battle for climate science matters far beyond the North Pole.",
+      "whyItMatters": "",
+      "image": "https://global.unitednations.entermediadb.net/assets/mediadb/services/module/asset/downloads/preset/Collections/Embargoed/2026/11/05-11-2026-Tara-Polar-Station-02.jpg/image560x340cropped.jpg",
+      "imageCredit": "UN News",
+      "readTime": 3,
+      "published": "2026-11-06",
+      "updated": "2026-11-09",
+      "importance": 45,
+      "importanceReason": "Maps to GS III. Signals environment social. Signals exam recurrence.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "From a ship frozen into Arctic ice, a warning to world leaders: Trust the science",
+          "publisher": "UN News",
+          "url": "https://news.un.org/feed/view/en/story/2026/11/1168751",
+          "type": "primary",
+          "date": "2026-11-06"
+        }
+      ],
+      "sections": {
+        "event": "Drifting through the polar darkness, a team of scientists is documenting a rapidly changing Arctic. As sea ice retreats and oil tankers move in, a conversation with the UN chief reveals why the battle for climate science matters far beyond the North Pole.",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-06",
+            "text": "Reported by UN News"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to GS III.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "no-escape-for-refugees-on-the-frontlines-of-the-cl-2026-11-06",
+      "title": "‘No Escape’ for refugees on the frontlines of the climate crisis",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "Environment",
+      "tags": [
+        "Environment"
+      ],
+      "gsPapers": [
+        "GS III"
+      ],
+      "summary": "The climate emergency is an immediate crisis for refugees, with three in four – nearly 90 million people – living in countries facing high to severe exposure to hazards such as drought, floods and extreme heat.&nbsp;",
+      "whyItMatters": "",
+      "image": "https://global.unitednations.entermediadb.net/assets/mediadb/services/module/asset/downloads/preset/Collections/Production%20Library/2026/11/09-11-2026_UNHCR_South-Sudan-01.jpg/image560x340cropped.jpg",
+      "imageCredit": "UN News",
+      "readTime": 3,
+      "published": "2026-11-06",
+      "updated": "2026-11-09",
+      "importance": 45,
+      "importanceReason": "Maps to GS III. Signals environment social. Signals exam recurrence.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "‘No Escape’ for refugees on the frontlines of the climate crisis",
+          "publisher": "UN News",
+          "url": "https://news.un.org/feed/view/en/story/2026/11/1168752",
+          "type": "primary",
+          "date": "2026-11-06"
+        }
+      ],
+      "sections": {
+        "event": "The climate emergency is an immediate crisis for refugees, with three in four – nearly 90 million people – living in countries facing high to severe exposure to hazards such as drought, floods and extreme heat.&nbsp;",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-06",
+            "text": "Reported by UN News"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to GS III.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "cop31-explained-what-s-at-stake-at-this-year-s-un--2026-11-04",
+      "title": "COP31 explained: What’s at stake at this year’s UN climate summit?",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "International Relations",
+      "tags": [
+        "International Relations",
+        "Environment"
+      ],
+      "gsPapers": [
+        "GS II",
+        "GS III"
+      ],
+      "summary": "The world has more tools than ever to tackle climate change, yet millions remain unable to benefit from them. As clean energy technologies advance faster than ever, the challenge facing countries at COP31 is no longer just finding solutions – but making sure everyone can afford…",
+      "whyItMatters": "",
+      "image": "https://global.unitednations.entermediadb.net/assets/mediadb/services/module/asset/downloads/preset/Collections/Embargoed/2026/11/03-11-2026-UNICEF-Bangladesh-02.jpg/image560x340cropped.jpg",
+      "imageCredit": "UN News",
+      "readTime": 3,
+      "published": "2026-11-04",
+      "updated": "2026-11-09",
+      "importance": 45,
+      "importanceReason": "Maps to GS II, GS III. Signals environment social. Signals exam recurrence.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "COP31 explained: What’s at stake at this year’s UN climate summit?",
+          "publisher": "UN News",
+          "url": "https://news.un.org/feed/view/en/story/2026/11/1168735",
+          "type": "primary",
+          "date": "2026-11-04"
+        }
+      ],
+      "sections": {
+        "event": "The world has more tools than ever to tackle climate change, yet millions remain unable to benefit from them. As clean energy technologies advance faster than ever, the challenge facing countries at COP31 is no longer just finding solutions – but making sure everyone can afford them.",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-04",
+            "text": "Reported by UN News"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to GS II, GS III.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "15-years-of-almost-no-progress-in-getting-young-pe-2026-11-04",
+      "title": "15 years of ‘almost no progress’ in getting young people moving: WHO",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "International Relations",
+      "tags": [
+        "International Relations"
+      ],
+      "gsPapers": [
+        "GS II"
+      ],
+      "summary": "One in four adolescents worldwide reported not getting at least 60 minutes of physical activity on any day in the previous week, according to new global estimates released by the World Health Organization (WHO) on Wednesday.&nbsp;",
+      "whyItMatters": "",
+      "image": "https://global.unitednations.entermediadb.net/assets/mediadb/services/module/asset/downloads/preset/Collections/Embargoed/07-05-2025-IOM-Yemen-football-02.jpg/image560x340cropped.jpg",
+      "imageCredit": "UN News",
+      "readTime": 3,
+      "published": "2026-11-04",
+      "updated": "2026-11-09",
+      "importance": 45,
+      "importanceReason": "Maps to GS II. Signals environment social. Signals exam recurrence.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "15 years of ‘almost no progress’ in getting young people moving: WHO",
+          "publisher": "UN News",
+          "url": "https://news.un.org/feed/view/en/story/2026/11/1168736",
+          "type": "primary",
+          "date": "2026-11-04"
+        }
+      ],
+      "sections": {
+        "event": "One in four adolescents worldwide reported not getting at least 60 minutes of physical activity on any day in the previous week, according to new global estimates released by the World Health Organization (WHO) on Wednesday.&nbsp;",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-04",
+            "text": "Reported by UN News"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to GS II.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "afghan-children-face-narrowing-path-to-education-u-2026-11-04",
+      "title": "Afghan children face narrowing path to education, UN agencies report",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "International Relations",
+      "tags": [
+        "International Relations"
+      ],
+      "gsPapers": [
+        "GS II"
+      ],
+      "summary": "More than half of Afghanistan’s children who should be in primary school remain outside formal learning and millions of girls can only dream of going to university.",
+      "whyItMatters": "",
+      "image": "https://global.unitednations.entermediadb.net/assets/mediadb/services/module/asset/downloads/preset/Collections/Embargoed/2026/08/14-08-2026-UNICEF-Afghanistan-05.jpg/image560x340cropped.jpg",
+      "imageCredit": "UN News",
+      "readTime": 3,
+      "published": "2026-11-04",
+      "updated": "2026-11-09",
+      "importance": 45,
+      "importanceReason": "Maps to GS II. Signals environment social. Signals exam recurrence.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Afghan children face narrowing path to education, UN agencies report",
+          "publisher": "UN News",
+          "url": "https://news.un.org/feed/view/en/story/2026/11/1168732",
+          "type": "primary",
+          "date": "2026-11-04"
+        }
+      ],
+      "sections": {
+        "event": "More than half of Afghanistan’s children who should be in primary school remain outside formal learning and millions of girls can only dream of going to university.",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-04",
+            "text": "Reported by UN News"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to GS II.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "the-world-is-not-ready-climate-adaptation-cash-fal-2026-11-04",
+      "title": "‘The world is not ready’: Climate adaptation cash falls far short as warming heads past 1.5°C",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "Environment",
+      "tags": [
+        "Environment"
+      ],
+      "gsPapers": [
+        "GS III"
+      ],
+      "summary": "Although global warming is set to exceed 1.5°C, financing to help communities adapt to climate change falls far short of needs, the UN Environment Programme (UNEP) said in a report published on Wednesday.",
+      "whyItMatters": "",
+      "image": "https://global.unitednations.entermediadb.net/assets/mediadb/services/module/asset/downloads/preset/Collections/Embargoed/2026/11/03-11-2026-WMO-Bangladesh.jpg/image560x340cropped.jpg",
+      "imageCredit": "UN News",
+      "readTime": 3,
+      "published": "2026-11-04",
+      "updated": "2026-11-09",
+      "importance": 45,
+      "importanceReason": "Maps to GS III. Signals environment social. Signals exam recurrence.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "‘The world is not ready’: Climate adaptation cash falls far short as warming heads past 1.5°C",
+          "publisher": "UN News",
+          "url": "https://news.un.org/feed/view/en/story/2026/11/1168725",
+          "type": "primary",
+          "date": "2026-11-04"
+        }
+      ],
+      "sections": {
+        "event": "Although global warming is set to exceed 1.5°C, financing to help communities adapt to climate change falls far short of needs, the UN Environment Programme (UNEP) said in a report published on Wednesday.",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-04",
+            "text": "Reported by UN News"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to GS III.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
       "id": "world-humanitarian-day-2020-a-tribute-to-aid-worke-2020-08-19",
       "title": "World Humanitarian Day 2020: A tribute to aid workers on the front lines",
       "region": "world",
@@ -2702,6 +3160,64 @@
         "challenges": "",
         "solutions": "",
         "upsc": "Auto-tagged to GS III.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "syria-s-undocumented-children-pay-the-price-of-war-2026-11-04",
+      "title": "Syria’s undocumented children ‘pay the price’ of war and a law that shuts out mothers",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "Governance",
+      "tags": [
+        "Governance",
+        "International Relations"
+      ],
+      "gsPapers": [
+        "GS II"
+      ],
+      "summary": "Many children born in Syria since the war began in 2011 have no legal identity because nationality passes only through fathers – many of whom are dead or missing – a member of the independent UN commission investigating rights violations in the country said on Wednesday.",
+      "whyItMatters": "",
+      "image": "https://global.unitednations.entermediadb.net/assets/mediadb/services/module/asset/downloads/preset/Collections/Embargoed/23-01-2026-UNOCHA-Syria-04.jpg/image560x340cropped.jpg",
+      "imageCredit": "UN News",
+      "readTime": 3,
+      "published": "2026-11-04",
+      "updated": "2026-11-09",
+      "importance": 44,
+      "importanceReason": "Maps to GS II. Signals long term. Signals exam recurrence.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Syria’s undocumented children ‘pay the price’ of war and a law that shuts out mothers",
+          "publisher": "UN News",
+          "url": "https://news.un.org/feed/view/en/story/2026/11/1168737",
+          "type": "primary",
+          "date": "2026-11-04"
+        }
+      ],
+      "sections": {
+        "event": "Many children born in Syria since the war began in 2011 have no legal identity because nationality passes only through fathers – many of whom are dead or missing – a member of the independent UN commission investigating rights violations in the country said on Wednesday.",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-04",
+            "text": "Reported by UN News"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to GS II.",
         "prelimsNotes": [],
         "mainsNotes": []
       },
@@ -3052,6 +3568,179 @@
       "mainsQuestions": []
     },
     {
+      "id": "families-who-fled-ethiopia-for-kenya-s-moyale-need-2026-11-09",
+      "title": "Families who fled Ethiopia for Kenya’s Moyale need food, water and shelter",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "Geography",
+      "tags": [
+        "Geography",
+        "International Relations"
+      ],
+      "gsPapers": [
+        "GS I",
+        "GS II"
+      ],
+      "summary": "The International Organization of Migration (IOM) and partners are calling for urgent funding to support tens of thousands of people who have escaped violent clashes in Ethiopia for the Moyale region in northern Kenya.",
+      "whyItMatters": "",
+      "image": "https://global.unitednations.entermediadb.net/assets/mediadb/services/module/asset/downloads/preset/Collections/Production%20Library/2026/11/09-11-206_IOM_Kenya.jpg/image560x340cropped.jpg",
+      "imageCredit": "UN News",
+      "readTime": 3,
+      "published": "2026-11-09",
+      "updated": "2026-11-09",
+      "importance": 36,
+      "importanceReason": "Maps to GS I, GS II. Signals exam recurrence.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Families who fled Ethiopia for Kenya’s Moyale need food, water and shelter",
+          "publisher": "UN News",
+          "url": "https://news.un.org/feed/view/en/story/2026/11/1168762",
+          "type": "primary",
+          "date": "2026-11-09"
+        }
+      ],
+      "sections": {
+        "event": "The International Organization of Migration (IOM) and partners are calling for urgent funding to support tens of thousands of people who have escaped violent clashes in Ethiopia for the Moyale region in northern Kenya.",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-09",
+            "text": "Reported by UN News"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to GS I, GS II.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "world-news-in-brief-korea-tensions-mount-un-demand-2026-11-05",
+      "title": "World News in Brief: Korea tensions mount, UN demands answers over staff death in Yemen, Guterres in Spain, Nepal alert ahead of COP31",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "Environment",
+      "tags": [
+        "Environment"
+      ],
+      "gsPapers": [
+        "GS III"
+      ],
+      "summary": "UN Secretary-General António Guterres remains concerned over the situation on the Korean Peninsula, including the potential escalation of tensions across the Demilitarized Zone (DMZ), his Spokesperson said on Thursday.",
+      "whyItMatters": "",
+      "image": "https://global.unitednations.entermediadb.net/assets/mediadb/services/module/asset/downloads/preset/Libraries/Production+Library/02-02-21-OCHA-DPRK-Pyongyang-Street-2011.jpg/image560x340cropped.jpg",
+      "imageCredit": "UN News",
+      "readTime": 3,
+      "published": "2026-11-05",
+      "updated": "2026-11-09",
+      "importance": 36,
+      "importanceReason": "Maps to GS III. Signals exam recurrence.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "World News in Brief: Korea tensions mount, UN demands answers over staff death in Yemen, Guterres in Spain, Nepal alert ahead of COP31",
+          "publisher": "UN News",
+          "url": "https://news.un.org/feed/view/en/story/2026/11/1168750",
+          "type": "primary",
+          "date": "2026-11-05"
+        }
+      ],
+      "sections": {
+        "event": "UN Secretary-General António Guterres remains concerned over the situation on the Korean Peninsula, including the potential escalation of tensions across the Demilitarized Zone (DMZ), his Spokesperson said on Thursday.",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-05",
+            "text": "Reported by UN News"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to GS III.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "abyei-deadly-drone-strikes-mark-new-and-concerning-2026-11-05",
+      "title": "Abyei: Deadly drone strikes mark ‘new and concerning’ threat, UN peacekeeping chief warns",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "Security",
+      "tags": [
+        "Security"
+      ],
+      "gsPapers": [
+        "GS III"
+      ],
+      "summary": "Drone strikes that killed at least 30 people in Abyei last month have added “a new and concerning dimension” to security in the disputed area, the UN’s peacekeeping chief told the Security Council on Thursday.",
+      "whyItMatters": "",
+      "image": "https://global.unitednations.entermediadb.net/assets/mediadb/services/module/asset/downloads/preset/Collections/Embargoed/25-05-2023-UNISFA-Abyei-Peacekeepers.jpg/image560x340cropped.jpg",
+      "imageCredit": "UN News",
+      "readTime": 3,
+      "published": "2026-11-05",
+      "updated": "2026-11-09",
+      "importance": 36,
+      "importanceReason": "Maps to GS III. Signals exam recurrence.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Abyei: Deadly drone strikes mark ‘new and concerning’ threat, UN peacekeeping chief warns",
+          "publisher": "UN News",
+          "url": "https://news.un.org/feed/view/en/story/2026/11/1168749",
+          "type": "primary",
+          "date": "2026-11-05"
+        }
+      ],
+      "sections": {
+        "event": "Drone strikes that killed at least 30 people in Abyei last month have added “a new and concerning dimension” to security in the disputed area, the UN’s peacekeeping chief told the Security Council on Thursday.",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-05",
+            "text": "Reported by UN News"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to GS III.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
       "id": "who-s-three-messages-for-unga75-2020-09-15",
       "title": "WHO’s three messages for UNGA75",
       "region": "world",
@@ -3216,6 +3905,63 @@
         "challenges": "",
         "solutions": "",
         "upsc": "Auto-tagged to GS II.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "wayanad-conservationist-n-badusha-wins-environment-2026-11-09",
+      "title": "Wayanad conservationist N. Badusha wins environmental award",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "Environment",
+      "tags": [
+        "Environment"
+      ],
+      "gsPapers": [
+        "GS III"
+      ],
+      "summary": "The award, instituted in memory of Kamarudeen, a noted environmentalist and former Reader in the Department of Botany at the University of Kerala, carries a cash prize of ₹25,000, a citation, and a plaque.",
+      "whyItMatters": "",
+      "image": "https://th-i.thgim.com/public/incoming/n0qtf2/article71683411.ece/alternates/LANDSCAPE_1200/11073_9_11_2026_19_14_41_1_IMG_20261109_WA0006.JPG",
+      "imageCredit": "The Hindu — National",
+      "readTime": 3,
+      "published": "2026-11-09",
+      "updated": "2026-11-09",
+      "importance": 36,
+      "importanceReason": "Maps to GS III. Signals exam recurrence.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Wayanad conservationist N. Badusha wins environmental award",
+          "publisher": "The Hindu — National",
+          "url": "https://www.thehindu.com/news/national/kerala/wayanad-conservationist-n-badusha-wins-kfbc-environmental-award/article71683095.ece",
+          "type": "reporting",
+          "date": "2026-11-09"
+        }
+      ],
+      "sections": {
+        "event": "The award, instituted in memory of Kamarudeen, a noted environmentalist and former Reader in the Department of Botany at the University of Kerala, carries a cash prize of ₹25,000, a citation, and a plaque.",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-09",
+            "text": "Reported by The Hindu — National"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to GS III.",
         "prelimsNotes": [],
         "mainsNotes": []
       },
@@ -5104,6 +5850,59 @@
       "mainsQuestions": []
     },
     {
+      "id": "exceptional-extreme-temperatures-to-continue-into--2026-11-09",
+      "title": "‘Exceptional’ extreme temperatures to continue into next year, UN reports",
+      "region": "india",
+      "regions": [
+        "india"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "In April this year, roughly 146.5 million Indians were exposed to an extreme heatwave with temperatures hitting a sweltering 47℃.&nbsp;&nbsp;",
+      "whyItMatters": "",
+      "image": "https://global.unitednations.entermediadb.net/assets/mediadb/services/module/asset/downloads/preset/Collections/Embargoed/30-01-2025-UNICEF-Thailand-01.jpg/image560x340cropped.jpg",
+      "imageCredit": "UN News",
+      "readTime": 3,
+      "published": "2026-11-09",
+      "updated": "2026-11-09",
+      "importance": 14,
+      "importanceReason": "Signals india impact.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "‘Exceptional’ extreme temperatures to continue into next year, UN reports",
+          "publisher": "UN News",
+          "url": "https://news.un.org/feed/view/en/story/2026/11/1168760",
+          "type": "primary",
+          "date": "2026-11-09"
+        }
+      ],
+      "sections": {
+        "event": "In April this year, roughly 146.5 million Indians were exposed to an extreme heatwave with temperatures hitting a sweltering 47℃.&nbsp;&nbsp;",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-09",
+            "text": "Reported by UN News"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "Flagged as India-relevant by the classifier.",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
       "id": "trump-says-he-was-kidding-about-dana-white-press-s-2026-11-09",
       "title": "Trump says he was 'kidding' about Dana White press secretary offer",
       "region": "world",
@@ -5528,6 +6327,59 @@
       "mainsQuestions": []
     },
     {
+      "id": "settle-down-do-your-own-swabs-how-alleged-rape-vic-2026-11-09",
+      "title": "‘Settle down’, ‘do your own swabs’: how alleged rape victims are treated in Queensland revealed in major report",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "Prosecutors dropped cases because survivors ‘didn’t act how a rape victim should’, Australian Institute of Criminology review of 19,000 sexual assault cases finds Get our breaking news email , free app or daily news podcast Queensland police put sexual assault investigations “on…",
+      "whyItMatters": "",
+      "image": "https://i.guim.co.uk/img/media/c97abbd2d42262f1d2aaa94eb91adc07a4fe6a8c/0_0_2500_2000/master/2500.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=ec90b16bbf4f249e5f334cc8af3f33e1",
+      "imageCredit": "The Guardian — World",
+      "readTime": 4,
+      "published": "2026-11-09",
+      "updated": "2026-11-09",
+      "importance": 11,
+      "importanceReason": "Signals constitutional legal.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "‘Settle down’, ‘do your own swabs’: how alleged rape victims are treated in Queensland revealed in major report",
+          "publisher": "The Guardian — World",
+          "url": "https://www.theguardian.com/australia-news/2026/nov/10/settle-down-do-your-own-swabs-how-alleged-victims-are-treated-in-queensland-revealed-in-major-report",
+          "type": "reporting",
+          "date": "2026-11-09"
+        }
+      ],
+      "sections": {
+        "event": "Prosecutors dropped cases because survivors ‘didn’t act how a rape victim should’, Australian Institute of Criminology review of 19,000 sexual assault cases finds Get our breaking news email , free app or daily news podcast Queensland police put sexual assault investigations “on the backburner” because detectives were overworked and under pressure to prioritise cases linked to political issues such as youth crime, a major new study has found. The report , published this month by the Australian Institute of Criminology, sought to investigate why so many sexual assault complaints – about…",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-09",
+            "text": "Reported by The Guardian — World"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
       "id": "new-zealand-election-coalition-talks-will-likely-t-2026-11-07",
       "title": "New Zealand election coalition talks will likely take weeks – as it happened",
       "region": "world",
@@ -5565,6 +6417,218 @@
           {
             "date": "2026-11-07",
             "text": "Reported by The Guardian — World"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "security-council-live-strikes-on-ukraine-s-power-g-2026-11-09",
+      "title": "Security Council LIVE: Strikes on Ukraine’s power grid, as peace talks loom",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "The Security Council is meeting in New York on Ukraine. Russian strikes on energy infrastructure are threatening millions with another cold, dark winter, and civilian deaths are climbing sharply. The meeting comes on the eve of US-backed talks due to take place in Abu Dhabi.…",
+      "whyItMatters": "",
+      "image": "https://global.unitednations.entermediadb.net/assets/mediadb/services/module/asset/downloads/preset/Collections/Embargoed/2026/11/05-11-2026-UNICEF-Ukraine-01.jpg/image560x340cropped.jpg",
+      "imageCredit": "UN News",
+      "readTime": 3,
+      "published": "2026-11-09",
+      "updated": "2026-11-09",
+      "importance": 9,
+      "importanceReason": "Signals exam recurrence.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Security Council LIVE: Strikes on Ukraine’s power grid, as peace talks loom",
+          "publisher": "UN News",
+          "url": "https://news.un.org/feed/view/en/story/2026/11/1168761",
+          "type": "primary",
+          "date": "2026-11-09"
+        }
+      ],
+      "sections": {
+        "event": "The Security Council is meeting in New York on Ukraine. Russian strikes on energy infrastructure are threatening millions with another cold, dark winter, and civilian deaths are climbing sharply. The meeting comes on the eve of US-backed talks due to take place in Abu Dhabi. Follow our live meeting coverage below.",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-09",
+            "text": "Reported by UN News"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "afghanistan-faces-deepening-humanitarian-crisis-am-2026-11-06",
+      "title": "Afghanistan faces deepening humanitarian crisis amid sweeping rights restrictions",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "Afghanistan stands at a “difficult crossroad” more than five years after the Taliban returned to power, a senior UN official said on Friday. Relative stability and security are being undercut by a fragile economy, sweeping curbs on rights and acute humanitarian need.",
+      "whyItMatters": "",
+      "image": "https://global.unitednations.entermediadb.net/assets/mediadb/services/module/asset/downloads/preset/Collections/Embargoed/2026/07/13-07-2026-UNICEF-Afghanistan-02.jpg/image560x340cropped.jpg",
+      "imageCredit": "UN News",
+      "readTime": 3,
+      "published": "2026-11-06",
+      "updated": "2026-11-09",
+      "importance": 9,
+      "importanceReason": "Signals exam recurrence.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Afghanistan faces deepening humanitarian crisis amid sweeping rights restrictions",
+          "publisher": "UN News",
+          "url": "https://news.un.org/feed/view/en/story/2026/11/1168758",
+          "type": "primary",
+          "date": "2026-11-06"
+        }
+      ],
+      "sections": {
+        "event": "Afghanistan stands at a “difficult crossroad” more than five years after the Taliban returned to power, a senior UN official said on Friday. Relative stability and security are being undercut by a fragile economy, sweeping curbs on rights and acute humanitarian need.",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-06",
+            "text": "Reported by UN News"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "un-peacekeeping-chief-warns-of-security-vacuum-as--2026-11-04",
+      "title": "UN peacekeeping chief warns of ‘security vacuum’ as Blue Helmets leave Lebanon and Western Sahara",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "The UN’s peacekeeping chief warned on Wednesday that the withdrawal of “Blue Helmets” from Lebanon and Western Sahara risks leaving a dangerous security vacuum, while the Security Council remains divided over what, if anything, should replace them.",
+      "whyItMatters": "",
+      "image": "https://global.unitednations.entermediadb.net/assets/mediadb/services/module/asset/downloads/preset/Collections/Embargoed/2026/10/01-10-2026-UNIFIL-Lebanon-01.jpg/image560x340cropped.jpg",
+      "imageCredit": "UN News",
+      "readTime": 3,
+      "published": "2026-11-04",
+      "updated": "2026-11-09",
+      "importance": 9,
+      "importanceReason": "Signals exam recurrence.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "UN peacekeeping chief warns of ‘security vacuum’ as Blue Helmets leave Lebanon and Western Sahara",
+          "publisher": "UN News",
+          "url": "https://news.un.org/feed/view/en/story/2026/11/1168741",
+          "type": "primary",
+          "date": "2026-11-04"
+        }
+      ],
+      "sections": {
+        "event": "The UN’s peacekeeping chief warned on Wednesday that the withdrawal of “Blue Helmets” from Lebanon and Western Sahara risks leaving a dangerous security vacuum, while the Security Council remains divided over what, if anything, should replace them.",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-04",
+            "text": "Reported by UN News"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "fuel-price-shock-why-developing-economies-are-payi-2026-11-04",
+      "title": "Fuel price shock: Why developing economies are paying the most at the pump",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "When war shut the Strait of Hormuz in February, oil prices soared everywhere. But the pain at the pump has been far from equal, and the world’s developing economies are paying the heaviest price, according to a&nbsp;new report from UNCTAD, the UN trade and development agency.",
+      "whyItMatters": "",
+      "image": "https://global.unitednations.entermediadb.net/assets/mediadb/services/module/asset/downloads/preset/Collections/Production%20Library/2026/11/04-11-2026-Adobe-Stock-fuel-station.jpg/image560x340cropped.jpg",
+      "imageCredit": "UN News",
+      "readTime": 3,
+      "published": "2026-11-04",
+      "updated": "2026-11-09",
+      "importance": 9,
+      "importanceReason": "Signals economic consequence.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Fuel price shock: Why developing economies are paying the most at the pump",
+          "publisher": "UN News",
+          "url": "https://news.un.org/feed/view/en/story/2026/11/1168738",
+          "type": "primary",
+          "date": "2026-11-04"
+        }
+      ],
+      "sections": {
+        "event": "When war shut the Strait of Hormuz in February, oil prices soared everywhere. But the pain at the pump has been far from equal, and the world’s developing economies are paying the heaviest price, according to a&nbsp;new report from UNCTAD, the UN trade and development agency.",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-04",
+            "text": "Reported by UN News"
           }
         ],
         "data": [],
@@ -5883,6 +6947,536 @@
           {
             "date": "2026-11-09",
             "text": "Reported by The Hindu — International"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "building-over-srinagar-s-future-2026-11-09",
+      "title": "Building over Srinagar’s future",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "Suspend the FAR and land-use exemptions, along with Section 22, until they are brought within the Master Plan framework and subjected to public objections",
+      "whyItMatters": "",
+      "image": "https://th-i.thgim.com/public/incoming/m48qk2/article71683973.ece/alternates/LANDSCAPE_1200/33-Jammu%20and%20Kashmir%20Assembly%20Autumn%20Session-28-09-2026.JPG",
+      "imageCredit": "The Hindu — National",
+      "readTime": 3,
+      "published": "2026-11-09",
+      "updated": "2026-11-09",
+      "importance": 7,
+      "importanceReason": "Signals long term.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Building over Srinagar’s future",
+          "publisher": "The Hindu — National",
+          "url": "https://www.thehindu.com/opinion/op-ed/building-over-srinagars-future/article71682424.ece",
+          "type": "reporting",
+          "date": "2026-11-09"
+        }
+      ],
+      "sections": {
+        "event": "Suspend the FAR and land-use exemptions, along with Section 22, until they are brought within the Master Plan framework and subjected to public objections",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-09",
+            "text": "Reported by The Hindu — National"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "beyond-the-broken-glass-the-human-cost-of-the-1938-2026-11-08",
+      "title": "Beyond the broken glass: The human cost of the 1938 November Pogrom",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "On his way to school in Vienna on the morning of 10 November 1938, eight-year-old Arthur Schneier watched his synagogue burn while firefighters and police officers stood by “rejoicing”.",
+      "whyItMatters": "",
+      "image": "https://global.unitednations.entermediadb.net/assets/mediadb/services/module/asset/downloads/preset/Collections/Production%20Library/2026/11/06-11-2026-synagogue-Aachen.jpg/image560x340cropped.jpg",
+      "imageCredit": "UN News",
+      "readTime": 3,
+      "published": "2026-11-08",
+      "updated": "2026-11-09",
+      "importance": 5,
+      "importanceReason": "Generic coverage with no clear syllabus anchor.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Beyond the broken glass: The human cost of the 1938 November Pogrom",
+          "publisher": "UN News",
+          "url": "https://news.un.org/feed/view/en/story/2026/11/1168756",
+          "type": "primary",
+          "date": "2026-11-08"
+        }
+      ],
+      "sections": {
+        "event": "On his way to school in Vienna on the morning of 10 November 1938, eight-year-old Arthur Schneier watched his synagogue burn while firefighters and police officers stood by “rejoicing”.",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-08",
+            "text": "Reported by UN News"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "for-the-first-time-i-have-my-own-chair-gaza-siblin-2026-11-07",
+      "title": "‘For the first time I have my own chair’: Gaza siblings find new freedom",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "In Gaza, 10-year-old Anas is one of three siblings born without legs and with only two fingers on each of their hands. They struggle to move around and perform daily activities like eating and writing independently.&nbsp;",
+      "whyItMatters": "",
+      "image": "https://global.unitednations.entermediadb.net/assets/mediadb/services/module/asset/downloads/preset/Collections/Production%20Library/2026/11/06-11-2026-EducAid-Gaza-03.jpg/image560x340cropped.jpg",
+      "imageCredit": "UN News",
+      "readTime": 3,
+      "published": "2026-11-07",
+      "updated": "2026-11-09",
+      "importance": 5,
+      "importanceReason": "Generic coverage with no clear syllabus anchor.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "‘For the first time I have my own chair’: Gaza siblings find new freedom",
+          "publisher": "UN News",
+          "url": "https://news.un.org/feed/view/en/story/2026/11/1168759",
+          "type": "primary",
+          "date": "2026-11-07"
+        }
+      ],
+      "sections": {
+        "event": "In Gaza, 10-year-old Anas is one of three siblings born without legs and with only two fingers on each of their hands. They struggle to move around and perform daily activities like eating and writing independently.&nbsp;",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-07",
+            "text": "Reported by UN News"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "world-news-in-brief-civilians-killed-in-dr-congo-u-2026-11-06",
+      "title": "World News in Brief: Civilians killed in DR Congo, Ukrainians wrestle with return, Guterres calls out ‘normalisation’ of force",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "At least 30 civilians were killed overnight on Thursday in Beni Territory, North Kivu in the Democratic Republic of the Congo, according to local sources&nbsp;cited by the UN aid coordination office (OCHA).",
+      "whyItMatters": "",
+      "image": "https://global.unitednations.entermediadb.net/assets/mediadb/services/module/asset/downloads/preset/Collections/Embargoed/20-02-2025-UNICEF-DR-Congo-01.jpg/image560x340cropped.jpg",
+      "imageCredit": "UN News",
+      "readTime": 3,
+      "published": "2026-11-06",
+      "updated": "2026-11-09",
+      "importance": 5,
+      "importanceReason": "Generic coverage with no clear syllabus anchor.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "World News in Brief: Civilians killed in DR Congo, Ukrainians wrestle with return, Guterres calls out ‘normalisation’ of force",
+          "publisher": "UN News",
+          "url": "https://news.un.org/feed/view/en/story/2026/11/1168757",
+          "type": "primary",
+          "date": "2026-11-06"
+        }
+      ],
+      "sections": {
+        "event": "At least 30 civilians were killed overnight on Thursday in Beni Territory, North Kivu in the Democratic Republic of the Congo, according to local sources&nbsp;cited by the UN aid coordination office (OCHA).",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-06",
+            "text": "Reported by UN News"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "sudan-s-suffering-is-plain-for-all-to-see-say-aid--2026-11-06",
+      "title": "Sudan’s suffering is plain for all to see say aid teams, as brutal war continues",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "Aid teams working to help millions of people uprooted by the ongoing war in Sudan appealed on Friday for more international assistance amid desperate funding shortages, empty warehouses and overwhelming needs.&nbsp;",
+      "whyItMatters": "",
+      "image": "https://global.unitednations.entermediadb.net/assets/mediadb/services/module/asset/downloads/preset/Collections/Embargoed/2026/09/30-09-2026-IOM-Sudan-03.jpg/image560x340cropped.jpg",
+      "imageCredit": "UN News",
+      "readTime": 3,
+      "published": "2026-11-06",
+      "updated": "2026-11-09",
+      "importance": 5,
+      "importanceReason": "Generic coverage with no clear syllabus anchor.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Sudan’s suffering is plain for all to see say aid teams, as brutal war continues",
+          "publisher": "UN News",
+          "url": "https://news.un.org/feed/view/en/story/2026/11/1168753",
+          "type": "primary",
+          "date": "2026-11-06"
+        }
+      ],
+      "sections": {
+        "event": "Aid teams working to help millions of people uprooted by the ongoing war in Sudan appealed on Friday for more international assistance amid desperate funding shortages, empty warehouses and overwhelming needs.&nbsp;",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-06",
+            "text": "Reported by UN News"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "children-at-risk-as-war-zone-attacks-on-water-and--2026-11-05",
+      "title": "Children at risk as war zone attacks on water and sanitation more than triple",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "Attacks that damaged or destroyed water and sanitation systems in conflict zones tripled between 2021 and 2025, increasing children’s risk of exposure to disease outbreaks, malnutrition and violence.",
+      "whyItMatters": "",
+      "image": "https://global.unitednations.entermediadb.net/assets/mediadb/services/module/asset/downloads/preset/Collections/Production%20Library/2026/07/13-07-2026_UNNews_Water_Gaza_03.jpg/image560x340cropped.jpg",
+      "imageCredit": "UN News",
+      "readTime": 3,
+      "published": "2026-11-05",
+      "updated": "2026-11-09",
+      "importance": 5,
+      "importanceReason": "Generic coverage with no clear syllabus anchor.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Children at risk as war zone attacks on water and sanitation more than triple",
+          "publisher": "UN News",
+          "url": "https://news.un.org/feed/view/en/story/2026/11/1168743",
+          "type": "primary",
+          "date": "2026-11-05"
+        }
+      ],
+      "sections": {
+        "event": "Attacks that damaged or destroyed water and sanitation systems in conflict zones tripled between 2021 and 2025, increasing children’s risk of exposure to disease outbreaks, malnutrition and violence.",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-05",
+            "text": "Reported by UN News"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "two-new-ebola-vaccines-to-join-dr-congo-clinical-t-2026-11-05",
+      "title": "Two new Ebola vaccines to join DR Congo clinical trial",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "Two new Ebola vaccine candidates will be added to a clinical trial in the Democratic Republic of the Congo (DRC) as the country continues to battle a deadly outbreak caused by the Bundibugyo species of the virus.&nbsp;&nbsp;",
+      "whyItMatters": "",
+      "image": "https://global.unitednations.entermediadb.net/assets/mediadb/services/module/asset/downloads/preset/Collections/Embargoed/2026/10/27-10-2026-WHO-DR-Congo-ebola.jpg/image560x340cropped.jpg",
+      "imageCredit": "UN News",
+      "readTime": 3,
+      "published": "2026-11-05",
+      "updated": "2026-11-09",
+      "importance": 5,
+      "importanceReason": "Generic coverage with no clear syllabus anchor.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Two new Ebola vaccines to join DR Congo clinical trial",
+          "publisher": "UN News",
+          "url": "https://news.un.org/feed/view/en/story/2026/11/1168742",
+          "type": "primary",
+          "date": "2026-11-05"
+        }
+      ],
+      "sections": {
+        "event": "Two new Ebola vaccine candidates will be added to a clinical trial in the Democratic Republic of the Congo (DRC) as the country continues to battle a deadly outbreak caused by the Bundibugyo species of the virus.&nbsp;&nbsp;",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-05",
+            "text": "Reported by UN News"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "gunfire-damages-tents-at-rafah-displacement-site-i-2026-11-04",
+      "title": "Gunfire damages tents at Rafah displacement site in Gaza, as aid teams prepare for winter storms",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "Gunfire hit and damaged multiple tents at a displacement site in Gaza’s northern Rafah region on Tuesday, reportedly causing injuries and forcing a humanitarian partner to leave the area, the UN aid coordination office (OCHA) has&nbsp;said.",
+      "whyItMatters": "",
+      "image": "https://global.unitednations.entermediadb.net/assets/mediadb/services/module/asset/downloads/preset/Collections/Embargoed/25-06-2025-UNICEF-Gaza-08.jpg/image560x340cropped.jpg",
+      "imageCredit": "UN News",
+      "readTime": 3,
+      "published": "2026-11-04",
+      "updated": "2026-11-09",
+      "importance": 5,
+      "importanceReason": "Generic coverage with no clear syllabus anchor.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Gunfire damages tents at Rafah displacement site in Gaza, as aid teams prepare for winter storms",
+          "publisher": "UN News",
+          "url": "https://news.un.org/feed/view/en/story/2026/11/1168740",
+          "type": "primary",
+          "date": "2026-11-04"
+        }
+      ],
+      "sections": {
+        "event": "Gunfire hit and damaged multiple tents at a displacement site in Gaza’s northern Rafah region on Tuesday, reportedly causing injuries and forcing a humanitarian partner to leave the area, the UN aid coordination office (OCHA) has&nbsp;said.",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-04",
+            "text": "Reported by UN News"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "world-news-in-brief-children-killed-in-myanmar-str-2026-11-03",
+      "title": "World News in Brief: Children killed in Myanmar strike, new violence flares in Mozambique, an Internet affordability milestone",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "A school in Myanmar has been hit in an airstrike, with&nbsp;three children reported killed and five others injured, according to UN Children’s Fund&nbsp;UNICEF.",
+      "whyItMatters": "",
+      "image": "https://global.unitednations.entermediadb.net/assets/mediadb/services/module/asset/downloads/preset/Collections/Production%20Library/2026/11/03-11-2026-Adobe-Stock-Myanmar.jpg/image560x340cropped.jpg",
+      "imageCredit": "UN News",
+      "readTime": 3,
+      "published": "2026-11-03",
+      "updated": "2026-11-09",
+      "importance": 5,
+      "importanceReason": "Generic coverage with no clear syllabus anchor.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "World News in Brief: Children killed in Myanmar strike, new violence flares in Mozambique, an Internet affordability milestone",
+          "publisher": "UN News",
+          "url": "https://news.un.org/feed/view/en/story/2026/11/1168729",
+          "type": "primary",
+          "date": "2026-11-03"
+        }
+      ],
+      "sections": {
+        "event": "A school in Myanmar has been hit in an airstrike, with&nbsp;three children reported killed and five others injured, according to UN Children’s Fund&nbsp;UNICEF.",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-03",
+            "text": "Reported by UN News"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "cyber-attack-on-french-supermarket-freezers-has-ge-2026-11-09",
+      "title": "Cyber-attack on French supermarket freezers has geopolitical context",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "‘Not particularly complex’ defrosting hack has been attributed to Iran, with presumption it is linked to others across Europe Iranian hackers like to send a message. In 2023 a state-backed group interrupted TV streaming services in the United Arab Emirates to broadcast a…",
+      "whyItMatters": "",
+      "image": "https://i.guim.co.uk/img/media/67edbe777b6f2a03334e7acacf646cbcabb1144d/2_0_3540_2832/master/3540.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=2fcee9639e9c08f65c05bf3be321dc9f",
+      "imageCredit": "The Guardian — World",
+      "readTime": 3,
+      "published": "2026-11-09",
+      "updated": "2026-11-09",
+      "importance": 5,
+      "importanceReason": "Generic coverage with no clear syllabus anchor.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Cyber-attack on French supermarket freezers has geopolitical context",
+          "publisher": "The Guardian — World",
+          "url": "https://www.theguardian.com/technology/2026/nov/09/cyber-attack-french-supermarket-freezers-iran-europe",
+          "type": "reporting",
+          "date": "2026-11-09"
+        }
+      ],
+      "sections": {
+        "event": "‘Not particularly complex’ defrosting hack has been attributed to Iran, with presumption it is linked to others across Europe Iranian hackers like to send a message. In 2023 a state-backed group interrupted TV streaming services in the United Arab Emirates to broadcast a deepfake report on the war in Gaza. In the same year, hackers affiliated with Iran displayed the slogan “down with Israel” on the screens of water-control equipment made by an Israeli firm. Continue reading...",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-09",
+            "text": "Reported by The Guardian — World"
           }
         ],
         "data": [],
