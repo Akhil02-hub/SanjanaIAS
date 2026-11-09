@@ -1,21 +1,102 @@
 <!doctype html>
-<html lang="en">
+<html lang="en-IN">
 
 <head>
+    <!-- Basic Meta Tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Dashboard · SanjanaIAS</title>
-    <meta name="description" content="SanjanaIAS — your daily guide to understanding the world for UPSC.">
-    <meta property="og:title" content="SanjanaIAS — Daily UPSC Current Affairs">
-    <meta property="og:description"
-        content="Free, daily, syllabus-mapped current affairs for UPSC and government exams.">
-    <meta property="og:image" content="log.png">
+    <title>SanjanaIAS — Free Daily UPSC Current Affairs & Study Intelligence</title>
+    <meta name="description"
+        content="Free, daily, syllabus-mapped current affairs for UPSC. Master World, India, and Telangana news with our AI tutor, prelims quizzes, and mains practice.">
+    <meta name="keywords"
+        content="UPSC, current affairs, free UPSC preparation, IAS exam, daily news for UPSC, prelims quiz, mains practice, Telangana current affairs, GS paper, SanjanaIAS">
+    <meta name="author" content="SanjanaIAS">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <link rel="canonical" href="https://sanjanaias.vercel.app/">
+
+    <!-- Open Graph (WhatsApp, Facebook, LinkedIn) -->
+    <meta property="og:type" content="website">
     <meta property="og:url" content="https://sanjanaias.vercel.app/">
+    <meta property="og:title" content="SanjanaIAS — Free Daily UPSC Current Affairs">
+    <meta property="og:description"
+        content="Free, daily, syllabus-mapped current affairs for UPSC and government exams. Read, take quizzes, and ask the AI tutor.">
+    <meta property="og:image" content="https://sanjanaias.vercel.app/log.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="SanjanaIAS">
+    <meta property="og:locale" content="en_IN">
+
+    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="SanjanaIAS — Free Daily UPSC Current Affairs">
+    <meta name="twitter:description"
+        content="Master World, India, and Telangana news with our AI tutor, prelims quizzes, and mains practice. 100% free.">
+    <meta name="twitter:image" content="https://sanjanaias.vercel.app/log.png">
+
+    <!-- Preconnects for Speed -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="preconnect" href="https://lbcxwmyppnmnezyxyvon.supabase.co">
+
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+
+    <!-- Favicon -->
     <link rel="icon" href="log.png">
+
+    <!-- Styles -->
     <link rel="stylesheet" href="styles.css">
+
+    <!-- Structured Data (JSON-LD) for Google Rich Snippets -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://sanjanaias.vercel.app/website",
+          "url": "https://sanjanaias.vercel.app/",
+          "name": "SanjanaIAS",
+          "description": "Free Daily UPSC Current Affairs & Study Intelligence",
+          "inLanguage": "en-IN",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://sanjanaias.vercel.app//dashboard?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+          }
+        },
+        {
+          "@type": "EducationalOrganization",
+          "@id": "https://sanjanaias.vercel.app/organization",
+          "name": "SanjanaIAS",
+          "url": "https://sanjanaias.vercel.app/",
+          "logo": "https://sanjanaias.vercel.app/log.png",
+          "sameAs": [
+            "https://instagram.com/sanjjuu.thoughts"
+          ]
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://sanjanaias.vercel.app/webpage",
+          "url": "https://sanjanaias.vercel.app/",
+          "name": "SanjanaIAS — Free Daily UPSC Current Affairs",
+          "isPartOf": { "@id": "https://sanjanaias.vercel.app/website" },
+          "about": { "@id": "https://sanjanaias.vercel.app/organization" },
+          "primaryImageOfPage": {
+            "@type": "ImageObject",
+            "url": "https://sanjanaias.vercel.app/log.png"
+          },
+          "inLanguage": "en-IN"
+        }
+      ]
+    }
+    </script>
+
+    <!-- Theme Initialization -->
     <script>
-        /* Set theme before paint to avoid a flash. */
         (function () {
             try {
                 var t = localStorage.getItem('sanjana.theme');
@@ -27,11 +108,11 @@
 </head>
 
 <body>
-    <a class="skip" href="#main">Skip to content</a>
+    <a class="skip" href="main">Skip to content</a>
 
     <header class="site-header">
         <button class="icon-btn nav-toggle" id="navToggle" aria-label="Open navigation" type="button">☰</button>
-        <a class="brand" href="#/dashboard">
+        <a class="brand" href="/dashboard">
             <img src="log.png" alt="SanjanaIAS Logo" width="32" height="32"
                 style="border-radius: 8px; object-fit: cover;">
             <span class="brand-text"><strong>SanjanaIAS</strong><em>Study Intelligence</em></span>
@@ -50,43 +131,43 @@
         <aside id="sidebar" class="sidebar">
             <div class="nav-group">
                 <h4>Daily</h4>
-                <a class="nav-item" data-page="dashboard" href="#/dashboard"><span class="ico"
+                <a class="nav-item" data-page="dashboard" href="/dashboard"><span class="ico"
                         aria-hidden="true">▦</span>Overview</a>
-                <a class="nav-item" data-page="subjects" href="#/subjects"><span class="ico"
+                <a class="nav-item" data-page="subjects" href="/subjects"><span class="ico"
                         aria-hidden="true">📚</span>Subjects</a>
-                <a class="nav-item" data-page="briefing" href="#/briefing"><span class="ico"
+                <a class="nav-item" data-page="briefing" href="/briefing"><span class="ico"
                         aria-hidden="true">☀</span>Daily Briefing</a>
             </div>
             <div class="nav-group">
                 <h4>Research</h4>
-                <a class="nav-item" data-page="world" href="#/world"><span class="ico"
+                <a class="nav-item" data-page="world" href="/world"><span class="ico"
                         aria-hidden="true">◍</span>World</a>
-                <a class="nav-item" data-page="india" href="#/india"><span class="ico"
+                <a class="nav-item" data-page="india" href="/india"><span class="ico"
                         aria-hidden="true">◉</span>India</a>
-                <a class="nav-item" data-page="telangana" href="#/telangana"><span class="ico"
+                <a class="nav-item" data-page="telangana" href="/telangana"><span class="ico"
                         aria-hidden="true">◈</span>Telangana</a>
             </div>
             <div class="nav-group">
                 <h4>Learn</h4>
-                <a class="nav-item" data-page="syllabus" href="#/syllabus"><span class="ico"
+                <a class="nav-item" data-page="syllabus" href="/syllabus"><span class="ico"
                         aria-hidden="true">▤</span>Syllabus Explorer</a>
-                <a class="nav-item" data-page="ai-tutor" href="#/ai-tutor"><span class="ico"
+                <a class="nav-item" data-page="ai-tutor" href="/ai-tutor"><span class="ico"
                         aria-hidden="true">✦</span>Sanjana AI</a>
             </div>
             <div class="nav-group">
                 <h4>Practise</h4>
-                <a class="nav-item" data-page="prelims" href="#/prelims"><span class="ico"
+                <a class="nav-item" data-page="prelims" href="/prelims"><span class="ico"
                         aria-hidden="true">✓</span>Prelims Practice</a>
-                <a class="nav-item" data-page="mains" href="#/mains"><span class="ico" aria-hidden="true">✎</span>Mains
+                <a class="nav-item" data-page="mains" href="/mains"><span class="ico" aria-hidden="true">✎</span>Mains
                     Practice</a>
             </div>
             <div class="nav-group">
                 <h4>Personal</h4>
-                <a class="nav-item" data-page="library" href="#/library"><span class="ico" aria-hidden="true">❑</span>My
+                <a class="nav-item" data-page="library" href="/library"><span class="ico" aria-hidden="true">❑</span>My
                     Library</a>
-                <a class="nav-item" data-page="revision" href="#/revision"><span class="ico"
+                <a class="nav-item" data-page="revision" href="/revision"><span class="ico"
                         aria-hidden="true">↻</span>Revision</a>
-                <a class="nav-item" data-page="progress" href="#/progress"><span class="ico"
+                <a class="nav-item" data-page="progress" href="/progress"><span class="ico"
                         aria-hidden="true">▥</span>Progress</a>
             </div>
         </aside>
@@ -97,11 +178,11 @@
     </div>
 
     <nav class="bottom-nav" aria-label="Primary">
-        <a data-page="dashboard" href="#/dashboard"><span class="ico" aria-hidden="true">▦</span>Overview</a>
-        <a data-page="world" href="#/world"><span class="ico" aria-hidden="true">◍</span>World</a>
-        <a data-page="india" href="#/india"><span class="ico" aria-hidden="true">◉</span>India</a>
-        <a data-page="telangana" href="#/telangana"><span class="ico" aria-hidden="true">◈</span>Telangana</a>
-        <a data-page="ai-tutor" href="#/ai-tutor"><span class="ico" aria-hidden="true">✦</span>AI</a>
+        <a data-page="dashboard" href="/dashboard"><span class="ico" aria-hidden="true">▦</span>Overview</a>
+        <a data-page="world" href="/world"><span class="ico" aria-hidden="true">◍</span>World</a>
+        <a data-page="india" href="/india"><span class="ico" aria-hidden="true">◉</span>India</a>
+        <a data-page="telangana" href="/telangana"><span class="ico" aria-hidden="true">◈</span>Telangana</a>
+        <a data-page="ai-tutor" href="/ai-tutor"><span class="ico" aria-hidden="true">✦</span>AI</a>
     </nav>
 
     <footer class="site-footer">
@@ -112,9 +193,24 @@
         <p>An independent educational platform. Not affiliated with UPSC or the Government of India.
             Content is compiled from public sources; always verify against the original document before relying on it.
         </p>
-        <p><a href="#/syllabus">Syllabus Explorer</a> · <a href="#/library">My Library</a> ·
-            <a href="#/revision">Revision</a> · <a href="#/progress">Progress</a>
+        <p><a href="/syllabus">Syllabus Explorer</a> · <a href="/library">My Library</a> ·
+            <a href="/revision">Revision</a> · <a href="/progress">Progress</a>
         </p>
+        <p style="margin-top: 16px; font-size: 0.75rem;">
+            <a href="privacy.html">Privacy Policy</a> · <a href="terms.html">Terms of Use</a>
+        </p>
+        <div style="margin-top: 24px; display: flex; justify-content: center;">
+            <a href="https://instagram.com/sanjjuu.thoughts" target="_blank" rel="noopener noreferrer"
+                class="insta-badge">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                </svg>
+                @sanjjuu.thoughts
+            </a>
+        </div>
     </footer>
 
     <div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-label="Search SanjanaIAS">
@@ -141,7 +237,7 @@
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.8/dist/umd/supabase.js"></script>
     <script src="app.js"></script>
 </body>
 

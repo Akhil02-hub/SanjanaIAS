@@ -416,7 +416,7 @@
         if (!iso) return '—';
         var d = new Date(iso);
         if (isNaN(d)) return '—';
-        return d.toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' });
+        return d.toLocaleDateString(undefined, { day: '2-digit', month: 'short', year: 'numeric' });
     }
     function fmtRelative(iso) {
         var d = new Date(iso); if (isNaN(d)) return '';
@@ -486,6 +486,19 @@
 
     function _cloud(table) { return supabaseClient ? supabaseClient.from(table) : null; }
 
+    function _safeWrite(promise) {
+        if (!promise) return;
+        promise.then(function (r) {
+            if (r && r.error) {
+                toast('Save failed. Please check your connection.');
+                console.error('DB Write Error:', r.error);
+            }
+        }).catch(function (e) {
+            toast('Network error. Changes not saved.');
+            console.error('DB Network Error:', e);
+        });
+    }
+
     async function _loadUserData() {
         if (!SI_AUTH.user || !supabaseClient) {
             _mem = { bookmarks: [], read: {}, notes: {}, missed: {}, mains: {}, quiz: { attempts: [], best: 0 }, days: [] };
@@ -529,17 +542,17 @@
             var on;
             if (i > -1) {
                 _mem.bookmarks.splice(i, 1); on = false;
-                _cloud('bookmarks').delete().eq('user_id', SI_AUTH.user.id).eq('topic_slug', id).then(function () { });
+                _safeWrite(_cloud('bookmarks').delete().eq('user_id', SI_AUTH.user.id).eq('topic_slug', id));
             } else {
                 _mem.bookmarks.push(id); on = true;
-                _cloud('bookmarks').upsert({ user_id: SI_AUTH.user.id, topic_slug: id }).then(function () { });
+                _safeWrite(_cloud('bookmarks').upsert({ user_id: SI_AUTH.user.id, topic_slug: id }));
             }
             return on;
         },
         deleteBookmark: function (id) {
             if (!SI_AUTH.user) return;
             _mem.bookmarks = _mem.bookmarks.filter(function (x) { return x !== id; });
-            _cloud('bookmarks').delete().eq('user_id', SI_AUTH.user.id).eq('topic_slug', id).then(function () { });
+            _safeWrite(_cloud('bookmarks').delete().eq('user_id', SI_AUTH.user.id).eq('topic_slug', id));
         },
 
         read: function () { return Object.assign({}, _mem.read); },
@@ -547,19 +560,19 @@
             if (!_requireLogin('track progress')) return;
             if (_mem.read[id]) return;
             _mem.read[id] = Date.now();
-            _cloud('revision_entries').insert({ user_id: SI_AUTH.user.id, item_id: id, type: 'read' }).then(function () { });
+            _safeWrite(_cloud('revision_entries').insert({ user_id: SI_AUTH.user.id, item_id: id, type: 'read' }));
         },
 
         notes: function () { return Object.assign({}, _mem.notes); },
         saveNote: function (id, text) {
             if (!_requireLogin('save notes')) return;
             _mem.notes[id] = { text: text, at: Date.now() };
-            _cloud('notes').upsert({ user_id: SI_AUTH.user.id, topic_slug: id, text: text, updated_at: new Date().toISOString() }).then(function () { });
+            _safeWrite(_cloud('notes').upsert({ user_id: SI_AUTH.user.id, topic_slug: id, text: text, updated_at: new Date().toISOString() }));
         },
         deleteNote: function (id) {
             if (!SI_AUTH.user) return;
             delete _mem.notes[id];
-            _cloud('notes').delete().eq('user_id', SI_AUTH.user.id).eq('topic_slug', id).then(function () { });
+            _safeWrite(_cloud('notes').delete().eq('user_id', SI_AUTH.user.id).eq('topic_slug', id));
         },
 
         missed: function () { return Object.assign({}, _mem.missed); },
@@ -567,12 +580,12 @@
             if (!_requireLogin('track missed questions')) return;
             if (_mem.missed[id]) return;
             _mem.missed[id] = Date.now();
-            _cloud('revision_entries').insert({ user_id: SI_AUTH.user.id, item_id: id, type: 'missed' }).then(function () { });
+            _safeWrite(_cloud('revision_entries').insert({ user_id: SI_AUTH.user.id, item_id: id, type: 'missed' }));
         },
         removeMissed: function (id) {
             if (!SI_AUTH.user) return;
             delete _mem.missed[id];
-            _cloud('revision_entries').delete().eq('user_id', SI_AUTH.user.id).eq('item_id', id).eq('type', 'missed').then(function () { });
+            _safeWrite(_cloud('revision_entries').delete().eq('user_id', SI_AUTH.user.id).eq('item_id', id).eq('type', 'missed'));
         },
 
         mains: function () { return Object.assign({}, _mem.mains); },
@@ -581,16 +594,16 @@
             _mem.mains[id] = Object.assign({}, _mem.mains[id], patch, { at: Date.now() });
             var checklist = {};
             Object.keys(_mem.mains[id]).forEach(function (k) { if (k.indexOf('c') === 0) checklist[k] = _mem.mains[id][k]; });
-            _cloud('mains_drafts').upsert({
+            _safeWrite(_cloud('mains_drafts').upsert({
                 user_id: SI_AUTH.user.id, question_id: id,
                 text: _mem.mains[id].text || '', checklist: checklist,
                 updated_at: new Date().toISOString()
-            }).then(function () { });
+            }));
         },
         deleteMains: function (id) {
             if (!SI_AUTH.user) return;
             delete _mem.mains[id];
-            _cloud('mains_drafts').delete().eq('user_id', SI_AUTH.user.id).eq('question_id', id).then(function () { });
+            _safeWrite(_cloud('mains_drafts').delete().eq('user_id', SI_AUTH.user.id).eq('question_id', id));
         },
 
         quiz: function () { return _mem.quiz; },
@@ -598,7 +611,7 @@
             if (!_requireLogin('save quiz results')) return;
             _mem.quiz.attempts = (_mem.quiz.attempts || []).concat(attempt).slice(-50);
             _mem.quiz.best = Math.max(_mem.quiz.best || 0, attempt.score);
-            _cloud('progress').upsert({ user_id: SI_AUTH.user.id, quiz_attempts: _mem.quiz.attempts, active_days: _mem.days }).then(function () { });
+            _safeWrite(_cloud('progress').upsert({ user_id: SI_AUTH.user.id, quiz_attempts: _mem.quiz.attempts, active_days: _mem.days }));
         },
 
         days: function () { return _mem.days.slice(); },
@@ -607,7 +620,7 @@
             var today = new Date().toISOString().slice(0, 10);
             if (_mem.days.indexOf(today) === -1) {
                 _mem.days.push(today);
-                _cloud('progress').upsert({ user_id: SI_AUTH.user.id, quiz_attempts: _mem.quiz.attempts, active_days: _mem.days }).then(function () { });
+                _safeWrite(_cloud('progress').upsert({ user_id: SI_AUTH.user.id, quiz_attempts: _mem.quiz.attempts, active_days: _mem.days }));
             }
         },
 
@@ -633,7 +646,8 @@
         function decode(s) {
             return String(s || '')
                 .replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, '$1')
-                .replace(/<[^>]+>/g, ' ')
+                .replace(/&lt;/g, '<').replace(/&gt;/g, '>') // Unescape first
+                .replace(/<[^>]+>/g, ' ') // Then strip tags
                 .replace(/&nbsp;/g, ' ')
                 .replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>')
                 .replace(/&quot;/g, '"').replace(/&#39;|&apos;/g, "'")
@@ -724,8 +738,8 @@
                 var tel = hits(text, TELANGANA);
                 var ind = hits(text, INDIA);
                 var region = 'world';
-                if (tel.length >= 1 && tel.length >= ind.length) region = 'telangana';
-                else if (ind.length >= 1) region = 'india';
+                if (tel.length >= 2 && tel.length >= ind.length) region = 'telangana';
+                else if (ind.length >= 2) region = 'india';
                 var regions = [region];
                 if (region !== 'world' && hits(text, ['united nations', 'unsc', 'g20', 'wto', 'imf', 'world bank', 'bilateral', 'treaty']).length) {
                     regions.push('world');
@@ -910,7 +924,7 @@
         return gs + '<span class="chip">' + esc(t.category || 'General') + '</span>';
     }
     function card(t) {
-        var href = '#/article?id=' + encodeURIComponent(t.id);
+        var href = '/article/' + encodeURIComponent(t.id);
         var bm = SI_STORE.isBookmarked(t.id);
         return '<article class="topic-card">' +
             '<a class="card-media" href="' + href + '">' +
@@ -932,7 +946,7 @@
             '</article>';
     }
     function listRow(t, i) {
-        var href = '#/article?id=' + encodeURIComponent(t.id);
+        var href = '/article/' + encodeURIComponent(t.id);
         return '<div class="list-row">' +
             (i == null ? '' : '<span class="rank">' + String(i + 1).padStart(2, '0') + '</span>') +
             '<div class="lr-body">' +
@@ -960,7 +974,7 @@
             if (!t) {
                 root.innerHTML = '<div class="panel"><h1>Topic not found</h1>' +
                     '<p class="fine">This research page does not exist in the library.</p>' +
-                    '<a class="btn" href="#/dashboard">Back to the dashboard</a></div>';
+                    '<a class="btn" href="/dashboard">Back to the dashboard</a></div>';
                 return;
             }
             SI_STORE.markRead(t.id);
@@ -970,7 +984,9 @@
 
             function secHTML(key, label) {
                 var val = s[key];
-                if (!val || (Array.isArray(val) && !val.length)) return '';
+                if (!val) return '';
+                if (Array.isArray(val) && !val.length) return '';
+                if (typeof val === 'string' && (val.indexOf('has not been written yet') > -1 || val.indexOf('Auto-classified under') > -1)) return '';
                 var body = '';
                 if (key === 'timeline') {
                     body = '<ul class="timeline">' + val.map(function (e) { return '<li><time>' + esc(e.date) + '</time>' + esc(e.text) + '</li>'; }).join('') + '</ul>';
@@ -991,11 +1007,11 @@
                 var out = '<section class="art-sec" id="sec-practice"><h2>Practice questions</h2>';
                 if (p.length) {
                     out += '<h3>Prelims</h3><ol>' + p.map(function (q) { return '<li>' + esc(q.question) + '</li>'; }).join('') + '</ol>' +
-                        '<a class="btn" href="#/prelims">Attempt these MCQs</a>';
+                        '<a class="btn" href="/prelims">Attempt these MCQs</a>';
                 }
                 if (m.length) {
                     out += '<h3 style="margin-top:16px">Mains</h3><ol>' + m.map(function (q) { return '<li>' + esc(q.question) + ' <span class="fine">(' + q.marks + ' marks)</span></li>'; }).join('') + '</ol>' +
-                        '<a class="btn" href="#/mains">Write an answer</a>';
+                        '<a class="btn" href="/mains">Write an answer</a>';
                 }
                 return out + '</section>';
             }
@@ -1034,13 +1050,13 @@
                 '<p class="img-credit">' + esc(t.imageCredit || 'SanjanaIAS category illustration') + '</p>' +
                 '<div class="article-actions">' +
                 '<button class="btn ' + (bm ? 'btn-primary' : '') + '" id="bmBtn" type="button">' + (bm ? '★ Saved' : '☆ Save to library') + '</button>' +
-                '<a class="btn" href="#/ai-tutor">Ask Sanjana AI about this</a>' +
-                '<a class="btn" href="#/prelims">Practise Prelims</a>' +
+                '<a class="btn" href="/ai-tutor">Ask Sanjana AI about this</a>' +
+                '<a class="btn" href="/prelims">Practise Prelims</a>' +
                 '</div>' +
                 '</header>' +
                 '<div class="article-layout">' +
                 '<div class="article-body">' +
-                (t.whyItMatters ? '<section class="art-sec" id="sec-why"><h2>Why it matters for UPSC</h2><p>' + esc(t.whyItMatters) + '</p></section>' : '') +
+                (t.whyItMatters && t.whyItMatters.indexOf('Add an editorial note') === -1 ? '<section class="art-sec" id="sec-why"><h2>Why it matters for UPSC</h2><p>' + esc(t.whyItMatters) + '</p></section>' : '') +
                 ARTICLE_SECTIONS.map(function (pair) { return secHTML(pair[0], pair[1]); }).join('') +
                 practiceHTML() +
                 sourcesHTML() +
@@ -1050,17 +1066,21 @@
                 '</section>' +
                 '</div>' +
                 '<nav class="toc" aria-label="On this page"><strong>On this page</strong>' +
-                (t.whyItMatters ? '<a data-scroll-to="sec-why">Why it matters</a>' : '') +
-                ARTICLE_SECTIONS.filter(function (p) { return s[p[0]]; }).map(function (p) {
-                    return '<a data-scroll-to="sec-' + p[0] + '">' + esc(p[1]) + '</a>';
+                (t.whyItMatters ? '<a href="#sec-why" data-scroll-to="sec-why">Why it matters</a>' : '') +
+                ARTICLE_SECTIONS.filter(function (p) {
+                    var val = s[p[0]];
+                    return val && (!Array.isArray(val) || val.length > 0);
+                }).map(function (p) {
+                    return '<a href="#sec-' + p[0] + '" data-scroll-to="sec-' + p[0] + '">' + esc(p[1]) + '</a>';
                 }).join('') +
-                '<a data-scroll-to="sec-references">References</a>' +
-                '<a data-scroll-to="sec-notes">My notes</a>' +
+                '<a href="#sec-references" data-scroll-to="sec-references">References</a>' +
+                '<a href="#sec-notes" data-scroll-to="sec-notes">My notes</a>' +
                 '</nav>' +
                 '</div>' +
                 '</article>';
 
             document.getElementById('bmBtn').addEventListener('click', function () {
+                if (!SI_AUTH.user) { _requireLogin('bookmark'); return; }
                 var on = SI_STORE.toggleBookmark(t.id);
                 this.textContent = on ? '★ Saved' : '☆ Save to library';
                 this.classList.toggle('btn-primary', on);
@@ -1112,7 +1132,7 @@
             var qs = SEED_QUESTIONS.prelims.filter(function (q) { return q.topicId === t.id; }).slice(0, 5);
             body = qs.length
                 ? '<p>Practice questions from this topic:</p><ol>' + qs.map(function (q) { return '<li>' + esc(q.question) + '</li>'; }).join('') + '</ol>' +
-                '<p><a class="btn" href="#/prelims">Attempt with explanations</a></p>'
+                '<p><a class="btn" href="/prelims">Attempt with explanations</a></p>'
                 : '<p>No MCQs authored for this topic yet.</p>';
         } else if (intent === 'mains') {
             var ms = SEED_QUESTIONS.mains.filter(function (q) { return q.topicId === t.id; }).slice(0, 2);
@@ -1128,10 +1148,10 @@
             : '';
         var related = SI_SEARCH.related(t, 3);
         var relHTML = related.length
-            ? '<h4>Related in the library</h4><ul>' + related.map(function (r) { return '<li><a href="#/article?id=' + encodeURIComponent(r.id) + '">' + esc(r.title) + '</a></li>'; }).join('') + '</ul>'
+            ? '<h4>Related in the library</h4><ul>' + related.map(function (r) { return '<li><a href="/article/' + encodeURIComponent(r.id) + '">' + esc(r.title) + '</a></li>'; }).join('') + '</ul>'
             : '';
         return head + body + srcHTML +
-            '<p><a class="btn" href="#/article?id=' + encodeURIComponent(t.id) + '">Read the full research page</a></p>' + relHTML;
+            '<p><a class="btn" href="/article/' + encodeURIComponent(t.id) + '">Read the full research page</a></p>' + relHTML;
     }
     var SI_TUTOR = {
         answer: function (q) {
@@ -1143,14 +1163,14 @@
                         '<h3>Not in the library yet</h3><p>No content in the SanjanaIAS collection matches “' + esc(q) + '”.</p>' +
                         '<p>I only answer from content already collected here — I am not a general-purpose chatbot and I do not browse the internet.</p>' +
                         '<h4>Try one of these</h4><ul>' + allTopics().slice(0, 4).map(function (t) {
-                            return '<li><a href="#/article?id=' + encodeURIComponent(t.id) + '">' + esc(t.title) + '</a></li>';
+                            return '<li><a href="/article/' + encodeURIComponent(t.id) + '">' + esc(t.title) + '</a></li>';
                         }).join('') + '</ul>'
                 };
             }
             var html = buildFromTopic(hits[0].topic, intent);
             if (hits.length > 1 && intent !== 'mcq' && intent !== 'mains') {
                 html += '<h4>Also relevant</h4><ul>' + hits.slice(1).map(function (h) {
-                    return '<li><a href="#/article?id=' + encodeURIComponent(h.topic.id) + '">' + esc(h.topic.title) + '</a></li>';
+                    return '<li><a href="/article/' + encodeURIComponent(h.topic.id) + '">' + esc(h.topic.title) + '</a></li>';
                 }).join('') + '</ul>';
             }
             html += '<div class="src">Grounded in ' + hits.length + ' SanjanaIAS topic' + (hits.length === 1 ? '' : 's') + '. No external model was used.</div>';
@@ -1263,7 +1283,7 @@
             main.innerHTML =
                 '<section class="hero-block">' +
                 '<p class="eyebrow" id="todayLabel"></p>' +
-                '<h1>Good morning, Aspirant</h1>' +
+                '<h1>' + (new Date().getHours() < 12 ? 'Good morning' : new Date().getHours() < 17 ? 'Good afternoon' : 'Good evening') + ', Aspirant</h1>' +
                 '<p class="lede">Your world. Your nation. Your state. Your preparation.</p>' +
                 '<div class="stat-row">' +
                 '<div class="stat"><strong>' + String(byRegion('world')).padStart(2, '0') + '</strong><span>World topics</span></div>' +
@@ -1271,11 +1291,11 @@
                 '<div class="stat"><strong>' + String(byRegion('telangana')).padStart(2, '0') + '</strong><span>Telangana topics</span></div>' +
                 '</div>' +
                 '</section>' +
-                '<section class="panel"><div class="panel-head"><h2>Today\'s most important topics</h2><a class="link" href="#/briefing">Full briefing →</a></div>' +
+                '<section class="panel"><div class="panel-head"><h2>Today\'s most important topics</h2><a class="link" href="/briefing">Full briefing →</a></div>' +
                 '<div class="topic-list">' + ranked.slice(0, 5).map(function (t, i) { return listRow(t, i); }).join('') + '</div></section>' +
                 '<section class="split">' +
                 '<div class="panel"><div class="panel-head"><h2>Topic of the day</h2></div>' +
-                (tod ? '<a class="tod" href="#/article?id=' + encodeURIComponent(tod.id) + '">' +
+                (tod ? '<a class="tod" href="/article/' + encodeURIComponent(tod.id) + '">' +
                     '<img src="' + esc(topicImage(tod)) + '" alt="" onerror="this.onerror=null; this.src=\'' + (ILLUSTRATIONS[tod.region] || ILLUSTRATIONS.default) + '\'">' +
                     '<div><div class="chips">' + chips(tod) + '</div>' +
                     '<h3>' + esc(tod.title) + '</h3><p>' + esc(tod.whyItMatters || tod.summary) + '</p>' +
@@ -1283,27 +1303,27 @@
                 '</div>' +
                 '<div class="panel"><div class="panel-head"><h2>Today\'s preparation plan</h2></div>' +
                 '<ul class="plan">' +
-                '<li><a href="#/briefing">Read important topics</a><span>30 min</span></li>' +
-                '<li><a href="#/prelims">Prelims practice</a><span>15 min</span></li>' +
-                '<li><a href="#/mains">Mains answer practice</a><span>15 min</span></li>' +
+                '<li><a href="/briefing">Read important topics</a><span>30 min</span></li>' +
+                '<li><a href="/prelims">Prelims practice</a><span>15 min</span></li>' +
+                '<li><a href="/mains">Mains answer practice</a><span>15 min</span></li>' +
                 '</ul>' +
                 '<p class="fine">Design example durations, not prescribed study time.</p>' +
-                '<a class="btn btn-primary block" href="#/ai-tutor">Ask Sanjana AI about today\'s news</a>' +
+                '<a class="btn btn-primary block" href="/ai-tutor">Ask Sanjana AI about today\'s news</a>' +
                 '</div>' +
                 '</section>' +
                 '<section class="panel"><div class="panel-head"><h2>Browse by region</h2></div>' +
                 '<div class="region-tiles">' +
-                '<a class="region-tile world" href="#/world"><span>World</span><small>' + byRegion('world') + ' topics</small></a>' +
-                '<a class="region-tile india" href="#/india"><span>India</span><small>' + byRegion('india') + ' topics</small></a>' +
-                '<a class="region-tile telangana" href="#/telangana"><span>Telangana</span><small>' + byRegion('telangana') + ' topics</small></a>' +
+                '<a class="region-tile world" href="/world"><span>World</span><small>' + byRegion('world') + ' topics</small></a>' +
+                '<a class="region-tile india" href="/india"><span>India</span><small>' + byRegion('india') + ' topics</small></a>' +
+                '<a class="region-tile telangana" href="/telangana"><span>Telangana</span><small>' + byRegion('telangana') + ' topics</small></a>' +
                 '</div>' +
                 '</section>' +
-                '<section class="panel"><div class="panel-head"><h2>Latest across SanjanaIAS</h2><a class="link" href="#/world">All research →</a></div>' +
+                '<section class="panel"><div class="panel-head"><h2>Latest across SanjanaIAS</h2><a class="link" href="/world">All research →</a></div>' +
                 '<div class="card-grid">' + byDate(topics).slice(0, 6).map(card).join('') + '</div></section>' +
                 '<p class="disclaimer">SanjanaIAS is an independent educational platform. It is not affiliated with UPSC or the Government of India. Sample topics marked <em>illustrative</em> demonstrate layout and classification.</p>';
 
             var el = $('#todayLabel');
-            if (el) el.textContent = new Date().toLocaleDateString('en-IN', { weekday: 'long', day: '2-digit', month: 'long', year: 'numeric' });
+            if (el) el.textContent = new Date().toLocaleDateString(undefined, { weekday: 'long', day: '2-digit', month: 'long', year: 'numeric' });
         },
         subjects: function (main) {
             var subjects = [
@@ -1351,7 +1371,7 @@
 
             main.innerHTML =
                 '<header class="page-head"><p class="eyebrow">Consolidated daily report</p><h1>Daily Briefing</h1>' +
-                '<p class="lede">' + new Date().toLocaleDateString('en-IN', { weekday: 'long', day: '2-digit', month: 'long', year: 'numeric' }) + '</p></header>' +
+                '<p class="lede">' + new Date().toLocaleDateString(undefined, { weekday: 'long', day: '2-digit', month: 'long', year: 'numeric' }) + '</p></header>' +
                 '<section class="panel"><div class="panel-head"><h2>Part A — Today\'s most important topics</h2></div>' +
                 '<div class="topic-list">' + (ranked.slice(0, 6).map(function (t, i) { return listRow(t, i); }).join('') || '<p class="fine">No topics collected yet.</p>') + '</div></section>' +
                 '<section class="panel"><div class="panel-head"><h2>Part B — Geographic summaries</h2></div>' +
@@ -1360,7 +1380,7 @@
                     var list = byImportance(topics.filter(function (t) { return t.region === r; })).slice(0, 3);
                     return '<div class="mini-col"><h3>' + regionLabel(r) + '</h3><ul class="mini-list">' +
                         (list.length ? list.map(function (t) {
-                            return '<li><a href="#/article?id=' + encodeURIComponent(t.id) + '">' + esc(t.title) + '</a></li>';
+                            return '<li><a href="/article?id=' + encodeURIComponent(t.id) + '">' + esc(t.title) + '</a></li>';
                         }).join('') : '<li class="fine">Nothing collected yet.</li>') + '</ul></div>';
                 }).join('') +
                 '</div></section>' +
@@ -1368,23 +1388,23 @@
                 (tod ? '<h3>' + esc(tod.title) + '</h3><div class="chips">' + chips(tod) + '</div>' +
                     '<p>' + esc(tod.sections && tod.sections.event || tod.summary) + '</p>' +
                     '<p class="fine">' + esc(tod.sections && tod.sections.india || '') + '</p>' +
-                    '<a class="btn" href="#/article?id=' + encodeURIComponent(tod.id) + '">Read the full research page</a>'
+                    '<a class="btn" href="/article/' + encodeURIComponent(tod.id) + '">Read the full research page</a>'
                     : '<p class="fine">No topic available.</p>') +
                 '</section>' +
                 '<section class="panel"><div class="panel-head"><h2>Part D — Important facts</h2></div>' +
                 '<ul class="fact-list">' +
                 (facts.slice(0, 8).map(function (f) {
                     return '<li><strong>' + esc(f.data.label) + ':</strong> ' + esc(f.data.value) +
-                        ' <a class="mini-link" href="#/article?id=' + encodeURIComponent(f.topic.id) + '">source</a></li>';
+                        ' <a class="mini-link" href="/article/' + encodeURIComponent(f.topic.id) + '">source</a></li>';
                 }).join('') || '<li class="fine">No facts collected yet.</li>') +
                 '</ul></section>' +
                 '<section class="split">' +
                 '<div class="panel"><div class="panel-head"><h2>Part E — Daily quiz</h2></div>' +
                 '<p class="fine">Questions drawn from the day\'s collected topics.</p>' +
-                '<a class="btn btn-primary" href="#/prelims">Start today\'s quiz</a></div>' +
+                '<a class="btn btn-primary" href="/prelims">Start today\'s quiz</a></div>' +
                 '<div class="panel"><div class="panel-head"><h2>Part F — Daily revision</h2></div>' +
                 '<p class="fine">A quick recap of topics you previously studied.</p>' +
-                '<a class="btn" href="#/revision">Open revision tracker</a></div>' +
+                '<a class="btn" href="/revision">Open revision tracker</a></div>' +
                 '</section>' +
                 '<p class="disclaimer">Counts reflect the current local library.</p>';
         },
@@ -1514,7 +1534,7 @@
                 stage.innerHTML =
                     '<div class="quiz-meta"><span class="chip">Question ' + (state.i + 1) + ' / ' + state.list.length + '</span>' +
                     '<span class="chip">' + esc(q.paper) + '</span>' +
-                    (topic ? '<a class="chip chip-link" href="#/article?id=' + encodeURIComponent(topic.id) + '">' + esc(topic.title.slice(0, 48)) + '…</a>' : '') + '</div>' +
+                    (topic ? '<a class="chip chip-link" href="/article/' + encodeURIComponent(topic.id) + '">' + esc(topic.title.slice(0, 48)) + '…</a>' : '') + '</div>' +
                     '<h2 class="quiz-q">' + esc(q.question) + '</h2>' +
                     '<div class="options" id="options">' +
                     q.options.map(function (o, idx) {
@@ -1548,6 +1568,7 @@
                 });
             }
             function finish() {
+                if (!SI_AUTH.user) _incGuestCount('quiz');
                 var total = state.list.length;
                 var pct = Math.round((state.score / total) * 100);
                 SI_STORE.saveQuiz({ at: Date.now(), score: state.score, total: total, answers: state.answers });
@@ -1555,7 +1576,7 @@
                 result.innerHTML = '<div class="panel score-panel"><h2>' + state.score + ' / ' + total + ' correct — ' + pct + '%</h2>' +
                     '<div class="bar"><span style="width:' + pct + '%"></span></div>' +
                     '<p class="fine">Wrong answers were added to your revision list.</p>' +
-                    '<div class="row-actions"><a class="btn" href="#/revision">Review missed questions</a>' +
+                    '<div class="row-actions"><a class="btn" href="/revision">Review missed questions</a>' +
                     '<button class="btn btn-primary" id="againBtn" type="button">Try again</button></div></div>';
                 $('#againBtn', result).addEventListener('click', start);
             }
@@ -1600,7 +1621,7 @@
                     (topic ? '<a class="chip chip-link" href="#/article?id=' + encodeURIComponent(topic.id) + '">' + esc(topic.title.slice(0, 50)) + '…</a>' : '') + '</div>' +
                     '<label class="field-label" for="answerBox">Your answer</label>' +
                     '<textarea id="answerBox" class="answer-box" placeholder="Introduction → body → challenges → way forward → conclusion">' + esc(draft.text || '') + '</textarea>' +
-                    '<div class="word-count"><span id="wordCount">0</span> words · target ' + (q.marks * 15) + '</div>' +
+                    '<div class="word-count"><span id="wordCount">0</span> words · target ' + (q.marks === 15 ? 250 : q.marks * 15) + '</div>' +
                     '<h3>Self-evaluation checklist</h3>' +
                     '<ul class="checklist" id="checklist">' +
                     (q.checklist || []).map(function (c, i) {
@@ -1695,7 +1716,7 @@
                         return '<div class="panel"><p class="fine">' + esc(r.q.paper) + ' · ' + r.q.marks + ' marks</p>' +
                             '<h3>' + esc(r.q.question) + '</h3>' +
                             '<p class="answer-preview">' + esc((r.d.text || '').slice(0, 400)) + ((r.d.text || '').length > 400 ? '…' : '') + '</p>' +
-                            '<div class="row-actions"><a class="btn" href="#/mains">Continue writing →</a>' +
+                            '<div class="row-actions"><a class="btn" href="/mains">Continue writing →</a>' +
                             '<button class="btn btn-sm danger" data-del-mains="' + r.q.id + '" type="button">Delete draft</button></div></div>';
                     }).join('') || '<p class="fine">No Mains drafts saved.</p>';
                     $$('[data-del-mains]', body).forEach(function (b) {
@@ -1786,19 +1807,30 @@
         library: 'My Library', revision: 'Revision', progress: 'Progress'
     };
 
-    function parseHash() {
-        var hash = location.hash.slice(1) || '/';
-        if (hash === '' || hash === '/') return { page: 'dashboard', params: {} };
-        if (hash.charAt(0) === '/') hash = hash.slice(1);
-        var qIdx = hash.indexOf('?');
-        var path = qIdx > -1 ? hash.slice(0, qIdx) : hash;
-        var query = qIdx > -1 ? hash.slice(qIdx + 1) : '';
+    function parsePath() {
+        var path = window.location.pathname.slice(1); // Remove leading slash
+        if (!path || path === 'index.html') return { page: 'dashboard', params: {} };
+
+        var parts = path.split('/');
+        var page = parts[0] || 'dashboard';
         var params = {};
-        query.split('&').filter(Boolean).forEach(function (pair) {
-            var parts = pair.split('=');
-            params[decodeURIComponent(parts[0])] = decodeURIComponent(parts[1] || '');
-        });
-        return { page: path || 'dashboard', params: params };
+
+        // Handle /article/slug-name
+        if (page === 'article' && parts[1]) {
+            params.id = decodeURIComponent(parts[1]);
+        }
+
+        // Handle query strings if any remain
+        var qIdx = window.location.search.indexOf('?');
+        if (qIdx > -1) {
+            var query = window.location.search.slice(qIdx + 1);
+            query.split('&').filter(Boolean).forEach(function (pair) {
+                var kv = pair.split('=');
+                params[decodeURIComponent(kv[0])] = decodeURIComponent(kv[1] || '');
+            });
+        }
+
+        return { page: page, params: params };
     }
 
     function markActive(page) {
@@ -1809,19 +1841,35 @@
     }
 
     function route() {
-        var r = parseHash();
+        var r = parsePath();
         var page = r.page;
         var main = $('#main');
-        if (!Pages[page]) page = 'dashboard';
+        if (!Pages[page]) {
+            markActive('');
+            main.innerHTML = '<div class="panel" style="text-align:center; padding: 60px 20px;">' +
+                '<h1 style="font-size: 3rem; color: var(--gold); margin-bottom: 0;">404</h1>' +
+                '<h2 style="margin-top: 8px;">Page not found</h2>' +
+                '<p class="fine">The page you are looking for does not exist or has been moved.</p>' +
+                '<a class="btn btn-primary" href="/dashboard" style="margin-top: 24px;">Go to Overview</a>' +
+                '</div>';
+            document.body.classList.remove('nav-open');
+            return;
+        }
         markActive(page);
         document.title = (PAGE_TITLES[page] || 'SanjanaIAS') + ' · SanjanaIAS';
         window.scrollTo(0, 0);
         document.body.classList.remove('nav-open');
-        try { Pages[page](main, r.params); }
+        try {
+            Pages[page](main, r.params);
+            // Force animation re-trigger
+            main.style.animation = 'none';
+            main.offsetHeight; /* trigger reflow */
+            main.style.animation = null;
+        }
         catch (err) {
             console.error('[SanjanaIAS] page error:', err);
             main.innerHTML = '<div class="panel"><h1>Something went wrong</h1><p class="fine">' + esc(String(err && err.message || err)) + '</p>' +
-                '<a class="btn" href="#/dashboard">Back to dashboard</a></div>';
+                '<a class="btn" href="/dashboard">Back to dashboard</a></div>';
         }
     }
 
@@ -1850,7 +1898,7 @@
             if (!q) { results.innerHTML = '<p class="res-empty">Start typing to search the SanjanaIAS library.</p>'; return; }
             var hits = SI_SEARCH.query(q, { region: region, limit: 12 });
             results.innerHTML = hits.length ? hits.map(function (h) {
-                return '<a class="res-item" href="#/article?id=' + encodeURIComponent(h.topic.id) + '">' +
+                return '<a class="res-item" href="/article/' + encodeURIComponent(h.topic.id) + '">' +
                     '<strong>' + esc(h.topic.title) + '</strong>' +
                     '<span>' + esc(regionLabel(h.topic.region)) + ' · ' + esc(h.topic.category) + ' · ' + (h.topic.gsPapers || []).join(', ') + '</span></a>';
             }).join('') : '<p class="res-empty">No match in the collected library yet. Try a broader term.</p>';
@@ -1870,7 +1918,11 @@
         });
         document.addEventListener('keydown', function (e) {
             if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); openSearch(); }
-            if (e.key === 'Escape') { closeSearch(); document.body.classList.remove('nav-open'); }
+            if (e.key === 'Escape') {
+                closeSearch();
+                document.body.classList.remove('nav-open');
+                document.getElementById('authModal').classList.remove('open');
+            }
         });
         results.addEventListener('click', function (e) {
             if (e.target.closest('a')) closeSearch();
@@ -2134,6 +2186,18 @@
             });
         }
     }
+
+    // Intercept link clicks for SPA routing
+    document.addEventListener('click', function (e) {
+        var link = e.target.closest('a');
+        if (link && link.hostname === window.location.hostname && !link.target && link.getAttribute('href') && link.getAttribute('href').indexOf('http') !== 0) {
+            e.preventDefault();
+            window.history.pushState({}, '', link.getAttribute('href'));
+            route(); // Re-render the page
+        }
+    });
+
+    window.addEventListener('popstate', route);
 
     if (typeof document !== 'undefined') {
         if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);

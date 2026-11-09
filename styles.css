@@ -15,7 +15,7 @@
     --accent-2: #2563eb;
     --accent-soft: #eff6ff;
 
-    --gold: #d97706;
+    --gold: #b45309;
     /* UPSC Gold/Saffron Accent */
     --green: #059669;
     --red: #dc2626;
@@ -1864,5 +1864,397 @@ p {
 
     html {
         scroll-behavior: auto;
+    }
+}
+
+/* ============================================================
+   10. Missing Classes & Fixes
+   ============================================================ */
+
+/* Loading skeleton */
+.skeleton {
+    background: linear-gradient(90deg, var(--surface-2) 25%, var(--border) 50%, var(--surface-2) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+    border-radius: var(--radius);
+    min-height: 120px;
+}
+
+.skeleton.tall {
+    min-height: 400px;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: 200% 0;
+    }
+
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+/* Chip buttons */
+.chip-btn {
+    cursor: pointer;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font: inherit;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.chip-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.chip-btn.active {
+    background: var(--accent-soft);
+    color: var(--accent);
+    border-color: transparent;
+}
+
+/* Inline links & Notice */
+.link {
+    color: var(--accent);
+    font-weight: 600;
+    font-size: 0.85rem;
+}
+
+.notice {
+    background: var(--accent-soft);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 16px;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+    color: var(--text);
+}
+
+/* Briefing Grids */
+.three-col {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.mini-col h3 {
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+}
+
+.mini-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.mini-list li {
+    padding: 6px 0;
+    font-size: 0.85rem;
+    border-bottom: 1px dashed var(--border);
+}
+
+.mini-link {
+    font-size: 0.75rem;
+    color: var(--accent);
+    margin-left: 4px;
+}
+
+.fact-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.fact-list li {
+    padding: 10px 0;
+    border-bottom: 1px dashed var(--border);
+    font-size: 0.9rem;
+}
+
+/* Action rows & Tabs */
+.row-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 16px;
+}
+
+.tabs {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 20px;
+}
+
+.tab {
+    background: none;
+    border: none;
+    padding: 12px 16px;
+    font: inherit;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--muted);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+}
+
+.tab:hover {
+    color: var(--text);
+}
+
+.tab.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+}
+
+/* Progress */
+.progress-row {
+    display: grid;
+    grid-template-columns: 100px 1fr 60px;
+    gap: 12px;
+    align-items: center;
+    margin: 12px 0;
+    font-size: 0.9rem;
+}
+
+.attempt {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px dashed var(--border);
+    font-size: 0.9rem;
+}
+
+/* Forms */
+.field-label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--muted);
+    margin: 16px 0 6px;
+}
+
+/* Dark Mode Fixes */
+[data-theme="dark"] .chip-ok {
+    background: #064e3b;
+    color: #d1fae5;
+}
+
+[data-theme="dark"] .region-badge {
+    background: rgba(17, 24, 39, 0.92);
+    color: #f8fafc;
+}
+
+[data-theme="dark"] .region-badge.world {
+    background: #1e3a8a;
+    color: #dbe7ff;
+}
+
+[data-theme="dark"] .region-badge.india {
+    background: #065f46;
+    color: #dcf5e6;
+}
+
+[data-theme="dark"] .region-badge.telangana {
+    background: #7c2d12;
+    color: #ffedd5;
+}
+
+/* Accessibility Focus Ring */
+a:focus-visible,
+button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+}
+
+/* ============================================================
+   11. Mobile Fixes, 3D Animations & Instagram
+   ============================================================ */
+
+/* 1. 3D Card Tilt Effect */
+.card-grid {
+    perspective: 1000px;
+}
+
+.topic-card {
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+    transform-style: preserve-3d;
+}
+
+.topic-card:hover {
+    transform: translateY(-8px) rotateX(4deg) rotateY(-4deg) scale(1.02);
+    box-shadow: 0 25px 35px -5px rgba(0, 0, 0, 0.1), 0 10px 20px -5px rgba(0, 0, 0, 0.04);
+    z-index: 10;
+}
+
+/* 2. Floating Animation for Topic of the Day */
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+.tod img {
+    animation: float 6s ease-in-out infinite;
+    box-shadow: 0 15px 25px -10px rgba(0, 0, 0, 0.3);
+}
+
+/* 3. Page Entrance Animation */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.content>* {
+    animation: fadeInUp 0.5s ease-out forwards;
+    opacity: 0;
+}
+
+.content>*:nth-child(1) {
+    animation-delay: 0.05s;
+}
+
+.content>*:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+.content>*:nth-child(3) {
+    animation-delay: 0.15s;
+}
+
+.content>*:nth-child(4) {
+    animation-delay: 0.2s;
+}
+
+.content>*:nth-child(5) {
+    animation-delay: 0.25s;
+}
+
+/* 4. Instagram Badge */
+.insta-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    color: #fff !important;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none !important;
+    box-shadow: 0 4px 15px rgba(220, 39, 67, 0.3);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.insta-badge:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 6px 20px rgba(220, 39, 67, 0.5);
+}
+
+[data-theme="dark"] .insta-badge {
+    box-shadow: 0 4px 15px rgba(220, 39, 67, 0.5);
+}
+
+/* 5. Mobile UI Fixes */
+@media (max-width: 900px) {
+
+    /* Prevent content from hiding behind the fixed bottom nav */
+    .content {
+        padding-bottom: 110px !important;
+    }
+
+    /* Make bottom nav safe for iPhones (notch area) */
+    .bottom-nav {
+        padding-bottom: calc(12px + env(safe-area-inset-bottom));
+    }
+
+    /* Ensure buttons are touch-friendly (min 44px) */
+    .btn,
+    .icon-btn,
+    .nav-item,
+    .option {
+        min-height: 44px;
+    }
+
+    /* Make the search overlay full screen on mobile */
+    .overlay {
+        padding: 0;
+    }
+
+    .overlay-box {
+        height: 100vh;
+        border-radius: 0;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .overlay-results {
+        max-height: none;
+        flex: 1;
+    }
+
+    /* 3D touch feedback on mobile */
+    .topic-card:active {
+        transform: scale(0.97);
+    }
+}
+
+/* Mobile UI Refinements from Guide */
+@media (max-width: 768px) {
+
+    /* 1. Force single-column cards on mobile */
+    .card-grid {
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
+    }
+
+    /* 2. Prevent horizontal scroll */
+    body,
+    html {
+        overflow-x: hidden;
+        width: 100%;
+    }
+
+    /* 3. Larger touch targets for links and buttons */
+    .nav-item,
+    .bottom-nav a {
+        min-height: 48px;
+        display: flex;
+        align-items: center;
+    }
+
+    /* 4. Better Hero spacing */
+    .hero-block h1 {
+        font-size: 1.8rem;
+        line-height: 1.2;
+    }
+
+    /* 5. Make sure the bottom nav doesn't cover the footer */
+    .site-footer {
+        margin-bottom: 80px;
+        /* Height of bottom nav */
     }
 }

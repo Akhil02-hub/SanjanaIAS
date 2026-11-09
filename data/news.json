@@ -1,127 +1,126 @@
 {
-  "updated": "2026-11-09T18:48:33.714Z",
+  "updated": "2026-11-09T19:21:52.472Z",
   "health": {
-    "checked": "2026-11-09T18:48:33.714Z",
+    "checked": "2026-11-09T19:21:52.472Z",
     "sources": [
       {
         "id": "un-news",
         "name": "UN News",
         "status": "failed",
         "error": "HTTP 404",
-        "checked": "2026-11-09T18:48:33.714Z"
+        "checked": "2026-11-09T19:21:52.472Z"
       },
       {
         "id": "un-geneva",
         "name": "UN Geneva",
         "status": "no-new-articles",
-        "checked": "2026-11-09T18:48:33.714Z"
+        "checked": "2026-11-09T19:21:52.472Z"
       },
       {
         "id": "who",
         "name": "WHO",
         "status": "ok",
         "items": 25,
-        "added": 25,
-        "checked": "2026-11-09T18:48:33.714Z"
+        "added": 24,
+        "checked": "2026-11-09T19:21:52.472Z"
       },
       {
         "id": "world-bank",
         "name": "World Bank",
         "status": "failed",
         "error": "HTTP 404",
-        "checked": "2026-11-09T18:48:33.714Z"
+        "checked": "2026-11-09T19:21:52.472Z"
       },
       {
         "id": "imf",
         "name": "IMF",
         "status": "failed",
         "error": "HTTP 403",
-        "checked": "2026-11-09T18:48:33.714Z"
+        "checked": "2026-11-09T19:21:52.472Z"
       },
       {
         "id": "pib",
         "name": "PIB",
         "status": "ok",
         "items": 20,
-        "added": 1,
-        "checked": "2026-11-09T18:48:33.714Z"
+        "added": 0,
+        "checked": "2026-11-09T19:21:52.472Z"
       },
       {
         "id": "rbi",
         "name": "RBI",
         "status": "ok",
         "items": 10,
-        "added": 1,
-        "checked": "2026-11-09T18:48:33.714Z"
+        "added": 0,
+        "checked": "2026-11-09T19:21:52.472Z"
       },
       {
         "id": "bbc-world",
         "name": "BBC News — World",
         "status": "ok",
         "items": 24,
-        "added": 24,
-        "checked": "2026-11-09T18:48:33.714Z"
+        "added": 0,
+        "checked": "2026-11-09T19:21:52.472Z"
       },
       {
         "id": "guardian-world",
         "name": "The Guardian — World",
         "status": "ok",
         "items": 25,
-        "added": 25,
-        "checked": "2026-11-09T18:48:33.714Z"
+        "added": 0,
+        "checked": "2026-11-09T19:21:52.472Z"
       },
       {
         "id": "ie-world",
         "name": "Indian Express — World",
         "status": "ok",
         "items": 25,
-        "added": 25,
-        "checked": "2026-11-09T18:48:33.714Z"
+        "added": 0,
+        "checked": "2026-11-09T19:21:52.472Z"
       },
       {
         "id": "ie-india",
         "name": "Indian Express — India",
         "status": "ok",
         "items": 25,
-        "added": 25,
-        "checked": "2026-11-09T18:48:33.714Z"
+        "added": 0,
+        "checked": "2026-11-09T19:21:52.472Z"
       },
       {
         "id": "ie-hyderabad",
         "name": "Indian Express — Hyderabad",
         "status": "ok",
         "items": 25,
-        "added": 25,
-        "checked": "2026-11-09T18:48:33.714Z"
+        "added": 0,
+        "checked": "2026-11-09T19:21:52.472Z"
       },
       {
         "id": "hindu-national",
         "name": "The Hindu — National",
         "status": "ok",
         "items": 25,
-        "added": 25,
-        "checked": "2026-11-09T18:48:33.714Z"
+        "added": 1,
+        "checked": "2026-11-09T19:21:52.472Z"
       },
       {
         "id": "hindu-international",
         "name": "The Hindu — International",
         "status": "ok",
         "items": 25,
-        "added": 24,
-        "checked": "2026-11-09T18:48:33.714Z"
+        "added": 0,
+        "checked": "2026-11-09T19:21:52.472Z"
       }
     ],
     "succeeded": 10,
     "failed": 3,
-    "newTopics": 200
+    "newTopics": 25
   },
   "topics": [
     {
       "id": "172-countries-and-multiple-candidate-vaccines-enga-2020-08-24",
       "title": "172 countries and multiple candidate vaccines engaged in COVID-19 vaccine Global Access Facility",
-      "region": "india",
+      "region": "world",
       "regions": [
-        "india",
         "world"
       ],
       "category": "Polity",
@@ -135,9 +134,9 @@
         "GS II",
         "GS III"
       ],
-      "summary": "<ul><li><strong>Nine CEPI-supported candidate vaccines are part of the COVAX initiative, with a further nine candidates under evaluation, and procurement conversations on-going with additional producers not currently receiving research and development (R&amp;D) funding through…",
-      "whyItMatters": "Auto-classified under GS II, GS III. Add an editorial note to make the UPSC relevance explicit.",
-      "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%23065f46%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EINDIA%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "summary": "Nine CEPI-supported candidate vaccines are part of the COVAX initiative, with a further nine candidates under evaluation, and procurement conversations on-going with additional producers not currently receiving research and development (R&amp;D) funding through COVAX – giving…",
+      "whyItMatters": "",
+      "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
       "imageCredit": "SanjanaIAS category illustration",
       "readTime": 15,
       "published": "2020-08-24",
@@ -155,8 +154,8 @@
         }
       ],
       "sections": {
-        "event": "<ul><li><strong>Nine CEPI-supported candidate vaccines are part of the COVAX initiative, with a further nine candidates under evaluation, and procurement conversations on-going with additional producers not currently receiving research and development (R&amp;D) funding through COVAX – giving COVAX the largest and most diverse COVID-19 vaccine portfolio in the world</strong><br /></li><li><strong>80 potentially self-financing countries have submitted non-binding expressions of interest to the Gavi-coordinated COVAX Facility, joining 92 low- and middle-income economies that are eligible to be…",
-        "background": "Background has not been written yet. Open the source links below to read the full report.",
+        "event": "Nine CEPI-supported candidate vaccines are part of the COVAX initiative, with a further nine candidates under evaluation, and procurement conversations on-going with additional producers not currently receiving research and development (R&amp;D) funding through COVAX – giving COVAX the largest and most diverse COVID-19 vaccine portfolio in the world 80 potentially self-financing countries have submitted non-binding expressions of interest to the Gavi-coordinated COVAX Facility, joining 92 low- and middle-income economies that are eligible to be supported by the COVAX Advance Market Commitment…",
+        "background": "",
         "causes": "",
         "stakeholders": "",
         "timeline": [
@@ -167,7 +166,7 @@
         ],
         "data": [],
         "geography": "",
-        "india": "Flagged as India-relevant by the classifier.",
+        "india": "",
         "telangana": "",
         "challenges": "",
         "solutions": "",
@@ -181,9 +180,8 @@
     {
       "id": "new-covid-19-law-lab-to-provide-vital-legal-inform-2020-07-22",
       "title": "New COVID-19 Law Lab to provide vital legal information and support for the global COVID-19 response",
-      "region": "india",
+      "region": "world",
       "regions": [
-        "india",
         "world"
       ],
       "category": "Polity",
@@ -197,9 +195,9 @@
         "GS II",
         "GS III"
       ],
-      "summary": "<p>Launching today, the COVID-19 Law Lab initiative gathers and shares legal documents from over 190 countries across the world to help states establish and implement strong legal frameworks to manage the pandemic. The goal is to ensure that laws protect the health and wellbeing…",
-      "whyItMatters": "Auto-classified under GS II, GS III. Add an editorial note to make the UPSC relevance explicit.",
-      "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%23065f46%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EINDIA%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "summary": "Launching today, the COVID-19 Law Lab initiative gathers and shares legal documents from over 190 countries across the world to help states establish and implement strong legal frameworks to manage the pandemic. The goal is to ensure that laws protect the health and wellbeing of…",
+      "whyItMatters": "",
+      "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
       "imageCredit": "SanjanaIAS category illustration",
       "readTime": 8,
       "published": "2020-07-22",
@@ -217,8 +215,8 @@
         }
       ],
       "sections": {
-        "event": "<p>Launching today, the COVID-19 Law Lab initiative gathers and shares legal documents from over 190 countries across the world to help states establish and implement strong legal frameworks to manage the pandemic. The goal is to ensure that laws protect the health and wellbeing of individuals and communities and that they adhere to international human rights standards.<o:p></o:p><br /></p><p>The new Lab (at <a href=\"http://www.COVIDLawLab.org\">www.COVIDLawLab.org</a>) is a joint project of United Nations Development Programme (UNDP), the World Health Organization (WHO), the Joint United…",
-        "background": "Background has not been written yet. Open the source links below to read the full report.",
+        "event": "Launching today, the COVID-19 Law Lab initiative gathers and shares legal documents from over 190 countries across the world to help states establish and implement strong legal frameworks to manage the pandemic. The goal is to ensure that laws protect the health and wellbeing of individuals and communities and that they adhere to international human rights standards. The new Lab (at www.COVIDLawLab.org ) is a joint project of United Nations Development Programme (UNDP), the World Health Organization (WHO), the Joint United Nations Programme on HIV/AIDS (UNAIDS) and the O&rsquo;Neill Institute…",
+        "background": "",
         "causes": "",
         "stakeholders": "",
         "timeline": [
@@ -229,7 +227,7 @@
         ],
         "data": [],
         "geography": "",
-        "india": "Flagged as India-relevant by the classifier.",
+        "india": "",
         "telangana": "",
         "challenges": "",
         "solutions": "",
@@ -258,8 +256,8 @@
         "GS II",
         "GS III"
       ],
-      "summary": "<ul><li><strong>Seventy-five countries submit expressions of interest to COVAX Facility, joining up to 90 further countries which could be supported by the COVAX Advance Market Commitment (AMC)</strong></li><li><strong>The COVAX Facility, and the AMC within it, is designed to…",
-      "whyItMatters": "Auto-classified under GS II, GS III. Add an editorial note to make the UPSC relevance explicit.",
+      "summary": "Seventy-five countries submit expressions of interest to COVAX Facility, joining up to 90 further countries which could be supported by the COVAX Advance Market Commitment (AMC) The COVAX Facility, and the AMC within it, is designed to guarantee rapid, fair and equitable access…",
+      "whyItMatters": "",
       "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
       "imageCredit": "SanjanaIAS category illustration",
       "readTime": 11,
@@ -278,8 +276,8 @@
         }
       ],
       "sections": {
-        "event": "<ul><li><strong>Seventy-five countries submit expressions of interest to COVAX Facility, joining up to 90 further countries which could be supported by the COVAX Advance Market Commitment (AMC)</strong></li><li><strong>The COVAX Facility, and the AMC within it, is designed to guarantee rapid, fair and equitable access to COVID-19 vaccines for every country in the world, rich and poor, to make rapid progress towards slowing the pandemic&nbsp; <br /></strong></li><li><strong>Interest from governments representing more than 60% of the world&rsquo;s population offers &lsquo;tremendous vote of…",
-        "background": "Background has not been written yet. Open the source links below to read the full report.",
+        "event": "Seventy-five countries submit expressions of interest to COVAX Facility, joining up to 90 further countries which could be supported by the COVAX Advance Market Commitment (AMC) The COVAX Facility, and the AMC within it, is designed to guarantee rapid, fair and equitable access to COVID-19 vaccines for every country in the world, rich and poor, to make rapid progress towards slowing the pandemic&nbsp; Interest from governments representing more than 60% of the world&rsquo;s population offers &lsquo;tremendous vote of confidence&rsquo; in the effort to ensure truly global access to COVID-19…",
+        "background": "",
         "causes": "",
         "stakeholders": "",
         "timeline": [
@@ -320,8 +318,8 @@
         "GS II",
         "GS III"
       ],
-      "summary": "<p><span style=\"background-color:initial;font-size:inherit;font-family:inherit;text-align:inherit;text-transform:inherit;white-space:inherit;word-spacing:normal;caret-color:auto;\">Rome – More people are going hungry, an annual study by the United Nations has found. Tens of…",
-      "whyItMatters": "Auto-classified under GS I, GS II, GS III. Add an editorial note to make the UPSC relevance explicit.",
+      "summary": "Rome – More people are going hungry, an annual study by the United Nations has found. Tens of millions have joined the ranks of the chronically undernourished over the past five years, and countries around the world continue to struggle with multiple forms of malnutrition. The…",
+      "whyItMatters": "",
       "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
       "imageCredit": "SanjanaIAS category illustration",
       "readTime": 9,
@@ -340,8 +338,8 @@
         }
       ],
       "sections": {
-        "event": "<p><span style=\"background-color:initial;font-size:inherit;font-family:inherit;text-align:inherit;text-transform:inherit;white-space:inherit;word-spacing:normal;caret-color:auto;\">Rome – More people are going hungry, an annual study by the United Nations has found. Tens of millions have joined the ranks of the chronically undernourished over the past five years, and countries around the world continue to struggle with multiple forms of malnutrition.</span></p><p><span…",
-        "background": "Background has not been written yet. Open the source links below to read the full report.",
+        "event": "Rome – More people are going hungry, an annual study by the United Nations has found. Tens of millions have joined the ranks of the chronically undernourished over the past five years, and countries around the world continue to struggle with multiple forms of malnutrition. The latest edition of the State of Food Security and Nutrition in the World, published today, estimates that almost 690 million people went hungry in 2019 – up by 10 million from 2018, and by nearly 60 million in five years. High costs and low affordability also mean billions cannot eat healthily or nutritiously. The hungry…",
+        "background": "",
         "causes": "",
         "stakeholders": "",
         "timeline": [
@@ -366,9 +364,8 @@
     {
       "id": "un-public-service-day-2020-07-08",
       "title": "UN Public Service Day",
-      "region": "india",
+      "region": "world",
       "regions": [
-        "india",
         "world"
       ],
       "category": "Governance",
@@ -379,9 +376,9 @@
       "gsPapers": [
         "GS II"
       ],
-      "summary": "<p><em></em></p><p><em>Honouring the public servants who have been working on the frontlines of the COVID-19 pandemic.</em><span style=\"text-decoration:underline;\"></span><span style=\"text-decoration:underline;\"></span></p><p>Whether working in healthcare or delivering essential…",
-      "whyItMatters": "Auto-classified under GS II. Add an editorial note to make the UPSC relevance explicit.",
-      "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%23065f46%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EINDIA%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "summary": "Honouring the public servants who have been working on the frontlines of the COVID-19 pandemic. Whether working in healthcare or delivering essential services in the areas of sanitation, social welfare, education, postal delivery, transport, law enforcement, and more, public…",
+      "whyItMatters": "",
+      "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
       "imageCredit": "SanjanaIAS category illustration",
       "readTime": 5,
       "published": "2020-07-08",
@@ -399,8 +396,8 @@
         }
       ],
       "sections": {
-        "event": "<p><em></em></p><p><em>Honouring the public servants who have been working on the frontlines of the COVID-19 pandemic.</em><span style=\"text-decoration:underline;\"></span><span style=\"text-decoration:underline;\"></span></p><p>Whether working in healthcare or delivering essential services in the areas of sanitation, social welfare, education, postal delivery, transport, law enforcement, and more, public servants globally have continued to work in the community as many people shelter at home, risking their lives to ensure ours can continue.<span style=\"text-decoration:underline;\"></span><span…",
-        "background": "Background has not been written yet. Open the source links below to read the full report.",
+        "event": "Honouring the public servants who have been working on the frontlines of the COVID-19 pandemic. Whether working in healthcare or delivering essential services in the areas of sanitation, social welfare, education, postal delivery, transport, law enforcement, and more, public servants globally have continued to work in the community as many people shelter at home, risking their lives to ensure ours can continue. WHO Director-General joined a virtual high-level panel at the United Nations to mark Public Service Day on 23 June to honour the women and men who are risking their lives and health to…",
+        "background": "",
         "causes": "",
         "stakeholders": "",
         "timeline": [
@@ -411,7 +408,7 @@
         ],
         "data": [],
         "geography": "",
-        "india": "Flagged as India-relevant by the classifier.",
+        "india": "",
         "telangana": "",
         "challenges": "",
         "solutions": "",
@@ -438,8 +435,8 @@
       "gsPapers": [
         "GS II"
       ],
-      "summary": "<ul><li><strong>A full access package includes WHO policy guidance on the use of antigen-based rapid diagnostic tests, manufacturer volume guarantees for low and middle-income countries,&nbsp; catalytic funding to assist governments to deploy the tests and an initial US$50…",
-      "whyItMatters": "Auto-classified under GS II. Add an editorial note to make the UPSC relevance explicit.",
+      "summary": "A full access package includes WHO policy guidance on the use of antigen-based rapid diagnostic tests, manufacturer volume guarantees for low and middle-income countries,&nbsp; catalytic funding to assist governments to deploy the tests and an initial US$50 million procurement…",
+      "whyItMatters": "",
       "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
       "imageCredit": "SanjanaIAS category illustration",
       "readTime": 13,
@@ -458,8 +455,8 @@
         }
       ],
       "sections": {
-        "event": "<ul><li><strong>A full access package includes WHO policy guidance on the use of antigen-based rapid diagnostic tests, manufacturer volume guarantees for low and middle-income countries,&nbsp; catalytic funding to assist governments to deploy the tests and an initial US$50 million procurement fund</strong></li><li><strong>Several rapid, point-of-care antigen tests are being assessed by WHO for Emergency Use Listing (EUL)</strong></li><li><strong>Agreements between the Bill &amp; Melinda Gates Foundation and test manufacturers Abbott and SD Biosensor make available innovative tests priced at a…",
-        "background": "Background has not been written yet. Open the source links below to read the full report.",
+        "event": "A full access package includes WHO policy guidance on the use of antigen-based rapid diagnostic tests, manufacturer volume guarantees for low and middle-income countries,&nbsp; catalytic funding to assist governments to deploy the tests and an initial US$50 million procurement fund Several rapid, point-of-care antigen tests are being assessed by WHO for Emergency Use Listing (EUL) Agreements between the Bill &amp; Melinda Gates Foundation and test manufacturers Abbott and SD Biosensor make available innovative tests priced at a maximum of US$5 for low- and middle-income countries (LMICs) The…",
+        "background": "",
         "causes": "",
         "stakeholders": "",
         "timeline": [
@@ -499,8 +496,8 @@
         "GS II",
         "GS III"
       ],
-      "summary": "<p>Today, the Africa Regional Certification Commission certified the WHO African Region as wild polio-free after four years without a case. With this historic milestone, five of the six WHO regions – representing over 90% of the world&rsquo;s population – are now free of the…",
-      "whyItMatters": "Auto-classified under GS II, GS III. Add an editorial note to make the UPSC relevance explicit.",
+      "summary": "Today, the Africa Regional Certification Commission certified the WHO African Region as wild polio-free after four years without a case. With this historic milestone, five of the six WHO regions – representing over 90% of the world&rsquo;s population – are now free of the wild…",
+      "whyItMatters": "",
       "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
       "imageCredit": "SanjanaIAS category illustration",
       "readTime": 6,
@@ -519,8 +516,8 @@
         }
       ],
       "sections": {
-        "event": "<p>Today, the Africa Regional Certification Commission certified the WHO African Region as wild polio-free after four years without a case. With this historic milestone, five of the six WHO regions – representing over 90% of the world&rsquo;s population – are now free of the wild poliovirus, moving the world closer to achieving global polio eradication. </p><p>Only two countries worldwide continue to see wild poliovirus transmission: Pakistan and Afghanistan. </p><p>The Global Polio Eradication Initiative (GPEI) congratulates the national governments of the 47 countries in the WHO African…",
-        "background": "Background has not been written yet. Open the source links below to read the full report.",
+        "event": "Today, the Africa Regional Certification Commission certified the WHO African Region as wild polio-free after four years without a case. With this historic milestone, five of the six WHO regions – representing over 90% of the world&rsquo;s population – are now free of the wild poliovirus, moving the world closer to achieving global polio eradication. Only two countries worldwide continue to see wild poliovirus transmission: Pakistan and Afghanistan. The Global Polio Eradication Initiative (GPEI) congratulates the national governments of the 47 countries in the WHO African Region for…",
+        "background": "",
         "causes": "",
         "stakeholders": "",
         "timeline": [
@@ -557,8 +554,8 @@
       "gsPapers": [
         "GS II"
       ],
-      "summary": "<p>&nbsp;</p><p>World Health Organization Director-General Dr Tedros Adhanom Ghebreyesus today joined the leadership of Spain, paying homage to those who have lost their lives in the country due to COVID-19, saluting the heroic efforts of heath workers and praising the…",
-      "whyItMatters": "Auto-classified under GS II. Add an editorial note to make the UPSC relevance explicit.",
+      "summary": "&nbsp; World Health Organization Director-General Dr Tedros Adhanom Ghebreyesus today joined the leadership of Spain, paying homage to those who have lost their lives in the country due to COVID-19, saluting the heroic efforts of heath workers and praising the government&rsquo;s…",
+      "whyItMatters": "",
       "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
       "imageCredit": "SanjanaIAS category illustration",
       "readTime": 4,
@@ -577,8 +574,8 @@
         }
       ],
       "sections": {
-        "event": "<p>&nbsp;</p><p>World Health Organization Director-General Dr Tedros Adhanom Ghebreyesus today joined the leadership of Spain, paying homage to those who have lost their lives in the country due to COVID-19, saluting the heroic efforts of heath workers and praising the government&rsquo;s resolute and robust response to reverse the virus&rsquo;s transmission.<br /></p><p>&ldquo;It is with great respect that I join the King of Spain, the Prime Minister and the entire government of the country to pay tribute to the people who have fallen victim to COVID-19,&rdquo; said Dr Tedros. &ldquo;I extend…",
-        "background": "Background has not been written yet. Open the source links below to read the full report.",
+        "event": "&nbsp; World Health Organization Director-General Dr Tedros Adhanom Ghebreyesus today joined the leadership of Spain, paying homage to those who have lost their lives in the country due to COVID-19, saluting the heroic efforts of heath workers and praising the government&rsquo;s resolute and robust response to reverse the virus&rsquo;s transmission. &ldquo;It is with great respect that I join the King of Spain, the Prime Minister and the entire government of the country to pay tribute to the people who have fallen victim to COVID-19,&rdquo; said Dr Tedros. &ldquo;I extend my deepest…",
+        "background": "",
         "causes": "",
         "stakeholders": "",
         "timeline": [
@@ -700,11 +697,11 @@
         "GS II",
         "GS III"
       ],
-      "summary": "<p>Seventy-three countries have warned that they are at risk of stock-outs of antiretroviral (ARV) medicines as a result of the COVID-19 pandemic, according to a new WHO survey conducted ahead of the International AIDS Society&rsquo;s biannual conference. Twenty-four countries…",
-      "whyItMatters": "Auto-classified under GS I, GS II, GS III. Add an editorial note to make the UPSC relevance explicit.",
+      "summary": "Seventy-three countries have warned that they are at risk of stock-outs of antiretroviral (ARV) medicines as a result of the COVID-19 pandemic, according to a new WHO survey conducted ahead of the International AIDS Society&rsquo;s biannual conference. Twenty-four countries…",
+      "whyItMatters": "",
       "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
       "imageCredit": "SanjanaIAS category illustration",
-      "readTime": 7,
+      "readTime": 8,
       "published": "2020-07-06",
       "updated": "2026-11-09",
       "importance": 73,
@@ -720,8 +717,8 @@
         }
       ],
       "sections": {
-        "event": "<p>Seventy-three countries have warned that they are at risk of stock-outs of antiretroviral (ARV) medicines as a result of the COVID-19 pandemic, according to a new WHO survey conducted ahead of the International AIDS Society&rsquo;s biannual conference. Twenty-four countries reported having either a critically low stock of ARVs or disruptions in the supply of these life-saving medicines.&nbsp; </p><p>The survey follows a <a…",
-        "background": "Background has not been written yet. Open the source links below to read the full report.",
+        "event": "Seventy-three countries have warned that they are at risk of stock-outs of antiretroviral (ARV) medicines as a result of the COVID-19 pandemic, according to a new WHO survey conducted ahead of the International AIDS Society&rsquo;s biannual conference. Twenty-four countries reported having either a critically low stock of ARVs or disruptions in the supply of these life-saving medicines.&nbsp; The survey follows a modelling exercise convened by WHO and UNAIDS in May which forecasted that a six-month disruption in access to ARVs could lead to a doubling in AIDS-related deaths in sub-Saharan…",
+        "background": "",
         "causes": "",
         "stakeholders": "",
         "timeline": [
@@ -759,8 +756,8 @@
         "GS II",
         "GS III"
       ],
-      "summary": "<p>The COVID-19 pandemic has disrupted or halted critical mental health services in 93% of countries worldwide while the demand for mental health is increasing, according to a new WHO survey. The survey of 130 countries provides the first global data showing the devastating…",
-      "whyItMatters": "Auto-classified under GS II, GS III. Add an editorial note to make the UPSC relevance explicit.",
+      "summary": "The COVID-19 pandemic has disrupted or halted critical mental health services in 93% of countries worldwide while the demand for mental health is increasing, according to a new WHO survey. The survey of 130 countries provides the first global data showing the devastating impact…",
+      "whyItMatters": "",
       "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
       "imageCredit": "SanjanaIAS category illustration",
       "readTime": 7,
@@ -779,8 +776,8 @@
         }
       ],
       "sections": {
-        "event": "<p>The COVID-19 pandemic has disrupted or halted critical mental health services in 93% of countries worldwide while the demand for mental health is increasing, according to a new WHO survey. The survey of 130 countries provides the first global data showing the devastating impact of COVID-19 on access to mental health services and underscores the urgent need for increased funding.<br /></p><p>The survey was published ahead of WHO&rsquo;s <em>Big Event for Mental Health </em>&nbsp;̶&nbsp; a global online advocacy event on 10 October that will bring together world leaders, celebrities, and…",
-        "background": "Background has not been written yet. Open the source links below to read the full report.",
+        "event": "The COVID-19 pandemic has disrupted or halted critical mental health services in 93% of countries worldwide while the demand for mental health is increasing, according to a new WHO survey. The survey of 130 countries provides the first global data showing the devastating impact of COVID-19 on access to mental health services and underscores the urgent need for increased funding. The survey was published ahead of WHO&rsquo;s Big Event for Mental Health &nbsp;̶&nbsp; a global online advocacy event on 10 October that will bring together world leaders, celebrities, and advocates to call for…",
+        "background": "",
         "causes": "",
         "stakeholders": "",
         "timeline": [
@@ -817,8 +814,8 @@
       "gsPapers": [
         "GS II"
       ],
-      "summary": "<p align=\"center\" style=\"text-align:center;\"><em>With the number of under-five deaths at an all-time recorded low of 5.2 million in 2019, disruptions in child and maternal health services due to the COVID-19 pandemic are putting millions of additional lives at…",
-      "whyItMatters": "Auto-classified under GS II. Add an editorial note to make the UPSC relevance explicit.",
+      "summary": "With the number of under-five deaths at an all-time recorded low of 5.2 million in 2019, disruptions in child and maternal health services due to the COVID-19 pandemic are putting millions of additional lives at stake The number of global under-five deaths dropped to its lowest…",
+      "whyItMatters": "",
       "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
       "imageCredit": "SanjanaIAS category illustration",
       "readTime": 9,
@@ -837,8 +834,8 @@
         }
       ],
       "sections": {
-        "event": "<p align=\"center\" style=\"text-align:center;\"><em>With the number of under-five deaths at an all-time recorded low of 5.2 million in 2019, disruptions in child and maternal health services due to the COVID-19 pandemic are putting millions of additional lives at stake</em><em></em><br /></p><p>The number of global under-five deaths dropped to its lowest point on record in 2019 – down to 5.2 million from 12.5 million in 1990, <a href=\"https://data.unicef.org/resources/levels-and-trends-in-child-mortality/\">according to new mortality estimates</a> released by UNICEF, the World Health Organization…",
-        "background": "Background has not been written yet. Open the source links below to read the full report.",
+        "event": "With the number of under-five deaths at an all-time recorded low of 5.2 million in 2019, disruptions in child and maternal health services due to the COVID-19 pandemic are putting millions of additional lives at stake The number of global under-five deaths dropped to its lowest point on record in 2019 – down to 5.2 million from 12.5 million in 1990, according to new mortality estimates released by UNICEF, the World Health Organization (WHO), the Population Division of the United Nations Department of Economic and Social Affairs and the World Bank Group. Since then, however, surveys by UNICEF…",
+        "background": "",
         "causes": "",
         "stakeholders": "",
         "timeline": [
@@ -980,6 +977,66 @@
       "mainsQuestions": []
     },
     {
+      "id": "who-statement-on-heated-tobacco-products-and-the-u-2020-07-27",
+      "title": "WHO statement on heated tobacco products and the US FDA decision regarding IQOS",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "Governance",
+      "tags": [
+        "Governance",
+        "International Relations",
+        "Environment"
+      ],
+      "gsPapers": [
+        "GS II",
+        "GS III"
+      ],
+      "summary": "WHO takes this opportunity to remind Member States that are Parties to the WHO Framework Convention of Tobacco Control (FCTC) of their obl i gations under the Convention. Heated tobacco products are tobacco products, meaning that the WHO FCTC fully applies to these products.…",
+      "whyItMatters": "",
+      "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "imageCredit": "SanjanaIAS category illustration",
+      "readTime": 5,
+      "published": "2020-07-27",
+      "updated": "2026-11-09",
+      "importance": 64,
+      "importanceReason": "Maps to GS II, GS III. Signals constitutional legal. Signals environment social.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "WHO statement on heated tobacco products and the US FDA decision regarding IQOS",
+          "publisher": "WHO",
+          "url": "https://www.who.int/news/item/27-07-2020-who-statement-on-heated-tobacco-products-and-the-us-fda-decision-regarding-iqos",
+          "type": "primary",
+          "date": "2020-07-27"
+        }
+      ],
+      "sections": {
+        "event": "WHO takes this opportunity to remind Member States that are Parties to the WHO Framework Convention of Tobacco Control (FCTC) of their obl i gations under the Convention. Heated tobacco products are tobacco products, meaning that the WHO FCTC fully applies to these products. (Decision FCTC/COP8(22)) Specifically, Article 13.4(a) obliges Parties, to prohibit \"all forms of tobacco advertising, promotion and sponsorship that promote a tobacco product by any means that are false, misleading or deceptive or likely to create an erroneous impression about its characteristics, health effects, hazards…",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2020-07-27",
+            "text": "Reported by WHO"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to GS II, GS III.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
       "id": "new-who-technical-package-to-help-countries-improv-2026-10-10",
       "title": "New WHO technical package to help countries improve health data for COVID-19 response and beyond",
       "region": "world",
@@ -1024,66 +1081,6 @@
         "timeline": [
           {
             "date": "2026-10-10",
-            "text": "Reported by WHO"
-          }
-        ],
-        "data": [],
-        "geography": "",
-        "india": "",
-        "telangana": "",
-        "challenges": "",
-        "solutions": "",
-        "upsc": "Auto-tagged to GS II, GS III.",
-        "prelimsNotes": [],
-        "mainsNotes": []
-      },
-      "prelimsQuestions": [],
-      "mainsQuestions": []
-    },
-    {
-      "id": "who-statement-on-heated-tobacco-products-and-the-u-2020-07-27",
-      "title": "WHO statement on heated tobacco products and the US FDA decision regarding IQOS",
-      "region": "world",
-      "regions": [
-        "world"
-      ],
-      "category": "Governance",
-      "tags": [
-        "Governance",
-        "International Relations",
-        "Environment"
-      ],
-      "gsPapers": [
-        "GS II",
-        "GS III"
-      ],
-      "summary": "<p>WHO takes this opportunity to remind Member States that are Parties to the WHO Framework Convention of Tobacco Control (FCTC) of their obl<span style=\"text-decoration:underline;\">i</span>gations under the Convention. Heated tobacco products are tobacco products, meaning that…",
-      "whyItMatters": "Auto-classified under GS II, GS III. Add an editorial note to make the UPSC relevance explicit.",
-      "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "imageCredit": "SanjanaIAS category illustration",
-      "readTime": 5,
-      "published": "2020-07-27",
-      "updated": "2026-11-09",
-      "importance": 64,
-      "importanceReason": "Maps to GS II, GS III. Signals constitutional legal. Signals environment social.",
-      "curated": false,
-      "sources": [
-        {
-          "title": "WHO statement on heated tobacco products and the US FDA decision regarding IQOS",
-          "publisher": "WHO",
-          "url": "https://www.who.int/news/item/27-07-2020-who-statement-on-heated-tobacco-products-and-the-us-fda-decision-regarding-iqos",
-          "type": "primary",
-          "date": "2020-07-27"
-        }
-      ],
-      "sections": {
-        "event": "<p>WHO takes this opportunity to remind Member States that are Parties to the WHO Framework Convention of Tobacco Control (FCTC) of their obl<span style=\"text-decoration:underline;\">i</span>gations under the Convention. Heated tobacco products are tobacco products, meaning that the WHO FCTC fully applies to these products. (Decision FCTC/COP8(22)) Specifically, Article 13.4(a) obliges Parties, to prohibit \"all forms of tobacco advertising, promotion and sponsorship that promote a tobacco product by any means that are false, misleading or deceptive or likely to create an erroneous impression…",
-        "background": "Background has not been written yet. Open the source links below to read the full report.",
-        "causes": "",
-        "stakeholders": "",
-        "timeline": [
-          {
-            "date": "2020-07-27",
             "text": "Reported by WHO"
           }
         ],
@@ -1288,8 +1285,8 @@
         "GS II",
         "GS III"
       ],
-      "summary": "<p>PWHO Director-General today announced the initiation of the Independent Panel for Pandemic Preparedness and Response (IPPPR) to evaluate the world&rsquo;s response to the COVID-19 pandemic.</p><p>In <a…",
-      "whyItMatters": "Auto-classified under GS II, GS III. Add an editorial note to make the UPSC relevance explicit.",
+      "summary": "PWHO Director-General today announced the initiation of the Independent Panel for Pandemic Preparedness and Response (IPPPR) to evaluate the world&rsquo;s response to the COVID-19 pandemic. In remarks to WHO Member States, Director-General Tedros Adhanom Ghebreyesus said the…",
+      "whyItMatters": "",
       "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
       "imageCredit": "SanjanaIAS category illustration",
       "readTime": 5,
@@ -1308,8 +1305,8 @@
         }
       ],
       "sections": {
-        "event": "<p>PWHO Director-General today announced the initiation of the Independent Panel for Pandemic Preparedness and Response (IPPPR) to evaluate the world&rsquo;s response to the COVID-19 pandemic.</p><p>In <a href=\"https://www.who.int/director-general/speeches/detail/who-director-general-opening-remarks-at-the-member-state-briefing-on-the-covid-19-pandemic-evaluation---9-july-2020\">remarks</a> to WHO Member States, Director-General Tedros Adhanom Ghebreyesus said the Panel will be co-chaired by former Prime Minister of New Zealand Helen Clark and former President of Liberia Ellen Johnson Sirleaf.…",
-        "background": "Background has not been written yet. Open the source links below to read the full report.",
+        "event": "PWHO Director-General today announced the initiation of the Independent Panel for Pandemic Preparedness and Response (IPPPR) to evaluate the world&rsquo;s response to the COVID-19 pandemic. In remarks to WHO Member States, Director-General Tedros Adhanom Ghebreyesus said the Panel will be co-chaired by former Prime Minister of New Zealand Helen Clark and former President of Liberia Ellen Johnson Sirleaf. Prime Minister Clark went to on lead the United Nations Development Programme and President Sirleaf is a recipient of the Nobel Peace Prize. Operating independently, they will choose other…",
+        "background": "",
         "causes": "",
         "stakeholders": "",
         "timeline": [
@@ -1462,8 +1459,8 @@
       "gsPapers": [
         "GS II"
       ],
-      "summary": "<h2><strong>WHO to roll out learning and monitoring tools to improve service provision during pandemic</strong></h2><p>The World Health Organization (WHO) today published a first indicative <a…",
-      "whyItMatters": "Auto-classified under GS II. Add an editorial note to make the UPSC relevance explicit.",
+      "summary": "WHO to roll out learning and monitoring tools to improve service provision during pandemic The World Health Organization (WHO) today published a first indicative survey on the impact of COVID-19 on health systems based on 105 countries&rsquo; reports. Data collected from five…",
+      "whyItMatters": "",
       "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
       "imageCredit": "SanjanaIAS category illustration",
       "readTime": 7,
@@ -1482,8 +1479,8 @@
         }
       ],
       "sections": {
-        "event": "<h2><strong>WHO to roll out learning and monitoring tools to improve service provision during pandemic</strong></h2><p>The World Health Organization (WHO) today published a first indicative <a href=\"https://www.who.int/publications/i/item/WHO-2019-nCoV-EHS_continuity-survey-2020.1\">survey on the impact of COVID-19 on health systems</a> based on 105 countries&rsquo; reports. Data collected from five regions over the period from March to June 2020 illustrate that almost every country (90%) experienced disruption to its health services, with low- and middle-income countries reporting the…",
-        "background": "Background has not been written yet. Open the source links below to read the full report.",
+        "event": "WHO to roll out learning and monitoring tools to improve service provision during pandemic The World Health Organization (WHO) today published a first indicative survey on the impact of COVID-19 on health systems based on 105 countries&rsquo; reports. Data collected from five regions over the period from March to June 2020 illustrate that almost every country (90%) experienced disruption to its health services, with low- and middle-income countries reporting the greatest difficulties.&nbsp; Most countries reported that many routine and elective services have been suspended, while critical…",
+        "background": "",
         "causes": "",
         "stakeholders": "",
         "timeline": [
@@ -1519,8 +1516,8 @@
       "gsPapers": [
         "GS II"
       ],
-      "summary": "<p>The Emergency Committee on COVID-19, convened by the WHO Director-General under the International Health Regulations (2005) (IHR), held its fourth meeting on 31 July. In its statement following the meeting, published today, it expressed &ldquo;appreciation for WHO and…",
-      "whyItMatters": "Auto-classified under GS II. Add an editorial note to make the UPSC relevance explicit.",
+      "summary": "The Emergency Committee on COVID-19, convened by the WHO Director-General under the International Health Regulations (2005) (IHR), held its fourth meeting on 31 July. In its statement following the meeting, published today, it expressed &ldquo;appreciation for WHO and…",
+      "whyItMatters": "",
       "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
       "imageCredit": "SanjanaIAS category illustration",
       "readTime": 5,
@@ -1539,8 +1536,8 @@
         }
       ],
       "sections": {
-        "event": "<p>The Emergency Committee on COVID-19, convened by the WHO Director-General under the International Health Regulations (2005) (IHR), held its fourth meeting on 31 July. In its statement following the meeting, published today, it expressed &ldquo;appreciation for WHO and partners&rsquo; COVID-19 pandemic response efforts, and highlighted the anticipated lengthy duration of this COVID-19 pandemic, noting the importance of sustained community, national, regional, and global response efforts.&rdquo;&nbsp;&nbsp;<br /></p><p>After a full discussion and review of the evidence, the Committee…",
-        "background": "Background has not been written yet. Open the source links below to read the full report.",
+        "event": "The Emergency Committee on COVID-19, convened by the WHO Director-General under the International Health Regulations (2005) (IHR), held its fourth meeting on 31 July. In its statement following the meeting, published today, it expressed &ldquo;appreciation for WHO and partners&rsquo; COVID-19 pandemic response efforts, and highlighted the anticipated lengthy duration of this COVID-19 pandemic, noting the importance of sustained community, national, regional, and global response efforts.&rdquo;&nbsp;&nbsp; After a full discussion and review of the evidence, the Committee unanimously agreed…",
+        "background": "",
         "causes": "",
         "stakeholders": "",
         "timeline": [
@@ -1695,8 +1692,8 @@
       "gsPapers": [
         "GS II"
       ],
-      "summary": "<p>A plane carrying 20 tonnes of WHO health supplies has landed in Beirut, Lebanon, to support the treatment of patients injured by the massive blast that occurred in the city on 4 August. The supplies will cover 1000 trauma interventions and 1000 surgical interventions for…",
-      "whyItMatters": "Auto-classified under GS II. Add an editorial note to make the UPSC relevance explicit.",
+      "summary": "A plane carrying 20 tonnes of WHO health supplies has landed in Beirut, Lebanon, to support the treatment of patients injured by the massive blast that occurred in the city on 4 August. The supplies will cover 1000 trauma interventions and 1000 surgical interventions for people…",
+      "whyItMatters": "",
       "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
       "imageCredit": "SanjanaIAS category illustration",
       "readTime": 5,
@@ -1715,8 +1712,8 @@
         }
       ],
       "sections": {
-        "event": "<p>A plane carrying 20 tonnes of WHO health supplies has landed in Beirut, Lebanon, to support the treatment of patients injured by the massive blast that occurred in the city on 4 August. The supplies will cover 1000 trauma interventions and 1000 surgical interventions for people suffering from injuries and burns resulting from the blast.</p><p>The shipment was airlifted from WHO&rsquo;s logistics hub in Dubai earlier this afternoon using a plane donated by the Government of the United Arab Emirates, a key WHO partner in health emergency response.</p><p>&ldquo;Our hearts and prayers are with…",
-        "background": "Background has not been written yet. Open the source links below to read the full report.",
+        "event": "A plane carrying 20 tonnes of WHO health supplies has landed in Beirut, Lebanon, to support the treatment of patients injured by the massive blast that occurred in the city on 4 August. The supplies will cover 1000 trauma interventions and 1000 surgical interventions for people suffering from injuries and burns resulting from the blast. The shipment was airlifted from WHO&rsquo;s logistics hub in Dubai earlier this afternoon using a plane donated by the Government of the United Arab Emirates, a key WHO partner in health emergency response. &ldquo;Our hearts and prayers are with all those…",
+        "background": "",
         "causes": "",
         "stakeholders": "",
         "timeline": [
@@ -2440,8 +2437,8 @@
         "GS II",
         "GS IV"
       ],
-      "summary": "<p><ul><li><em>Amid a global pandemic, unprecedented needs and growing insecurity, aid workers and health-care responders are staying and delivering to the world&rsquo;s most vulnerable people.</em></li><em></em><li><em>Last year was the most violent on record for humanitarians,…",
-      "whyItMatters": "Auto-classified under GS II, GS IV. Add an editorial note to make the UPSC relevance explicit.",
+      "summary": "Amid a global pandemic, unprecedented needs and growing insecurity, aid workers and health-care responders are staying and delivering to the world&rsquo;s most vulnerable people. Last year was the most violent on record for humanitarians, with 483 attacked, 125 killed, 234…",
+      "whyItMatters": "",
       "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
       "imageCredit": "SanjanaIAS category illustration",
       "readTime": 6,
@@ -2460,8 +2457,8 @@
         }
       ],
       "sections": {
-        "event": "<p><ul><li><em>Amid a global pandemic, unprecedented needs and growing insecurity, aid workers and health-care responders are staying and delivering to the world&rsquo;s most vulnerable people.</em></li><em></em><li><em>Last year was the most violent on record for humanitarians, with 483 attacked, 125 killed, 234 wounded and 124 kidnapped. The UN condemns all attacks on humanitarians.</em></li><em></em><li><em>OCHA and partners present the inspiring stories of humanitarian #RealLifeHeroes who are stepping up to meet the challenges.</em></li></ul>Today, World Humanitarian Day, the world…",
-        "background": "Background has not been written yet. Open the source links below to read the full report.",
+        "event": "Amid a global pandemic, unprecedented needs and growing insecurity, aid workers and health-care responders are staying and delivering to the world&rsquo;s most vulnerable people. Last year was the most violent on record for humanitarians, with 483 attacked, 125 killed, 234 wounded and 124 kidnapped. The UN condemns all attacks on humanitarians. OCHA and partners present the inspiring stories of humanitarian #RealLifeHeroes who are stepping up to meet the challenges. Today, World Humanitarian Day, the world honours all humanitarians – many working in their own communities – who are going to…",
+        "background": "",
         "causes": "",
         "stakeholders": "",
         "timeline": [
@@ -2498,7 +2495,7 @@
         "GS II"
       ],
       "summary": "WHO provides this timeline of the organization’s COVID-19 response activities for general information. WHO will update the timeline on a regular basis and in light of evolving events and new information. Unless noted otherwise, country-specific information and data are as…",
-      "whyItMatters": "Auto-classified under GS II. Add an editorial note to make the UPSC relevance explicit.",
+      "whyItMatters": "",
       "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
       "imageCredit": "SanjanaIAS category illustration",
       "readTime": 4,
@@ -2518,7 +2515,7 @@
       ],
       "sections": {
         "event": "WHO provides this timeline of the organization’s COVID-19 response activities for general information. WHO will update the timeline on a regular basis and in light of evolving events and new information. Unless noted otherwise, country-specific information and data are as reported to WHO by its Member States. This timeline continues in the spirit of, and supersedes, the WHO Rolling Updates and the WHO Timeline statement published in April 2020. It is not intended to be exhaustive and does not contain details of every event or WHO activity. As of 29 June 2020, the following milestones and…",
-        "background": "Background has not been written yet. Open the source links below to read the full report.",
+        "background": "",
         "causes": "",
         "stakeholders": "",
         "timeline": [
@@ -2727,7 +2724,7 @@
         "GS II"
       ],
       "summary": "On World Hepatitis Day 2020, WHO is calling for united and stepped-up action to prevent mother-to-child transmission of hepatitis B (HBV), a preventable viral infection that attacks the liver and claims the lives of nearly 900 000 people each year.",
-      "whyItMatters": "Auto-classified under GS II. Add an editorial note to make the UPSC relevance explicit.",
+      "whyItMatters": "",
       "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
       "imageCredit": "SanjanaIAS category illustration",
       "readTime": 3,
@@ -2747,7 +2744,7 @@
       ],
       "sections": {
         "event": "On World Hepatitis Day 2020, WHO is calling for united and stepped-up action to prevent mother-to-child transmission of hepatitis B (HBV), a preventable viral infection that attacks the liver and claims the lives of nearly 900 000 people each year.",
-        "background": "Background has not been written yet. Open the source links below to read the full report.",
+        "background": "",
         "causes": "",
         "stakeholders": "",
         "timeline": [
@@ -2786,8 +2783,8 @@
         "GS II",
         "GS III"
       ],
-      "summary": "<div><p>WHO experts will travel to China to work together with their Chinese counterparts to prepare scientific plans for identifying the zoonotic source of the SARS-COV-2 virus. The experts will develop the scope and TOR for a WHO-led international mission.<span…",
-      "whyItMatters": "Auto-classified under GS II, GS III. Add an editorial note to make the UPSC relevance explicit.",
+      "summary": "WHO experts will travel to China to work together with their Chinese counterparts to prepare scientific plans for identifying the zoonotic source of the SARS-COV-2 virus. The experts will develop the scope and TOR for a WHO-led international mission. &nbsp; Identifying the…",
+      "whyItMatters": "",
       "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
       "imageCredit": "SanjanaIAS category illustration",
       "readTime": 3,
@@ -2806,8 +2803,8 @@
         }
       ],
       "sections": {
-        "event": "<div><p>WHO experts will travel to China to work together with their Chinese counterparts to prepare scientific plans for identifying the zoonotic source of the SARS-COV-2 virus. The experts will develop the scope and TOR for a WHO-led international mission.<span style=\"background-color:initial;color:#313131;font-size:inherit;font-family:inherit;text-align:inherit;text-transform:inherit;white-space:inherit;word-spacing:normal;caret-color:auto;\">&nbsp;</span></p></div><div><p>Identifying the origin of emerging viral disease has proven complex in past epidemics in different countries. A well…",
-        "background": "Background has not been written yet. Open the source links below to read the full report.",
+        "event": "WHO experts will travel to China to work together with their Chinese counterparts to prepare scientific plans for identifying the zoonotic source of the SARS-COV-2 virus. The experts will develop the scope and TOR for a WHO-led international mission. &nbsp; Identifying the origin of emerging viral disease has proven complex in past epidemics in different countries. A well planned series of scientific researches will advance the understanding of animal reservoirs and the route of transmission to humans. The process is an evolving endeavor which may lead to further international scientific…",
+        "background": "",
         "causes": "",
         "stakeholders": "",
         "timeline": [
@@ -3069,7 +3066,7 @@
         "GS II"
       ],
       "summary": "As the world comes together at an unprecedented virtual session of the 75th UN General Assembly (UNGA), WHO has three messages to share.",
-      "whyItMatters": "Auto-classified under GS II. Add an editorial note to make the UPSC relevance explicit.",
+      "whyItMatters": "",
       "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
       "imageCredit": "SanjanaIAS category illustration",
       "readTime": 3,
@@ -3089,7 +3086,7 @@
       ],
       "sections": {
         "event": "As the world comes together at an unprecedented virtual session of the 75th UN General Assembly (UNGA), WHO has three messages to share.",
-        "background": "Background has not been written yet. Open the source links below to read the full report.",
+        "background": "",
         "causes": "",
         "stakeholders": "",
         "timeline": [
@@ -3126,7 +3123,7 @@
         "GS II"
       ],
       "summary": "WHO and UNICEF call for immediate efforts to vaccinate all children as new data shows that, before the COVID-19 pandemic, vaccine coverage stalled at 85 per cent for nearly a decade, with 14 million unvaccinated infants yearly",
-      "whyItMatters": "Auto-classified under GS II. Add an editorial note to make the UPSC relevance explicit.",
+      "whyItMatters": "",
       "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
       "imageCredit": "SanjanaIAS category illustration",
       "readTime": 3,
@@ -3146,7 +3143,7 @@
       ],
       "sections": {
         "event": "WHO and UNICEF call for immediate efforts to vaccinate all children as new data shows that, before the COVID-19 pandemic, vaccine coverage stalled at 85 per cent for nearly a decade, with 14 million unvaccinated infants yearly",
-        "background": "Background has not been written yet. Open the source links below to read the full report.",
+        "background": "",
         "causes": "",
         "stakeholders": "",
         "timeline": [
@@ -3182,8 +3179,8 @@
       "gsPapers": [
         "GS II"
       ],
-      "summary": "<p dir=\"ltr\"></p><p dir=\"ltr\">WHO today accepted the recommendation from the Solidarity Trial&rsquo;s International Steering Committee to discontinue the trial&rsquo;s hydroxychloroquine and lopinavir/ritonavir arms. The Solidarity Trial was established by WHO to find an…",
-      "whyItMatters": "Auto-classified under GS II. Add an editorial note to make the UPSC relevance explicit.",
+      "summary": "WHO today accepted the recommendation from the Solidarity Trial&rsquo;s International Steering Committee to discontinue the trial&rsquo;s hydroxychloroquine and lopinavir/ritonavir arms. The Solidarity Trial was established by WHO to find an effective COVID-19 treatment for…",
+      "whyItMatters": "",
       "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
       "imageCredit": "SanjanaIAS category illustration",
       "readTime": 4,
@@ -3202,8 +3199,8 @@
         }
       ],
       "sections": {
-        "event": "<p dir=\"ltr\"></p><p dir=\"ltr\">WHO today accepted the recommendation from the Solidarity Trial&rsquo;s International Steering Committee to discontinue the trial&rsquo;s hydroxychloroquine and lopinavir/ritonavir arms. The Solidarity Trial was established by WHO to find an effective COVID-19 treatment for hospitalized patients.</p><p dir=\"ltr\">The International Steering Committee formulated the recommendation in light of the evidence for hydroxychloroquine vs standard-of-care and for lopinavir/ritonavir vs standard-of-care from the Solidarity trial interim results, and from a review of the…",
-        "background": "Background has not been written yet. Open the source links below to read the full report.",
+        "event": "WHO today accepted the recommendation from the Solidarity Trial&rsquo;s International Steering Committee to discontinue the trial&rsquo;s hydroxychloroquine and lopinavir/ritonavir arms. The Solidarity Trial was established by WHO to find an effective COVID-19 treatment for hospitalized patients. The International Steering Committee formulated the recommendation in light of the evidence for hydroxychloroquine vs standard-of-care and for lopinavir/ritonavir vs standard-of-care from the Solidarity trial interim results, and from a review of the evidence from all trials presented at the 1-2 July…",
+        "background": "",
         "causes": "",
         "stakeholders": "",
         "timeline": [
@@ -4541,6 +4538,63 @@
       "mainsQuestions": []
     },
     {
+      "id": "five-persons-including-four-girls-drown-in-irrigat-2026-11-09",
+      "title": "Five persons, including four girls, drown in irrigation tank in Tiruvannamalai",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "Agriculture",
+      "tags": [
+        "Agriculture"
+      ],
+      "gsPapers": [
+        "GS III"
+      ],
+      "summary": "The deceased were identified as a staff nurse and four inmates of a government-recognised children’s home for girls",
+      "whyItMatters": "",
+      "image": "https://th-i.thgim.com/public/news/national/tamil-nadu/g4wytm/article71683952.ece/alternates/LANDSCAPE_1200/drown-7.jpg",
+      "imageCredit": "The Hindu — National",
+      "readTime": 3,
+      "published": "2026-11-09",
+      "updated": "2026-11-09",
+      "importance": 27,
+      "importanceReason": "Maps to GS III.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Five persons, including four girls, drown in irrigation tank in Tiruvannamalai",
+          "publisher": "The Hindu — National",
+          "url": "https://www.thehindu.com/news/national/tamil-nadu/five-persons-including-four-girls-drown-in-irrigation-tank-in-tiruvannamalai/article71682584.ece",
+          "type": "reporting",
+          "date": "2026-11-09"
+        }
+      ],
+      "sections": {
+        "event": "The deceased were identified as a staff nurse and four inmates of a government-recognised children’s home for girls",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-09",
+            "text": "Reported by The Hindu — National"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to GS III.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
       "id": "trump-questions-midterm-elections-integrity-after--2026-11-09",
       "title": "Trump questions midterm elections integrity after previously accepting results",
       "region": "world",
@@ -5537,7 +5591,7 @@
       "tags": [],
       "gsPapers": [],
       "summary": "The Coronavirus disease (COVID-19) is the first pandemic in history in which technology and social media are being used on a massive scale to keep people safe, informed, productive and connected. At the same time, the technology we rely on to keep connected and informed is…",
-      "whyItMatters": "Auto-classified under General Studies. Add an editorial note to make the UPSC relevance explicit.",
+      "whyItMatters": "",
       "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
       "imageCredit": "SanjanaIAS category illustration",
       "readTime": 3,
@@ -5557,7 +5611,7 @@
       ],
       "sections": {
         "event": "The Coronavirus disease (COVID-19) is the first pandemic in history in which technology and social media are being used on a massive scale to keep people safe, informed, productive and connected. At the same time, the technology we rely on to keep connected and informed is enabling and amplifying an infodemic that continues to undermine the global response and jeopardizes measures to control the pandemic.",
-        "background": "Background has not been written yet. Open the source links below to read the full report.",
+        "background": "",
         "causes": "",
         "stakeholders": "",
         "timeline": [

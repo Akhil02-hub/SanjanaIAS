@@ -96,7 +96,7 @@ function buildTopic(group, source) {
         tags: cls.tags,
         gsPapers: cls.gsPapers,
         summary: summarise(lead.description || lead.title, 280),
-        whyItMatters: 'Auto-classified under ' + (cls.gsPapers.join(', ') || 'General Studies') + '. Add an editorial note to make the UPSC relevance explicit.',
+        whyItMatters: '',
         image: lead.image || ILLUSTRATIONS[cls.region] || ILLUSTRATIONS.default,
         imageCredit: lead.image ? source.name : 'SanjanaIAS category illustration',
         readTime: Math.max(2, Math.round((lead.description || '').split(/\s+/).length / 200) + 3),
@@ -108,7 +108,7 @@ function buildTopic(group, source) {
         sources: sources,
         sections: {
             event: summarise(lead.description || lead.title, 600),
-            background: 'Background has not been written yet. Open the source links below to read the full report.',
+            background: '',
             causes: '',
             stakeholders: '',
             timeline: lead.published ? [{ date: lead.published.slice(0, 10), text: 'Reported by ' + source.name }] : [],
