@@ -56,7 +56,7 @@
             if (password.length < 8) return { error: 'Password must be at least 8 characters.' };
             if (!sq || !sa) return { error: 'Security question and answer are required.' };
 
-            var email = username.includes('@') ? username.toLowerCase() : username.toLowerCase() + '@sanjana.local';
+            var email = username.includes('@') ? username.toLowerCase() : username.toLowerCase() + 'amarachinthaakhil@gmail.com';
             var r = await supabaseClient.auth.signUp({ email: email, password: password });
             if (r.error) return { error: 'Could not create account. Try a different username.' };
 
@@ -78,7 +78,7 @@
 
         signIn: async function (username, password) {
             if (!supabaseClient) return { error: 'Auth is not configured.' };
-            var email = username.includes('@') ? username.toLowerCase() : username.toLowerCase() + '@sanjana.local';
+            var email = username.includes('@') ? username.toLowerCase() : username.toLowerCase() + 'amarachinthaakhil@gmail.com';
             var r = await supabaseClient.auth.signInWithPassword({ email: email, password: password });
             if (r.error) return { error: 'Username or password is incorrect.' };
             SI_AUTH.user = r.data.user;
