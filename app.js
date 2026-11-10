@@ -19,7 +19,13 @@
     var SUPABASE_ANON_KEY = 'sb_publishable_8acY7UihRJ2tSpW3zmFDUA_n24G5Ayq';
     var supabaseClient = null;
     if (typeof supabase !== 'undefined' && supabase.createClient) {
-        supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
+            auth: {
+                persistSession: true,      // Saves the login to localStorage
+                autoRefreshToken: true,    // Keeps the login alive in the background
+                detectSessionInUrl: true   // Handles magic links (if used later)
+            }
+        });
     }
 
     var SI_AUTH = {
@@ -46,8 +52,10 @@
 
         username: function () {
             if (!SI_AUTH.user) return null;
-            var m = (SI_AUTH.user.email || '').match(/^(.*)@sanjana\.local$/);
-            return m ? m[1] : null;
+            var email = SI_AUTH.user.email || '';
+            var m = email.match(/^(.*)@sanjana\.local$/);
+            if (m) return m[1];
+            return email.split('@')[0] || 'User';
         },
 
         signUp: async function (username, password, sq, sa) {
@@ -72,6 +80,10 @@
             });
             if (pr.error) return { error: 'Account created, but profile setup failed. Contact admin.' };
             SI_AUTH.user = (await supabaseClient.auth.getSession()).data.session.user;
+            try {
+                localStorage.removeItem('sanjana.guest_quiz');
+                localStorage.removeItem('sanjana.guest_tutor');
+            } catch (e) { }
             SI_AUTH._emit();
             return { ok: true };
         },
@@ -82,6 +94,10 @@
             var r = await supabaseClient.auth.signInWithPassword({ email: email, password: password });
             if (r.error) return { error: 'Username or password is incorrect.' };
             SI_AUTH.user = r.data.user;
+            try {
+                localStorage.removeItem('sanjana.guest_quiz');
+                localStorage.removeItem('sanjana.guest_tutor');
+            } catch (e) { }
             SI_AUTH._emit();
             return { ok: true };
         },
@@ -412,6 +428,21 @@
             return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
         });
     }
+    function stripHtml(s) {
+        if (!s) return '';
+        return String(s)
+            .replace(/&lt;/g, '<').replace(/&gt;/g, '>')
+            .replace(/<[^>]+>/g, '')
+            .replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&#39;/g, "'")
+            .trim();
+    }
+    // Fix Timezone: Get local YYYY-MM-DD
+    function getTodayLocal() {
+        return new Date().toLocaleDateString('en-CA');
+    }
+    function getWeekAgoLocal() {
+        return new Date(Date.now() - 7 * 86400000).toLocaleDateString('en-CA');
+    }
     function fmtDate(iso) {
         if (!iso) return '—';
         var d = new Date(iso);
@@ -440,7 +471,13 @@
     }
     function toast(msg) {
         var el = $('.toast');
-        if (!el) { el = document.createElement('div'); el.className = 'toast'; document.body.appendChild(el); }
+        if (!el) {
+            el = document.createElement('div');
+            el.className = 'toast';
+            el.setAttribute('role', 'status');
+            el.setAttribute('aria-live', 'polite');
+            document.body.appendChild(el);
+        }
         el.textContent = msg;
         requestAnimationFrame(function () { el.classList.add('show'); });
         clearTimeout(el._t);
@@ -479,8 +516,9 @@
     }
     function _requireLogin(action) {
         if (SI_AUTH.user) return true;
-        toast('Please log in to ' + (action || 'continue') + '.');
-        if (typeof window._openAuthModal === 'function') window._openAuthModal();
+        if (typeof window._openAuthModal === 'function') {
+            window._openAuthModal('Please log in to ' + (action || 'continue') + '.');
+        }
         return false;
     }
 
@@ -557,7 +595,7 @@
 
         read: function () { return Object.assign({}, _mem.read); },
         markRead: function (id) {
-            if (!_requireLogin('track progress')) return;
+            if (!SI_AUTH.user) return; // Silently skip for guests
             if (_mem.read[id]) return;
             _mem.read[id] = Date.now();
             _safeWrite(_cloud('revision_entries').insert({ user_id: SI_AUTH.user.id, item_id: id, type: 'read' }));
@@ -565,8 +603,9 @@
 
         notes: function () { return Object.assign({}, _mem.notes); },
         saveNote: function (id, text) {
-            if (!_requireLogin('save notes')) return;
             _mem.notes[id] = { text: text, at: Date.now() };
+            storeSet('notes', _mem.notes);
+            if (!SI_AUTH.user) return; // Save locally for guests, no prompt
             _safeWrite(_cloud('notes').upsert({ user_id: SI_AUTH.user.id, topic_slug: id, text: text, updated_at: new Date().toISOString() }));
         },
         deleteNote: function (id) {
@@ -577,9 +616,8 @@
 
         missed: function () { return Object.assign({}, _mem.missed); },
         addMissed: function (id) {
-            if (!_requireLogin('track missed questions')) return;
-            if (_mem.missed[id]) return;
-            _mem.missed[id] = Date.now();
+            if (!_mem.missed[id]) { _mem.missed[id] = Date.now(); storeSet('missed', _mem.missed); }
+            if (!SI_AUTH.user) return; // Save locally for guests, don't prompt
             _safeWrite(_cloud('revision_entries').insert({ user_id: SI_AUTH.user.id, item_id: id, type: 'missed' }));
         },
         removeMissed: function (id) {
@@ -608,9 +646,10 @@
 
         quiz: function () { return _mem.quiz; },
         saveQuiz: function (attempt) {
-            if (!_requireLogin('save quiz results')) return;
             _mem.quiz.attempts = (_mem.quiz.attempts || []).concat(attempt).slice(-50);
             _mem.quiz.best = Math.max(_mem.quiz.best || 0, attempt.score);
+            storeSet('quiz', _mem.quiz);
+            if (!SI_AUTH.user) return;
             _safeWrite(_cloud('progress').upsert({ user_id: SI_AUTH.user.id, quiz_attempts: _mem.quiz.attempts, active_days: _mem.days }));
         },
 
@@ -627,7 +666,8 @@
         cleanup: function () { return { bookmarks: _mem.bookmarks.length }; },
 
         reset: async function () {
-            if (!SI_AUTH.user) return;
+            _mem = { bookmarks: [], read: {}, notes: {}, missed: {}, mains: {}, quiz: { attempts: [], best: 0 }, days: [] };
+            if (!SI_AUTH.user) return; // Guest just cleared memory
             await Promise.all([
                 _cloud('bookmarks').delete().eq('user_id', SI_AUTH.user.id),
                 _cloud('notes').delete().eq('user_id', SI_AUTH.user.id),
@@ -1062,7 +1102,7 @@
                 sourcesHTML() +
                 '<section class="art-sec" id="sec-notes"><h2>My notes</h2>' +
                 '<textarea id="noteBox" rows="5" placeholder="Write what you want to remember about this topic…">' + esc(note) + '</textarea>' +
-                '<p class="fine">Notes are securely saved to your account.</p>' +
+                '<p class="fine">' + (SI_AUTH.user ? 'Notes are securely saved to your account.' : 'Log in to save notes to your account.') + '</p>' +
                 '</section>' +
                 '</div>' +
                 '<nav class="toc" aria-label="On this page"><strong>On this page</strong>' +
@@ -1089,7 +1129,7 @@
             var box = document.getElementById('noteBox');
             box.addEventListener('change', function () {
                 SI_STORE.saveNote(t.id, box.value);
-                toast('Note saved.');
+                toast(SI_AUTH.user ? 'Note saved.' : 'Note saved locally (log in to sync).');
             });
             document.title = t.title + ' · SanjanaIAS';
         }
@@ -1114,7 +1154,7 @@
         var head = '<h3>' + esc(t.title) + '</h3><div class="chips">' + chips(t) + '</div>';
         var body = '';
         if (intent === 'background') {
-            body = '<p>' + esc(s.background || t.summary) + '</p>';
+            body = '<p>' + esc(stripHtml(s.background || t.summary)) + '</p>';
             if (s.causes) body += '<h4>Why it happened</h4><p>' + esc(s.causes) + '</p>';
         } else if (intent === 'india') {
             body = '<p>' + esc(s.india || 'No India-specific implication recorded yet.') + '</p>';
@@ -1138,8 +1178,8 @@
             var ms = SEED_QUESTIONS.mains.filter(function (q) { return q.topicId === t.id; }).slice(0, 2);
             body = ms.length ? ms.map(function (q) { return '<p><strong>' + q.marks + ' marks:</strong> ' + esc(q.question) + '</p>'; }).join('') : '<p>No Mains question attached to this topic yet.</p>';
         } else {
-            body = '<p>' + esc(t.summary) + '</p>';
-            if (t.whyItMatters) body += '<h4>Why it matters for UPSC</h4><p>' + esc(t.whyItMatters) + '</p>';
+            body = '<p>' + esc(stripHtml(t.summary)) + '</p>';
+            if (t.whyItMatters) body += '<h4>Why it matters for UPSC</h4><p>' + esc(stripHtml(t.whyItMatters)) + '</p>';
             if ((s.prelimsNotes || []).length) body += '<h4>Remember for Prelims</h4><ul>' + s.prelimsNotes.slice(0, 4).map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul>';
         }
         var srcs = (t.sources || []).slice(0, 3);
@@ -1155,8 +1195,30 @@
     }
     var SI_TUTOR = {
         answer: function (q) {
+            if (allTopics().length === 0) {
+                return { html: '<p>No news collected yet. Please check back later.</p>' };
+            }
             var intent = intentOf(q);
-            var hits = SI_SEARCH.query(q, { limit: 3 });
+            var lower = q.toLowerCase();
+            var hits = [];
+
+            if (lower.includes('most important topic')) {
+                hits = [{ topic: allTopics()[0], score: 100 }];
+            } else if (lower.includes('affect india')) {
+                hits = SI_SEARCH.query('india', { limit: 1 });
+                intent = 'india';
+            } else if (lower.includes('prelims mcq')) {
+                hits = [{ topic: allTopics()[0], score: 100 }];
+                intent = 'mcq';
+            } else if (lower.includes('mains question')) {
+                hits = [{ topic: allTopics()[0], score: 100 }];
+                intent = 'mains';
+            } else if (lower.includes('syllabus connection')) {
+                hits = [{ topic: allTopics()[0], score: 100 }];
+                intent = 'syllabus';
+            } else {
+                hits = SI_SEARCH.query(q, { limit: 3 });
+            }
             if (!hits.length) {
                 return {
                     html:
@@ -1226,19 +1288,26 @@
        10. Pages
        ============================================================ */
     function sectionPage(region, container) {
+        var todayStr = new Date().toISOString().slice(0, 10);
         var topics = allTopics().filter(function (t) {
             return t.region === region || (Array.isArray(t.regions) && t.regions.indexOf(region) > -1);
         });
+
         container.innerHTML =
             '<header class="page-head">' +
             '<p class="eyebrow">' + esc(region === 'telangana' ? 'State Affairs' : region === 'india' ? 'National Affairs' : 'International Affairs') + '</p>' +
             '<h1>' + esc(regionLabel(region)) + '</h1>' +
             '<p class="lede">' + (region === 'world'
-                ? 'Global developments organised by UPSC relevance — international relations, organisations, economy, environment, security and society.'
+                ? 'Global developments organised by UPSC relevance.'
                 : region === 'india'
-                    ? 'Parliament, policy, economy, judiciary, science, environment and security — each mapped to the GS papers.'
-                    : 'A dedicated state research desk — governance, irrigation, agriculture, industry, technology, education, environment and social issues.') + '</p>' +
+                    ? 'Parliament, policy, economy, judiciary, science, environment and security.'
+                    : 'A dedicated state research desk.') + '</p>' +
             '</header>' +
+            '<div class="time-toggle" id="timeToggle" style="margin-bottom: 20px; display: flex; gap: 8px;">' +
+            '<button class="btn btn-primary" data-time="daily" type="button">Today</button>' +
+            '<button class="btn" data-time="weekly" type="button">This Week</button>' +
+            '<button class="btn" data-time="all" type="button">All Time</button>' +
+            '</div>' +
             '<div class="filter-bar">' +
             '<input type="search" id="localSearch" placeholder="Filter ' + regionLabel(region) + ' topics…" aria-label="Filter">' +
             '<select id="paperFilter" aria-label="Paper"><option value="">All papers</option><option>GS I</option><option>GS II</option><option>GS III</option><option>GS IV</option><option>Prelims</option></select>' +
@@ -1246,27 +1315,37 @@
             '</div>' +
             '<p class="result-count" id="resultCount"></p>' +
             '<div class="card-grid" id="grid"></div>' +
-            '<p class="disclaimer">' + (region === 'telangana'
-                ? 'Telangana state news is kept distinct from Andhra Pradesh, Hyderabad-region and national coverage.'
-                : region === 'india'
-                    ? 'Union government, national institutions and national events. State-specific coverage lives in the Telangana section.'
-                    : 'Coverage includes Asia & Indo-Pacific, Europe, North America, South America, Africa, the Middle East and international organisations.') + '</p>';
+            '<p class="disclaimer">Coverage includes relevant developments.</p>';
 
         var grid = $('#grid', container);
         var count = $('#resultCount', container);
         var search = $('#localSearch', container);
         var paper = $('#paperFilter', container);
         var sort = $('#sortFilter', container);
+        var activeTime = 'daily';
+
+        $('#timeToggle', container).addEventListener('click', function (e) {
+            var btn = e.target.closest('button'); if (!btn) return;
+            activeTime = btn.dataset.time;
+            $('#timeToggle button', container).forEach(function (b) { b.classList.toggle('btn-primary', b === btn); });
+            draw();
+        });
 
         function draw() {
             var list = topics.slice();
+            if (activeTime === 'daily') {
+                list = list.filter(function (t) { return t.published === todayStr || t.curated; });
+            } else if (activeTime === 'weekly') {
+                var weekAgo = new Date(Date.now() - 7 * 86400000).toISOString().slice(0, 10);
+                list = list.filter(function (t) { return (t.published || '') >= weekAgo || t.curated; });
+            }
             if (paper.value) list = list.filter(function (t) { return (t.gsPapers || []).indexOf(paper.value) > -1; });
             var q = search.value.trim().toLowerCase();
             if (q) list = list.filter(function (t) {
                 return (t.title + ' ' + t.summary + ' ' + (t.tags || []).join(' ')).toLowerCase().indexOf(q) > -1;
             });
             list = sort.value === 'importance' ? byImportance(list) : byDate(list);
-            grid.innerHTML = list.map(card).join('') || '<p class="fine">Nothing matches these filters yet.</p>';
+            grid.innerHTML = list.map(card).join('') || '<p class="fine">No news found for this timeframe.</p>';
             count.textContent = list.length + ' topic' + (list.length === 1 ? '' : 's') + ' in ' + regionLabel(region);
         }
         [search, paper, sort].forEach(function (el) { el.addEventListener('input', draw); });
@@ -1275,40 +1354,116 @@
 
     var Pages = {
         dashboard: function (main) {
-            var topics = allTopics();
+            var todayStr = new Date().toISOString().slice(0, 10);
+            var weekAgo = new Date(Date.now() - 7 * 86400000).toISOString().slice(0, 10);
+            var activeTime = 'daily';
+
+            function renderDash() {
+                var topics = allTopics().filter(function (t) {
+                    if (activeTime === 'daily') return t.published === todayStr || t.curated;
+                    if (activeTime === 'weekly') return (t.published || '') >= weekAgo || t.curated;
+                    return true; // all
+                });
+                var byRegion = function (r) { return topics.filter(function (t) { return t.region === r; }).length; };
+                var ranked = byImportance(topics);
+                var tod = ranked[0];
+
+                main.innerHTML =
+                    '<div class="time-toggle" id="dashTimeToggle" style="margin-bottom: 20px; display: flex; gap: 8px;">' +
+                    '<button class="btn ' + (activeTime === 'daily' ? 'btn-primary' : '') + '" data-time="daily" type="button">Today</button>' +
+                    '<button class="btn ' + (activeTime === 'weekly' ? 'btn-primary' : '') + '" data-time="weekly" type="button">This Week</button>' +
+                    '<button class="btn ' + (activeTime === 'all' ? 'btn-primary' : '') + '" data-time="all" type="button">All Time</button>' +
+                    '</div>' +
+                    '<section class="hero-block">' +
+                    '<p class="eyebrow" id="todayLabel"></p>' +
+                    '<h1>' + (activeTime === 'daily' ? 'Daily' : activeTime === 'weekly' ? 'Weekly' : 'All-Time') + ' Overview</h1>' +
+                    '<p class="lede">Your world. Your nation. Your state. Your preparation.</p>' +
+                    '<div class="stat-row">' +
+                    '<div class="stat"><strong>' + String(byRegion('world')).padStart(2, '0') + '</strong><span>World topics</span></div>' +
+                    '<div class="stat"><strong>' + String(byRegion('india')).padStart(2, '0') + '</strong><span>India topics</span></div>' +
+                    '<div class="stat"><strong>' + String(byRegion('telangana')).padStart(2, '0') + '</strong><span>Telangana topics</span></div>' +
+                    '</div>' +
+                    '</section>' +
+                    '<section class="panel"><div class="panel-head"><h2>Most important topics</h2><a class="link" href="/briefing">Full briefing →</a></div>' +
+                    '<div class="topic-list">' + (ranked.length ? ranked.slice(0, 5).map(function (t, i) { return listRow(t, i); }).join('') : '<p class="fine">No news collected for this timeframe.</p>') + '</div></section>' +
+                    '<section class="split">' +
+                    '<div class="panel"><div class="panel-head"><h2>Topic of the day</h2></div>' +
+                    (tod ? '<a class="tod" href="/article/' + encodeURIComponent(tod.id) + '">' +
+                        '<img src="' + esc(topicImage(tod)) + '" alt="" onerror="this.onerror=null; this.src=\'' + (ILLUSTRATIONS[tod.region] || ILLUSTRATIONS.default) + '\'">' +
+                        '<div><div class="chips">' + chips(tod) + '</div>' +
+                        '<h3>' + esc(tod.title) + '</h3><p>' + esc(tod.whyItMatters || tod.summary) + '</p>' +
+                        '<span class="link">Open complete research →</span></div></a>' : '<p class="fine">No topics yet.</p>') +
+                    '</div>' +
+                    '<div class="panel"><div class="panel-head"><h2>Preparation plan</h2></div>' +
+                    '<ul class="plan">' +
+                    '<li><a href="/briefing">Read important topics</a><span>30 min</span></li>' +
+                    '<li><a href="/prelims">Prelims practice</a><span>15 min</span></li>' +
+                    '<li><a href="/mains">Mains answer practice</a><span>15 min</span></li>' +
+                    '</ul>' +
+                    '<p class="fine">Design example durations, not prescribed study time.</p>' +
+                    '<a class="btn btn-primary block" href="/ai-tutor">Ask Sanjana AI about today\'s news</a>' +
+                    '</div>' +
+                    '</section>' +
+                    '<section class="panel"><div class="panel-head"><h2>Browse by region</h2></div>' +
+                    '<div class="region-tiles">' +
+                    '<a class="region-tile world" href="/world"><span>World</span><small>' + byRegion('world') + ' topics</small></a>' +
+                    '<a class="region-tile india" href="/india"><span>India</span><small>' + byRegion('india') + ' topics</small></a>' +
+                    '<a class="region-tile telangana" href="/telangana"><span>Telangana</span><small>' + byRegion('telangana') + ' topics</small></a>' +
+                    '</div>' +
+                    '</section>' +
+                    '<section class="panel"><div class="panel-head"><h2>Latest across SanjanaIAS</h2><a class="link" href="/world">All research →</a></div>' +
+                    '<div class="card-grid">' + byDate(topics).slice(0, 6).map(card).join('') + '</div></section>' +
+                    '<p class="disclaimer">SanjanaIAS is an independent educational platform. It is not affiliated with UPSC or the Government of India.</p>';
+
+                var el = $('#todayLabel');
+                if (el) el.textContent = new Date().toLocaleDateString(undefined, { weekday: 'long', day: '2-digit', month: 'long', year: 'numeric' });
+
+                $('#dashTimeToggle').addEventListener('click', function (e) {
+                    var btn = e.target.closest('button'); if (!btn) return;
+                    activeTime = btn.dataset.time;
+                    renderDash();
+                });
+            }
+
+            renderDash();
+        },
+
+        weekly: function (main) {
+            var weekAgo = getWeekAgoLocal();
+            var topics = allTopics().filter(function (t) { return (t.published || '') >= weekAgo || t.curated; });
             var byRegion = function (r) { return topics.filter(function (t) { return t.region === r; }).length; };
             var ranked = byImportance(topics);
             var tod = ranked[0];
 
             main.innerHTML =
                 '<section class="hero-block">' +
-                '<p class="eyebrow" id="todayLabel"></p>' +
-                '<h1>' + (new Date().getHours() < 12 ? 'Good morning' : new Date().getHours() < 17 ? 'Good afternoon' : 'Good evening') + ', Aspirant</h1>' +
-                '<p class="lede">Your world. Your nation. Your state. Your preparation.</p>' +
+                '<p class="eyebrow" id="weeklyLabel"></p>' +
+                '<h1>Weekly Overview</h1>' +
+                '<p class="lede">Your world. Your nation. Your state. Your preparation. (Showing news from the last 7 days)</p>' +
                 '<div class="stat-row">' +
                 '<div class="stat"><strong>' + String(byRegion('world')).padStart(2, '0') + '</strong><span>World topics</span></div>' +
                 '<div class="stat"><strong>' + String(byRegion('india')).padStart(2, '0') + '</strong><span>India topics</span></div>' +
                 '<div class="stat"><strong>' + String(byRegion('telangana')).padStart(2, '0') + '</strong><span>Telangana topics</span></div>' +
                 '</div>' +
                 '</section>' +
-                '<section class="panel"><div class="panel-head"><h2>Today\'s most important topics</h2><a class="link" href="/briefing">Full briefing →</a></div>' +
+                '<section class="panel"><div class="panel-head"><h2>This Week\'s Most Important Topics</h2><a class="link" href="/briefing">Full briefing →</a></div>' +
                 '<div class="topic-list">' + ranked.slice(0, 5).map(function (t, i) { return listRow(t, i); }).join('') + '</div></section>' +
                 '<section class="split">' +
-                '<div class="panel"><div class="panel-head"><h2>Topic of the day</h2></div>' +
+                '<div class="panel"><div class="panel-head"><h2>Topic of the week</h2></div>' +
                 (tod ? '<a class="tod" href="/article/' + encodeURIComponent(tod.id) + '">' +
                     '<img src="' + esc(topicImage(tod)) + '" alt="" onerror="this.onerror=null; this.src=\'' + (ILLUSTRATIONS[tod.region] || ILLUSTRATIONS.default) + '\'">' +
                     '<div><div class="chips">' + chips(tod) + '</div>' +
                     '<h3>' + esc(tod.title) + '</h3><p>' + esc(tod.whyItMatters || tod.summary) + '</p>' +
                     '<span class="link">Open complete research →</span></div></a>' : '<p class="fine">No topics yet.</p>') +
                 '</div>' +
-                '<div class="panel"><div class="panel-head"><h2>Today\'s preparation plan</h2></div>' +
+                '<div class="panel"><div class="panel-head"><h2>Weekly preparation plan</h2></div>' +
                 '<ul class="plan">' +
-                '<li><a href="/briefing">Read important topics</a><span>30 min</span></li>' +
-                '<li><a href="/prelims">Prelims practice</a><span>15 min</span></li>' +
-                '<li><a href="/mains">Mains answer practice</a><span>15 min</span></li>' +
+                '<li><a href="/briefing">Read important topics</a><span>30 min/day</span></li>' +
+                '<li><a href="/prelims">Prelims practice</a><span>15 min/day</span></li>' +
+                '<li><a href="/mains">Mains answer practice</a><span>15 min/day</span></li>' +
                 '</ul>' +
                 '<p class="fine">Design example durations, not prescribed study time.</p>' +
-                '<a class="btn btn-primary block" href="/ai-tutor">Ask Sanjana AI about today\'s news</a>' +
+                '<a class="btn btn-primary block" href="/ai-tutor">Ask Sanjana AI about this week\'s news</a>' +
                 '</div>' +
                 '</section>' +
                 '<section class="panel"><div class="panel-head"><h2>Browse by region</h2></div>' +
@@ -1322,10 +1477,13 @@
                 '<div class="card-grid">' + byDate(topics).slice(0, 6).map(card).join('') + '</div></section>' +
                 '<p class="disclaimer">SanjanaIAS is an independent educational platform. It is not affiliated with UPSC or the Government of India. Sample topics marked <em>illustrative</em> demonstrate layout and classification.</p>';
 
-            var el = $('#todayLabel');
+            var el = $('#weeklyLabel');
             if (el) el.textContent = new Date().toLocaleDateString(undefined, { weekday: 'long', day: '2-digit', month: 'long', year: 'numeric' });
         },
         subjects: function (main) {
+            var todayStr = new Date().toISOString().slice(0, 10);
+            var activeTime = 'daily';
+
             var subjects = [
                 { name: 'Indian Polity & Governance', keywords: ['polity', 'governance', 'constitution'] },
                 { name: 'Indian Economy & Agriculture', keywords: ['economy', 'agriculture', 'banking'] },
@@ -1337,24 +1495,46 @@
                 { name: 'Social Issues & Schemes', keywords: ['social', 'welfare', 'scheme'] }
             ];
 
-            var html = '<header class="page-head"><p class="eyebrow">UPSC Core Subjects</p><h1>Subject-wise Current Affairs</h1><p class="lede">Current affairs integrated directly across the core static General Studies syllabus.</p></header>';
+            function renderSubjects() {
+                var html = '<header class="page-head"><p class="eyebrow">UPSC Core Subjects</p><h1>Subject-wise Current Affairs</h1><p class="lede">Current affairs integrated directly across the core syllabus.</p></header>' +
+                    '<div class="time-toggle" id="subTimeToggle" style="margin-bottom: 20px; display: flex; gap: 8px;">' +
+                    '<button class="btn ' + (activeTime === 'daily' ? 'btn-primary' : '') + '" data-time="daily" type="button">Today</button>' +
+                    '<button class="btn ' + (activeTime === 'weekly' ? 'btn-primary' : '') + '" data-time="weekly" type="button">This Week</button>' +
+                    '<button class="btn ' + (activeTime === 'all' ? 'btn-primary' : '') + '" data-time="all" type="button">All Time</button>' +
+                    '</div>';
 
-            subjects.forEach(function (subj) {
-                var matchedTopics = allTopics().filter(function (t) {
-                    var text = (t.category + ' ' + (t.tags || []).join(' ')).toLowerCase();
-                    return subj.keywords.some(function (k) { return text.indexOf(k) > -1; });
+                var weekAgo = new Date(Date.now() - 7 * 86400000).toISOString().slice(0, 10);
+
+                subjects.forEach(function (subj) {
+                    var matchedTopics = allTopics().filter(function (t) {
+                        // Apply Time Filter first
+                        if (activeTime === 'daily' && t.published !== todayStr && !t.curated) return false;
+                        if (activeTime === 'weekly' && (t.published || '') < weekAgo && !t.curated) return false;
+
+                        // Apply Subject Filter
+                        var text = (t.category + ' ' + (t.tags || []).join(' ')).toLowerCase();
+                        return subj.keywords.some(function (k) { return text.indexOf(k) > -1; });
+                    });
+
+                    html += '<section class="panel"><div class="panel-head"><h2>' + subj.name + '</h2><span class="chip">' + matchedTopics.length + ' topics</span></div>';
+                    if (matchedTopics.length) {
+                        html += '<div class="card-grid">' + matchedTopics.slice(0, 6).map(card).join('') + '</div>';
+                    } else {
+                        html += '<p class="fine">No topics found for this subject in the selected timeframe.</p>';
+                    }
+                    html += '</section>';
                 });
 
-                html += '<section class="panel"><div class="panel-head"><h2>' + subj.name + '</h2><span class="chip">' + matchedTopics.length + ' topics</span></div>';
-                if (matchedTopics.length) {
-                    html += '<div class="card-grid">' + matchedTopics.slice(0, 6).map(card).join('') + '</div>';
-                } else {
-                    html += '<p class="fine">No topics collected for this subject yet.</p>';
-                }
-                html += '</section>';
-            });
+                main.innerHTML = html;
 
-            main.innerHTML = html;
+                $('#subTimeToggle').addEventListener('click', function (e) {
+                    var btn = e.target.closest('button'); if (!btn) return;
+                    activeTime = btn.dataset.time;
+                    renderSubjects();
+                });
+            }
+
+            renderSubjects();
         },
 
         world: function (main) { sectionPage('world', main); },
@@ -1470,7 +1650,7 @@
                 var q = input.value.trim(); if (!q) return;
 
                 // Limit guests to 1 question
-                if (!SI_AUTH.user && _getGuestCount('tutor') >= 1) {
+                if (!SI_AUTH.user && _getGuestCount('tutor') >= 3) {
                     _requireLogin('ask more questions');
                     return;
                 }
@@ -1488,46 +1668,92 @@
         prelims: function (main) {
             main.innerHTML =
                 '<header class="page-head"><p class="eyebrow">MCQs and factual revision</p><h1>Prelims Practice</h1>' +
-                '<p class="lede">Daily MCQs, topic-wise tests, with an explanation for every option.</p></header>' +
-                '<div class="quiz-toolbar">' +
-                '<select id="quizTopic" aria-label="Choose topic"><option value="">All topics</option></select>' +
-                '<select id="quizCount" aria-label="Number of questions"><option value="5">5 questions</option><option value="10" selected>10 questions</option></select>' +
-                '<button class="btn btn-primary" id="startQuiz">Start quiz</button>' +
+                '<p class="lede">Select a timeframe, fetch the topics, and start your quiz.</p></header>' +
+
+                '<div class="panel" id="prelimsFilterPanel" style="margin-bottom: 24px;">' +
+                '<div style="display: flex; gap: 12px; flex-wrap: wrap; align-items: flex-end;">' +
+                '<div style="flex: 1; min-width: 150px;">' +
+                '<label class="field-label" style="font-size: 0.75rem; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; display: block;">Scope</label>' +
+                '<select id="quizScope" style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface-2); color: var(--text);">' +
+                '<option value="today">Today\'s News</option>' +
+                '<option value="week">This Week\'s News</option>' +
+                '<option value="all">All Collected</option>' +
+                '</select>' +
                 '</div>' +
-                '<div id="quizStage" class="panel"><p class="fine">Choose a topic and press Start quiz.</p></div>' +
+                '<div style="flex: 1; min-width: 150px;">' +
+                '<label class="field-label" style="font-size: 0.75rem; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; display: block;">Specific Date</label>' +
+                '<input type="date" id="quizDate" style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface-2); color: var(--text);">' +
+                '</div>' +
+                '<button class="btn btn-primary" id="fetchBtn" style="height: 42px;">Fetch Topics</button>' +
+                '</div></div>' +
+
+                '<div id="fetchResults" style="display: none;">' +
+                '<div class="panel" style="text-align: center;">' +
+                '<h3 id="fetchMsg" style="margin-top: 0;">Found 0 questions</h3>' +
+                '<div class="row-actions" style="justify-content: center;">' +
+                '<button class="btn btn-primary" id="startQuizBtn">Start Quiz</button>' +
+                '<button class="btn" id="allQuestionsBtn">Show All Questions</button>' +
+                '</div>' +
+                '</div>' +
+                '</div>' +
+
+                '<div id="quizStage" class="panel" style="display: none;"></div>' +
                 '<div id="quizResult"></div>';
 
             var bank = SEED_QUESTIONS.prelims;
-            var topicSel = $('#quizTopic', main);
             var stage = $('#quizStage', main);
             var result = $('#quizResult', main);
+            var fetchResults = $('#fetchResults', main);
+            var filterPanel = $('#prelimsFilterPanel', main);
+            var fetchedQuestions = [];
 
-            allTopics().forEach(function (t) {
-                var o = document.createElement('option');
-                o.value = t.id;
-                o.textContent = t.title.length > 60 ? t.title.slice(0, 58) + '…' : t.title;
-                topicSel.appendChild(o);
+            $('#fetchBtn', main).addEventListener('click', function () {
+                var scope = $('#quizScope', main).value;
+                var specificDate = $('#quizDate', main).value;
+
+                var validTopicIds = allTopics().filter(function (t) {
+                    if (specificDate) return t.published === specificDate;
+                    if (scope === 'today') return t.published === new Date().toISOString().slice(0, 10);
+                    if (scope === 'week') {
+                        var weekAgo = new Date(Date.now() - 7 * 86400000).toISOString().slice(0, 10);
+                        return (t.published || '') >= weekAgo;
+                    }
+                    return true; // all
+                }).map(function (t) { return t.id; });
+
+                fetchedQuestions = bank.filter(function (q) { return validTopicIds.indexOf(q.topicId) > -1; });
+
+                $('#fetchMsg', main).textContent = 'Found ' + fetchedQuestions.length + ' questions for this filter.';
+                fetchResults.style.display = 'block';
+                stage.style.display = 'none';
+                result.innerHTML = '';
+            });
+
+            $('#allQuestionsBtn', main).addEventListener('click', function () {
+                fetchedQuestions = bank.slice();
+                $('#fetchMsg', main).textContent = 'Using all ' + fetchedQuestions.length + ' questions in the library.';
             });
 
             var state = null;
-            function start() {
-                // Limit guests to 1 quiz
-                if (!SI_AUTH.user && _getGuestCount('quiz') >= 1) {
+            $('#startQuizBtn', main).addEventListener('click', function () {
+                if (!fetchedQuestions.length) { toast('No questions found for this filter.'); return; }
+
+                if (!SI_AUTH.user && _getGuestCount('quiz') >= 3) {
                     _requireLogin('take another quiz');
                     return;
                 }
                 if (!SI_AUTH.user) _incGuestCount('quiz');
 
-                var topicId = topicSel.value;
-                var n = Number($('#quizCount', main).value);
-                var pool = topicId ? bank.filter(function (q) { return q.topicId === topicId; }) : bank.slice();
-                if (!pool.length) pool = bank.slice();
-                pool = shuffle(pool).slice(0, n);
-                if (!pool.length) { stage.innerHTML = '<p class="fine">No questions in the bank yet.</p>'; return; }
+                filterPanel.style.display = 'none';
+                fetchResults.style.display = 'none';
+                stage.style.display = 'block';
+
+                var pool = shuffle(fetchedQuestions).slice(0, 10);
                 state = { list: pool, i: 0, score: 0, answered: false, answers: [] };
                 result.innerHTML = '';
                 render();
-            }
+            });
+
             function render() {
                 var q = state.list[state.i];
                 var topic = getTopic(q.topicId);
@@ -1541,7 +1767,7 @@
                         return '<button class="option" data-idx="' + idx + '" type="button"><span class="opt-key">' + 'abcd'[idx] + '</span>' + esc(o) + '</button>';
                     }).join('') +
                     '</div>' +
-                    '<div id="feedback"></div>' +
+                    '<div id="feedback" aria-live="polite"></div>' +
                     '<div class="quiz-actions"><button class="btn btn-primary" id="nextQ" disabled>Next</button></div>';
 
                 $('#options', stage).addEventListener('click', function (e) {
@@ -1567,20 +1793,23 @@
                     if (state.i < state.list.length) render(); else finish();
                 });
             }
+
             function finish() {
-                if (!SI_AUTH.user) _incGuestCount('quiz');
                 var total = state.list.length;
                 var pct = Math.round((state.score / total) * 100);
                 SI_STORE.saveQuiz({ at: Date.now(), score: state.score, total: total, answers: state.answers });
-                stage.innerHTML = '<p class="fine">Quiz complete. Start another whenever you like.</p>';
+                stage.style.display = 'none';
                 result.innerHTML = '<div class="panel score-panel"><h2>' + state.score + ' / ' + total + ' correct — ' + pct + '%</h2>' +
                     '<div class="bar"><span style="width:' + pct + '%"></span></div>' +
                     '<p class="fine">Wrong answers were added to your revision list.</p>' +
                     '<div class="row-actions"><a class="btn" href="/revision">Review missed questions</a>' +
-                    '<button class="btn btn-primary" id="againBtn" type="button">Try again</button></div></div>';
-                $('#againBtn', result).addEventListener('click', start);
+                    '<button class="btn btn-primary" id="againBtn" type="button">Start Over</button></div></div>';
+                $('#againBtn', result).addEventListener('click', function () {
+                    filterPanel.style.display = 'block';
+                    result.innerHTML = '';
+                    fetchedQuestions = [];
+                });
             }
-            $('#startQuiz', main).addEventListener('click', start);
         },
 
         mains: function (main) {
@@ -1618,7 +1847,7 @@
                 work.innerHTML =
                     '<h2>' + esc(q.question) + '</h2>' +
                     '<div class="chips"><span class="chip">' + esc(q.paper) + '</span><span class="chip">' + q.marks + ' marks</span>' +
-                    (topic ? '<a class="chip chip-link" href="#/article?id=' + encodeURIComponent(topic.id) + '">' + esc(topic.title.slice(0, 50)) + '…</a>' : '') + '</div>' +
+                    (topic ? '<a class="chip chip-link" href="/article/' + encodeURIComponent(topic.id) + '">' + esc(topic.title.slice(0, 50)) + '…</a>' : '') + '</div>' +
                     '<label class="field-label" for="answerBox">Your answer</label>' +
                     '<textarea id="answerBox" class="answer-box" placeholder="Introduction → body → challenges → way forward → conclusion">' + esc(draft.text || '') + '</textarea>' +
                     '<div class="word-count"><span id="wordCount">0</span> words · target ' + (q.marks === 15 ? 250 : q.marks * 15) + '</div>' +
@@ -1691,7 +1920,7 @@
                     body.innerHTML = noteIds.map(function (id) {
                         var t = getTopic(id);
                         var heading = t
-                            ? '<h3><a href="#/article?id=' + encodeURIComponent(t.id) + '">' + esc(t.title) + '</a></h3>'
+                            ? '<h3><a href="/article/' + encodeURIComponent(t.id) + '">' + esc(t.title) + '</a></h3>'
                             : '<p class="fine">Topic no longer available</p>';
                         return '<div class="panel note-row">' + heading +
                             '<textarea data-note="' + esc(id) + '" rows="4">' + esc(notes[id].text) + '</textarea>' +
@@ -1729,12 +1958,16 @@
                     });
                 } else if (tab === 'reset') {
                     body.innerHTML = '<div class="panel"><h3>Local data</h3>' +
-                        '<p class="fine">Everything SanjanaIAS knows about you lives in this browser only.</p>' +
-                        '<button class="btn danger" id="resetBtn" type="button">Erase all local data</button></div>';
+                        '<p class="fine">Erase your bookmarks, notes, drafts and progress.</p>' +
+                        '<button class="btn danger" id="resetBtn" type="button">Erase all my data</button></div>';
                     $('#resetBtn', body).addEventListener('click', async function () {
                         if (confirm('Erase bookmarks, notes, drafts and progress?')) {
                             await SI_STORE.reset();
-                            toast('Local data erased.');
+                            if (!SI_AUTH.user) {
+                                localStorage.removeItem('sanjana.guest_quiz');
+                                localStorage.removeItem('sanjana.guest_tutor');
+                            }
+                            toast('All data erased.');
                             draw('bookmarks');
                         }
                     });
@@ -1792,7 +2025,7 @@
                 }).join('') || '<p class="fine">No attempts yet.</p>') +
                 '</div>' +
                 '<div class="panel"><h2>Needs another review</h2>' +
-                (Object.keys(missed).length ? '<a class="btn" href="#/revision">' + Object.keys(missed).length + ' missed questions →</a>' : '<p class="fine">Nothing flagged. Good.</p>') +
+                (Object.keys(missed).length ? '<a class="btn" href="/revision">' + Object.keys(missed).length + ' missed questions →</a>' : '<p class="fine">Nothing flagged. Good.</p>') +
                 '</div>';
         }
     };
@@ -1801,7 +2034,7 @@
        11. Shell wiring + router + boot
        ============================================================ */
     var PAGE_TITLES = {
-        dashboard: 'Overview', subjects: 'Subjects', world: 'World', india: 'India', telangana: 'Telangana',
+        dashboard: 'Daily Overview', weekly: 'Weekly Overview', subjects: 'Subjects', world: 'World', india: 'India', telangana: 'Telangana',
         briefing: 'Daily Briefing', article: 'Research', syllabus: 'Syllabus Explorer',
         'ai-tutor': 'Sanjana AI Tutor', prelims: 'Prelims Practice', mains: 'Mains Practice',
         library: 'My Library', revision: 'Revision', progress: 'Progress'
@@ -1836,7 +2069,10 @@
     function markActive(page) {
         $$('.nav-item, .bottom-nav a').forEach(function (a) {
             var target = a.dataset.page;
-            a.classList.toggle('active', target === page);
+            var isActive = target === page;
+            a.classList.toggle('active', isActive);
+            if (isActive) a.setAttribute('aria-current', 'page');
+            else a.removeAttribute('aria-current');
         });
     }
 
@@ -1846,11 +2082,12 @@
         var main = $('#main');
         if (!Pages[page]) {
             markActive('');
-            main.innerHTML = '<div class="panel" style="text-align:center; padding: 60px 20px;">' +
-                '<h1 style="font-size: 3rem; color: var(--gold); margin-bottom: 0;">404</h1>' +
-                '<h2 style="margin-top: 8px;">Page not found</h2>' +
-                '<p class="fine">The page you are looking for does not exist or has been moved.</p>' +
-                '<a class="btn btn-primary" href="/dashboard" style="margin-top: 24px;">Go to Overview</a>' +
+            main.innerHTML = '<div class="panel" style="text-align:center; padding: 60px 20px; max-width: 600px; margin: 40px auto;">' +
+                '<h1 style="font-size: 5rem; color: var(--gold); margin-bottom: 0; line-height: 1;">404</h1>' +
+                '<h2 style="margin-top: 10px; font-size: 1.5rem;">Page not found</h2>' +
+                '<p class="fine" style="margin-bottom: 30px; font-size: 1rem;">The page you are looking for does not exist, has been moved, or is temporarily unavailable.</p>' +
+                '<a class="btn btn-primary" href="/dashboard">Go to Overview</a>' +
+                '<a class="btn" href="/ai-tutor" style="margin-left: 8px;">Ask Sanjana AI</a>' +
                 '</div>';
             document.body.classList.remove('nav-open');
             return;
@@ -1874,6 +2111,20 @@
     }
 
     function wireShell() {
+        /* Smart Header (Hide on scroll down, show on scroll up) */
+        var lastScrollTop = 0;
+        var header = $('.site-header');
+        window.addEventListener('scroll', function () {
+            if (window.innerWidth > 900) return; // Fix: only hide on mobile
+            var st = window.pageYOffset || document.documentElement.scrollTop;
+            if (st > lastScrollTop && st > 60) {
+                header.classList.add('hide-header'); // scrolling down
+            } else {
+                header.classList.remove('hide-header'); // scrolling up
+            }
+            lastScrollTop = st <= 0 ? 0 : st;
+        }, false);
+
         /* Theme toggle */
         $('#themeToggle').addEventListener('click', function () {
             var next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
@@ -1882,9 +2133,21 @@
         });
 
         /* Mobile nav toggle */
-        $('#navToggle').addEventListener('click', function () { document.body.classList.toggle('nav-open'); });
+        $('#navToggle').addEventListener('click', function () {
+            document.body.classList.toggle('nav-open');
+            var isOpen = document.body.classList.contains('nav-open');
+            this.setAttribute('aria-expanded', isOpen);
+            this.setAttribute('aria-label', isOpen ? 'Close navigation' : 'Open navigation');
+        });
         $('#sidebar').addEventListener('click', function (e) {
             if (e.target.closest('a')) document.body.classList.remove('nav-open');
+        });
+        document.addEventListener('click', function (e) {
+            if (document.body.classList.contains('nav-open') &&
+                !e.target.closest('#sidebar') &&
+                !e.target.closest('#navToggle')) {
+                document.body.classList.remove('nav-open');
+            }
         });
 
         /* Search overlay */
@@ -2044,10 +2307,20 @@
         var closeBtn = document.getElementById('authClose');
         if (!modal || !btn) return;
 
-        function open() {
+        function open(msg) {
             if (SI_AUTH.user) renderAccount();
-            else renderLogin();
+            else {
+                renderLogin();
+                if (msg) {
+                    var err = document.getElementById('auError');
+                    if (err) err.textContent = msg;
+                }
+            }
             modal.classList.add('open');
+            setTimeout(function () {
+                var first = body.querySelector('input, select, textarea');
+                if (first) first.focus();
+            }, 50);
         }
         function close() { modal.classList.remove('open'); }
 
@@ -2056,11 +2329,32 @@
         closeBtn.addEventListener('click', close);
         modal.addEventListener('click', function (e) { if (e.target === modal) close(); });
 
+        // Trap focus inside the modal
+        modal.addEventListener('keydown', function (e) {
+            if (e.key !== 'Tab') return;
+            var focusable = body.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+            if (!focusable.length) return;
+            var first = focusable[0];
+            var last = focusable[focusable.length - 1];
+
+            if (e.shiftKey) {
+                if (document.activeElement === first) {
+                    e.preventDefault();
+                    last.focus();
+                }
+            } else {
+                if (document.activeElement === last) {
+                    e.preventDefault();
+                    first.focus();
+                }
+            }
+        });
+
         function renderLogin() {
             body.innerHTML =
                 '<form id="loginForm">' +
                 '<div style="text-align:center; margin-bottom: 16px;">' +
-                '<img src="log.png" alt="Logo" width="48" height="48" style="border-radius: 12px; margin: 0 auto;">' +
+                '<img src="/logo.png" alt="Logo" width="48" height="48" style="border-radius: 12px; margin: 0 auto;">' +
                 '</div>' +
                 '<h2>Log in</h2>' +
                 '<label for="auUsername">Username</label><input id="auUsername" type="text" autocomplete="username" required>' +
@@ -2091,7 +2385,7 @@
             body.innerHTML =
                 '<form id="signupForm">' +
                 '<div style="text-align:center; margin-bottom: 16px;">' +
-                '<img src="log.png" alt="Logo" width="48" height="48" style="border-radius: 12px; margin: 0 auto;">' +
+                '<img src="/logo.png" alt="Logo" width="48" height="48" style="border-radius: 12px; margin: 0 auto;">' +
                 '</div>' +
                 '<h2>Create account</h2>' +
                 '<label for="auUsername">Username</label><input id="auUsername" type="text" autocomplete="username" placeholder="3–24 letters, numbers, underscores">' +
@@ -2190,12 +2484,24 @@
     if (typeof document !== 'undefined') {
         // Intercept link clicks for SPA routing
         document.addEventListener('click', function (e) {
+            if (e.ctrlKey || e.metaKey || e.shiftKey || e.altKey || e.button !== 0) return; // Fix ctrl-click
+
             var link = e.target.closest('a');
-            if (link && link.hostname === window.location.hostname && !link.target && link.getAttribute('href') && link.getAttribute('href').indexOf('http') !== 0) {
-                e.preventDefault();
-                window.history.pushState({}, '', link.getAttribute('href'));
-                route(); // Re-render the page
+            if (!link) return;
+            var href = link.getAttribute('href');
+            if (!href) return;
+
+            if (href.indexOf('http') === 0 ||
+                href.endsWith('.html') ||
+                href.startsWith('#') ||
+                link.classList.contains('skip') ||
+                link.target === '_blank') {
+                return;
             }
+
+            e.preventDefault();
+            window.history.pushState({}, '', href);
+            route(); // Re-render the page
         });
 
         window.addEventListener('popstate', route);

@@ -21,7 +21,7 @@
     <meta property="og:title" content="SanjanaIAS — Free Daily UPSC Current Affairs">
     <meta property="og:description"
         content="Free, daily, syllabus-mapped current affairs for UPSC and government exams. Read, take quizzes, and ask the AI tutor.">
-    <meta property="og:image" content="https://sanjanaias.vercel.app/log.png">
+    <meta property="og:image" content="https://sanjanaias.vercel.app/logo.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:site_name" content="SanjanaIAS">
@@ -32,7 +32,7 @@
     <meta name="twitter:title" content="SanjanaIAS — Free Daily UPSC Current Affairs">
     <meta name="twitter:description"
         content="Master World, India, and Telangana news with our AI tutor, prelims quizzes, and mains practice. 100% free.">
-    <meta name="twitter:image" content="https://sanjanaias.vercel.app/log.png">
+    <meta name="twitter:image" content="https://sanjanaias.vercel.app/logo.png">
 
     <!-- Preconnects for Speed -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -46,10 +46,10 @@
         rel="stylesheet">
 
     <!-- Favicon -->
-    <link rel="icon" href="log.png">
+    <link rel="icon" href="/logo.png">
 
     <!-- Styles -->
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="/styles.css">
 
     <!-- Structured Data (JSON-LD) for Google Rich Snippets -->
     <script type="application/ld+json">
@@ -65,7 +65,7 @@
           "inLanguage": "en-IN",
           "potentialAction": {
             "@type": "SearchAction",
-            "target": "https://sanjanaias.vercel.app//dashboard?q={search_term_string}",
+            "target": "https://sanjanaias.vercel.app/dashboard?q={search_term_string}",
             "query-input": "required name=search_term_string"
           }
         },
@@ -74,7 +74,7 @@
           "@id": "https://sanjanaias.vercel.app/organization",
           "name": "SanjanaIAS",
           "url": "https://sanjanaias.vercel.app/",
-          "logo": "https://sanjanaias.vercel.app/log.png",
+          "logo": "https://sanjanaias.vercel.app/logo.png",
           "sameAs": [
             "https://instagram.com/sanjjuu.thoughts"
           ]
@@ -88,7 +88,7 @@
           "about": { "@id": "https://sanjanaias.vercel.app/organization" },
           "primaryImageOfPage": {
             "@type": "ImageObject",
-            "url": "https://sanjanaias.vercel.app/log.png"
+            "url": "https://sanjanaias.vercel.app/logo.png"
           },
           "inLanguage": "en-IN"
         }
@@ -109,12 +109,13 @@
 </head>
 
 <body>
-    <a class="skip" href="main">Skip to content</a>
+    <a class="skip" href="#main">Skip to content</a>
 
     <header class="site-header">
-        <button class="icon-btn nav-toggle" id="navToggle" aria-label="Open navigation" type="button">☰</button>
+        <button class="icon-btn nav-toggle" id="navToggle" aria-label="Open navigation" aria-expanded="false"
+            type="button">☰</button>
         <a class="brand" href="/dashboard">
-            <img src="log.png" alt="SanjanaIAS Logo" width="32" height="32"
+            <img src="/logo.png" alt="SanjanaIAS Logo" width="32" height="32"
                 style="border-radius: 8px; object-fit: cover;">
             <span class="brand-text"><strong>SanjanaIAS</strong><em>Study Intelligence</em></span>
         </a>
@@ -133,20 +134,13 @@
             <div class="nav-group">
                 <h4>Daily</h4>
                 <a class="nav-item" data-page="dashboard" href="/dashboard"><span class="ico"
-                        aria-hidden="true">▦</span>Overview</a>
+                        aria-hidden="true">▦</span>Daily Overview</a>
+                <a class="nav-item" data-page="weekly" href="/weekly"><span class="ico"
+                        aria-hidden="true">🗓️</span>Weekly Overview</a>
                 <a class="nav-item" data-page="subjects" href="/subjects"><span class="ico"
                         aria-hidden="true">📚</span>Subjects</a>
                 <a class="nav-item" data-page="briefing" href="/briefing"><span class="ico"
                         aria-hidden="true">☀</span>Daily Briefing</a>
-            </div>
-            <div class="nav-group">
-                <h4>Research</h4>
-                <a class="nav-item" data-page="world" href="/world"><span class="ico"
-                        aria-hidden="true">◍</span>World</a>
-                <a class="nav-item" data-page="india" href="/india"><span class="ico"
-                        aria-hidden="true">◉</span>India</a>
-                <a class="nav-item" data-page="telangana" href="/telangana"><span class="ico"
-                        aria-hidden="true">◈</span>Telangana</a>
             </div>
             <div class="nav-group">
                 <h4>Learn</h4>
@@ -168,8 +162,6 @@
                     Library</a>
                 <a class="nav-item" data-page="revision" href="/revision"><span class="ico"
                         aria-hidden="true">↻</span>Revision</a>
-                <a class="nav-item" data-page="progress" href="/progress"><span class="ico"
-                        aria-hidden="true">▥</span>Progress</a>
             </div>
         </aside>
 
@@ -181,14 +173,14 @@
     <nav class="bottom-nav" aria-label="Primary">
         <a data-page="dashboard" href="/dashboard"><span class="ico" aria-hidden="true">▦</span>Overview</a>
         <a data-page="world" href="/world"><span class="ico" aria-hidden="true">◍</span>World</a>
-        <a data-page="india" href="/india"><span class="ico" aria-hidden="true">◉</span>India</a>
         <a data-page="telangana" href="/telangana"><span class="ico" aria-hidden="true">◈</span>Telangana</a>
-        <a data-page="ai-tutor" href="/ai-tutor"><span class="ico" aria-hidden="true">✦</span>AI</a>
+        <a data-page="india" href="/india"><span class="ico" aria-hidden="true">◉</span>India</a>
+        <a data-page="progress" href="/progress"><span class="ico" aria-hidden="true">▥</span>Progress</a>
     </nav>
 
     <footer class="site-footer">
         <p style="display: flex; align-items: center; gap: 8px;">
-            <img src="log.png" alt="Logo" width="24" height="24" style="border-radius: 4px;">
+            <img src="/logo.png" alt="Logo" width="24" height="24" style="border-radius: 4px;">
             <strong>SanjanaIAS</strong> — Understand the world. Prepare for the future.
         </p>
         <p>An independent educational platform. Not affiliated with UPSC or the Government of India.
@@ -239,7 +231,7 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.8/dist/umd/supabase.js"></script>
-    <script src="app.js"></script>
+    <script src="/app.js"></script>
 </body>
 
 </html>

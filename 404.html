@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en-IN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>404 · Page Not Found · SanjanaIAS</title>
+    <link rel="icon" href="/log.png">
+    <link rel="stylesheet" href="/styles.css">
+    <script>
+        (function () {
+            try {
+                var t = localStorage.getItem('sanjana.theme');
+                if (!t) t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+                document.documentElement.setAttribute('data-theme', t);
+            } catch (e) { }
+        })();
+    </script>
+</head>
+
+<body style="display: flex; align-items: center; justify-content: center; min-height: 100vh; margin: 0;">
+    <div class="panel" style="max-width: 500px; text-align: center; padding: 60px 20px;">
+        <h1 style="font-size: 5rem; color: var(--gold); margin-bottom: 0; line-height: 1;">404</h1>
+        <h2 style="margin-top: 10px;">Page not found</h2>
+        <p class="fine" style="margin-bottom: 30px; font-size: 1rem;">The page you are looking for does not exist, has
+            been moved, or is temporarily unavailable.</p>
+        <a class="btn btn-primary" href="/dashboard">Go to Overview</a>
+        <a class="btn" href="/ai-tutor" style="margin-left: 8px;">Ask Sanjana AI</a>
+    </div>
+</body>
+
+</html>

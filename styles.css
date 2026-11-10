@@ -1747,12 +1747,18 @@ p {
         z-index: 100;
         transform: translateX(-105%);
         transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        height: auto;
+        height: calc(100dvh - 63px);
+        /* Fix sidebar height bug */
         box-shadow: var(--shadow-lg);
     }
 
     body.nav-open .sidebar {
         transform: translateX(0);
+    }
+
+    /* Hide bottom nav when the side menu is open */
+    body.nav-open .bottom-nav {
+        display: none !important;
     }
 
     body.nav-open::after {
@@ -1772,12 +1778,23 @@ p {
         display: none;
     }
 
+    .site-header {
+        padding: 12px 12px;
+        gap: 8px;
+    }
+
     .search-trigger {
         justify-content: center;
         max-width: 42px;
         padding: 0;
         border-radius: 50%;
     }
+
+    .brand-text strong {
+        font-size: 1rem;
+    }
+
+    /* Fix header overflow */
 
     .search-trigger kbd {
         display: none;
@@ -1806,7 +1823,8 @@ p {
         flex-direction: column;
         align-items: center;
         gap: 4px;
-        font-size: 0.65rem;
+        font-size: 0.75rem;
+        /* Fix: bigger text */
         color: var(--muted);
         font-weight: 600;
     }
@@ -1835,7 +1853,7 @@ p {
     }
 
     .chat-shell {
-        height: 70vh;
+        height: 70dvh;
     }
 
     .card-grid {
@@ -2079,7 +2097,7 @@ button:focus-visible {
    11. Mobile Fixes, 3D Animations & Instagram
    ============================================================ */
 
-/* 1. 3D Card Tilt Effect */
+/* 3D Card Tilt Effect */
 .card-grid {
     perspective: 1000px;
 }
@@ -2095,7 +2113,7 @@ button:focus-visible {
     z-index: 10;
 }
 
-/* 2. Floating Animation for Topic of the Day */
+/* Floating Animation */
 @keyframes float {
     0% {
         transform: translateY(0px);
@@ -2115,50 +2133,12 @@ button:focus-visible {
     box-shadow: 0 15px 25px -10px rgba(0, 0, 0, 0.3);
 }
 
-/* 3. Page Entrance Animation */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.content>* {
-    animation: fadeInUp 0.5s ease-out forwards;
-    opacity: 0;
-}
-
-.content>*:nth-child(1) {
-    animation-delay: 0.05s;
-}
-
-.content>*:nth-child(2) {
-    animation-delay: 0.1s;
-}
-
-.content>*:nth-child(3) {
-    animation-delay: 0.15s;
-}
-
-.content>*:nth-child(4) {
-    animation-delay: 0.2s;
-}
-
-.content>*:nth-child(5) {
-    animation-delay: 0.25s;
-}
-
-/* 4. Instagram Badge */
+/* Instagram Badge */
 .insta-badge {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 10px 20px;
+    padding: 10px 24px;
     background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
     color: #fff !important;
     border-radius: 999px;
@@ -2174,38 +2154,88 @@ button:focus-visible {
     box-shadow: 0 6px 20px rgba(220, 39, 67, 0.5);
 }
 
-[data-theme="dark"] .insta-badge {
-    box-shadow: 0 4px 15px rgba(220, 39, 67, 0.5);
-}
-
-/* 5. Mobile UI Fixes */
+/* --- MOBILE FIXES --- */
 @media (max-width: 900px) {
 
-    /* Prevent content from hiding behind the fixed bottom nav */
+    /* 1. Fix Bottom Nav overlap */
     .content {
-        padding-bottom: 110px !important;
+        padding-bottom: 100px !important;
+        /* Prevents content from hiding behind bottom nav */
+        overflow-x: hidden;
     }
 
-    /* Make bottom nav safe for iPhones (notch area) */
+    /* 2. Bottom Nav Styling */
     .bottom-nav {
-        padding-bottom: calc(12px + env(safe-area-inset-bottom));
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        background: var(--surface);
+        border-top: 1px solid var(--border);
+        padding: 8px 4px calc(8px + env(safe-area-inset-bottom));
+        box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.05);
     }
 
-    /* Ensure buttons are touch-friendly (min 44px) */
+    .bottom-nav a {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+        font-size: 0.65rem;
+        font-weight: 600;
+        color: var(--muted);
+        text-decoration: none;
+    }
+
+    .bottom-nav a.active {
+        color: var(--accent);
+    }
+
+    .bottom-nav a .ico {
+        font-size: 1.2rem;
+    }
+
+    /* 3. Prevent horizontal scrolling and grid overflow */
+    body,
+    html {
+        overflow-x: hidden;
+        width: 100%;
+    }
+
+    .card-grid {
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
+    }
+
+    .split,
+    .three-col,
+    .article-layout,
+    .mains-layout {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* 4. Make buttons touch-friendly */
     .btn,
     .icon-btn,
     .nav-item,
-    .option {
-        min-height: 44px;
+    .option,
+    select,
+    .tab,
+    .chip-btn,
+    .bm-btn {
+        min-height: 48px;
     }
 
-    /* Make the search overlay full screen on mobile */
+    /* 5. Fix Search Overlay on mobile */
     .overlay {
         padding: 0;
     }
 
     .overlay-box {
-        height: 100vh;
+        height: 100%;
         border-radius: 0;
         display: flex;
         flex-direction: column;
@@ -2216,45 +2246,239 @@ button:focus-visible {
         flex: 1;
     }
 
-    /* 3D touch feedback on mobile */
-    .topic-card:active {
-        transform: scale(0.97);
+    /* 6. Hide TOC on mobile */
+    .toc {
+        display: none;
     }
 }
 
-/* Mobile UI Refinements from Guide */
-@media (max-width: 768px) {
+/* ============================================================
+   12. Mobile P1/P2 Fixes
+   ============================================================ */
 
-    /* 1. Force single-column cards on mobile */
-    .card-grid {
-        grid-template-columns: 1fr !important;
-        gap: 16px !important;
+/* Fix iOS input zoom (must be 16px) */
+@media (max-width: 900px) {
+
+    input,
+    select,
+    textarea,
+    .chat-form input {
+        font-size: 16px !important;
+    }
+}
+
+@media (max-width: 900px) {
+
+    /* 1. Sidebar scrolling & body lock */
+    body.nav-open {
+        overflow: hidden;
     }
 
-    /* 2. Prevent horizontal scroll */
-    body,
-    html {
-        overflow-x: hidden;
-        width: 100%;
+    .sidebar {
+        height: calc(100dvh - 63px);
+        /* Fix overlapping height */
+        overflow-y: auto;
     }
 
-    /* 3. Larger touch targets for links and buttons */
-    .nav-item,
-    .bottom-nav a {
-        min-height: 48px;
-        display: flex;
-        align-items: center;
-    }
-
-    /* 4. Better Hero spacing */
-    .hero-block h1 {
-        font-size: 1.8rem;
-        line-height: 1.2;
-    }
-
-    /* 5. Make sure the bottom nav doesn't cover the footer */
+    /* 2. Bottom nav overlap fix */
+    .content,
     .site-footer {
-        margin-bottom: 80px;
-        /* Height of bottom nav */
+        padding-bottom: calc(90px + env(safe-area-inset-bottom)) !important;
     }
+
+    /* 3. Auth Modal height */
+    .auth-box {
+        max-height: 90dvh;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* 4. Header overflow fix */
+    .brand-text em {
+        display: none;
+    }
+
+    .search-trigger kbd {
+        display: none;
+    }
+
+    #lastUpdated {
+        display: none;
+    }
+
+    .search-trigger {
+        max-width: 42px;
+        padding: 0;
+        border-radius: 50%;
+        justify-content: center;
+    }
+
+    .search-trigger span {
+        display: none;
+    }
+
+    .search-trigger::before {
+        content: "";
+        display: inline-block;
+        width: 18px;
+        height: 18px;
+        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%2364748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>');
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+
+    /* 5. Layout stacking */
+    .mains-layout,
+    .article-layout,
+    .split,
+    .three-col {
+        grid-template-columns: 1fr !important;
+    }
+
+    .toc {
+        display: none !important;
+    }
+
+    /* Hide TOC on mobile */
+
+    /* 6. Wrap flex items */
+    .chips,
+    .article-meta,
+    .article-actions,
+    .card-foot,
+    .row-actions,
+    .quiz-meta,
+    .overlay-filters,
+    .suggestions,
+    .filter-bar,
+    .quiz-toolbar {
+        flex-wrap: wrap;
+    }
+
+    /* 7. Touch targets & text wrapping */
+    .btn,
+    .icon-btn,
+    .nav-item,
+    .option,
+    select {
+        min-height: 48px;
+    }
+
+    .option {
+        white-space: normal;
+        text-align: left;
+    }
+
+    .src-list a {
+        overflow-wrap: anywhere;
+    }
+
+    .chat-form input {
+        min-width: 0;
+        /* Fix Ask button being pushed off-screen */
+    }
+}
+
+@media (max-width: 900px) {
+    .toast {
+        bottom: calc(90px + env(safe-area-inset-bottom));
+    }
+
+    .chat-form .btn {
+        flex-shrink: 0;
+    }
+
+    .chat-shell {
+        height: 70dvh;
+    }
+}
+
+@media (max-width: 560px) {
+    .syllabus-areas {
+        columns: 1;
+    }
+
+    .list-row {
+        flex-wrap: wrap;
+    }
+
+    .list-row .lr-meta {
+        width: 100%;
+        margin-top: 8px;
+        text-align: right;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .tod img {
+        animation: none !important;
+    }
+}
+
+/* ============================================================
+   13. Fix Dark Mode Text Colors in Forms
+   ============================================================ */
+
+/* Force text to be white in dark mode for all inputs, textareas, selects */
+[data-theme="dark"] input,
+[data-theme="dark"] select,
+[data-theme="dark"] textarea,
+[data-theme="dark"] .auth-box input,
+[data-theme="dark"] .chat-form input,
+[data-theme="dark"] .answer-box,
+[data-theme="dark"] .note-row textarea {
+    color: var(--text) !important;
+}
+
+/* Ensure quiz options text is white */
+[data-theme="dark"] .option {
+    color: var(--text) !important;
+}
+
+/* Fix the text color inside the dropdown menu options (Topic Select, Sort, etc.) */
+[data-theme="dark"] option {
+    background-color: var(--surface-2);
+    color: var(--text);
+}
+
+/* Make sure placeholders are readable but not too bright */
+[data-theme="dark"] ::placeholder {
+    color: var(--muted) !important;
+    opacity: 1;
+}
+
+/* Clean filter inputs */
+.field-label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--muted);
+    margin-bottom: 6px;
+}
+
+select,
+input[type="date"] {
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 10px 12px;
+    border-radius: var(--radius-sm);
+    font-family: inherit;
+    outline: none;
+}
+
+select:focus,
+input[type="date"]:focus {
+    border-color: var(--accent);
+}
+
+/* Smart Header Animation */
+.site-header {
+    transition: transform 0.3s ease-in-out, background 0.3s ease;
+}
+
+.site-header.hide-header {
+    transform: translateY(-100%);
 }
