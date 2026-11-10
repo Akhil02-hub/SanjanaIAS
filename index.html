@@ -35,6 +35,7 @@
     <meta name="twitter:image" content="https://sanjanaias.vercel.app/logo.png">
 
     <!-- Preconnects for Speed -->
+    <link rel="manifest" href="/manifest.json">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdn.jsdelivr.net">
@@ -113,55 +114,154 @@
 
     <header class="site-header">
         <button class="icon-btn nav-toggle" id="navToggle" aria-label="Open navigation" aria-expanded="false"
-            type="button">☰</button>
-        <a class="brand" href="/dashboard">
-            <img src="/logo.png" alt="SanjanaIAS Logo" width="32" height="32"
-                style="border-radius: 8px; object-fit: cover;">
-            <span class="brand-text"><strong>SanjanaIAS</strong><em>Study Intelligence</em></span>
-        </a>
-        <button class="search-trigger" id="searchTrigger" type="button" aria-label="Search">
-            <span>Search any topic, event, policy or concept…</span><kbd>Ctrl K</kbd>
+            type="button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
         </button>
+
+        <a class="brand" href="/dashboard" aria-label="SanjanaIAS Home">
+            <img src="/logo.png" alt="SanjanaIAS Logo" width="34" height="34"
+                style="border-radius: 8px; object-fit: cover;">
+            <span class="brand-text">
+                <strong>SanjanaIAS</strong>
+                <em style="color: var(--green); font-size: 0.6rem; font-weight: 800; letter-spacing: 0.1em;">100%
+                    FREE</em>
+            </span>
+        </a>
+
+        <button class="search-trigger" id="searchTrigger" type="button" aria-label="Search current affairs">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                style="margin-right: 8px; opacity: 0.6;">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <span>Search topics, policies, schemes…</span>
+            <kbd>Ctrl K</kbd>
+        </button>
+
         <div class="header-right">
             <span class="updated" id="lastUpdated"></span>
-            <button class="icon-btn" id="authBtn" type="button" aria-label="Account">👤</button>
-            <button class="icon-btn" id="themeToggle" type="button" aria-label="Toggle dark mode">◐</button>
+            <button class="icon-btn" id="authBtn" type="button" aria-label="Account Login">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+            </button>
+            <button class="icon-btn" id="themeToggle" type="button" aria-label="Toggle dark mode">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </button>
         </div>
     </header>
 
     <div class="layout">
         <aside id="sidebar" class="sidebar">
             <div class="nav-group">
-                <h4>Daily</h4>
-                <a class="nav-item" data-page="dashboard" href="/dashboard"><span class="ico"
-                        aria-hidden="true">▦</span>Daily Overview</a>
-                <a class="nav-item" data-page="weekly" href="/weekly"><span class="ico"
-                        aria-hidden="true">🗓️</span>Weekly Overview</a>
-                <a class="nav-item" data-page="subjects" href="/subjects"><span class="ico"
-                        aria-hidden="true">📚</span>Subjects</a>
-                <a class="nav-item" data-page="briefing" href="/briefing"><span class="ico"
-                        aria-hidden="true">☀</span>Daily Briefing</a>
+                <h4>Daily Current Affairs</h4>
+                <a class="nav-item" data-page="dashboard" href="/dashboard">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="14" width="7" height="7"></rect>
+                        <rect x="3" y="14" width="7" height="7"></rect>
+                    </svg>
+                    Daily Overview
+                </a>
+                <a class="nav-item" data-page="weekly" href="/weekly">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                    </svg>
+                    Weekly Overview
+                </a>
+                <a class="nav-item" data-page="subjects" href="/subjects">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                    </svg>
+                    Subjects
+                </a>
+                <a class="nav-item" data-page="briefing" href="/briefing">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                        <polyline points="10 9 9 9 8 9"></polyline>
+                    </svg>
+                    Daily Briefing
+                </a>
             </div>
             <div class="nav-group">
-                <h4>Learn</h4>
-                <a class="nav-item" data-page="syllabus" href="/syllabus"><span class="ico"
-                        aria-hidden="true">▤</span>Syllabus Explorer</a>
-                <a class="nav-item" data-page="ai-tutor" href="/ai-tutor"><span class="ico"
-                        aria-hidden="true">✦</span>Sanjana AI</a>
+                <h4>Learn & Map</h4>
+                <a class="nav-item" data-page="syllabus" href="/syllabus">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                        <polyline points="2 17 12 22 22 17"></polyline>
+                        <polyline points="2 12 12 17 22 12"></polyline>
+                    </svg>
+                    Syllabus Explorer
+                </a>
+                <a class="nav-item" data-page="ai-tutor" href="/ai-tutor">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path
+                            d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83">
+                        </path>
+                    </svg>
+                    Sanjana AI
+                </a>
             </div>
             <div class="nav-group">
                 <h4>Practise</h4>
-                <a class="nav-item" data-page="prelims" href="/prelims"><span class="ico"
-                        aria-hidden="true">✓</span>Prelims Practice</a>
-                <a class="nav-item" data-page="mains" href="/mains"><span class="ico" aria-hidden="true">✎</span>Mains
-                    Practice</a>
+                <a class="nav-item" data-page="prelims" href="/prelims">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="9 11 12 14 22 4"></polyline>
+                        <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+                    </svg>
+                    Prelims Practice
+                </a>
+                <a class="nav-item" data-page="mains" href="/mains">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                        <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                    </svg>
+                    Mains Practice
+                </a>
             </div>
             <div class="nav-group">
-                <h4>Personal</h4>
-                <a class="nav-item" data-page="library" href="/library"><span class="ico" aria-hidden="true">❑</span>My
-                    Library</a>
-                <a class="nav-item" data-page="revision" href="/revision"><span class="ico"
-                        aria-hidden="true">↻</span>Revision</a>
+                <h4>My Prep</h4>
+                <a class="nav-item" data-page="library" href="/library">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+                    </svg>
+                    My Library
+                </a>
+                <a class="nav-item" data-page="revision" href="/revision">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"></path>
+                    </svg>
+                    Revision
+                </a>
             </div>
         </aside>
 
@@ -170,45 +270,135 @@
         </main>
     </div>
 
-    <nav class="bottom-nav" aria-label="Primary">
-        <a data-page="dashboard" href="/dashboard"><span class="ico" aria-hidden="true">▦</span>Overview</a>
-        <a data-page="world" href="/world"><span class="ico" aria-hidden="true">◍</span>World</a>
-        <a data-page="telangana" href="/telangana"><span class="ico" aria-hidden="true">◈</span>Telangana</a>
-        <a data-page="india" href="/india"><span class="ico" aria-hidden="true">◉</span>India</a>
-        <a data-page="progress" href="/progress"><span class="ico" aria-hidden="true">▥</span>Progress</a>
+    <nav class="bottom-nav" aria-label="Mobile Primary Navigation">
+        <a data-page="dashboard" href="/dashboard">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="7" height="7"></rect>
+                <rect x="14" y="3" width="7" height="7"></rect>
+                <rect x="14" y="14" width="7" height="7"></rect>
+                <rect x="3" y="14" width="7" height="7"></rect>
+            </svg>
+            <span>Overview</span>
+        </a>
+        <a data-page="world" href="/world">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="2" y1="12" x2="22" y2="12"></line>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z">
+                </path>
+            </svg>
+            <span>World</span>
+        </a>
+        <a data-page="telangana" href="/telangana">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+            <span>Telangana</span>
+        </a>
+        <a data-page="india" href="/india">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon
+                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                </polygon>
+            </svg>
+            <span>India</span>
+        </a>
+        <a data-page="progress" href="/progress">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="20" x2="18" y2="10"></line>
+                <line x1="12" y1="20" x2="12" y2="4"></line>
+                <line x1="6" y1="20" x2="6" y2="14"></line>
+            </svg>
+            <span>Progress</span>
+        </a>
     </nav>
 
     <footer class="site-footer">
-        <p style="display: flex; align-items: center; gap: 8px;">
-            <img src="/logo.png" alt="Logo" width="24" height="24" style="border-radius: 4px;">
-            <strong>SanjanaIAS</strong> — Understand the world. Prepare for the future.
-        </p>
-        <p>An independent educational platform. Not affiliated with UPSC or the Government of India.
-            Content is compiled from public sources; always verify against the original document before relying on it.
-        </p>
-        <p><a href="/syllabus">Syllabus Explorer</a> · <a href="/library">My Library</a> ·
-            <a href="/revision">Revision</a> · <a href="/progress">Progress</a>
-        </p>
-        <p style="margin-top: 16px; font-size: 0.75rem;">
-            <a href="privacy.html">Privacy Policy</a> · <a href="terms.html">Terms of Use</a>
-        </p>
-        <div style="margin-top: 24px; display: flex; justify-content: center;">
-            <a href="https://instagram.com/sanjjuu.thoughts" target="_blank" rel="noopener noreferrer"
-                class="insta-badge">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                </svg>
-                @sanjjuu.thoughts
-            </a>
+        <div
+            style="max-width: 1000px; margin: 0 auto; text-align: left; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 32px; margin-bottom: 32px;">
+            <div>
+                <p style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px;">
+                    <img src="/logo.png" alt="Logo" width="24" height="24" style="border-radius: 4px;">
+                    <strong style="color: var(--text); font-size: 1.1rem;">SanjanaIAS</strong>
+                </p>
+                <p style="font-size: 0.85rem;">Understand the world.<br>Prepare for the future.</p>
+                <p style="font-size: 0.8rem; color: var(--green); font-weight: 700; margin-top: 8px;">100% Free. No Ads.
+                </p>
+            </div>
+            <div>
+                <h4
+                    style="color: var(--text); margin-bottom: 12px; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em;">
+                    Study Material</h4>
+                <ul
+                    style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px; font-size: 0.85rem;">
+                    <li><a href="/syllabus" style="color: var(--muted); text-decoration: none;">Syllabus Explorer</a>
+                    </li>
+                    <li><a href="/prelims" style="color: var(--muted); text-decoration: none;">Prelims Quiz</a></li>
+                    <li><a href="/mains" style="color: var(--muted); text-decoration: none;">Mains Practice</a></li>
+                    <li><a href="/ai-tutor" style="color: var(--muted); text-decoration: none;">Sanjana AI</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4
+                    style="color: var(--text); margin-bottom: 12px; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em;">
+                    Account</h4>
+                <ul
+                    style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px; font-size: 0.85rem;">
+                    <li><a href="/library" style="color: var(--muted); text-decoration: none;">My Library</a></li>
+                    <li><a href="/revision" style="color: var(--muted); text-decoration: none;">Revision List</a></li>
+                    <li><a href="/progress" style="color: var(--muted); text-decoration: none;">My Progress</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4
+                    style="color: var(--text); margin-bottom: 12px; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em;">
+                    Legal & Connect</h4>
+                <ul
+                    style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px; font-size: 0.85rem;">
+                    <li><a href="privacy.html" style="color: var(--muted); text-decoration: none;">Privacy Policy</a>
+                    </li>
+                    <li><a href="terms.html" style="color: var(--muted); text-decoration: none;">Terms of Use</a></li>
+                    <li>
+                        <a href="https://instagram.com/sanjjuu.thoughts" target="_blank" rel="noopener noreferrer"
+                            class="insta-badge"
+                            style="margin-top: 8px; display: inline-flex; padding: 6px 12px; font-size: 0.75rem;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" style="margin-right: 6px;">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                            </svg>
+                            @sanjjuu.thoughts
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div
+            style="max-width: 1000px; margin: 0 auto; border-top: 1px solid var(--border); padding-top: 24px; text-align: center; font-size: 0.8rem;">
+            <p>An independent educational platform. Not affiliated with UPSC or the Government of India.</p>
+            <p>Content is compiled from public sources; always verify against the original document before relying on
+                it.</p>
         </div>
     </footer>
 
     <div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-label="Search SanjanaIAS">
         <div class="overlay-box">
             <div class="overlay-head">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    style="color: var(--muted);">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
                 <input type="search" id="overlayInput" placeholder="Search topics, events, policies, schemes…"
                     aria-label="Search">
                 <button class="icon-btn" id="overlayClose" type="button" aria-label="Close search">✕</button>
@@ -232,6 +422,15 @@
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.8/dist/umd/supabase.js"></script>
     <script src="/app.js"></script>
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js').catch(err => console.log('SW registration failed', err));
+            });
+        }
+    </script>
+
 </body>
 
 </html>

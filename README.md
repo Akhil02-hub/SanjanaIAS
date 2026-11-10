@@ -14,7 +14,7 @@ A ₹0, source-grounded UPSC current affairs platform. Built as a static fronten
 - **Frontend:** HTML5, CSS3, Vanilla JavaScript (Single-file `app.js`).
 - **Database & Auth:** Supabase (PostgreSQL + RLS).
 - **Automation:** GitHub Actions (Cron) + Node.js collector script.
-- **Hosting:** GitHub Pages.
+- **Hosting:** vercel.
 
 ## ⚙️ Setup Instructions
 

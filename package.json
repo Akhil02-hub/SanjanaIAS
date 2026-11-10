@@ -1,0 +1,15 @@
+{
+    "name": "sanjanaias",
+    "version": "1.0.0",
+    "description": "UPSC Current Affairs Collector",
+    "main": "scripts/collect-news.js",
+    "type": "module",
+    "scripts": {
+        "collect": "node scripts/collect-news.js"
+    },
+    "dependencies": {
+        "@supabase/supabase-js": "^2.39.8",
+        "rss-parser": "^3.13.0",
+        "dotenv": "^16.4.5"
+    }
+}

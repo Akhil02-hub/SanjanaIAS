@@ -1,0 +1,23 @@
+# SanjanaIAS
+
+> 100% Free, daily, syllabus-mapped current affairs for UPSC, IAS, IPS, and government exam preparation.
+
+SanjanaIAS is an independent educational platform providing current affairs analysis, AI-powered tutoring, and practice questions. Content covers World, India, and Telangana news, mapped directly to the UPSC syllabus.
+
+## Core Study Material
+- [Daily Overview](https://sanjanaias.vercel.app/dashboard): The main dashboard with today's most important topics.
+- [Prelims Practice](https://sanjanaias.vercel.app/prelims): Take unlimited quizzes with MCQs on current affairs.
+- [Mains Practice](https://sanjanaias.vercel.app/mains): Practice answer writing with model structures.
+- [Syllabus Explorer](https://sanjanaias.vercel.app/syllabus): Browse current affairs mapped to GS Papers I-IV.
+
+## AI Tutor
+- [Sanjana AI Tutor](https://sanjanaias.vercel.app/ai-tutor): Ask questions and get answers grounded in our library of topics.
+
+## Exam Regions
+- [World Affairs](https://sanjanaias.vercel.app/world): International relations and global events.
+- [India Affairs](https://sanjanaias.vercel.app/india): National policy, economy, and governance.
+- [Telangana Affairs](https://sanjanaias.vercel.app/telangana): State-level current affairs.
+
+## Optional
+- [Privacy Policy](https://sanjanaias.vercel.app/privacy.html): How we handle your data.
+- [Terms of Use](https://sanjanaias.vercel.app/terms.html): Terms for using the platform.

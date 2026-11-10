@@ -186,6 +186,25 @@ async function main() {
     fs.mkdirSync(DATA, { recursive: true });
     fs.writeFileSync(path.join(DATA, 'news.json'), JSON.stringify(payload, null, 2) + '\n');
 
+    // --- AUTO-GENERATE SITEMAP FOR GOOGLE BOTS ---
+    const sitemapUrls = payload.topics.map(t => {
+        return `  <url>
+    <loc>https://sanjanaias.vercel.app/article/${t.id}</loc>
+    <lastmod>${t.updated || t.published || new Date().toISOString().slice(0, 10)}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>`;
+    }).join('\n');
+
+    const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${sitemapUrls}
+</urlset>`;
+
+    fs.writeFileSync(path.join(ROOT, 'sitemap-articles.xml'), sitemapXml);
+    console.log('✅ sitemap-articles.xml updated with ' + payload.topics.length + ' topics.');
+    // ---------------------------------------------
+
     console.log('SanjanaIAS collector complete.');
     console.log('  sources ok:    ', health.succeeded);
     console.log('  sources failed:', health.failed);

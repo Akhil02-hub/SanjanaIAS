@@ -1,0 +1,28 @@
+# ai.txt for SanjanaIAS
+# Base: https://sanjanaias.vercel.app
+# Contact: mailto:contact@sanjanaias.com
+# Policy: https://sanjanaias.vercel.app/privacy.html
+
+# Allow AI crawlers to read for search/indexing and citations
+User-agent: *
+Allow: /
+
+# Allow specific AI search bots
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+# Allow AI training for educational models (you can change to Disallow if desired)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /

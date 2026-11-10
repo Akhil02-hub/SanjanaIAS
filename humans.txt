@@ -1,0 +1,12 @@
+/* TEAM */
+Founder: Thondupalli Sanjana
+Developer: Amarachintha Akhil
+Contact: amarachinthaakhil@gmail.com
+Instagram: @sanjjuu.thoughts
+Location: Telangana, India
+
+/* SITE */
+Last update: 2026-11-11
+Language: English, Hindi, Telugu
+Standards: HTML5, CSS3, JavaScript
+Software: VS Code, Node.js, Supabase

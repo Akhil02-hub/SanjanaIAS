@@ -656,7 +656,7 @@
         days: function () { return _mem.days.slice(); },
         touchDay: function () {
             if (!_requireLogin('track progress')) return;
-            var today = new Date().toISOString().slice(0, 10);
+            var today = getTodayLocal();
             if (_mem.days.indexOf(today) === -1) {
                 _mem.days.push(today);
                 _safeWrite(_cloud('progress').upsert({ user_id: SI_AUTH.user.id, quiz_attempts: _mem.quiz.attempts, active_days: _mem.days }));
@@ -1288,7 +1288,7 @@
        10. Pages
        ============================================================ */
     function sectionPage(region, container) {
-        var todayStr = new Date().toISOString().slice(0, 10);
+        var todayStr = getTodayLocal();
         var topics = allTopics().filter(function (t) {
             return t.region === region || (Array.isArray(t.regions) && t.regions.indexOf(region) > -1);
         });
@@ -1334,10 +1334,10 @@
         function draw() {
             var list = topics.slice();
             if (activeTime === 'daily') {
-                list = list.filter(function (t) { return t.published === todayStr || t.curated; });
+                list = list.filter(function (t) { return (t.published || '').slice(0, 10) === todayStr || t.curated; });
             } else if (activeTime === 'weekly') {
-                var weekAgo = new Date(Date.now() - 7 * 86400000).toISOString().slice(0, 10);
-                list = list.filter(function (t) { return (t.published || '') >= weekAgo || t.curated; });
+                var weekAgo = getWeekAgoLocal();
+                list = list.filter(function (t) { return (t.published || '').slice(0, 10) >= weekAgo || t.curated; });
             }
             if (paper.value) list = list.filter(function (t) { return (t.gsPapers || []).indexOf(paper.value) > -1; });
             var q = search.value.trim().toLowerCase();
@@ -1354,14 +1354,14 @@
 
     var Pages = {
         dashboard: function (main) {
-            var todayStr = new Date().toISOString().slice(0, 10);
-            var weekAgo = new Date(Date.now() - 7 * 86400000).toISOString().slice(0, 10);
+            var todayStr = getTodayLocal();
+            var weekAgo = getWeekAgoLocal();
             var activeTime = 'daily';
 
             function renderDash() {
                 var topics = allTopics().filter(function (t) {
-                    if (activeTime === 'daily') return t.published === todayStr || t.curated;
-                    if (activeTime === 'weekly') return (t.published || '') >= weekAgo || t.curated;
+                    if (activeTime === 'daily') return (t.published || '').slice(0, 10) === todayStr || t.curated;
+                    if (activeTime === 'weekly') return (t.published || '').slice(0, 10) >= weekAgo || t.curated;
                     return true; // all
                 });
                 var byRegion = function (r) { return topics.filter(function (t) { return t.region === r; }).length; };
@@ -1430,7 +1430,7 @@
 
         weekly: function (main) {
             var weekAgo = getWeekAgoLocal();
-            var topics = allTopics().filter(function (t) { return (t.published || '') >= weekAgo || t.curated; });
+            var topics = allTopics().filter(function (t) { return (t.published || '').slice(0, 10) >= weekAgo || t.curated; });
             var byRegion = function (r) { return topics.filter(function (t) { return t.region === r; }).length; };
             var ranked = byImportance(topics);
             var tod = ranked[0];
@@ -1481,7 +1481,7 @@
             if (el) el.textContent = new Date().toLocaleDateString(undefined, { weekday: 'long', day: '2-digit', month: 'long', year: 'numeric' });
         },
         subjects: function (main) {
-            var todayStr = new Date().toISOString().slice(0, 10);
+            var todayStr = getTodayLocal();
             var activeTime = 'daily';
 
             var subjects = [
@@ -1503,13 +1503,13 @@
                     '<button class="btn ' + (activeTime === 'all' ? 'btn-primary' : '') + '" data-time="all" type="button">All Time</button>' +
                     '</div>';
 
-                var weekAgo = new Date(Date.now() - 7 * 86400000).toISOString().slice(0, 10);
+                var weekAgo = getWeekAgoLocal();
 
                 subjects.forEach(function (subj) {
                     var matchedTopics = allTopics().filter(function (t) {
                         // Apply Time Filter first
-                        if (activeTime === 'daily' && t.published !== todayStr && !t.curated) return false;
-                        if (activeTime === 'weekly' && (t.published || '') < weekAgo && !t.curated) return false;
+                        if (activeTime === 'daily' && (t.published || '').slice(0, 10) !== todayStr && !t.curated) return false;
+                        if (activeTime === 'weekly' && (t.published || '').slice(0, 10) < weekAgo && !t.curated) return false;
 
                         // Apply Subject Filter
                         var text = (t.category + ' ' + (t.tags || []).join(' ')).toLowerCase();
@@ -1712,12 +1712,10 @@
                 var specificDate = $('#quizDate', main).value;
 
                 var validTopicIds = allTopics().filter(function (t) {
-                    if (specificDate) return t.published === specificDate;
-                    if (scope === 'today') return t.published === new Date().toISOString().slice(0, 10);
-                    if (scope === 'week') {
-                        var weekAgo = new Date(Date.now() - 7 * 86400000).toISOString().slice(0, 10);
-                        return (t.published || '') >= weekAgo;
-                    }
+                    var pub = (t.published || '').slice(0, 10);
+                    if (specificDate) return pub === specificDate;
+                    if (scope === 'today') return pub === getTodayLocal() || t.curated;
+                    if (scope === 'week') return pub >= getWeekAgoLocal() || t.curated;
                     return true; // all
                 }).map(function (t) { return t.id; });
 
@@ -1816,6 +1814,13 @@
             main.innerHTML =
                 '<header class="page-head"><p class="eyebrow">Analytical questions and answer writing</p><h1>Mains Practice</h1>' +
                 '<p class="lede">Write your answer, check it against a structured self-evaluation list, then compare with the model approach.</p></header>' +
+                '<div class="filter-bar" id="mainsFilters" style="margin-bottom: 20px; display: flex; gap: 8px; flex-wrap: wrap;">' +
+                '<button class="btn btn-primary" data-paper="" type="button">All</button>' +
+                '<button class="btn" data-paper="GS I" type="button">GS I</button>' +
+                '<button class="btn" data-paper="GS II" type="button">GS II</button>' +
+                '<button class="btn" data-paper="GS III" type="button">GS III</button>' +
+                '<button class="btn" data-paper="GS IV" type="button">GS IV</button>' +
+                '</div>' +
                 '<div class="mains-layout">' +
                 '<div class="mains-list" id="mainsList"></div>' +
                 '<div class="mains-work" id="mainsWork"><p class="fine">Select a question to begin.</p></div>' +
@@ -1827,13 +1832,22 @@
             var work = $('#mainsWork', main);
             var saved = SI_STORE.mains();
 
-            list.innerHTML = bank.map(function (q) {
-                return '<button class="mains-item" data-id="' + q.id + '" type="button">' +
-                    '<span class="chip">' + esc(q.paper) + '</span>' +
-                    '<span class="chip">' + q.marks + ' marks</span>' +
-                    (saved[q.id] ? '<span class="chip chip-ok">draft saved</span>' : '') +
-                    '<p>' + esc(q.question) + '</p></button>';
-            }).join('') || '<p class="fine">No Mains questions yet.</p>';
+            function renderMainsList(paper) {
+                var filtered = paper ? bank.filter(function (q) { return q.paper === paper; }) : bank;
+                list.innerHTML = filtered.map(function (q) {
+                    return '<button class="mains-item" data-id="' + q.id + '" type="button">' +
+                        '<span class="chip">' + esc(q.paper) + '</span>' +
+                        '<span class="chip">' + q.marks + ' marks</span>' +
+                        (saved[q.id] ? '<span class="chip chip-ok">draft saved</span>' : '') +
+                        '<p>' + esc(q.question) + '</p></button>';
+                }).join('') || '<p class="fine">No Mains questions for this paper.</p>';
+            }
+            renderMainsList('');
+            $('#mainsFilters', main).addEventListener('click', function (e) {
+                var b = e.target.closest('button'); if (!b) return;
+                $('#mainsFilters button', main).forEach(function (x) { x.classList.toggle('btn-primary', x === b); });
+                renderMainsList(b.dataset.paper);
+            });
 
             list.addEventListener('click', function (e) {
                 var b = e.target.closest('.mains-item'); if (!b) return;
@@ -2220,7 +2234,7 @@
         /* 1. Supabase (preferred when configured) */
         if (supabaseClient) {
             try {
-                var cutoff = new Date(Date.now() - 7 * 86400000).toISOString().slice(0, 10);
+                var cutoff = getWeekAgoLocal();
                 var sb = await supabaseClient
                     .from('topics')
                     .select('*')
@@ -2266,9 +2280,9 @@
             if (res.ok) {
                 var json = await res.json();
                 if (json && Array.isArray(json.topics) && json.topics.length) {
-                    var c7 = new Date(Date.now() - 7 * 86400000).toISOString().slice(0, 10);
+                    var c7 = getWeekAgoLocal();
                     json.topics = json.topics.filter(function (t) {
-                        return t.curated || (t.published || '') >= c7;
+                        return t.curated || (t.published || '').slice(0, 10) >= c7;
                     });
                     State.news = json;
                     return;

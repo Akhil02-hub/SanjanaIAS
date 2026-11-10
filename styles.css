@@ -2097,20 +2097,22 @@ button:focus-visible {
    11. Mobile Fixes, 3D Animations & Instagram
    ============================================================ */
 
-/* 3D Card Tilt Effect */
-.card-grid {
-    perspective: 1000px;
-}
+/* 3D Card Tilt Effect — desktop only (sticky :hover broke mobile layout) */
+@media (hover: hover) and (pointer: fine) {
+    .card-grid {
+        perspective: 1000px;
+    }
 
-.topic-card {
-    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
-    transform-style: preserve-3d;
-}
+    .topic-card {
+        transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+        transform-style: preserve-3d;
+    }
 
-.topic-card:hover {
-    transform: translateY(-8px) rotateX(4deg) rotateY(-4deg) scale(1.02);
-    box-shadow: 0 25px 35px -5px rgba(0, 0, 0, 0.1), 0 10px 20px -5px rgba(0, 0, 0, 0.04);
-    z-index: 10;
+    .topic-card:hover {
+        transform: translateY(-8px) rotateX(4deg) rotateY(-4deg) scale(1.02);
+        box-shadow: 0 25px 35px -5px rgba(0, 0, 0, 0.1), 0 10px 20px -5px rgba(0, 0, 0, 0.04);
+        z-index: 10;
+    }
 }
 
 /* Floating Animation */

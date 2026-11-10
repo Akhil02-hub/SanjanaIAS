@@ -1,3 +1,26 @@
+# robots.txt for SanjanaIAS
 User-agent: *
 Allow: /
+Disallow: /library
+Disallow: /progress
+Disallow: /auth/
+
+# Sitemap location
 Sitemap: https://sanjanaias.vercel.app/sitemap.xml
+
+# Allow Google and Bing
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# Allow AI Search Bots (for discoverability)
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
