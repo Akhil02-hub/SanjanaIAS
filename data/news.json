@@ -1,21 +1,21 @@
 {
-  "updated": "2026-11-10T08:05:31.495Z",
+  "updated": "2026-11-10T16:52:57.671Z",
   "health": {
-    "checked": "2026-11-10T08:05:31.495Z",
+    "checked": "2026-11-10T16:52:57.671Z",
     "sources": [
       {
         "id": "un-news",
         "name": "UN News",
         "status": "ok",
         "items": 25,
-        "added": 1,
-        "checked": "2026-11-10T08:05:31.495Z"
+        "added": 4,
+        "checked": "2026-11-10T16:52:57.671Z"
       },
       {
         "id": "un-geneva",
         "name": "UN Geneva",
         "status": "no-new-articles",
-        "checked": "2026-11-10T08:05:31.495Z"
+        "checked": "2026-11-10T16:52:57.671Z"
       },
       {
         "id": "who",
@@ -23,21 +23,21 @@
         "status": "ok",
         "items": 25,
         "added": 24,
-        "checked": "2026-11-10T08:05:31.495Z"
+        "checked": "2026-11-10T16:52:57.671Z"
       },
       {
         "id": "world-bank",
         "name": "World Bank",
         "status": "failed",
         "error": "HTTP 404",
-        "checked": "2026-11-10T08:05:31.495Z"
+        "checked": "2026-11-10T16:52:57.671Z"
       },
       {
         "id": "imf",
         "name": "IMF",
         "status": "failed",
         "error": "HTTP 403",
-        "checked": "2026-11-10T08:05:31.495Z"
+        "checked": "2026-11-10T16:52:57.671Z"
       },
       {
         "id": "pib",
@@ -45,7 +45,7 @@
         "status": "ok",
         "items": 20,
         "added": 0,
-        "checked": "2026-11-10T08:05:31.495Z"
+        "checked": "2026-11-10T16:52:57.671Z"
       },
       {
         "id": "rbi",
@@ -53,65 +53,65 @@
         "status": "ok",
         "items": 10,
         "added": 0,
-        "checked": "2026-11-10T08:05:31.495Z"
+        "checked": "2026-11-10T16:52:57.671Z"
       },
       {
         "id": "bbc-world",
         "name": "BBC News — World",
         "status": "ok",
         "items": 25,
-        "added": 4,
-        "checked": "2026-11-10T08:05:31.495Z"
+        "added": 12,
+        "checked": "2026-11-10T16:52:57.671Z"
       },
       {
         "id": "guardian-world",
         "name": "The Guardian — World",
         "status": "ok",
         "items": 25,
-        "added": 7,
-        "checked": "2026-11-10T08:05:31.495Z"
+        "added": 8,
+        "checked": "2026-11-10T16:52:57.671Z"
       },
       {
         "id": "ie-world",
         "name": "Indian Express — World",
         "status": "failed",
         "error": "HTTP 403",
-        "checked": "2026-11-10T08:05:31.495Z"
+        "checked": "2026-11-10T16:52:57.671Z"
       },
       {
         "id": "ie-india",
         "name": "Indian Express — India",
         "status": "failed",
         "error": "HTTP 403",
-        "checked": "2026-11-10T08:05:31.495Z"
+        "checked": "2026-11-10T16:52:57.671Z"
       },
       {
         "id": "ie-hyderabad",
         "name": "Indian Express — Hyderabad",
         "status": "failed",
         "error": "HTTP 403",
-        "checked": "2026-11-10T08:05:31.495Z"
+        "checked": "2026-11-10T16:52:57.671Z"
       },
       {
         "id": "hindu-national",
         "name": "The Hindu — National",
         "status": "ok",
         "items": 25,
-        "added": 23,
-        "checked": "2026-11-10T08:05:31.495Z"
+        "added": 25,
+        "checked": "2026-11-10T16:52:57.671Z"
       },
       {
         "id": "hindu-international",
         "name": "The Hindu — International",
         "status": "ok",
         "items": 25,
-        "added": 21,
-        "checked": "2026-11-10T08:05:31.495Z"
+        "added": 17,
+        "checked": "2026-11-10T16:52:57.671Z"
       }
     ],
     "succeeded": 8,
     "failed": 5,
-    "newTopics": 80
+    "newTopics": 90
   },
   "topics": [
     {
@@ -1096,6 +1096,65 @@
       "mainsQuestions": []
     },
     {
+      "id": "housing-assistance-instalments-for-32-000-families-2026-11-10",
+      "title": "Housing assistance instalments for 32,000 families this fiscal: Minister",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "Governance",
+      "tags": [
+        "Governance",
+        "Economy"
+      ],
+      "gsPapers": [
+        "GS II",
+        "GS III"
+      ],
+      "summary": "Life Mission assistance raised to ₹6 lakh; Minister inaugurates welfare initiatives for dialysis patients in Kattakambal",
+      "whyItMatters": "",
+      "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "imageCredit": "SanjanaIAS category illustration",
+      "readTime": 3,
+      "published": "2026-11-10",
+      "updated": "2026-11-10",
+      "importance": 62,
+      "importanceReason": "Maps to GS II, GS III. Signals economic consequence. Signals environment social.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Housing assistance instalments for 32,000 families this fiscal: Minister",
+          "publisher": "The Hindu — National",
+          "url": "https://www.thehindu.com/news/national/kerala/housing-assistance-instalments-for-32000-families-this-fiscal-minister/article71686792.ece",
+          "type": "reporting",
+          "date": "2026-11-10"
+        }
+      ],
+      "sections": {
+        "event": "Life Mission assistance raised to ₹6 lakh; Minister inaugurates welfare initiatives for dialysis patients in Kattakambal",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-10",
+            "text": "Reported by The Hindu — National"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to GS II, GS III.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
       "id": "nz-election-2026-new-zealand-faces-weeks-of-uncert-2026-11-08",
       "title": "NZ election 2026: New Zealand faces weeks of uncertainty with results ‘too close to call’",
       "region": "india",
@@ -1561,6 +1620,67 @@
       "mainsQuestions": []
     },
     {
+      "id": "climate-crisis-could-push-141-million-more-women-i-2026-11-10",
+      "title": "Climate crisis could push 141 million more women into extreme poverty",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "Geography",
+      "tags": [
+        "Geography",
+        "Polity",
+        "Environment"
+      ],
+      "gsPapers": [
+        "GS I",
+        "GS II",
+        "GS III"
+      ],
+      "summary": "More than one in three women and girls worldwide – roughly 1.5 billion – live in so-called “climate hotspots”, where high exposure to hazards such as cyclones and droughts combine with insecure jobs and deep gender inequality.",
+      "whyItMatters": "",
+      "image": "https://global.unitednations.entermediadb.net/assets/mediadb/services/module/asset/downloads/preset/Collections/Embargoed/2026/08/21-08-2026-UNICEF-South-Sudan-02.jpg/image560x340cropped.jpg",
+      "imageCredit": "UN News",
+      "readTime": 3,
+      "published": "2026-11-10",
+      "updated": "2026-11-10",
+      "importance": 56,
+      "importanceReason": "Maps to GS I, GS II, GS III. Signals constitutional legal. Signals environment social.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Climate crisis could push 141 million more women into extreme poverty",
+          "publisher": "UN News",
+          "url": "https://news.un.org/feed/view/en/story/2026/11/1168770",
+          "type": "primary",
+          "date": "2026-11-10"
+        }
+      ],
+      "sections": {
+        "event": "More than one in three women and girls worldwide – roughly 1.5 billion – live in so-called “climate hotspots”, where high exposure to hazards such as cyclones and droughts combine with insecure jobs and deep gender inequality.",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-10",
+            "text": "Reported by UN News"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to GS I, GS II, GS III.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
       "id": "in-who-global-pulse-survey-90-of-countries-report--2020-08-31",
       "title": "In WHO global pulse survey, 90% of countries report disruptions to essential health services since COVID-19 pandemic",
       "region": "world",
@@ -1660,6 +1780,63 @@
           {
             "date": "2020-08-01",
             "text": "Reported by WHO"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to GS II.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "malaysian-court-clears-final-hurdle-for-former-pm--2026-11-10",
+      "title": "Malaysian court clears final hurdle for former PM Najib Razak's transfer to house arrest",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "Polity",
+      "tags": [
+        "Polity"
+      ],
+      "gsPapers": [
+        "GS II"
+      ],
+      "summary": "Najib has been behind bars since August 2022, when the Kuala Lumpur High Court upheld his graft conviction linked to a multibillion-dollar looting of the state investment fund 1MDB.",
+      "whyItMatters": "",
+      "image": "https://th-i.thgim.com/public/incoming/gvb9ml/article71686153.ece/alternates/LANDSCAPE_1200/2026-11-10T121046Z_557444576_RC2ZKOAKWQUA_RTRMADP_3_MALAYSIA-POLITICS-NAJIB.JPG",
+      "imageCredit": "The Hindu — International",
+      "readTime": 3,
+      "published": "2026-11-10",
+      "updated": "2026-11-10",
+      "importance": 56,
+      "importanceReason": "Maps to GS II. Signals constitutional legal. Signals economic consequence.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Malaysian court clears final hurdle for former PM Najib Razak's transfer to house arrest",
+          "publisher": "The Hindu — International",
+          "url": "https://www.thehindu.com/news/international/malaysian-court-clears-final-hurdle-for-former-pm-najib-razaks-transfer-to-house-arrest/article71686082.ece",
+          "type": "reporting",
+          "date": "2026-11-10"
+        }
+      ],
+      "sections": {
+        "event": "Najib has been behind bars since August 2022, when the Kuala Lumpur High Court upheld his graft conviction linked to a multibillion-dollar looting of the state investment fund 1MDB.",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-10",
+            "text": "Reported by The Hindu — International"
           }
         ],
         "data": [],
@@ -1836,6 +2013,120 @@
           {
             "date": "2020-08-07",
             "text": "Reported by WHO"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to GS II.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "israel-s-new-parliament-sworn-in-as-leaders-compet-2026-11-10",
+      "title": "Israel's new parliament sworn in as leaders compete to form government",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "Polity",
+      "tags": [
+        "Polity"
+      ],
+      "gsPapers": [
+        "GS II"
+      ],
+      "summary": "Benjamin Netanyahu's main political rival, Gadi Eisenkot, has first chance to build a new government and oust the prime minister.",
+      "whyItMatters": "",
+      "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "imageCredit": "SanjanaIAS category illustration",
+      "readTime": 3,
+      "published": "2026-11-10",
+      "updated": "2026-11-10",
+      "importance": 50,
+      "importanceReason": "Maps to GS II. Signals exam recurrence. Signals national significance.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Israel's new parliament sworn in as leaders compete to form government",
+          "publisher": "BBC News — World",
+          "url": "https://www.bbc.co.uk/news/articles/crd939lpzjp9o?at_medium=RSS&at_campaign=rss",
+          "type": "reporting",
+          "date": "2026-11-10"
+        }
+      ],
+      "sections": {
+        "event": "Benjamin Netanyahu's main political rival, Gadi Eisenkot, has first chance to build a new government and oust the prime minister.",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-10",
+            "text": "Reported by BBC News — World"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to GS II.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "new-israeli-parliament-to-take-aim-at-netanyahu-as-2026-11-10",
+      "title": "New Israeli parliament to take aim at Netanyahu as Eisenkot seeks government",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "Polity",
+      "tags": [
+        "Polity"
+      ],
+      "gsPapers": [
+        "GS II"
+      ],
+      "summary": "President Isaac Herzog, ceremonially opening the session, called on all sides to work together and avoid a fresh election in a deeply polarised country weary from three years of war.",
+      "whyItMatters": "",
+      "image": "https://th-i.thgim.com/public/incoming/g2r59d/article71687153.ece/alternates/LANDSCAPE_1200/2026-11-10T124753Z_396596282_RC20LOAGAXJJ_RTRMADP_3_ISRAEL-POLITICS.JPG",
+      "imageCredit": "The Hindu — International",
+      "readTime": 3,
+      "published": "2026-11-10",
+      "updated": "2026-11-10",
+      "importance": 50,
+      "importanceReason": "Maps to GS II. Signals exam recurrence. Signals national significance.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "New Israeli parliament to take aim at Netanyahu as Eisenkot seeks government",
+          "publisher": "The Hindu — International",
+          "url": "https://www.thehindu.com/news/international/new-israeli-parliament-to-take-aim-at-netanyahu-as-eisenkot-seeks-government/article71687117.ece",
+          "type": "reporting",
+          "date": "2026-11-10"
+        }
+      ],
+      "sections": {
+        "event": "President Isaac Herzog, ceremonially opening the session, called on all sides to work together and avoid a fresh election in a deeply polarised country weary from three years of war.",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-10",
+            "text": "Reported by The Hindu — International"
           }
         ],
         "data": [],
@@ -2189,6 +2480,234 @@
         "challenges": "",
         "solutions": "",
         "upsc": "Auto-tagged to GS II, GS III.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "juvenile-traced-to-srinagar-for-sending-fake-delhi-2026-11-10",
+      "title": "Juvenile traced to Srinagar for sending fake Delhi Police notices targeting IFF, SFLC X accounts; Crime Branch registers FIR",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "Polity",
+      "tags": [
+        "Polity"
+      ],
+      "gsPapers": [
+        "GS II"
+      ],
+      "summary": "X had told the Delhi High Court that the takedown requests purportedly issued in the name of the Delhi Police were fraudulent; the force’s IFSO unit will assist in the investigation",
+      "whyItMatters": "",
+      "image": "https://th-i.thgim.com/public/incoming/5yrbm3/article71674511.ece/alternates/LANDSCAPE_1200/2025-12-05T112809Z_1720905449_RC2WPGALLC5O_RTRMADP_3_EU-X-TIKTOK-TECH.JPG",
+      "imageCredit": "The Hindu — National",
+      "readTime": 3,
+      "published": "2026-11-10",
+      "updated": "2026-11-10",
+      "importance": 47,
+      "importanceReason": "Maps to GS II. Signals constitutional legal. Signals exam recurrence.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Juvenile traced to Srinagar for sending fake Delhi Police notices targeting IFF, SFLC X accounts; Crime Branch registers FIR",
+          "publisher": "The Hindu — National",
+          "url": "https://www.thehindu.com/news/cities/Delhi/delhi-police-crime-branch-registers-fir-over-fake-notices-seeking-blocking-of-iff-sflc-x-accounts-probes-imposter/article71685928.ece",
+          "type": "reporting",
+          "date": "2026-11-10"
+        }
+      ],
+      "sections": {
+        "event": "X had told the Delhi High Court that the takedown requests purportedly issued in the name of the Delhi Police were fraudulent; the force’s IFSO unit will assist in the investigation",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-10",
+            "text": "Reported by The Hindu — National"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to GS II.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "a-p-high-court-to-hear-batch-of-contempt-cases-on--2026-11-10",
+      "title": "A.P. High Court to hear batch of contempt cases on senior IAS officers on November 13",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "Polity",
+      "tags": [
+        "Polity"
+      ],
+      "gsPapers": [
+        "GS II"
+      ],
+      "summary": "In the contempt petitions filed by various government employee associations, and individual employees and officials, it was alleged that there was deliberate disobedience and disregard of common judgments and orders delivered by the High Court",
+      "whyItMatters": "",
+      "image": "https://th-i.thgim.com/public/incoming/8wx5wd/article71687026.ece/alternates/LANDSCAPE_1200/A.P.-HC-seeks-sGH2GONROL.3.jpg.jpg",
+      "imageCredit": "The Hindu — National",
+      "readTime": 3,
+      "published": "2026-11-10",
+      "updated": "2026-11-10",
+      "importance": 47,
+      "importanceReason": "Maps to GS II. Signals constitutional legal. Signals exam recurrence.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "A.P. High Court to hear batch of contempt cases on senior IAS officers on November 13",
+          "publisher": "The Hindu — National",
+          "url": "https://www.thehindu.com/news/national/andhra-pradesh/ap-high-court-to-hear-batch-of-contempt-cases-on-senior-ias-officers-on-november-13/article71686491.ece",
+          "type": "reporting",
+          "date": "2026-11-10"
+        }
+      ],
+      "sections": {
+        "event": "In the contempt petitions filed by various government employee associations, and individual employees and officials, it was alleged that there was deliberate disobedience and disregard of common judgments and orders delivered by the High Court",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-10",
+            "text": "Reported by The Hindu — National"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to GS II.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "madras-high-court-restrains-thermal-power-plant-wo-2026-11-10",
+      "title": "Madras High Court restrains thermal power plant workers from going on strike",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "Polity",
+      "tags": [
+        "Polity"
+      ],
+      "gsPapers": [
+        "GS II"
+      ],
+      "summary": "Justices S.M. Subramaniam and R. Rajesh Vivekananthan grant the interim injunction pursuant to a PIL petition filed against the proposed strike",
+      "whyItMatters": "",
+      "image": "https://th-i.thgim.com/public/incoming/5fek1g/article71687042.ece/alternates/LANDSCAPE_1200/IMG_IMG_High_Court_Build_2_1_P0EMN40M.jpg",
+      "imageCredit": "The Hindu — National",
+      "readTime": 3,
+      "published": "2026-11-10",
+      "updated": "2026-11-10",
+      "importance": 47,
+      "importanceReason": "Maps to GS II. Signals constitutional legal. Signals exam recurrence.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Madras High Court restrains thermal power plant workers from going on strike",
+          "publisher": "The Hindu — National",
+          "url": "https://www.thehindu.com/news/national/tamil-nadu/madras-high-court-restrains-thermal-power-plant-workers-from-going-on-strike/article71686540.ece",
+          "type": "reporting",
+          "date": "2026-11-10"
+        }
+      ],
+      "sections": {
+        "event": "Justices S.M. Subramaniam and R. Rajesh Vivekananthan grant the interim injunction pursuant to a PIL petition filed against the proposed strike",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-10",
+            "text": "Reported by The Hindu — National"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to GS II.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "what-are-the-eight-articles-of-impeachment-filed-a-2026-11-10",
+      "title": "What are the eight Articles of impeachment filed against U.S. Defence Secretary Pete Hegseth?",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "Security",
+      "tags": [
+        "Security"
+      ],
+      "gsPapers": [
+        "GS III"
+      ],
+      "summary": "Representative Thomas Massie, backed by lawmakers including Ro Khanna, has introduced eight Articles of Impeachment against Defense Secretary Pete Hegseth in the House; here’s what you should know about them",
+      "whyItMatters": "",
+      "image": "https://th-i.thgim.com/public/incoming/12h231/article70943183.ece/alternates/LANDSCAPE_1200/Pentagon_29414.jpg",
+      "imageCredit": "The Hindu — International",
+      "readTime": 3,
+      "published": "2026-11-10",
+      "updated": "2026-11-10",
+      "importance": 47,
+      "importanceReason": "Maps to GS III. Signals constitutional legal. Signals exam recurrence.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "What are the eight Articles of impeachment filed against U.S. Defence Secretary Pete Hegseth?",
+          "publisher": "The Hindu — International",
+          "url": "https://www.thehindu.com/news/international/defence-secretary-pete-hegseth-thomas-massie-8-articles-of-impeachment-filed-united-states-war-power-resolution/article71684991.ece",
+          "type": "reporting",
+          "date": "2026-11-10"
+        }
+      ],
+      "sections": {
+        "event": "Representative Thomas Massie, backed by lawmakers including Ro Khanna, has introduced eight Articles of Impeachment against Defense Secretary Pete Hegseth in the House; here’s what you should know about them",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-10",
+            "text": "Reported by The Hindu — International"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to GS III.",
         "prelimsNotes": [],
         "mainsNotes": []
       },
@@ -2881,6 +3400,63 @@
       "mainsQuestions": []
     },
     {
+      "id": "when-deaths-go-uncounted-who-flags-dangerous-blind-2026-11-10",
+      "title": "When deaths go uncounted: WHO flags dangerous blind spots in Africa’s health data",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "International Relations",
+      "tags": [
+        "International Relations"
+      ],
+      "gsPapers": [
+        "GS II"
+      ],
+      "summary": "Quality health data can help authorities to identify emerging threats and take lifesaving action, but a new report reveals critical gaps in Africa’s health information systems.&nbsp;",
+      "whyItMatters": "",
+      "image": "https://global.unitednations.entermediadb.net/assets/mediadb/services/module/asset/downloads/preset/Collections/Embargoed/2026/10/30-10-2026-WHO-South-Sudan-polio.jpg/image560x340cropped.jpg",
+      "imageCredit": "UN News",
+      "readTime": 3,
+      "published": "2026-11-10",
+      "updated": "2026-11-10",
+      "importance": 45,
+      "importanceReason": "Maps to GS II. Signals environment social. Signals exam recurrence.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "When deaths go uncounted: WHO flags dangerous blind spots in Africa’s health data",
+          "publisher": "UN News",
+          "url": "https://news.un.org/feed/view/en/story/2026/11/1168772",
+          "type": "primary",
+          "date": "2026-11-10"
+        }
+      ],
+      "sections": {
+        "event": "Quality health data can help authorities to identify emerging threats and take lifesaving action, but a new report reveals critical gaps in Africa’s health information systems.&nbsp;",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-10",
+            "text": "Reported by UN News"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to GS II.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
       "id": "world-humanitarian-day-2020-a-tribute-to-aid-worke-2020-08-19",
       "title": "World Humanitarian Day 2020: A tribute to aid workers on the front lines",
       "region": "world",
@@ -2990,6 +3566,242 @@
         "challenges": "",
         "solutions": "",
         "upsc": "Auto-tagged to GS II.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "israeli-forces-kill-palestinian-boy-in-west-bank-h-2026-11-10",
+      "title": "Israeli forces kill Palestinian boy in West Bank, health ministry says",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "Governance",
+      "tags": [
+        "Governance",
+        "International Relations"
+      ],
+      "gsPapers": [
+        "GS II"
+      ],
+      "summary": "The Israeli military says its soldiers opened fire at individuals “who intended to hurl stones” at a road used by Israelis.",
+      "whyItMatters": "",
+      "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "imageCredit": "SanjanaIAS category illustration",
+      "readTime": 3,
+      "published": "2026-11-10",
+      "updated": "2026-11-10",
+      "importance": 45,
+      "importanceReason": "Maps to GS II. Signals environment social. Signals exam recurrence.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Israeli forces kill Palestinian boy in West Bank, health ministry says",
+          "publisher": "BBC News — World",
+          "url": "https://www.bbc.co.uk/news/articles/cqpvgv318yyeo?at_medium=RSS&at_campaign=rss",
+          "type": "reporting",
+          "date": "2026-11-10"
+        }
+      ],
+      "sections": {
+        "event": "The Israeli military says its soldiers opened fire at individuals “who intended to hurl stones” at a road used by Israelis.",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-10",
+            "text": "Reported by BBC News — World"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to GS II.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "us-and-rest-of-world-must-follow-china-s-lead-on-g-2026-11-10",
+      "title": "US and rest of world must follow China’s lead on green energy, says John Kerry",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "Governance",
+      "tags": [
+        "Governance",
+        "International Relations",
+        "Environment"
+      ],
+      "gsPapers": [
+        "GS II",
+        "GS III"
+      ],
+      "summary": "Former US secretary of state says most nations are ‘stumbling along’ while Beijing has ‘hugely accelerated’ Cop31 live – latest updates China is leading the world in moving away from fossil fuels , and the rest of the globe – including the US – must now follow, the former US…",
+      "whyItMatters": "",
+      "image": "https://i.guim.co.uk/img/media/e9e70c1f9aafbf60fe3b65bb1b0c30528284d52f/0_747_2932_2345/master/2932.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=d1785ffc68c0400a922125bfb198d09c",
+      "imageCredit": "The Guardian — World",
+      "readTime": 4,
+      "published": "2026-11-10",
+      "updated": "2026-11-10",
+      "importance": 45,
+      "importanceReason": "Maps to GS II, GS III. Signals environment social. Signals exam recurrence.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "US and rest of world must follow China’s lead on green energy, says John Kerry",
+          "publisher": "The Guardian — World",
+          "url": "https://www.theguardian.com/environment/2026/nov/10/china-green-energy-john-kerry-cop31",
+          "type": "reporting",
+          "date": "2026-11-10"
+        }
+      ],
+      "sections": {
+        "event": "Former US secretary of state says most nations are ‘stumbling along’ while Beijing has ‘hugely accelerated’ Cop31 live – latest updates China is leading the world in moving away from fossil fuels , and the rest of the globe – including the US – must now follow, the former US secretary of state John Kerry has told the Guardian, as Cop watchers wonder exactly how China is going to approach this year’s climate summit. As Cop31 opens – this year the climate conference is in Turkey – there is plenty of speculation about whether China will finally step into the leadership role that it has long…",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-10",
+            "text": "Reported by The Guardian — World"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to GS II, GS III.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "merz-accused-of-blackmail-by-slovakian-pm-after-de-2026-11-10",
+      "title": "Merz accused of ‘blackmail’ by Slovakian PM after demand for Ukraine aid in EU budget",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "International Relations",
+      "tags": [
+        "International Relations",
+        "Economy"
+      ],
+      "gsPapers": [
+        "GS II",
+        "GS III"
+      ],
+      "summary": "German chancellor has signalled he will block budget with no aid deal, complaining that burden is ‘carried mostly by only a few member states’ Friedrich Merz has signalled he will block the EU’s seven-year budget unless there is a deal on financial aid for Ukraine, triggering…",
+      "whyItMatters": "",
+      "image": "https://i.guim.co.uk/img/media/823635c4e546870d84ad7228dcb95c9f59bc5629/398_0_5949_4760/master/5949.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=6237de79d5955f7dc0202e70c7de73ff",
+      "imageCredit": "The Guardian — World",
+      "readTime": 4,
+      "published": "2026-11-10",
+      "updated": "2026-11-10",
+      "importance": 45,
+      "importanceReason": "Maps to GS II, GS III. Signals economic consequence. Signals exam recurrence.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Merz accused of ‘blackmail’ by Slovakian PM after demand for Ukraine aid in EU budget",
+          "publisher": "The Guardian — World",
+          "url": "https://www.theguardian.com/world/2026/nov/10/friedrich-merz-accused-blackmail-ukraine-aid-eu-budget",
+          "type": "reporting",
+          "date": "2026-11-10"
+        }
+      ],
+      "sections": {
+        "event": "German chancellor has signalled he will block budget with no aid deal, complaining that burden is ‘carried mostly by only a few member states’ Friedrich Merz has signalled he will block the EU’s seven-year budget unless there is a deal on financial aid for Ukraine, triggering accusations of “typical blackmail” from some other European leaders and setting the stage for stormy talks later this month. The German chancellor’s intervention has angered leaders in central Europe who are net beneficiaries of EU funds but do not want to take part in an upcoming funding round to support Ukraine’s war…",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-10",
+            "text": "Reported by The Guardian — World"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to GS II, GS III.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "eu-climate-chief-wopke-hoekstra-warns-expectations-2026-11-10",
+      "title": "EU climate chief Wopke Hoekstra warns 'expectations low' from COP31 summit",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "International Relations",
+      "tags": [
+        "International Relations",
+        "Environment"
+      ],
+      "gsPapers": [
+        "GS II",
+        "GS III"
+      ],
+      "summary": "\"If indeed we manage to make electrification the sole focus, or close to the sole focus of the COP, I think we have a chance to deliver on something that is truly meaningful,\" Wopke Hoekstra said",
+      "whyItMatters": "",
+      "image": "https://th-i.thgim.com/public/incoming/uqt72k/article71687077.ece/alternates/LANDSCAPE_1200/2025-07-02T100025Z_2115836927_RC29EFA4PMIO_RTRMADP_3_CLIMATE-CHANGE-EU-2040.JPG",
+      "imageCredit": "The Hindu — International",
+      "readTime": 3,
+      "published": "2026-11-10",
+      "updated": "2026-11-10",
+      "importance": 45,
+      "importanceReason": "Maps to GS II, GS III. Signals environment social. Signals exam recurrence.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "EU climate chief Wopke Hoekstra warns 'expectations low' from COP31 summit",
+          "publisher": "The Hindu — International",
+          "url": "https://www.thehindu.com/news/international/eu-climate-chief-wopke-hoekstra-warns-expectations-low-from-cop31-summit/article71686827.ece",
+          "type": "reporting",
+          "date": "2026-11-10"
+        }
+      ],
+      "sections": {
+        "event": "\"If indeed we manage to make electrification the sole focus, or close to the sole focus of the COP, I think we have a chance to deliver on something that is truly meaningful,\" Wopke Hoekstra said",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-10",
+            "text": "Reported by The Hindu — International"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to GS II, GS III.",
         "prelimsNotes": [],
         "mainsNotes": []
       },
@@ -3978,6 +4790,120 @@
       "mainsQuestions": []
     },
     {
+      "id": "viktor-orb-n-s-brother-detained-in-people-smugglin-2026-11-10",
+      "title": "Viktor Orbán’s brother detained in people-smuggling investigation, Hungarian PM says",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "Ethics",
+      "tags": [
+        "Ethics"
+      ],
+      "gsPapers": [
+        "GS IV"
+      ],
+      "summary": "Arrest made by anti-corruption body set up to investigate alleged graft during former PM’s 16-year rule Hungarian authorities have detained a brother of Viktor Orbán as part of an investigation into people-smuggling, the prime minister, Péter Magyar , has said. The Hungarian…",
+      "whyItMatters": "",
+      "image": "https://i.guim.co.uk/img/media/604e93edac296e07e502466ba760aa86b3b2e3b2/363_0_661_529/master/661.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=64644d1e13002b88988b90a7fae6311d",
+      "imageCredit": "The Guardian — World",
+      "readTime": 3,
+      "published": "2026-11-10",
+      "updated": "2026-11-10",
+      "importance": 41,
+      "importanceReason": "Maps to GS IV. Signals national significance.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Viktor Orbán’s brother detained in people-smuggling investigation, Hungarian PM says",
+          "publisher": "The Guardian — World",
+          "url": "https://www.theguardian.com/world/2026/nov/10/viktor-orban-brother-aron-detained-people-smuggling-investigation-hungarian-pm-says",
+          "type": "reporting",
+          "date": "2026-11-10"
+        }
+      ],
+      "sections": {
+        "event": "Arrest made by anti-corruption body set up to investigate alleged graft during former PM’s 16-year rule Hungarian authorities have detained a brother of Viktor Orbán as part of an investigation into people-smuggling, the prime minister, Péter Magyar , has said. The Hungarian anti-graft body, the national asset protection and recovery office, said in ⁠a statement that a joint operation with police had led to the arrests of four people and searches of homes in Budapest and Pest county. Continue reading...",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-10",
+            "text": "Reported by The Guardian — World"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to GS IV.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "after-bangladesh-rules-out-passport-for-hasina-ind-2026-11-10",
+      "title": "After Bangladesh rules out passport for Hasina, India says ‘travel document’ needed",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "Governance",
+      "tags": [
+        "Governance"
+      ],
+      "gsPapers": [
+        "GS II"
+      ],
+      "summary": "Ministry of External Affairs spokesperson Randhir Jaiswal described the passport’s requirement for extradition as a “technical issue” and said, “Obviously, for the travel of people, you need a travel document”",
+      "whyItMatters": "",
+      "image": "https://th-i.thgim.com/public/incoming/2tfz45/article71687192.ece/alternates/LANDSCAPE_1200/2026-11-09T032621Z_484833868_RC2PF5AFDVOU_RTRMADP_3_BANGLADESH-POLITICS-HASINA.JPG",
+      "imageCredit": "The Hindu — National",
+      "readTime": 3,
+      "published": "2026-11-10",
+      "updated": "2026-11-10",
+      "importance": 41,
+      "importanceReason": "Maps to GS II. Signals india impact.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "After Bangladesh rules out passport for Hasina, India says ‘travel document’ needed",
+          "publisher": "The Hindu — National",
+          "url": "https://www.thehindu.com/news/national/after-bangladesh-rules-out-passport-for-hasina-india-says-travel-document-needed/article71686655.ece",
+          "type": "reporting",
+          "date": "2026-11-10"
+        }
+      ],
+      "sections": {
+        "event": "Ministry of External Affairs spokesperson Randhir Jaiswal described the passport’s requirement for extradition as a “technical issue” and said, “Obviously, for the travel of people, you need a travel document”",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-10",
+            "text": "Reported by The Hindu — National"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to GS II.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
       "id": "collision-of-two-trains-in-egypt-kills-at-least-se-2026-11-08",
       "title": "Collision of two trains in Egypt kills at least seven",
       "region": "world",
@@ -4138,6 +5064,63 @@
         "challenges": "",
         "solutions": "",
         "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "sudan-war-first-suicide-bombers-now-long-range-dro-2026-11-10",
+      "title": "Sudan war: First suicide bombers, now long-range drone strikes are the norm",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "Security",
+      "tags": [
+        "Security"
+      ],
+      "gsPapers": [
+        "GS III"
+      ],
+      "summary": "Drones and drought are “closing in” on Sudan, the UN Children’s Fund (UNICEF, said on Tuesday, describing unprecedented attacks on the country’s infrastructure including by drones travelling up to 1,500 kilometres before hitting their target.",
+      "whyItMatters": "",
+      "image": "https://global.unitednations.entermediadb.net/assets/mediadb/services/module/asset/downloads/preset/Collections/Production%20Library/30-03-2026-UNFPA-Sudan-01.jpg/image560x340cropped.jpg",
+      "imageCredit": "UN News",
+      "readTime": 3,
+      "published": "2026-11-10",
+      "updated": "2026-11-10",
+      "importance": 36,
+      "importanceReason": "Maps to GS III. Signals exam recurrence.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Sudan war: First suicide bombers, now long-range drone strikes are the norm",
+          "publisher": "UN News",
+          "url": "https://news.un.org/feed/view/en/story/2026/11/1168771",
+          "type": "primary",
+          "date": "2026-11-10"
+        }
+      ],
+      "sections": {
+        "event": "Drones and drought are “closing in” on Sudan, the UN Children’s Fund (UNICEF, said on Tuesday, describing unprecedented attacks on the country’s infrastructure including by drones travelling up to 1,500 kilometres before hitting their target.",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-10",
+            "text": "Reported by UN News"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to GS III.",
         "prelimsNotes": [],
         "mainsNotes": []
       },
@@ -4309,6 +5292,405 @@
         "challenges": "",
         "solutions": "",
         "upsc": "Auto-tagged to GS II.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "dr-congo-sentences-66-soldiers-to-death-for-being--2026-11-10",
+      "title": "DR Congo sentences 66 soldiers to death for being 'cowards'",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "Security",
+      "tags": [
+        "Security"
+      ],
+      "gsPapers": [
+        "GS III"
+      ],
+      "summary": "The Congolese army's fight against rebel groups has long been hampered by disarray within its ranks.",
+      "whyItMatters": "",
+      "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "imageCredit": "SanjanaIAS category illustration",
+      "readTime": 3,
+      "published": "2026-11-10",
+      "updated": "2026-11-10",
+      "importance": 36,
+      "importanceReason": "Maps to GS III. Signals exam recurrence.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "DR Congo sentences 66 soldiers to death for being 'cowards'",
+          "publisher": "BBC News — World",
+          "url": "https://www.bbc.co.uk/news/articles/cmreye1q3dnjo?at_medium=RSS&at_campaign=rss",
+          "type": "reporting",
+          "date": "2026-11-10"
+        }
+      ],
+      "sections": {
+        "event": "The Congolese army's fight against rebel groups has long been hampered by disarray within its ranks.",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-10",
+            "text": "Reported by BBC News — World"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to GS III.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "it-s-a-farce-hegseth-s-defiant-response-to-impeach-2026-11-10",
+      "title": "'It's a farce': Hegseth's defiant response to impeachment effort",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "Security",
+      "tags": [
+        "Security"
+      ],
+      "gsPapers": [
+        "GS III"
+      ],
+      "summary": "The BBC’s Gary O’Donoghue breaks down how the US defence secretary defended his record after a Republican congressman launched an attempt to impeach him.",
+      "whyItMatters": "",
+      "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "imageCredit": "SanjanaIAS category illustration",
+      "readTime": 3,
+      "published": "2026-11-10",
+      "updated": "2026-11-10",
+      "importance": 36,
+      "importanceReason": "Maps to GS III. Signals exam recurrence.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "'It's a farce': Hegseth's defiant response to impeachment effort",
+          "publisher": "BBC News — World",
+          "url": "https://www.bbc.co.uk/news/videos/cwm24249dezmo?at_medium=RSS&at_campaign=rss",
+          "type": "reporting",
+          "date": "2026-11-10"
+        }
+      ],
+      "sections": {
+        "event": "The BBC’s Gary O’Donoghue breaks down how the US defence secretary defended his record after a Republican congressman launched an attempt to impeach him.",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-10",
+            "text": "Reported by BBC News — World"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to GS III.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "lewis-hamilton-visits-egypt-s-rafah-crossing-and-g-2026-11-10",
+      "title": "Lewis Hamilton visits Egypt’s Rafah crossing and Gaza aid facilities",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "Security",
+      "tags": [
+        "Security"
+      ],
+      "gsPapers": [
+        "GS III"
+      ],
+      "summary": "Seven-time F1 world champion tours border area and logistics warehouses operated by Egyptian Red Crescent Lewis Hamilton has visited Egypt’s Rafah border crossing with the Gaza Strip to meet organisations sending humanitarian aid to the territory. The seven-time Formula One…",
+      "whyItMatters": "",
+      "image": "https://i.guim.co.uk/img/media/27bf2d45265593f1960114929744b613770ef7b3/140_0_5118_4095/master/5118.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=f83ced7697a40a5bc00073ea52aa6c8e",
+      "imageCredit": "The Guardian — World",
+      "readTime": 3,
+      "published": "2026-11-10",
+      "updated": "2026-11-10",
+      "importance": 36,
+      "importanceReason": "Maps to GS III. Signals exam recurrence.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Lewis Hamilton visits Egypt’s Rafah crossing and Gaza aid facilities",
+          "publisher": "The Guardian — World",
+          "url": "https://www.theguardian.com/world/2026/nov/10/lewis-hamilton-egypt-rafah-crossing-gaza-aid-facilities",
+          "type": "reporting",
+          "date": "2026-11-10"
+        }
+      ],
+      "sections": {
+        "event": "Seven-time F1 world champion tours border area and logistics warehouses operated by Egyptian Red Crescent Lewis Hamilton has visited Egypt’s Rafah border crossing with the Gaza Strip to meet organisations sending humanitarian aid to the territory. The seven-time Formula One world champion has spoken out about conflict and humanitarian crises in the region, and has called for peace. He has frequently posted on social media about children killed in Israeli airstrikes in Gaza and called for a ceasefire. Continue reading...",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-10",
+            "text": "Reported by The Guardian — World"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to GS III.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "russia-ukraine-talks-very-productive-says-us-s-rub-2026-11-10",
+      "title": "Russia-Ukraine talks ‘very productive,’ says US’s Rubio – Europe live",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "International Relations",
+      "tags": [
+        "International Relations"
+      ],
+      "gsPapers": [
+        "GS II"
+      ],
+      "summary": "US-led talks in Abu Dhabi break up after four hours but are expected to resume tomorrow as Zelenskyy says humanitarian issues were discussed US officials seek ‘final end’ to Russia-Ukraine war as talks begin The EU has said it stands ready “to come with a swift and united…",
+      "whyItMatters": "",
+      "image": "https://i.guim.co.uk/img/media/774a5dca29c43ddae2d2e6ed0635d0a715d82ac7/1079_0_6831_5465/master/6831.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=e1904a594d92d353ff19e93d910d9cb6",
+      "imageCredit": "The Guardian — World",
+      "readTime": 4,
+      "published": "2026-11-10",
+      "updated": "2026-11-10",
+      "importance": 36,
+      "importanceReason": "Maps to GS II. Signals exam recurrence.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Russia-Ukraine talks ‘very productive,’ says US’s Rubio – Europe live",
+          "publisher": "The Guardian — World",
+          "url": "https://www.theguardian.com/world/live/2026/nov/10/ukraine-russia-war-us-talks-abu-dhabi-europe-latest-news-updates",
+          "type": "reporting",
+          "date": "2026-11-10"
+        }
+      ],
+      "sections": {
+        "event": "US-led talks in Abu Dhabi break up after four hours but are expected to resume tomorrow as Zelenskyy says humanitarian issues were discussed US officials seek ‘final end’ to Russia-Ukraine war as talks begin The EU has said it stands ready “to come with a swift and united response” after France blamed Iran for a spate of cyber-attacks on supermarket freezers and chillers that caused millions of euros of damage. Speaking to journalists on Monday, French foreign minister Jean-Noël Barrot said “ Europe-wide sanctions ” would be imposed against those responsible as he announced France believed…",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-10",
+            "text": "Reported by The Guardian — World"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to GS II.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "israeli-forces-shoot-dead-14-year-old-in-west-bank-2026-11-10",
+      "title": "Israeli forces shoot dead 14-year-old in West Bank: Palestinian officials",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "Security",
+      "tags": [
+        "Security"
+      ],
+      "gsPapers": [
+        "GS III"
+      ],
+      "summary": "The Israeli military, asked by AFP about the incident, said on Tuesday (November 10, 2026) it had acted to \"thwart stone-hurling and terrorist attacks\" in the area.",
+      "whyItMatters": "",
+      "image": "https://th-i.thgim.com/public/incoming/fz892o/article71687252.ece/alternates/LANDSCAPE_1200/2026-11-10T100654Z_696851341_RC2XKOAQZ27T_RTRMADP_3_ISRAEL-PALESTINIANS-WEST-BANK-SETTLERS.JPG",
+      "imageCredit": "The Hindu — International",
+      "readTime": 3,
+      "published": "2026-11-10",
+      "updated": "2026-11-10",
+      "importance": 36,
+      "importanceReason": "Maps to GS III. Signals exam recurrence.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Israeli forces shoot dead 14-year-old in West Bank: Palestinian officials",
+          "publisher": "The Hindu — International",
+          "url": "https://www.thehindu.com/news/international/israeli-forces-shoot-dead-14-year-old-in-west-bank-palestinian-officials/article71687248.ece",
+          "type": "reporting",
+          "date": "2026-11-10"
+        }
+      ],
+      "sections": {
+        "event": "The Israeli military, asked by AFP about the incident, said on Tuesday (November 10, 2026) it had acted to \"thwart stone-hurling and terrorist attacks\" in the area.",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-10",
+            "text": "Reported by The Hindu — International"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to GS III.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "zelensky-holds-air-defence-energy-security-talks-w-2026-11-10",
+      "title": "Zelensky holds air defence, energy security talks with Nordic leaders",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "Security",
+      "tags": [
+        "Security"
+      ],
+      "gsPapers": [
+        "GS III"
+      ],
+      "summary": "The Nordic countries are among the main supporters of Ukraine and Zelensky travelled to Oslo at the end of October to meet with American envoys",
+      "whyItMatters": "",
+      "image": "https://th-i.thgim.com/public/incoming/lnp697/article71685742.ece/alternates/LANDSCAPE_1200/Ukrainian-PresiG0VGP2U2Q.4.jpg.jpg",
+      "imageCredit": "The Hindu — International",
+      "readTime": 3,
+      "published": "2026-11-10",
+      "updated": "2026-11-10",
+      "importance": 36,
+      "importanceReason": "Maps to GS III. Signals exam recurrence.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Zelensky holds air defence, energy security talks with Nordic leaders",
+          "publisher": "The Hindu — International",
+          "url": "https://www.thehindu.com/news/international/zelensky-holds-air-defence-energy-security-talks-with-nordic-leaders/article71685723.ece",
+          "type": "reporting",
+          "date": "2026-11-10"
+        }
+      ],
+      "sections": {
+        "event": "The Nordic countries are among the main supporters of Ukraine and Zelensky travelled to Oslo at the end of October to meet with American envoys",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-10",
+            "text": "Reported by The Hindu — International"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to GS III.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "iraq-reopens-border-crossing-with-iran-2026-11-10",
+      "title": "Iraq reopens border crossing with Iran",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "Security",
+      "tags": [
+        "Security"
+      ],
+      "gsPapers": [
+        "GS III"
+      ],
+      "summary": "The Iraqi government closed the Al-Sheeb crossing in Missan province in October",
+      "whyItMatters": "",
+      "image": "https://th-i.thgim.com/public/incoming/wldomn/article71685713.ece/alternates/LANDSCAPE_1200/Iraq_Arbaeen_6_545.jpg",
+      "imageCredit": "The Hindu — International",
+      "readTime": 3,
+      "published": "2026-11-10",
+      "updated": "2026-11-10",
+      "importance": 36,
+      "importanceReason": "Maps to GS III. Signals exam recurrence.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Iraq reopens border crossing with Iran",
+          "publisher": "The Hindu — International",
+          "url": "https://www.thehindu.com/news/international/iraq-reopens-border-crossing-with-iran/article71685697.ece",
+          "type": "reporting",
+          "date": "2026-11-10"
+        }
+      ],
+      "sections": {
+        "event": "The Iraqi government closed the Al-Sheeb crossing in Missan province in October",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-10",
+            "text": "Reported by The Hindu — International"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to GS III.",
         "prelimsNotes": [],
         "mainsNotes": []
       },
@@ -6486,6 +7868,234 @@
       "mainsQuestions": []
     },
     {
+      "id": "integrity-is-paramount-don-t-forget-your-roots-rev-2026-11-10",
+      "title": "‘Integrity is paramount, don’t forget your roots’, Revanth tells new DSPs",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "Ethics",
+      "tags": [
+        "Ethics"
+      ],
+      "gsPapers": [
+        "GS IV"
+      ],
+      "summary": "‘Integrity is paramount, don’t forget your roots’, Revanth tells new DSPs",
+      "whyItMatters": "",
+      "image": "https://th-i.thgim.com/public/news/national/telangana/3inwke/article71686951.ece/alternates/LANDSCAPE_1200/CM.jpeg",
+      "imageCredit": "The Hindu — National",
+      "readTime": 3,
+      "published": "2026-11-10",
+      "updated": "2026-11-10",
+      "importance": 27,
+      "importanceReason": "Maps to GS IV.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "‘Integrity is paramount, don’t forget your roots’, Revanth tells new DSPs",
+          "publisher": "The Hindu — National",
+          "url": "https://www.thehindu.com/news/national/telangana/integrity-is-paramount-dont-forget-your-roots-revanth-tells-new-dsps/article71686953.ece",
+          "type": "reporting",
+          "date": "2026-11-10"
+        }
+      ],
+      "sections": {
+        "event": "‘Integrity is paramount, don’t forget your roots’, Revanth tells new DSPs",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-10",
+            "text": "Reported by The Hindu — National"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to GS IV.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "cyclone-hit-villages-in-prakasam-district-remain-w-2026-11-10",
+      "title": "Cyclone-hit villages in Prakasam district remain without electricity",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "Geography",
+      "tags": [
+        "Geography"
+      ],
+      "gsPapers": [
+        "GS I"
+      ],
+      "summary": "The villagers are going to the nearest urban centre to charge their mobile phones at a cost of ₹10 per charge and are facing difficulties in meeting their daily needs, including access to drinking water and arranging fuel for generators, sources say",
+      "whyItMatters": "",
+      "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "imageCredit": "SanjanaIAS category illustration",
+      "readTime": 3,
+      "published": "2026-11-10",
+      "updated": "2026-11-10",
+      "importance": 27,
+      "importanceReason": "Maps to GS I.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Cyclone-hit villages in Prakasam district remain without electricity",
+          "publisher": "The Hindu — National",
+          "url": "https://www.thehindu.com/news/national/andhra-pradesh/cyclone-hit-villages-in-prakasam-district-remain-without-electricity/article71686952.ece",
+          "type": "reporting",
+          "date": "2026-11-10"
+        }
+      ],
+      "sections": {
+        "event": "The villagers are going to the nearest urban centre to charge their mobile phones at a cost of ₹10 per charge and are facing difficulties in meeting their daily needs, including access to drinking water and arranging fuel for generators, sources say",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-10",
+            "text": "Reported by The Hindu — National"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to GS I.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "sugarcane-farmers-urge-industries-for-at-least-5-0-2026-11-10",
+      "title": "Sugarcane farmers urge industries for at least ₹5,000 per tonne",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "Agriculture",
+      "tags": [
+        "Agriculture"
+      ],
+      "gsPapers": [
+        "GS III"
+      ],
+      "summary": "Sugarcane farmers urge industries for at least ₹5,000 per tonne",
+      "whyItMatters": "",
+      "image": "https://th-i.thgim.com/public/news/cities/Hyderabad/qp9nj5/article71686905.ece/alternates/LANDSCAPE_1200/Image%2025.jpeg",
+      "imageCredit": "The Hindu — National",
+      "readTime": 3,
+      "published": "2026-11-10",
+      "updated": "2026-11-10",
+      "importance": 27,
+      "importanceReason": "Maps to GS III.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Sugarcane farmers urge industries for at least ₹5,000 per tonne",
+          "publisher": "The Hindu — National",
+          "url": "https://www.thehindu.com/news/national/telangana/sugarcane-farmers-urge-industries-for-at-least-5000-per-tonne/article71686896.ece",
+          "type": "reporting",
+          "date": "2026-11-10"
+        }
+      ],
+      "sections": {
+        "event": "Sugarcane farmers urge industries for at least ₹5,000 per tonne",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-10",
+            "text": "Reported by The Hindu — National"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to GS III.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "banks-in-telangana-achieved-74-of-kharif-loan-targ-2026-11-10",
+      "title": "Banks in Telangana achieved 74% of Kharif loan targets in H1",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "Agriculture",
+      "tags": [
+        "Agriculture"
+      ],
+      "gsPapers": [
+        "GS III"
+      ],
+      "summary": "Banks in Telangana achieved 74% of Kharif loan targets in H1",
+      "whyItMatters": "",
+      "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "imageCredit": "SanjanaIAS category illustration",
+      "readTime": 3,
+      "published": "2026-11-10",
+      "updated": "2026-11-10",
+      "importance": 27,
+      "importanceReason": "Maps to GS III.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Banks in Telangana achieved 74% of Kharif loan targets in H1",
+          "publisher": "The Hindu — National",
+          "url": "https://www.thehindu.com/news/cities/Hyderabad/banks-in-telangana-achieved-74-of-kharif-loan-targets-in-h1/article71686919.ece",
+          "type": "reporting",
+          "date": "2026-11-10"
+        }
+      ],
+      "sections": {
+        "event": "Banks in Telangana achieved 74% of Kharif loan targets in H1",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-10",
+            "text": "Reported by The Hindu — National"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to GS III.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
       "id": "at-least-56-migrants-die-in-weekend-shipwrecks-off-2026-11-09",
       "title": "At least 56 migrants die in weekend shipwrecks off Senegal and Greece",
       "region": "world",
@@ -7494,6 +9104,271 @@
       "mainsQuestions": []
     },
     {
+      "id": "oxford-museum-returns-ancestral-naga-skulls-to-ind-2026-11-10",
+      "title": "Oxford museum returns ancestral Naga skulls to India",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "The remains will be taken to Nagaland, where tribal leaders plan a joint memorial and burial.",
+      "whyItMatters": "",
+      "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "imageCredit": "SanjanaIAS category illustration",
+      "readTime": 3,
+      "published": "2026-11-10",
+      "updated": "2026-11-10",
+      "importance": 14,
+      "importanceReason": "Signals india impact.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Oxford museum returns ancestral Naga skulls to India",
+          "publisher": "BBC News — World",
+          "url": "https://www.bbc.co.uk/news/articles/ck1l3lzg3y79o?at_medium=RSS&at_campaign=rss",
+          "type": "reporting",
+          "date": "2026-11-10"
+        }
+      ],
+      "sections": {
+        "event": "The remains will be taken to Nagaland, where tribal leaders plan a joint memorial and burial.",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-10",
+            "text": "Reported by BBC News — World"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "pranab-mukherjee-hinted-at-desire-to-become-pm-sho-2026-11-10",
+      "title": "Pranab Mukherjee hinted at desire to become PM, ‘shocked’ me, writes Sonia Gandhi",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "In her memoir, former Congress president recalls 2010 conversation; Pranab Mukherjee’s daughter Sharmistha asks what there was to be shocked about, says it is not a crime to be ambitious",
+      "whyItMatters": "",
+      "image": "https://th-i.thgim.com/public/incoming/toc5s9/article71687051.ece/alternates/LANDSCAPE_1200/PTI11_10_2026_000149B.jpg",
+      "imageCredit": "The Hindu — National",
+      "readTime": 3,
+      "published": "2026-11-10",
+      "updated": "2026-11-10",
+      "importance": 14,
+      "importanceReason": "Signals national significance.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Pranab Mukherjee hinted at desire to become PM, ‘shocked’ me, writes Sonia Gandhi",
+          "publisher": "The Hindu — National",
+          "url": "https://www.thehindu.com/news/national/pranab-mukherjee-hinted-at-desire-to-become-pm-shocked-me-writes-sonia-gandhi/article71686777.ece",
+          "type": "reporting",
+          "date": "2026-11-10"
+        }
+      ],
+      "sections": {
+        "event": "In her memoir, former Congress president recalls 2010 conversation; Pranab Mukherjee’s daughter Sharmistha asks what there was to be shocked about, says it is not a crime to be ambitious",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-10",
+            "text": "Reported by The Hindu — National"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "pannun-s-civil-lawsuit-u-s-court-allows-pannun-to--2026-11-10",
+      "title": "Pannun’s civil lawsuit: U.S. court allows Pannun to serve NSA Doval and former intelligence chief Goyal",
+      "region": "india",
+      "regions": [
+        "india"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "Order issued after U.S. State Department serves notice to officials at Indian Embassy in Washington; MEA rejects charges as ‘frivolous’, calls Pannun’s case ‘fabricated and malicious’",
+      "whyItMatters": "",
+      "image": "https://th-i.thgim.com/public/incoming/hop5hz/article71685489.ece/alternates/LANDSCAPE_1200/India_Sikh_Assassination_Plot_65459.jpg",
+      "imageCredit": "The Hindu — International",
+      "readTime": 3,
+      "published": "2026-11-10",
+      "updated": "2026-11-10",
+      "importance": 14,
+      "importanceReason": "Signals india impact.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Pannun’s civil lawsuit: U.S. court allows Pannun to serve NSA Doval and former intelligence chief Goyal",
+          "publisher": "The Hindu — International",
+          "url": "https://www.thehindu.com/news/international/pannuns-civil-lawsuit-us-state-department-formally-serves-notice-to-india/article71685482.ece",
+          "type": "reporting",
+          "date": "2026-11-10"
+        }
+      ],
+      "sections": {
+        "event": "Order issued after U.S. State Department serves notice to officials at Indian Embassy in Washington; MEA rejects charges as ‘frivolous’, calls Pannun’s case ‘fabricated and malicious’",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-10",
+            "text": "Reported by The Hindu — International"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "Flagged as India-relevant by the classifier.",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "bangladesh-prosecutor-says-ex-pm-hasina-will-be-ex-2026-11-10",
+      "title": "Bangladesh prosecutor says ex-PM Hasina will be executed if she returns",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "‘Sheikh Hasina has no option but to face the execution of the verdict,’ Md Aminul Islam told reporters, responding to reports she planned to return from self-imposed exile in neighbouring India.",
+      "whyItMatters": "",
+      "image": "https://th-i.thgim.com/public/incoming/l0goir/article71686145.ece/alternates/LANDSCAPE_1200/Bangladesh_Sheikh_Hasina_425_7.jpg",
+      "imageCredit": "The Hindu — International",
+      "readTime": 3,
+      "published": "2026-11-10",
+      "updated": "2026-11-10",
+      "importance": 14,
+      "importanceReason": "Signals india impact.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Bangladesh prosecutor says ex-PM Hasina will be executed if she returns",
+          "publisher": "The Hindu — International",
+          "url": "https://www.thehindu.com/news/international/bangladesh-prosecutor-says-ex-pm-hasina-will-be-executed-if-she-returns/article71686077.ece",
+          "type": "reporting",
+          "date": "2026-11-10"
+        }
+      ],
+      "sections": {
+        "event": "‘Sheikh Hasina has no option but to face the execution of the verdict,’ Md Aminul Islam told reporters, responding to reports she planned to return from self-imposed exile in neighbouring India.",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-10",
+            "text": "Reported by The Hindu — International"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "u-s-president-donald-trump-nominates-natalie-baker-2026-11-10",
+      "title": "U.S. President Donald Trump nominates Natalie Baker as next Ambassador to Pakistan",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "Ms. Baker is currently serving as charge d’affaires at the U.S. Embassy in Islamabad. She assumed the role in January 2025, following the departure of then-ambassador Donald Armin Blome",
+      "whyItMatters": "",
+      "image": "https://th-i.thgim.com/public/newsletter/the-evening-wrap/sayw1t/article71686264.ece/alternates/LANDSCAPE_1200/HTX8ya6XEAAkzDf.jpg",
+      "imageCredit": "The Hindu — International",
+      "readTime": 3,
+      "published": "2026-11-10",
+      "updated": "2026-11-10",
+      "importance": 14,
+      "importanceReason": "Signals national significance.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "U.S. President Donald Trump nominates Natalie Baker as next Ambassador to Pakistan",
+          "publisher": "The Hindu — International",
+          "url": "https://www.thehindu.com/news/international/us-president-donald-trump-nominates-natalie-baker-as-next-ambassador-to-pakistan/article71686165.ece",
+          "type": "reporting",
+          "date": "2026-11-10"
+        }
+      ],
+      "sections": {
+        "event": "Ms. Baker is currently serving as charge d’affaires at the U.S. Embassy in Islamabad. She assumed the role in January 2025, following the departure of then-ambassador Donald Armin Blome",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-10",
+            "text": "Reported by The Hindu — International"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
       "id": "trump-says-more-us-attacks-on-iran-highly-unlikely-2026-11-10",
       "title": "Trump says more US attacks on Iran 'highly unlikely'",
       "region": "world",
@@ -8289,6 +10164,112 @@
       "mainsQuestions": []
     },
     {
+      "id": "uk-and-argentina-clash-over-falklands-oil-project--2026-11-10",
+      "title": "UK and Argentina clash over Falklands oil project as Hamburg tribunal starts",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "Sea Lion project in the North Falkland basin threatens to deepen sovereignty dispute Argentina has told an international tribunal that Britain’s approval of oil drilling off the Falkland Islands has dramatically deepened a sovereignty dispute that led to war four decades ago. At…",
+      "whyItMatters": "",
+      "image": "https://i.guim.co.uk/img/media/5d2b5e1b9e781a1b5a8dd0e647c4fd2a9b8b0afb/295_244_2470_1977/master/2470.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=35f0b486f371c4981f8f6f278cadd89d",
+      "imageCredit": "The Guardian — World",
+      "readTime": 3,
+      "published": "2026-11-10",
+      "updated": "2026-11-10",
+      "importance": 11,
+      "importanceReason": "Signals constitutional legal.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "UK and Argentina clash over Falklands oil project as Hamburg tribunal starts",
+          "publisher": "The Guardian — World",
+          "url": "https://www.theguardian.com/world/2026/nov/10/uk-and-argentina-clash-over-falklands-oil-project-as-hamburg-tribunal-starts",
+          "type": "reporting",
+          "date": "2026-11-10"
+        }
+      ],
+      "sections": {
+        "event": "Sea Lion project in the North Falkland basin threatens to deepen sovereignty dispute Argentina has told an international tribunal that Britain’s approval of oil drilling off the Falkland Islands has dramatically deepened a sovereignty dispute that led to war four decades ago. At the start of an historic legal clash at the Hamburg-based International Tribunal for the Law of the Sea (Itlos), an Argentinian legal team argued that the oil project must be suspended. Continue reading...",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-10",
+            "text": "Reported by The Guardian — World"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "pentagon-chief-hegseth-calls-moves-to-impeach-him--2026-11-10",
+      "title": "Pentagon chief Hegseth calls moves to impeach him a farce that will fail",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "Pete Hegseth made the comment ‌at a news conference a day after U.S. Representative ‌Thomas Massie, a ‌Kentucky ⁠Republican, introduced eight articles of ⁠impeachment against him",
+      "whyItMatters": "",
+      "image": "https://th-i.thgim.com/public/incoming/xx0v3r/article71686594.ece/alternates/LANDSCAPE_1200/2026-11-10T135041Z_970840811_RC21LOADXIZQ_RTRMADP_3_USA-HEGSETH.JPG",
+      "imageCredit": "The Hindu — International",
+      "readTime": 3,
+      "published": "2026-11-10",
+      "updated": "2026-11-10",
+      "importance": 11,
+      "importanceReason": "Signals constitutional legal.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Pentagon chief Hegseth calls moves to impeach him a farce that will fail",
+          "publisher": "The Hindu — International",
+          "url": "https://www.thehindu.com/news/international/pentagon-chief-hegseth-calls-moves-to-impeach-him-a-farce-that-will-fail/article71686563.ece",
+          "type": "reporting",
+          "date": "2026-11-10"
+        }
+      ],
+      "sections": {
+        "event": "Pete Hegseth made the comment ‌at a news conference a day after U.S. Representative ‌Thomas Massie, a ‌Kentucky ⁠Republican, introduced eight articles of ⁠impeachment against him",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-10",
+            "text": "Reported by The Hindu — International"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
       "id": "sheikh-hasina-s-return-to-bangladesh-the-hurdles-t-2026-11-10",
       "title": "Sheikh Hasina’s return to Bangladesh: the hurdles, the risks and the politics | Explained",
       "region": "world",
@@ -8501,6 +10482,59 @@
       "mainsQuestions": []
     },
     {
+      "id": "security-council-live-south-sudan-s-first-election-2026-11-10",
+      "title": "Security Council LIVE: South Sudan’s first elections loom amid rising violence",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "With South Sudan just six weeks away from its first national elections since independence, the Security Council meets in New York Tuesday amid deepening political uncertainty and worsening violence. Ambassadors are expected to press for an inclusive process and credible polls,…",
+      "whyItMatters": "",
+      "image": "https://global.unitednations.entermediadb.net/assets/mediadb/services/module/asset/downloads/preset/Collections/Production%20Library/2026/11/02-11-2026_UNMISS_South_Sudan_Peace.jpg/image560x340cropped.jpg",
+      "imageCredit": "UN News",
+      "readTime": 3,
+      "published": "2026-11-10",
+      "updated": "2026-11-10",
+      "importance": 9,
+      "importanceReason": "Signals exam recurrence.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Security Council LIVE: South Sudan’s first elections loom amid rising violence",
+          "publisher": "UN News",
+          "url": "https://news.un.org/feed/view/en/story/2026/11/1168774",
+          "type": "primary",
+          "date": "2026-11-10"
+        }
+      ],
+      "sections": {
+        "event": "With South Sudan just six weeks away from its first national elections since independence, the Security Council meets in New York Tuesday amid deepening political uncertainty and worsening violence. Ambassadors are expected to press for an inclusive process and credible polls, while civilians bear the brunt of fighting, hunger and displacement.",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-10",
+            "text": "Reported by UN News"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
       "id": "managing-the-covid-19-infodemic-promoting-healthy--2020-09-23",
       "title": "Managing the COVID-19 infodemic: Promoting healthy behaviours and mitigating the harm from misinformation and disinformation",
       "region": "world",
@@ -8538,6 +10572,112 @@
           {
             "date": "2020-09-23",
             "text": "Reported by WHO"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "government-plans-curbs-on-film-promotions-and-comm-2026-11-10",
+      "title": "Government plans curbs on film promotions and commercial events in educational institutions",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "The proposed guidelines are expected to restrict the use of educational institution premises for non-academic, political film promotions and unrelated commercial events",
+      "whyItMatters": "",
+      "image": "https://th-i.thgim.com/public/incoming/o7580e/article71687198.ece/alternates/LANDSCAPE_1200/DSC4629.jpg",
+      "imageCredit": "The Hindu — National",
+      "readTime": 3,
+      "published": "2026-11-10",
+      "updated": "2026-11-10",
+      "importance": 9,
+      "importanceReason": "Signals environment social.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Government plans curbs on film promotions and commercial events in educational institutions",
+          "publisher": "The Hindu — National",
+          "url": "https://www.thehindu.com/news/national/telangana/government-plans-curbs-on-film-promotions-and-commercial-events-in-educational-institutions/article71687136.ece",
+          "type": "reporting",
+          "date": "2026-11-10"
+        }
+      ],
+      "sections": {
+        "event": "The proposed guidelines are expected to restrict the use of educational institution premises for non-academic, political film promotions and unrelated commercial events",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-10",
+            "text": "Reported by The Hindu — National"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "p-chandrasekhar-appointed-to-ap-higher-education-f-2026-11-10",
+      "title": "P. Chandrasekhar appointed to AP Higher Education Fee Regulatory Committee",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "P. Chandrasekhar appointed to AP Higher Education Fee Regulatory Committee",
+      "whyItMatters": "",
+      "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "imageCredit": "SanjanaIAS category illustration",
+      "readTime": 3,
+      "published": "2026-11-10",
+      "updated": "2026-11-10",
+      "importance": 9,
+      "importanceReason": "Signals environment social.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "P. Chandrasekhar appointed to AP Higher Education Fee Regulatory Committee",
+          "publisher": "The Hindu — National",
+          "url": "https://www.thehindu.com/news/national/andhra-pradesh/p-chandrasekhar-appointed-to-ap-higher-education-fee-regulatory-committee/article71686901.ece",
+          "type": "reporting",
+          "date": "2026-11-10"
+        }
+      ],
+      "sections": {
+        "event": "P. Chandrasekhar appointed to AP Higher Education Fee Regulatory Committee",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-10",
+            "text": "Reported by The Hindu — National"
           }
         ],
         "data": [],
@@ -9227,6 +11367,1490 @@
           {
             "date": "2026-11-09",
             "text": "Reported by The Hindu — National"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "arrests-made-in-mohamed-al-fayed-probe-in-france-p-2026-11-10",
+      "title": "Arrests made in Mohamed Al Fayed probe in France, police say",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "The Ritz hotel in Paris, which is still owned by the Al Fayed family, is one of the properties searched by police.",
+      "whyItMatters": "",
+      "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "imageCredit": "SanjanaIAS category illustration",
+      "readTime": 3,
+      "published": "2026-11-10",
+      "updated": "2026-11-10",
+      "importance": 5,
+      "importanceReason": "Generic coverage with no clear syllabus anchor.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Arrests made in Mohamed Al Fayed probe in France, police say",
+          "publisher": "BBC News — World",
+          "url": "https://www.bbc.co.uk/news/articles/ck1wvwyrd4ywo?at_medium=RSS&at_campaign=rss",
+          "type": "reporting",
+          "date": "2026-11-10"
+        }
+      ],
+      "sections": {
+        "event": "The Ritz hotel in Paris, which is still owned by the Al Fayed family, is one of the properties searched by police.",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-10",
+            "text": "Reported by BBC News — World"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "anthropic-heads-for-lower-than-expected-1-3-trilli-2026-11-10",
+      "title": "Anthropic heads for lower than expected $1.3 trillion valuation in stock market debut",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "The AI company behind the Claude chatbot will offer its shares at between $70 and $78.",
+      "whyItMatters": "",
+      "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "imageCredit": "SanjanaIAS category illustration",
+      "readTime": 3,
+      "published": "2026-11-10",
+      "updated": "2026-11-10",
+      "importance": 5,
+      "importanceReason": "Generic coverage with no clear syllabus anchor.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Anthropic heads for lower than expected $1.3 trillion valuation in stock market debut",
+          "publisher": "BBC News — World",
+          "url": "https://www.bbc.co.uk/news/articles/crpdgd723x2zo?at_medium=RSS&at_campaign=rss",
+          "type": "reporting",
+          "date": "2026-11-10"
+        }
+      ],
+      "sections": {
+        "event": "The AI company behind the Claude chatbot will offer its shares at between $70 and $78.",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-10",
+            "text": "Reported by BBC News — World"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "california-police-investigate-after-27-fall-ill-at-2026-11-10",
+      "title": "California police investigate after 27 fall ill at half-marathon running event",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "A local hospital says runners had \"unusual\" symptoms after racing on an atypically hot day.",
+      "whyItMatters": "",
+      "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "imageCredit": "SanjanaIAS category illustration",
+      "readTime": 3,
+      "published": "2026-11-10",
+      "updated": "2026-11-10",
+      "importance": 5,
+      "importanceReason": "Generic coverage with no clear syllabus anchor.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "California police investigate after 27 fall ill at half-marathon running event",
+          "publisher": "BBC News — World",
+          "url": "https://www.bbc.co.uk/news/articles/cq0ldlyd556go?at_medium=RSS&at_campaign=rss",
+          "type": "reporting",
+          "date": "2026-11-10"
+        }
+      ],
+      "sections": {
+        "event": "A local hospital says runners had \"unusual\" symptoms after racing on an atypically hot day.",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-10",
+            "text": "Reported by BBC News — World"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "police-officer-dies-and-another-injured-after-back-2026-11-10",
+      "title": "Police officer dies and another injured after backpack explosion in northern Spain",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "Officers attended the scene in connection with a separate incident at a residential building in the Spanish city.",
+      "whyItMatters": "",
+      "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "imageCredit": "SanjanaIAS category illustration",
+      "readTime": 3,
+      "published": "2026-11-10",
+      "updated": "2026-11-10",
+      "importance": 5,
+      "importanceReason": "Generic coverage with no clear syllabus anchor.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Police officer dies and another injured after backpack explosion in northern Spain",
+          "publisher": "BBC News — World",
+          "url": "https://www.bbc.co.uk/news/articles/cwm262pzezy0o?at_medium=RSS&at_campaign=rss",
+          "type": "reporting",
+          "date": "2026-11-10"
+        }
+      ],
+      "sections": {
+        "event": "Officers attended the scene in connection with a separate incident at a residential building in the Spanish city.",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-10",
+            "text": "Reported by BBC News — World"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "french-wartime-resistance-heroine-solange-alexandr-2026-11-10",
+      "title": "French wartime resistance heroine Solange Alexandre dies aged 104",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "With 30 men under her orders, she organised sabotage operations, sheltered Allied airmen and joined the fight against the occupying German forces.",
+      "whyItMatters": "",
+      "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "imageCredit": "SanjanaIAS category illustration",
+      "readTime": 3,
+      "published": "2026-11-10",
+      "updated": "2026-11-10",
+      "importance": 5,
+      "importanceReason": "Generic coverage with no clear syllabus anchor.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "French wartime resistance heroine Solange Alexandre dies aged 104",
+          "publisher": "BBC News — World",
+          "url": "https://www.bbc.co.uk/news/articles/cjdx3x7wg941o?at_medium=RSS&at_campaign=rss",
+          "type": "reporting",
+          "date": "2026-11-10"
+        }
+      ],
+      "sections": {
+        "event": "With 30 men under her orders, she organised sabotage operations, sheltered Allied airmen and joined the fight against the occupying German forces.",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-10",
+            "text": "Reported by BBC News — World"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "watch-man-smashes-chinese-government-building-with-2026-11-10",
+      "title": "Watch: Man smashes Chinese government building with excavator",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "Police say they have detained a 47-year-old suspect and no one was injured in the incident.",
+      "whyItMatters": "",
+      "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "imageCredit": "SanjanaIAS category illustration",
+      "readTime": 3,
+      "published": "2026-11-10",
+      "updated": "2026-11-10",
+      "importance": 5,
+      "importanceReason": "Generic coverage with no clear syllabus anchor.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Watch: Man smashes Chinese government building with excavator",
+          "publisher": "BBC News — World",
+          "url": "https://www.bbc.co.uk/news/videos/ckp8g8p4myv8o?at_medium=RSS&at_campaign=rss",
+          "type": "reporting",
+          "date": "2026-11-10"
+        }
+      ],
+      "sections": {
+        "event": "Police say they have detained a 47-year-old suspect and no one was injured in the incident.",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-10",
+            "text": "Reported by BBC News — World"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "polish-unity-on-show-as-thousands-join-silent-marc-2026-11-10",
+      "title": "Polish unity on show as thousands join silent march for Krakow shooting victims",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "Fiercely proud of its reputation for safety, Poland has been profoundly shaken by Saturday's attack, writes Sarah Rainsford.",
+      "whyItMatters": "",
+      "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "imageCredit": "SanjanaIAS category illustration",
+      "readTime": 3,
+      "published": "2026-11-10",
+      "updated": "2026-11-10",
+      "importance": 5,
+      "importanceReason": "Generic coverage with no clear syllabus anchor.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Polish unity on show as thousands join silent march for Krakow shooting victims",
+          "publisher": "BBC News — World",
+          "url": "https://www.bbc.co.uk/news/articles/cqkg5gm4nr4no?at_medium=RSS&at_campaign=rss",
+          "type": "reporting",
+          "date": "2026-11-10"
+        }
+      ],
+      "sections": {
+        "event": "Fiercely proud of its reputation for safety, Poland has been profoundly shaken by Saturday's attack, writes Sarah Rainsford.",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-10",
+            "text": "Reported by BBC News — World"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "victorian-labor-s-unforgivable-preferences-decisio-2026-11-10",
+      "title": "Victorian Labor’s ‘unforgivable’ preferences decision risks Liberal-One Nation government, Greens warn",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "Exclusive: Ellen Sandell says Labor’s decision not to back progressives in key inner-seat could hand power to right-wing coalition in close election Get our breaking news email , free app or daily news podcast The Victorian Greens say Labor’s “frankly unforgivable” decision not…",
+      "whyItMatters": "",
+      "image": "https://i.guim.co.uk/img/media/9d32561abf0d126f789349d95d6ff3b23d747922/477_0_6827_5464/master/6827.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=c48efa7172e679c27fc3ed4366b16cf1",
+      "imageCredit": "The Guardian — World",
+      "readTime": 3,
+      "published": "2026-11-10",
+      "updated": "2026-11-10",
+      "importance": 5,
+      "importanceReason": "Generic coverage with no clear syllabus anchor.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Victorian Labor’s ‘unforgivable’ preferences decision risks Liberal-One Nation government, Greens warn",
+          "publisher": "The Guardian — World",
+          "url": "https://www.theguardian.com/australia-news/2026/nov/11/labor-decision-greens-preference-one-nation-battleground-seat-prahran-ntwnfb",
+          "type": "reporting",
+          "date": "2026-11-10"
+        }
+      ],
+      "sections": {
+        "event": "Exclusive: Ellen Sandell says Labor’s decision not to back progressives in key inner-seat could hand power to right-wing coalition in close election Get our breaking news email , free app or daily news podcast The Victorian Greens say Labor’s “frankly unforgivable” decision not to preference the minor party in a key inner-city seat could hand the upcoming election to a Liberal-One Nation coalition. The party’s leader, Ellen Sandell, lambasted Labor’s decision on Tuesday to run an open ticket in Prahran, an inner Melbourne seat currently held by the Liberals’ Rachel Westaway on a tiny 1.3%…",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-10",
+            "text": "Reported by The Guardian — World"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "david-jones-s-finances-were-reviewed-and-restructu-2026-11-10",
+      "title": "David Jones’s finances were reviewed and restructuring flagged months before it fell into administration",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "Department store group kept buying new products and fell months behind in payments to some brands despite discussions with administrators Get our breaking news email , free app or daily news podcast David Jones’s administrators have revealed they reviewed its finances six months…",
+      "whyItMatters": "",
+      "image": "https://i.guim.co.uk/img/media/0758a698a82e09a3ec3b57bea68a100906de3fbb/625_0_5000_4000/master/5000.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=6cdb37bc1fe1bcd026ec8a3ef1cb1fbd",
+      "imageCredit": "The Guardian — World",
+      "readTime": 3,
+      "published": "2026-11-10",
+      "updated": "2026-11-10",
+      "importance": 5,
+      "importanceReason": "Generic coverage with no clear syllabus anchor.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "David Jones’s finances were reviewed and restructuring flagged months before it fell into administration",
+          "publisher": "The Guardian — World",
+          "url": "https://www.theguardian.com/business/2026/nov/10/david-joness-finances-were-reviewed-and-restructuring-flagged-months-before-it-fell-into-administration",
+          "type": "reporting",
+          "date": "2026-11-10"
+        }
+      ],
+      "sections": {
+        "event": "Department store group kept buying new products and fell months behind in payments to some brands despite discussions with administrators Get our breaking news email , free app or daily news podcast David Jones’s administrators have revealed they reviewed its finances six months ago and discussed restructuring the retailer three months before it fell into administration. The new timeline raises questions over the department store group’s decision to keep buying new products and fall months behind in payments to some brands before it revealed last Thursday it could not pay its debts. Continue…",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-10",
+            "text": "Reported by The Guardian — World"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "cisce-announces-icse-and-isc-2027-examination-time-2026-11-10",
+      "title": "CISCE announces ICSE and ISC 2027 examination timetable",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "ICSE (Class 10) examinations from February 15 and ISC (Class 12) from February 9",
+      "whyItMatters": "",
+      "image": "https://th-i.thgim.com/public/incoming/zh4ier/article71685707.ece/alternates/LANDSCAPE_1200/iStock-899890574.jpg",
+      "imageCredit": "The Hindu — National",
+      "readTime": 3,
+      "published": "2026-11-10",
+      "updated": "2026-11-10",
+      "importance": 5,
+      "importanceReason": "Generic coverage with no clear syllabus anchor.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "CISCE announces ICSE and ISC 2027 examination timetable",
+          "publisher": "The Hindu — National",
+          "url": "https://www.thehindu.com/education/cisce-announces-icse-and-isc-2027-examination-timetable/article71685678.ece",
+          "type": "reporting",
+          "date": "2026-11-10"
+        }
+      ],
+      "sections": {
+        "event": "ICSE (Class 10) examinations from February 15 and ISC (Class 12) from February 9",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-10",
+            "text": "Reported by The Hindu — National"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "delhi-sir-why-bjp-blas-voter-deletion-applications-2026-11-10",
+      "title": "Delhi SIR: Why BJP BLAs’ voter deletion applications in Mustafabad focused on three neighbourhoods",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "796 Form 7 applications against Muslims, filed by 20 BJP BLAs, concentrated on the rolls of 25 polling booths in Mustafabad. However, BJP claims it has not directed the filing of these applications",
+      "whyItMatters": "",
+      "image": "https://th-i.thgim.com/public/incoming/afjhyy/article71687239.ece/alternates/LANDSCAPE_1200/TH03-Sreeparna-GCRGOJ4QL.4.jpg.jpg",
+      "imageCredit": "The Hindu — National",
+      "readTime": 3,
+      "published": "2026-11-10",
+      "updated": "2026-11-10",
+      "importance": 5,
+      "importanceReason": "Generic coverage with no clear syllabus anchor.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Delhi SIR: Why BJP BLAs’ voter deletion applications in Mustafabad focused on three neighbourhoods",
+          "publisher": "The Hindu — National",
+          "url": "https://www.thehindu.com/news/cities/Delhi/delhi-sir-why-bjp-blas-voter-deletion-applications-in-mustafabad-focused-on-three-neighbourhoods/article71685998.ece",
+          "type": "reporting",
+          "date": "2026-11-10"
+        }
+      ],
+      "sections": {
+        "event": "796 Form 7 applications against Muslims, filed by 20 BJP BLAs, concentrated on the rolls of 25 polling booths in Mustafabad. However, BJP claims it has not directed the filing of these applications",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-10",
+            "text": "Reported by The Hindu — National"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "apsrtc-jmd-stresses-need-to-safeguard-revenues-ens-2026-11-10",
+      "title": "APSRTC JMD stresses need to safeguard revenues, ensure transparency",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "Addressing a training programme, Siva Prasad calls upon depot managers to identify technology-related irregularities, prevent revenue leakages, regularly scrutinise records and financial transactions, and improve inter-departmental coordination",
+      "whyItMatters": "",
+      "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "imageCredit": "SanjanaIAS category illustration",
+      "readTime": 3,
+      "published": "2026-11-10",
+      "updated": "2026-11-10",
+      "importance": 5,
+      "importanceReason": "Generic coverage with no clear syllabus anchor.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "APSRTC JMD stresses need to safeguard revenues, ensure transparency",
+          "publisher": "The Hindu — National",
+          "url": "https://www.thehindu.com/news/national/andhra-pradesh/apsrtc-jmd-stresses-need-to-safeguard-revenues-ensure-transparency/article71686949.ece",
+          "type": "reporting",
+          "date": "2026-11-10"
+        }
+      ],
+      "sections": {
+        "event": "Addressing a training programme, Siva Prasad calls upon depot managers to identify technology-related irregularities, prevent revenue leakages, regularly scrutinise records and financial transactions, and improve inter-departmental coordination",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-10",
+            "text": "Reported by The Hindu — National"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "committee-to-be-set-up-for-transparent-procurement-2026-11-10",
+      "title": "Committee to be set up for transparent procurement of library books: Minister Rajmohan",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "The Minister says that the TVK government has not brought any books",
+      "whyItMatters": "",
+      "image": "https://th-i.thgim.com/public/incoming/7u711t/article71687240.ece/alternates/LANDSCAPE_1200/DSC_8934.JPG",
+      "imageCredit": "The Hindu — National",
+      "readTime": 3,
+      "published": "2026-11-10",
+      "updated": "2026-11-10",
+      "importance": 5,
+      "importanceReason": "Generic coverage with no clear syllabus anchor.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Committee to be set up for transparent procurement of library books: Minister Rajmohan",
+          "publisher": "The Hindu — National",
+          "url": "https://www.thehindu.com/news/national/tamil-nadu/committee-to-be-set-up-for-transparent-procurement-of-library-books-minister-rajmohan/article71686551.ece",
+          "type": "reporting",
+          "date": "2026-11-10"
+        }
+      ],
+      "sections": {
+        "event": "The Minister says that the TVK government has not brought any books",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-10",
+            "text": "Reported by The Hindu — National"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "akhilesh-to-visit-ram-temple-promises-to-transform-2026-11-10",
+      "title": "Akhilesh to visit Ram Temple; promises to transform Ayodhya into capital of Sanatan pilgrimage",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "The Uttar Pradesh BJP challenged Mr. Yadav to visit the Temple on December 6 — anniversary of the Babri Masjid demolition — and apologise for the killing of kar sevaks",
+      "whyItMatters": "",
+      "image": "https://th-i.thgim.com/public/incoming/6x3b4c/article71686156.ece/alternates/LANDSCAPE_1200/Akhileshs-propGB7GPE3KQ.3.jpg.jpg",
+      "imageCredit": "The Hindu — National",
+      "readTime": 3,
+      "published": "2026-11-10",
+      "updated": "2026-11-10",
+      "importance": 5,
+      "importanceReason": "Generic coverage with no clear syllabus anchor.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Akhilesh to visit Ram Temple; promises to transform Ayodhya into capital of Sanatan pilgrimage",
+          "publisher": "The Hindu — National",
+          "url": "https://www.thehindu.com/news/national/uttar-pradesh/akhilesh-vows-to-make-ayodhya-global-capital-of-sanatan-pilgrimage/article71686121.ece",
+          "type": "reporting",
+          "date": "2026-11-10"
+        }
+      ],
+      "sections": {
+        "event": "The Uttar Pradesh BJP challenged Mr. Yadav to visit the Temple on December 6 — anniversary of the Babri Masjid demolition — and apologise for the killing of kar sevaks",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-10",
+            "text": "Reported by The Hindu — National"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "school-half-yearly-exams-in-keralam-from-december--2026-11-10",
+      "title": "School half-yearly exams in Keralam from December 8",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "School half-yearly exams in Keralam from December 8",
+      "whyItMatters": "",
+      "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "imageCredit": "SanjanaIAS category illustration",
+      "readTime": 3,
+      "published": "2026-11-10",
+      "updated": "2026-11-10",
+      "importance": 5,
+      "importanceReason": "Generic coverage with no clear syllabus anchor.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "School half-yearly exams in Keralam from December 8",
+          "publisher": "The Hindu — National",
+          "url": "https://www.thehindu.com/news/national/kerala/school-half-yearly-exams-in-keralam-from-december-8/article71687067.ece",
+          "type": "reporting",
+          "date": "2026-11-10"
+        }
+      ],
+      "sections": {
+        "event": "School half-yearly exams in Keralam from December 8",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-10",
+            "text": "Reported by The Hindu — National"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "bunker-roy-founder-of-barefoot-college-dies-at-81-2026-11-10",
+      "title": "Bunker Roy, founder of Barefoot College, dies at 81",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "Roy founded the Social Work and Research Centre, popularly known as Barefoot College, in Tilonia in 1972",
+      "whyItMatters": "",
+      "image": "https://th-i.thgim.com/public/incoming/xvsggb/article71685078.ece/alternates/LANDSCAPE_1200/HWvXKgDaEAANN_P.jpg",
+      "imageCredit": "The Hindu — National",
+      "readTime": 3,
+      "published": "2026-11-10",
+      "updated": "2026-11-10",
+      "importance": 5,
+      "importanceReason": "Generic coverage with no clear syllabus anchor.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Bunker Roy, founder of Barefoot College, dies at 81",
+          "publisher": "The Hindu — National",
+          "url": "https://www.thehindu.com/news/national/social-activist-sanjit-bunker-roy-dies/article71685040.ece",
+          "type": "reporting",
+          "date": "2026-11-10"
+        }
+      ],
+      "sections": {
+        "event": "Roy founded the Social Work and Research Centre, popularly known as Barefoot College, in Tilonia in 1972",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-10",
+            "text": "Reported by The Hindu — National"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "law-and-order-in-coma-in-tamil-nadu-says-stalin-2026-11-10",
+      "title": "Law and order in coma in Tamil Nadu, says Stalin",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "He alleged miscreants had lost all fear of the government, which he claimed was led by a “joker”",
+      "whyItMatters": "",
+      "image": "https://th-i.thgim.com/public/incoming/fbsoys/article71687101.ece/alternates/LANDSCAPE_1200/2085_4_11_2026_21_17_6_5_DSC_0764.JPG",
+      "imageCredit": "The Hindu — National",
+      "readTime": 3,
+      "published": "2026-11-10",
+      "updated": "2026-11-10",
+      "importance": 5,
+      "importanceReason": "Generic coverage with no clear syllabus anchor.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Law and order in coma in Tamil Nadu, says Stalin",
+          "publisher": "The Hindu — National",
+          "url": "https://www.thehindu.com/news/national/tamil-nadu/law-and-order-in-coma-in-tamil-nadu-says-stalin/article71687075.ece",
+          "type": "reporting",
+          "date": "2026-11-10"
+        }
+      ],
+      "sections": {
+        "event": "He alleged miscreants had lost all fear of the government, which he claimed was led by a “joker”",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-10",
+            "text": "Reported by The Hindu — National"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "police-sub-inspector-shoots-at-history-sheeter-for-2026-11-10",
+      "title": "Police sub-inspector shoots at history-sheeter for attacking during escape bid in Vellore",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "Sub-inspector Raja and suspect Poovarasan were admitted to Government Taluk Hospital in Gudiyatham town",
+      "whyItMatters": "",
+      "image": "https://th-i.thgim.com/public/news/national/tamil-nadu/uygfhi/article71685201.ece/alternates/LANDSCAPE_1200/WhatsApp%20Image%202026-11-10%20at%2010.25.19.jpeg",
+      "imageCredit": "The Hindu — National",
+      "readTime": 3,
+      "published": "2026-11-10",
+      "updated": "2026-11-10",
+      "importance": 5,
+      "importanceReason": "Generic coverage with no clear syllabus anchor.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Police sub-inspector shoots at history-sheeter for attacking during escape bid in Vellore",
+          "publisher": "The Hindu — National",
+          "url": "https://www.thehindu.com/news/national/tamil-nadu/sub-inspector-shoots-at-history-sheeter-for-attacking-him-during-escape-bid-in-vellore/article71684958.ece",
+          "type": "reporting",
+          "date": "2026-11-10"
+        }
+      ],
+      "sections": {
+        "event": "Sub-inspector Raja and suspect Poovarasan were admitted to Government Taluk Hospital in Gudiyatham town",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-10",
+            "text": "Reported by The Hindu — National"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "woman-found-murdered-at-cheriyar-in-idukki-2026-11-10",
+      "title": "Woman found murdered at Cheriyar in Idukki",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "Woman found murdered at Cheriyar in Idukki",
+      "whyItMatters": "",
+      "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "imageCredit": "SanjanaIAS category illustration",
+      "readTime": 3,
+      "published": "2026-11-10",
+      "updated": "2026-11-10",
+      "importance": 5,
+      "importanceReason": "Generic coverage with no clear syllabus anchor.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Woman found murdered at Cheriyar in Idukki",
+          "publisher": "The Hindu — National",
+          "url": "https://www.thehindu.com/news/national/kerala/woman-found-murdered-at-cheriyar-in-idukki/article71686956.ece",
+          "type": "reporting",
+          "date": "2026-11-10"
+        }
+      ],
+      "sections": {
+        "event": "Woman found murdered at Cheriyar in Idukki",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-10",
+            "text": "Reported by The Hindu — National"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "nda-wrests-kadapa-zptcs-from-ysrcp-2026-11-10",
+      "title": "NDA wrests Kadapa ZPTCs from YSRCP",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "NDA wrests Kadapa ZPTCs from YSRCP",
+      "whyItMatters": "",
+      "image": "https://th-i.thgim.com/public/incoming/yhv3pw/article71687056.ece/alternates/LANDSCAPE_1200/10745_10_11_2026_20_10_13_1_IMG_20261110_WA0085.JPG",
+      "imageCredit": "The Hindu — National",
+      "readTime": 3,
+      "published": "2026-11-10",
+      "updated": "2026-11-10",
+      "importance": 5,
+      "importanceReason": "Generic coverage with no clear syllabus anchor.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "NDA wrests Kadapa ZPTCs from YSRCP",
+          "publisher": "The Hindu — National",
+          "url": "https://www.thehindu.com/news/national/andhra-pradesh/nda-wrests-kadapa-zptcs-from-ysrcp/article71686885.ece",
+          "type": "reporting",
+          "date": "2026-11-10"
+        }
+      ],
+      "sections": {
+        "event": "NDA wrests Kadapa ZPTCs from YSRCP",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-10",
+            "text": "Reported by The Hindu — National"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "vinod-kumar-urges-govt-to-run-direct-rtc-buses-to--2026-11-10",
+      "title": "Vinod Kumar urges govt. to run direct RTC buses to AIIMS Bibinagar from all Dist. HQs",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "Vinod Kumar urges govt. to run direct RTC buses to AIIMS Bibinagar from all Dist. HQs",
+      "whyItMatters": "",
+      "image": "https://th-i.thgim.com/public/news/national/telangana/jjvvbe/article71686638.ece/alternates/LANDSCAPE_1200/WhatsApp%20Image%202026-11-10%20at%205.48.06%20PM.jpeg",
+      "imageCredit": "The Hindu — National",
+      "readTime": 3,
+      "published": "2026-11-10",
+      "updated": "2026-11-10",
+      "importance": 5,
+      "importanceReason": "Generic coverage with no clear syllabus anchor.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Vinod Kumar urges govt. to run direct RTC buses to AIIMS Bibinagar from all Dist. HQs",
+          "publisher": "The Hindu — National",
+          "url": "https://www.thehindu.com/news/national/telangana/vinod-kumar-urges-govt-to-run-direct-rtc-buses-to-aiims-bibinagar-from-all-dist-hqs/article71686641.ece",
+          "type": "reporting",
+          "date": "2026-11-10"
+        }
+      ],
+      "sections": {
+        "event": "Vinod Kumar urges govt. to run direct RTC buses to AIIMS Bibinagar from all Dist. HQs",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-10",
+            "text": "Reported by The Hindu — National"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "nine-cases-booked-during-checks-at-rice-shops-in-p-2026-11-10",
+      "title": "Nine cases booked during checks at rice shops in Peddapalli district, special rice sale counters opened in Peddapalli, Khammam towns",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "Nine cases booked during checks at rice shops in Peddapalli district, special rice sale counters opened in Peddapalli, Khammam towns",
+      "whyItMatters": "",
+      "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "imageCredit": "SanjanaIAS category illustration",
+      "readTime": 3,
+      "published": "2026-11-10",
+      "updated": "2026-11-10",
+      "importance": 5,
+      "importanceReason": "Generic coverage with no clear syllabus anchor.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Nine cases booked during checks at rice shops in Peddapalli district, special rice sale counters opened in Peddapalli, Khammam towns",
+          "publisher": "The Hindu — National",
+          "url": "https://www.thehindu.com/news/national/telangana/nine-cases-booked-during-checks-at-rice-shops-in-peddapalli-district-special-rice-sale-counters-opened-in-peddapalli-khammam-towns/article71686883.ece",
+          "type": "reporting",
+          "date": "2026-11-10"
+        }
+      ],
+      "sections": {
+        "event": "Nine cases booked during checks at rice shops in Peddapalli district, special rice sale counters opened in Peddapalli, Khammam towns",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-10",
+            "text": "Reported by The Hindu — National"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "iran-rejects-france-s-baseless-accusations-on-cybe-2026-11-10",
+      "title": "Iran rejects France’s ‘baseless accusations’ on cyberattack",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "Hundreds of French supermarkets were hit in the October 11 and 12 cyberattacks, which raised the temperatures in their refrigerators and freezers, forcing many to throw away entire inventories of perishable food",
+      "whyItMatters": "",
+      "image": "https://th-i.thgim.com/public/news/national/79vysa/article71686778.ece/alternates/LANDSCAPE_1200/AFP__20261012__D3267WE__v1__HighRes__FranceEconomyRetailFoodCyber.jpg",
+      "imageCredit": "The Hindu — International",
+      "readTime": 3,
+      "published": "2026-11-10",
+      "updated": "2026-11-10",
+      "importance": 5,
+      "importanceReason": "Generic coverage with no clear syllabus anchor.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Iran rejects France’s ‘baseless accusations’ on cyberattack",
+          "publisher": "The Hindu — International",
+          "url": "https://www.thehindu.com/news/international/iran-rejects-frances-baseless-accusations-on-cyberattack/article71686751.ece",
+          "type": "reporting",
+          "date": "2026-11-10"
+        }
+      ],
+      "sections": {
+        "event": "Hundreds of French supermarkets were hit in the October 11 and 12 cyberattacks, which raised the temperatures in their refrigerators and freezers, forcing many to throw away entire inventories of perishable food",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-10",
+            "text": "Reported by The Hindu — International"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "poland-arrests-two-ukrainians-over-alleged-russian-2026-11-10",
+      "title": "Poland arrests two Ukrainians over alleged Russian espionage, sabotage",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "Poland has long ⁠accused Russia and its ally Belarus of waging a hybrid campaign involving sabotage, cyberattacks ‌and disinformation since Moscow’s 2022 invasion of Ukraine",
+      "whyItMatters": "",
+      "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "imageCredit": "SanjanaIAS category illustration",
+      "readTime": 3,
+      "published": "2026-11-10",
+      "updated": "2026-11-10",
+      "importance": 5,
+      "importanceReason": "Generic coverage with no clear syllabus anchor.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Poland arrests two Ukrainians over alleged Russian espionage, sabotage",
+          "publisher": "The Hindu — International",
+          "url": "https://www.thehindu.com/news/international/poland-arrests-two-ukrainians-over-alleged-russian-espionage-sabotage/article71685864.ece",
+          "type": "reporting",
+          "date": "2026-11-10"
+        }
+      ],
+      "sections": {
+        "event": "Poland has long ⁠accused Russia and its ally Belarus of waging a hybrid campaign involving sabotage, cyberattacks ‌and disinformation since Moscow’s 2022 invasion of Ukraine",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-10",
+            "text": "Reported by The Hindu — International"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "fbi-arrests-thomas-markle-father-of-meghan-over-ch-2026-11-10",
+      "title": "FBI arrests Thomas Markle, father of Meghan, over child sexual abuse material",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "Meghan Markle recently said she was “deeply distressed” by allegations that a collection of child sexual abuse images had been found at her father's former home",
+      "whyItMatters": "",
+      "image": "https://th-i.thgim.com/public/news/national/afi0bg/article71675665.ece/alternates/LANDSCAPE_1200/thomas%20markle%20reuters%20itv.jpg",
+      "imageCredit": "The Hindu — International",
+      "readTime": 3,
+      "published": "2026-11-10",
+      "updated": "2026-11-10",
+      "importance": 5,
+      "importanceReason": "Generic coverage with no clear syllabus anchor.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "FBI arrests Thomas Markle, father of Meghan, over child sexual abuse material",
+          "publisher": "The Hindu — International",
+          "url": "https://www.thehindu.com/news/international/meghan-markle-father-thomas-arrested-fbi/article71675624.ece",
+          "type": "reporting",
+          "date": "2026-11-10"
+        }
+      ],
+      "sections": {
+        "event": "Meghan Markle recently said she was “deeply distressed” by allegations that a collection of child sexual abuse images had been found at her father's former home",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-10",
+            "text": "Reported by The Hindu — International"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "u-s-judge-orders-psychiatric-exam-for-meghan-markl-2026-11-10",
+      "title": "U.S. judge orders psychiatric exam for Meghan Markle's father",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "Thomas Markle, 82, is charged with one count of \"possession of child pornography\" and made an initial court appearance in Tampa, Florida",
+      "whyItMatters": "",
+      "image": "https://th-i.thgim.com/public/incoming/d22few/article71685782.ece/alternates/LANDSCAPE_1200/2018-06-18T111849Z_1323708434_RC16A54B03E0_RTRMADP_3_BRITAIN-ROYALS-MEGHAN-FATHER.JPG",
+      "imageCredit": "The Hindu — International",
+      "readTime": 3,
+      "published": "2026-11-10",
+      "updated": "2026-11-10",
+      "importance": 5,
+      "importanceReason": "Generic coverage with no clear syllabus anchor.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "U.S. judge orders psychiatric exam for Meghan Markle's father",
+          "publisher": "The Hindu — International",
+          "url": "https://www.thehindu.com/news/international/us-judge-orders-psychiatric-exam-for-meghan-markles-father/article71685753.ece",
+          "type": "reporting",
+          "date": "2026-11-10"
+        }
+      ],
+      "sections": {
+        "event": "Thomas Markle, 82, is charged with one count of \"possession of child pornography\" and made an initial court appearance in Tampa, Florida",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-10",
+            "text": "Reported by The Hindu — International"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "explosions-heard-in-saudi-capital-riyadh-sources-2026-11-10",
+      "title": "Explosions heard in Saudi capital Riyadh: Sources",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "AFP journalists heard the blasts, and residents received an alert on their mobile phones instructing them to take shelter due to an aerial threat",
+      "whyItMatters": "",
+      "image": "https://th-i.thgim.com/public/incoming/iufszd/article71685525.ece/alternates/LANDSCAPE_1200/Mideast_Wars_Yemen_33233.jpg",
+      "imageCredit": "The Hindu — International",
+      "readTime": 3,
+      "published": "2026-11-10",
+      "updated": "2026-11-10",
+      "importance": 5,
+      "importanceReason": "Generic coverage with no clear syllabus anchor.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Explosions heard in Saudi capital Riyadh: Sources",
+          "publisher": "The Hindu — International",
+          "url": "https://www.thehindu.com/news/international/explosions-heard-in-saudi-capital-riyadh-afp-journalists/article71685514.ece",
+          "type": "reporting",
+          "date": "2026-11-10"
+        }
+      ],
+      "sections": {
+        "event": "AFP journalists heard the blasts, and residents received an alert on their mobile phones instructing them to take shelter due to an aerial threat",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-10",
+            "text": "Reported by The Hindu — International"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "wave-of-resignations-from-u-s-justice-department-a-2026-11-10",
+      "title": "Wave of resignations from U.S. Justice Department after midterms",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "The Justice Department under Donald Trump has pursued cases against a number of perceived enemies, and several prosecutors have lost their jobs over their reluctance or inability to bring charges",
+      "whyItMatters": "",
+      "image": "https://th-i.thgim.com/public/incoming/1zy2sc/article71676247.ece/alternates/LANDSCAPE_1200/2026-10-29T040453Z_430715817_RC264EA72S8P_RTRMADP_3_USA-ELECTION-MIDTERMS-DOJ.JPG",
+      "imageCredit": "The Hindu — International",
+      "readTime": 3,
+      "published": "2026-11-10",
+      "updated": "2026-11-10",
+      "importance": 5,
+      "importanceReason": "Generic coverage with no clear syllabus anchor.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Wave of resignations from U.S. Justice Department after midterms",
+          "publisher": "The Hindu — International",
+          "url": "https://www.thehindu.com/news/international/wave-of-resignations-from-us-justice-department-after-midterms/article71676248.ece",
+          "type": "reporting",
+          "date": "2026-11-10"
+        }
+      ],
+      "sections": {
+        "event": "The Justice Department under Donald Trump has pursued cases against a number of perceived enemies, and several prosecutors have lost their jobs over their reluctance or inability to bring charges",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-10",
+            "text": "Reported by The Hindu — International"
           }
         ],
         "data": [],
