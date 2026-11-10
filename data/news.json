@@ -1,21 +1,21 @@
 {
-  "updated": "2026-11-09T20:02:15.873Z",
+  "updated": "2026-11-10T00:35:35.396Z",
   "health": {
-    "checked": "2026-11-09T20:02:15.873Z",
+    "checked": "2026-11-10T00:35:35.396Z",
     "sources": [
       {
         "id": "un-news",
         "name": "UN News",
         "status": "ok",
         "items": 25,
-        "added": 25,
-        "checked": "2026-11-09T20:02:15.873Z"
+        "added": 2,
+        "checked": "2026-11-10T00:35:35.396Z"
       },
       {
         "id": "un-geneva",
         "name": "UN Geneva",
         "status": "no-new-articles",
-        "checked": "2026-11-09T20:02:15.873Z"
+        "checked": "2026-11-10T00:35:35.396Z"
       },
       {
         "id": "who",
@@ -23,29 +23,27 @@
         "status": "ok",
         "items": 25,
         "added": 24,
-        "checked": "2026-11-09T20:02:15.873Z"
+        "checked": "2026-11-10T00:35:35.396Z"
       },
       {
         "id": "world-bank",
         "name": "World Bank",
         "status": "failed",
         "error": "HTTP 404",
-        "checked": "2026-11-09T20:02:15.873Z"
+        "checked": "2026-11-10T00:35:35.396Z"
       },
       {
         "id": "imf",
         "name": "IMF",
         "status": "failed",
         "error": "HTTP 403",
-        "checked": "2026-11-09T20:02:15.873Z"
+        "checked": "2026-11-10T00:35:35.396Z"
       },
       {
         "id": "pib",
         "name": "PIB",
-        "status": "ok",
-        "items": 20,
-        "added": 0,
-        "checked": "2026-11-09T20:02:15.873Z"
+        "status": "no-new-articles",
+        "checked": "2026-11-10T00:35:35.396Z"
       },
       {
         "id": "rbi",
@@ -53,15 +51,15 @@
         "status": "ok",
         "items": 10,
         "added": 0,
-        "checked": "2026-11-09T20:02:15.873Z"
+        "checked": "2026-11-10T00:35:35.396Z"
       },
       {
         "id": "bbc-world",
         "name": "BBC News — World",
         "status": "ok",
-        "items": 24,
-        "added": 0,
-        "checked": "2026-11-09T20:02:15.873Z"
+        "items": 25,
+        "added": 9,
+        "checked": "2026-11-10T00:35:35.396Z"
       },
       {
         "id": "guardian-world",
@@ -69,49 +67,49 @@
         "status": "ok",
         "items": 25,
         "added": 2,
-        "checked": "2026-11-09T20:02:15.873Z"
+        "checked": "2026-11-10T00:35:35.396Z"
       },
       {
         "id": "ie-world",
         "name": "Indian Express — World",
         "status": "failed",
         "error": "HTTP 403",
-        "checked": "2026-11-09T20:02:15.873Z"
+        "checked": "2026-11-10T00:35:35.396Z"
       },
       {
         "id": "ie-india",
         "name": "Indian Express — India",
         "status": "failed",
         "error": "HTTP 403",
-        "checked": "2026-11-09T20:02:15.873Z"
+        "checked": "2026-11-10T00:35:35.396Z"
       },
       {
         "id": "ie-hyderabad",
         "name": "Indian Express — Hyderabad",
         "status": "failed",
         "error": "HTTP 403",
-        "checked": "2026-11-09T20:02:15.873Z"
+        "checked": "2026-11-10T00:35:35.396Z"
       },
       {
         "id": "hindu-national",
         "name": "The Hindu — National",
         "status": "ok",
         "items": 25,
-        "added": 2,
-        "checked": "2026-11-09T20:02:15.873Z"
+        "added": 9,
+        "checked": "2026-11-10T00:35:35.396Z"
       },
       {
         "id": "hindu-international",
         "name": "The Hindu — International",
         "status": "ok",
         "items": 25,
-        "added": 0,
-        "checked": "2026-11-09T20:02:15.873Z"
+        "added": 6,
+        "checked": "2026-11-10T00:35:35.396Z"
       }
     ],
-    "succeeded": 8,
+    "succeeded": 7,
     "failed": 5,
-    "newTopics": 53
+    "newTopics": 52
   },
   "topics": [
     {
@@ -138,7 +136,7 @@
       "imageCredit": "SanjanaIAS category illustration",
       "readTime": 15,
       "published": "2020-08-24",
-      "updated": "2026-11-09",
+      "updated": "2026-11-10",
       "importance": 100,
       "importanceReason": "Maps to GS II, GS III. Signals constitutional legal. Signals economic consequence.",
       "curated": false,
@@ -199,7 +197,7 @@
       "imageCredit": "SanjanaIAS category illustration",
       "readTime": 8,
       "published": "2020-07-22",
-      "updated": "2026-11-09",
+      "updated": "2026-11-10",
       "importance": 86,
       "importanceReason": "Maps to GS II, GS III. Signals constitutional legal. Signals economic consequence.",
       "curated": false,
@@ -260,7 +258,7 @@
       "imageCredit": "SanjanaIAS category illustration",
       "readTime": 11,
       "published": "2020-07-15",
-      "updated": "2026-11-09",
+      "updated": "2026-11-10",
       "importance": 86,
       "importanceReason": "Maps to GS II, GS III. Signals constitutional legal. Signals economic consequence.",
       "curated": false,
@@ -322,7 +320,7 @@
       "imageCredit": "SanjanaIAS category illustration",
       "readTime": 9,
       "published": "2020-07-13",
-      "updated": "2026-11-09",
+      "updated": "2026-11-10",
       "importance": 86,
       "importanceReason": "Maps to GS I, GS II, GS III. Signals constitutional legal. Signals economic consequence.",
       "curated": false,
@@ -380,7 +378,7 @@
       "imageCredit": "SanjanaIAS category illustration",
       "readTime": 5,
       "published": "2020-07-08",
-      "updated": "2026-11-09",
+      "updated": "2026-11-10",
       "importance": 80,
       "importanceReason": "Maps to GS II. Signals environment social. Signals long term.",
       "curated": false,
@@ -439,7 +437,7 @@
       "imageCredit": "SanjanaIAS category illustration",
       "readTime": 13,
       "published": "2020-09-28",
-      "updated": "2026-11-09",
+      "updated": "2026-11-10",
       "importance": 77,
       "importanceReason": "Maps to GS II. Signals constitutional legal. Signals environment social.",
       "curated": false,
@@ -500,7 +498,7 @@
       "imageCredit": "SanjanaIAS category illustration",
       "readTime": 6,
       "published": "2020-08-24",
-      "updated": "2026-11-09",
+      "updated": "2026-11-10",
       "importance": 77,
       "importanceReason": "Maps to GS II, GS III. Signals constitutional legal. Signals environment social.",
       "curated": false,
@@ -558,7 +556,7 @@
       "imageCredit": "SanjanaIAS category illustration",
       "readTime": 4,
       "published": "2020-07-16",
-      "updated": "2026-11-09",
+      "updated": "2026-11-10",
       "importance": 77,
       "importanceReason": "Maps to GS II. Signals constitutional legal. Signals environment social.",
       "curated": false,
@@ -701,7 +699,7 @@
       "imageCredit": "SanjanaIAS category illustration",
       "readTime": 8,
       "published": "2020-07-06",
-      "updated": "2026-11-09",
+      "updated": "2026-11-10",
       "importance": 73,
       "importanceReason": "Maps to GS I, GS II, GS III. Signals constitutional legal. Signals economic consequence.",
       "curated": false,
@@ -760,7 +758,7 @@
       "imageCredit": "SanjanaIAS category illustration",
       "readTime": 7,
       "published": "2020-10-06",
-      "updated": "2026-11-09",
+      "updated": "2026-11-10",
       "importance": 65,
       "importanceReason": "Maps to GS II, GS III. Signals constitutional legal. Signals economic consequence.",
       "curated": false,
@@ -818,7 +816,7 @@
       "imageCredit": "SanjanaIAS category illustration",
       "readTime": 9,
       "published": "2020-09-09",
-      "updated": "2026-11-09",
+      "updated": "2026-11-10",
       "importance": 65,
       "importanceReason": "Maps to GS II. Signals constitutional legal. Signals economic consequence.",
       "curated": false,
@@ -997,7 +995,7 @@
       "imageCredit": "SanjanaIAS category illustration",
       "readTime": 5,
       "published": "2020-07-27",
-      "updated": "2026-11-09",
+      "updated": "2026-11-10",
       "importance": 64,
       "importanceReason": "Maps to GS II, GS III. Signals constitutional legal. Signals environment social.",
       "curated": false,
@@ -1289,7 +1287,7 @@
       "imageCredit": "SanjanaIAS category illustration",
       "readTime": 5,
       "published": "2020-07-09",
-      "updated": "2026-11-09",
+      "updated": "2026-11-10",
       "importance": 59,
       "importanceReason": "Maps to GS II, GS III. Signals environment social. Signals exam recurrence.",
       "curated": false,
@@ -1463,7 +1461,7 @@
       "imageCredit": "SanjanaIAS category illustration",
       "readTime": 7,
       "published": "2020-08-31",
-      "updated": "2026-11-09",
+      "updated": "2026-11-10",
       "importance": 56,
       "importanceReason": "Maps to GS II. Signals constitutional legal. Signals environment social.",
       "curated": false,
@@ -1520,7 +1518,7 @@
       "imageCredit": "SanjanaIAS category illustration",
       "readTime": 5,
       "published": "2020-08-01",
-      "updated": "2026-11-09",
+      "updated": "2026-11-10",
       "importance": 56,
       "importanceReason": "Maps to GS II. Signals constitutional legal. Signals environment social.",
       "curated": false,
@@ -1696,7 +1694,7 @@
       "imageCredit": "SanjanaIAS category illustration",
       "readTime": 5,
       "published": "2020-08-07",
-      "updated": "2026-11-09",
+      "updated": "2026-11-10",
       "importance": 53,
       "importanceReason": "Maps to GS II. Signals environment social. Signals long term.",
       "curated": false,
@@ -1718,6 +1716,63 @@
           {
             "date": "2020-08-07",
             "text": "Reported by WHO"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to GS II.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "postpone-panchayat-municipal-elections-to-april-ma-2026-11-09",
+      "title": "Postpone panchayat, municipal elections to April-May next year: Ladakh group",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "Polity",
+      "tags": [
+        "Polity"
+      ],
+      "gsPapers": [
+        "GS II"
+      ],
+      "summary": "“We suspect that this government is up to some mischief. We saw ‘vote chori’ in West Bengal, Bihar, Haryana, Maharashtra etc. In entire India 13 crore voters were dropped from the voter list. Ladakh is a small region and fraud is easy,” said Ladakh Buddhist Association (LBA)…",
+      "whyItMatters": "",
+      "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "imageCredit": "SanjanaIAS category illustration",
+      "readTime": 3,
+      "published": "2026-11-09",
+      "updated": "2026-11-10",
+      "importance": 50,
+      "importanceReason": "Maps to GS II. Signals exam recurrence. Signals india impact.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Postpone panchayat, municipal elections to April-May next year: Ladakh group",
+          "publisher": "The Hindu — National",
+          "url": "https://www.thehindu.com/news/national/ladakh/postpone-panchayat-municipal-elections-to-april-may-next-year-ladakh-group/article71683915.ece",
+          "type": "reporting",
+          "date": "2026-11-09"
+        }
+      ],
+      "sections": {
+        "event": "“We suspect that this government is up to some mischief. We saw ‘vote chori’ in West Bengal, Bihar, Haryana, Maharashtra etc. In entire India 13 crore voters were dropped from the voter list. Ladakh is a small region and fraud is easy,” said Ladakh Buddhist Association (LBA) chairman Tsering Dorjey Lakrook",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-09",
+            "text": "Reported by The Hindu — National"
           }
         ],
         "data": [],
@@ -1957,6 +2012,64 @@
         "challenges": "",
         "solutions": "",
         "upsc": "Auto-tagged to GS II, GS III.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "the-superpower-battle-over-energy-and-what-it-mean-2026-11-10",
+      "title": "The superpower battle over energy – and what it means for your bills",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "Polity",
+      "tags": [
+        "Polity",
+        "International Relations"
+      ],
+      "gsPapers": [
+        "GS II"
+      ],
+      "summary": "A tug-of-war between China and the US could have a big impact on energy costs, but who will win?",
+      "whyItMatters": "",
+      "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "imageCredit": "SanjanaIAS category illustration",
+      "readTime": 3,
+      "published": "2026-11-10",
+      "updated": "2026-11-10",
+      "importance": 47,
+      "importanceReason": "Maps to GS II. Signals constitutional legal. Signals exam recurrence.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "The superpower battle over energy – and what it means for your bills",
+          "publisher": "BBC News — World",
+          "url": "https://www.bbc.co.uk/news/articles/cw62y2z53pg1o?at_medium=RSS&at_campaign=rss",
+          "type": "reporting",
+          "date": "2026-11-10"
+        }
+      ],
+      "sections": {
+        "event": "A tug-of-war between China and the US could have a big impact on energy costs, but who will win?",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-10",
+            "text": "Reported by BBC News — World"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to GS II.",
         "prelimsNotes": [],
         "mainsNotes": []
       },
@@ -2477,6 +2590,179 @@
       "mainsQuestions": []
     },
     {
+      "id": "world-humanitarian-day-2020-a-tribute-to-aid-worke-2020-08-19",
+      "title": "World Humanitarian Day 2020: A tribute to aid workers on the front lines",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "International Relations",
+      "tags": [
+        "International Relations",
+        "Ethics"
+      ],
+      "gsPapers": [
+        "GS II",
+        "GS IV"
+      ],
+      "summary": "Amid a global pandemic, unprecedented needs and growing insecurity, aid workers and health-care responders are staying and delivering to the world&rsquo;s most vulnerable people. Last year was the most violent on record for humanitarians, with 483 attacked, 125 killed, 234…",
+      "whyItMatters": "",
+      "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "imageCredit": "SanjanaIAS category illustration",
+      "readTime": 6,
+      "published": "2020-08-19",
+      "updated": "2026-11-10",
+      "importance": 45,
+      "importanceReason": "Maps to GS II, GS IV. Signals environment social. Signals exam recurrence.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "World Humanitarian Day 2020: A tribute to aid workers on the front lines",
+          "publisher": "WHO",
+          "url": "https://www.who.int/news/item/19-08-2020-world-humanitarian-day-2020-a-tribute-to-aid-workers-on-the-front-lines",
+          "type": "primary",
+          "date": "2020-08-19"
+        }
+      ],
+      "sections": {
+        "event": "Amid a global pandemic, unprecedented needs and growing insecurity, aid workers and health-care responders are staying and delivering to the world&rsquo;s most vulnerable people. Last year was the most violent on record for humanitarians, with 483 attacked, 125 killed, 234 wounded and 124 kidnapped. The UN condemns all attacks on humanitarians. OCHA and partners present the inspiring stories of humanitarian #RealLifeHeroes who are stepping up to meet the challenges. Today, World Humanitarian Day, the world honours all humanitarians – many working in their own communities – who are going to…",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2020-08-19",
+            "text": "Reported by WHO"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to GS II, GS IV.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "listings-of-who-s-response-to-covid-19-2020-06-29",
+      "title": "Listings of WHO’s response to COVID-19",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "International Relations",
+      "tags": [
+        "International Relations"
+      ],
+      "gsPapers": [
+        "GS II"
+      ],
+      "summary": "WHO provides this timeline of the organization’s COVID-19 response activities for general information. WHO will update the timeline on a regular basis and in light of evolving events and new information. Unless noted otherwise, country-specific information and data are as…",
+      "whyItMatters": "",
+      "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "imageCredit": "SanjanaIAS category illustration",
+      "readTime": 4,
+      "published": "2020-06-29",
+      "updated": "2026-11-10",
+      "importance": 45,
+      "importanceReason": "Maps to GS II. Signals environment social. Signals exam recurrence.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Listings of WHO’s response to COVID-19",
+          "publisher": "WHO",
+          "url": "https://www.who.int/news/item/29-06-2020-covidtimeline",
+          "type": "primary",
+          "date": "2020-06-29"
+        }
+      ],
+      "sections": {
+        "event": "WHO provides this timeline of the organization’s COVID-19 response activities for general information. WHO will update the timeline on a regular basis and in light of evolving events and new information. Unless noted otherwise, country-specific information and data are as reported to WHO by its Member States. This timeline continues in the spirit of, and supersedes, the WHO Rolling Updates and the WHO Timeline statement published in April 2020. It is not intended to be exhaustive and does not contain details of every event or WHO activity. As of 29 June 2020, the following milestones and…",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2020-06-29",
+            "text": "Reported by WHO"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to GS II.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "todd-russell-beaconsfield-mine-collapse-survivor-d-2026-11-10",
+      "title": "Todd Russell, Beaconsfield mine collapse survivor, dies aged 54 due to illness",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "International Relations",
+      "tags": [
+        "International Relations"
+      ],
+      "gsPapers": [
+        "GS II"
+      ],
+      "summary": "Tasmanian premier leads tributes for Russell, who earlier this month returned home to ‘see out his days’ Get our breaking news email , free app or daily news podcast Beaconsfield mine collapse survivor Todd Russell has died aged 54 after recently announcing deteriorating health.…",
+      "whyItMatters": "",
+      "image": "https://i.guim.co.uk/img/media/9b143c92c9a4ed57fdb4fed5bd631a8251922862/0_0_2257_1806/master/2257.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=ee792f71608cbef7e8f8257b3b1cd16a",
+      "imageCredit": "The Guardian — World",
+      "readTime": 3,
+      "published": "2026-11-10",
+      "updated": "2026-11-10",
+      "importance": 45,
+      "importanceReason": "Maps to GS II. Signals environment social. Signals exam recurrence.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Todd Russell, Beaconsfield mine collapse survivor, dies aged 54 due to illness",
+          "publisher": "The Guardian — World",
+          "url": "https://www.theguardian.com/australia-news/2026/nov/10/todd-russell-dies-beaconsfield-mine-collapse-survivor-death-illness-aged-54",
+          "type": "reporting",
+          "date": "2026-11-10"
+        }
+      ],
+      "sections": {
+        "event": "Tasmanian premier leads tributes for Russell, who earlier this month returned home to ‘see out his days’ Get our breaking news email , free app or daily news podcast Beaconsfield mine collapse survivor Todd Russell has died aged 54 after recently announcing deteriorating health. The Tasmanian premier, Jeremy Rockliff, led the tributes on Tuesday morning, saying his thoughts were with Russell’s loved ones. Continue reading...",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-10",
+            "text": "Reported by The Guardian — World"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to GS II.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
       "id": "cop31-opens-in-antalya-can-climate-promises-finall-2026-11-09",
       "title": "COP31 opens in Antalya: Can climate promises finally deliver results?",
       "region": "world",
@@ -2880,122 +3166,6 @@
       "mainsQuestions": []
     },
     {
-      "id": "world-humanitarian-day-2020-a-tribute-to-aid-worke-2020-08-19",
-      "title": "World Humanitarian Day 2020: A tribute to aid workers on the front lines",
-      "region": "world",
-      "regions": [
-        "world"
-      ],
-      "category": "International Relations",
-      "tags": [
-        "International Relations",
-        "Ethics"
-      ],
-      "gsPapers": [
-        "GS II",
-        "GS IV"
-      ],
-      "summary": "Amid a global pandemic, unprecedented needs and growing insecurity, aid workers and health-care responders are staying and delivering to the world&rsquo;s most vulnerable people. Last year was the most violent on record for humanitarians, with 483 attacked, 125 killed, 234…",
-      "whyItMatters": "",
-      "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "imageCredit": "SanjanaIAS category illustration",
-      "readTime": 6,
-      "published": "2020-08-19",
-      "updated": "2026-11-09",
-      "importance": 45,
-      "importanceReason": "Maps to GS II, GS IV. Signals environment social. Signals exam recurrence.",
-      "curated": false,
-      "sources": [
-        {
-          "title": "World Humanitarian Day 2020: A tribute to aid workers on the front lines",
-          "publisher": "WHO",
-          "url": "https://www.who.int/news/item/19-08-2020-world-humanitarian-day-2020-a-tribute-to-aid-workers-on-the-front-lines",
-          "type": "primary",
-          "date": "2020-08-19"
-        }
-      ],
-      "sections": {
-        "event": "Amid a global pandemic, unprecedented needs and growing insecurity, aid workers and health-care responders are staying and delivering to the world&rsquo;s most vulnerable people. Last year was the most violent on record for humanitarians, with 483 attacked, 125 killed, 234 wounded and 124 kidnapped. The UN condemns all attacks on humanitarians. OCHA and partners present the inspiring stories of humanitarian #RealLifeHeroes who are stepping up to meet the challenges. Today, World Humanitarian Day, the world honours all humanitarians – many working in their own communities – who are going to…",
-        "background": "",
-        "causes": "",
-        "stakeholders": "",
-        "timeline": [
-          {
-            "date": "2020-08-19",
-            "text": "Reported by WHO"
-          }
-        ],
-        "data": [],
-        "geography": "",
-        "india": "",
-        "telangana": "",
-        "challenges": "",
-        "solutions": "",
-        "upsc": "Auto-tagged to GS II, GS IV.",
-        "prelimsNotes": [],
-        "mainsNotes": []
-      },
-      "prelimsQuestions": [],
-      "mainsQuestions": []
-    },
-    {
-      "id": "listings-of-who-s-response-to-covid-19-2020-06-29",
-      "title": "Listings of WHO’s response to COVID-19",
-      "region": "world",
-      "regions": [
-        "world"
-      ],
-      "category": "International Relations",
-      "tags": [
-        "International Relations"
-      ],
-      "gsPapers": [
-        "GS II"
-      ],
-      "summary": "WHO provides this timeline of the organization’s COVID-19 response activities for general information. WHO will update the timeline on a regular basis and in light of evolving events and new information. Unless noted otherwise, country-specific information and data are as…",
-      "whyItMatters": "",
-      "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "imageCredit": "SanjanaIAS category illustration",
-      "readTime": 4,
-      "published": "2020-06-29",
-      "updated": "2026-11-09",
-      "importance": 45,
-      "importanceReason": "Maps to GS II. Signals environment social. Signals exam recurrence.",
-      "curated": false,
-      "sources": [
-        {
-          "title": "Listings of WHO’s response to COVID-19",
-          "publisher": "WHO",
-          "url": "https://www.who.int/news/item/29-06-2020-covidtimeline",
-          "type": "primary",
-          "date": "2020-06-29"
-        }
-      ],
-      "sections": {
-        "event": "WHO provides this timeline of the organization’s COVID-19 response activities for general information. WHO will update the timeline on a regular basis and in light of evolving events and new information. Unless noted otherwise, country-specific information and data are as reported to WHO by its Member States. This timeline continues in the spirit of, and supersedes, the WHO Rolling Updates and the WHO Timeline statement published in April 2020. It is not intended to be exhaustive and does not contain details of every event or WHO activity. As of 29 June 2020, the following milestones and…",
-        "background": "",
-        "causes": "",
-        "stakeholders": "",
-        "timeline": [
-          {
-            "date": "2020-06-29",
-            "text": "Reported by WHO"
-          }
-        ],
-        "data": [],
-        "geography": "",
-        "india": "",
-        "telangana": "",
-        "challenges": "",
-        "solutions": "",
-        "upsc": "Auto-tagged to GS II.",
-        "prelimsNotes": [],
-        "mainsNotes": []
-      },
-      "prelimsQuestions": [],
-      "mainsQuestions": []
-    },
-    {
       "id": "deadly-floods-hit-iraq-as-thunderstorms-sweep-acro-2026-11-09",
       "title": "Deadly floods hit Iraq as thunderstorms sweep across region",
       "region": "india",
@@ -3167,64 +3337,6 @@
       "mainsQuestions": []
     },
     {
-      "id": "syria-s-undocumented-children-pay-the-price-of-war-2026-11-04",
-      "title": "Syria’s undocumented children ‘pay the price’ of war and a law that shuts out mothers",
-      "region": "world",
-      "regions": [
-        "world"
-      ],
-      "category": "Governance",
-      "tags": [
-        "Governance",
-        "International Relations"
-      ],
-      "gsPapers": [
-        "GS II"
-      ],
-      "summary": "Many children born in Syria since the war began in 2011 have no legal identity because nationality passes only through fathers – many of whom are dead or missing – a member of the independent UN commission investigating rights violations in the country said on Wednesday.",
-      "whyItMatters": "",
-      "image": "https://global.unitednations.entermediadb.net/assets/mediadb/services/module/asset/downloads/preset/Collections/Embargoed/23-01-2026-UNOCHA-Syria-04.jpg/image560x340cropped.jpg",
-      "imageCredit": "UN News",
-      "readTime": 3,
-      "published": "2026-11-04",
-      "updated": "2026-11-09",
-      "importance": 44,
-      "importanceReason": "Maps to GS II. Signals long term. Signals exam recurrence.",
-      "curated": false,
-      "sources": [
-        {
-          "title": "Syria’s undocumented children ‘pay the price’ of war and a law that shuts out mothers",
-          "publisher": "UN News",
-          "url": "https://news.un.org/feed/view/en/story/2026/11/1168737",
-          "type": "primary",
-          "date": "2026-11-04"
-        }
-      ],
-      "sections": {
-        "event": "Many children born in Syria since the war began in 2011 have no legal identity because nationality passes only through fathers – many of whom are dead or missing – a member of the independent UN commission investigating rights violations in the country said on Wednesday.",
-        "background": "",
-        "causes": "",
-        "stakeholders": "",
-        "timeline": [
-          {
-            "date": "2026-11-04",
-            "text": "Reported by UN News"
-          }
-        ],
-        "data": [],
-        "geography": "",
-        "india": "",
-        "telangana": "",
-        "challenges": "",
-        "solutions": "",
-        "upsc": "Auto-tagged to GS II.",
-        "prelimsNotes": [],
-        "mainsNotes": []
-      },
-      "prelimsQuestions": [],
-      "mainsQuestions": []
-    },
-    {
       "id": "world-hepatitis-day-fast-tracking-the-elimination--2020-07-27",
       "title": "World Hepatitis Day: fast-tracking the elimination of hepatitis B among mothers and children",
       "region": "world",
@@ -3245,7 +3357,7 @@
       "imageCredit": "SanjanaIAS category illustration",
       "readTime": 3,
       "published": "2020-07-27",
-      "updated": "2026-11-09",
+      "updated": "2026-11-10",
       "importance": 44,
       "importanceReason": "Maps to GS II. Signals long term. Signals exam recurrence.",
       "curated": false,
@@ -3305,7 +3417,7 @@
       "imageCredit": "SanjanaIAS category illustration",
       "readTime": 3,
       "published": "2020-07-07",
-      "updated": "2026-11-09",
+      "updated": "2026-11-10",
       "importance": 44,
       "importanceReason": "Maps to GS II, GS III. Signals long term. Signals exam recurrence.",
       "curated": false,
@@ -3336,6 +3448,123 @@
         "challenges": "",
         "solutions": "",
         "upsc": "Auto-tagged to GS II, GS III.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "outcry-as-j-k-bank-implements-reservation-policy-p-2026-11-09",
+      "title": "Outcry as J&K Bank implements reservation policy pushed by ex-chairman and VHP trustee R.K. Chhibber",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "Governance",
+      "tags": [
+        "Governance",
+        "Economy"
+      ],
+      "gsPapers": [
+        "GS II",
+        "GS III"
+      ],
+      "summary": "The bank has decided to fill 1400 vacancies, including 323 probationary officers and 1033 posts for banking associates, as per the new reservation policy",
+      "whyItMatters": "",
+      "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "imageCredit": "SanjanaIAS category illustration",
+      "readTime": 3,
+      "published": "2026-11-09",
+      "updated": "2026-11-10",
+      "importance": 44,
+      "importanceReason": "Maps to GS II, GS III. Signals long term. Signals exam recurrence.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Outcry as J&K Bank implements reservation policy pushed by ex-chairman and VHP trustee R.K. Chhibber",
+          "publisher": "The Hindu — National",
+          "url": "https://www.thehindu.com/news/national/jammu-and-kashmir/outcry-as-jk-bank-implements-reservation-policy-pushed-by-ex-chairman-and-vhp-trustee-rk-chhibber/article71683483.ece",
+          "type": "reporting",
+          "date": "2026-11-09"
+        }
+      ],
+      "sections": {
+        "event": "The bank has decided to fill 1400 vacancies, including 323 probationary officers and 1033 posts for banking associates, as per the new reservation policy",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-09",
+            "text": "Reported by The Hindu — National"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to GS II, GS III.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "syria-s-undocumented-children-pay-the-price-of-war-2026-11-04",
+      "title": "Syria’s undocumented children ‘pay the price’ of war and a law that shuts out mothers",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "Governance",
+      "tags": [
+        "Governance",
+        "International Relations"
+      ],
+      "gsPapers": [
+        "GS II"
+      ],
+      "summary": "Many children born in Syria since the war began in 2011 have no legal identity because nationality passes only through fathers – many of whom are dead or missing – a member of the independent UN commission investigating rights violations in the country said on Wednesday.",
+      "whyItMatters": "",
+      "image": "https://global.unitednations.entermediadb.net/assets/mediadb/services/module/asset/downloads/preset/Collections/Embargoed/23-01-2026-UNOCHA-Syria-04.jpg/image560x340cropped.jpg",
+      "imageCredit": "UN News",
+      "readTime": 3,
+      "published": "2026-11-04",
+      "updated": "2026-11-09",
+      "importance": 44,
+      "importanceReason": "Maps to GS II. Signals long term. Signals exam recurrence.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Syria’s undocumented children ‘pay the price’ of war and a law that shuts out mothers",
+          "publisher": "UN News",
+          "url": "https://news.un.org/feed/view/en/story/2026/11/1168737",
+          "type": "primary",
+          "date": "2026-11-04"
+        }
+      ],
+      "sections": {
+        "event": "Many children born in Syria since the war began in 2011 have no legal identity because nationality passes only through fathers – many of whom are dead or missing – a member of the independent UN commission investigating rights violations in the country said on Wednesday.",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-04",
+            "text": "Reported by UN News"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to GS II.",
         "prelimsNotes": [],
         "mainsNotes": []
       },
@@ -3568,6 +3797,405 @@
       "mainsQuestions": []
     },
     {
+      "id": "who-s-three-messages-for-unga75-2020-09-15",
+      "title": "WHO’s three messages for UNGA75",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "International Relations",
+      "tags": [
+        "International Relations"
+      ],
+      "gsPapers": [
+        "GS II"
+      ],
+      "summary": "As the world comes together at an unprecedented virtual session of the 75th UN General Assembly (UNGA), WHO has three messages to share.",
+      "whyItMatters": "",
+      "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "imageCredit": "SanjanaIAS category illustration",
+      "readTime": 3,
+      "published": "2020-09-15",
+      "updated": "2026-11-10",
+      "importance": 36,
+      "importanceReason": "Maps to GS II. Signals exam recurrence.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "WHO’s three messages for UNGA75",
+          "publisher": "WHO",
+          "url": "https://www.who.int/news/item/15-09-2020-who-s-three-messages-for-unga75",
+          "type": "primary",
+          "date": "2020-09-15"
+        }
+      ],
+      "sections": {
+        "event": "As the world comes together at an unprecedented virtual session of the 75th UN General Assembly (UNGA), WHO has three messages to share.",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2020-09-15",
+            "text": "Reported by WHO"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to GS II.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "who-and-unicef-warn-of-a-decline-in-vaccinations-d-2020-07-15",
+      "title": "WHO and UNICEF warn of a decline in vaccinations during COVID-19",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "International Relations",
+      "tags": [
+        "International Relations"
+      ],
+      "gsPapers": [
+        "GS II"
+      ],
+      "summary": "WHO and UNICEF call for immediate efforts to vaccinate all children as new data shows that, before the COVID-19 pandemic, vaccine coverage stalled at 85 per cent for nearly a decade, with 14 million unvaccinated infants yearly",
+      "whyItMatters": "",
+      "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "imageCredit": "SanjanaIAS category illustration",
+      "readTime": 3,
+      "published": "2020-07-15",
+      "updated": "2026-11-10",
+      "importance": 36,
+      "importanceReason": "Maps to GS II. Signals exam recurrence.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "WHO and UNICEF warn of a decline in vaccinations during COVID-19",
+          "publisher": "WHO",
+          "url": "https://www.who.int/news/item/15-07-2020-who-and-unicef-warn-of-a-decline-in-vaccinations-during-covid-19",
+          "type": "primary",
+          "date": "2020-07-15"
+        }
+      ],
+      "sections": {
+        "event": "WHO and UNICEF call for immediate efforts to vaccinate all children as new data shows that, before the COVID-19 pandemic, vaccine coverage stalled at 85 per cent for nearly a decade, with 14 million unvaccinated infants yearly",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2020-07-15",
+            "text": "Reported by WHO"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to GS II.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "who-discontinues-hydroxychloroquine-and-lopinavir--2020-07-04",
+      "title": "WHO discontinues hydroxychloroquine and lopinavir/ritonavir treatment arms for COVID-19",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "International Relations",
+      "tags": [
+        "International Relations"
+      ],
+      "gsPapers": [
+        "GS II"
+      ],
+      "summary": "WHO today accepted the recommendation from the Solidarity Trial&rsquo;s International Steering Committee to discontinue the trial&rsquo;s hydroxychloroquine and lopinavir/ritonavir arms. The Solidarity Trial was established by WHO to find an effective COVID-19 treatment for…",
+      "whyItMatters": "",
+      "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "imageCredit": "SanjanaIAS category illustration",
+      "readTime": 4,
+      "published": "2020-07-04",
+      "updated": "2026-11-10",
+      "importance": 36,
+      "importanceReason": "Maps to GS II. Signals exam recurrence.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "WHO discontinues hydroxychloroquine and lopinavir/ritonavir treatment arms for COVID-19",
+          "publisher": "WHO",
+          "url": "https://www.who.int/news/item/04-07-2020-who-discontinues-hydroxychloroquine-and-lopinavir-ritonavir-treatment-arms-for-covid-19",
+          "type": "primary",
+          "date": "2020-07-04"
+        }
+      ],
+      "sections": {
+        "event": "WHO today accepted the recommendation from the Solidarity Trial&rsquo;s International Steering Committee to discontinue the trial&rsquo;s hydroxychloroquine and lopinavir/ritonavir arms. The Solidarity Trial was established by WHO to find an effective COVID-19 treatment for hospitalized patients. The International Steering Committee formulated the recommendation in light of the evidence for hydroxychloroquine vs standard-of-care and for lopinavir/ritonavir vs standard-of-care from the Solidarity trial interim results, and from a review of the evidence from all trials presented at the 1-2 July…",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2020-07-04",
+            "text": "Reported by WHO"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to GS II.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "epstein-associate-who-still-runs-model-agency-put--2026-11-10",
+      "title": "Epstein associate who still runs model agency 'put me in danger' says abuse survivor",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "International Relations",
+      "tags": [
+        "International Relations"
+      ],
+      "gsPapers": [
+        "GS II"
+      ],
+      "summary": "A woman says an agency boss sent her to photoshoots at the sex offender's Florida beach home.",
+      "whyItMatters": "",
+      "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "imageCredit": "SanjanaIAS category illustration",
+      "readTime": 3,
+      "published": "2026-11-10",
+      "updated": "2026-11-10",
+      "importance": 36,
+      "importanceReason": "Maps to GS II. Signals exam recurrence.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Epstein associate who still runs model agency 'put me in danger' says abuse survivor",
+          "publisher": "BBC News — World",
+          "url": "https://www.bbc.co.uk/news/articles/cm86z6w59gggo?at_medium=RSS&at_campaign=rss",
+          "type": "reporting",
+          "date": "2026-11-10"
+        }
+      ],
+      "sections": {
+        "event": "A woman says an agency boss sent her to photoshoots at the sex offender's Florida beach home.",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-10",
+            "text": "Reported by BBC News — World"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to GS II.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "ed-attaches-properties-in-kashmir-in-misuse-of-pm--2026-11-09",
+      "title": "ED attaches properties in Kashmir in ‘misuse’ of PM Employment Generation Programme scheme case",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "Governance",
+      "tags": [
+        "Governance"
+      ],
+      "gsPapers": [
+        "GS II"
+      ],
+      "summary": "An ED spokesman said there was misappropriation of PMEGP Scheme’s loans in criminal conspiracy with the PMEGP borrowers, bank officials of Sumbal Branch and Gamud Gadkhud Branch of J&K Bank and other unknown persons",
+      "whyItMatters": "",
+      "image": "https://th-i.thgim.com/public/incoming/ewmhw5/article71667191.ece/alternates/LANDSCAPE_1200/ED-attaches-assGAMGO5SH2.3.jpg.jpg",
+      "imageCredit": "The Hindu — National",
+      "readTime": 3,
+      "published": "2026-11-09",
+      "updated": "2026-11-10",
+      "importance": 36,
+      "importanceReason": "Maps to GS II. Signals economic consequence.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "ED attaches properties in Kashmir in ‘misuse’ of PM Employment Generation Programme scheme case",
+          "publisher": "The Hindu — National",
+          "url": "https://www.thehindu.com/news/national/jammu-and-kashmir/ed-attaches-properties-in-kashmir-in-misuse-of-pm-employment-generation-programme-scheme-case/article71683744.ece",
+          "type": "reporting",
+          "date": "2026-11-09"
+        }
+      ],
+      "sections": {
+        "event": "An ED spokesman said there was misappropriation of PMEGP Scheme’s loans in criminal conspiracy with the PMEGP borrowers, bank officials of Sumbal Branch and Gamud Gadkhud Branch of J&K Bank and other unknown persons",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-09",
+            "text": "Reported by The Hindu — National"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to GS II.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "six-of-family-killed-in-fire-at-home-above-grocery-2026-11-09",
+      "title": "Six of family killed in fire at home above grocery store in Maharashtra",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "International Relations",
+      "tags": [
+        "International Relations"
+      ],
+      "gsPapers": [
+        "GS II"
+      ],
+      "summary": "A boy, who was brought downstairs to safety by his parents before they went back in an effort to rescue the others, was the sole survivor",
+      "whyItMatters": "",
+      "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "imageCredit": "SanjanaIAS category illustration",
+      "readTime": 3,
+      "published": "2026-11-09",
+      "updated": "2026-11-10",
+      "importance": 36,
+      "importanceReason": "Maps to GS II. Signals exam recurrence.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Six of family killed in fire at home above grocery store in Maharashtra",
+          "publisher": "The Hindu — National",
+          "url": "https://www.thehindu.com/news/national/maharashtra/six-of-family-killed-in-fire-at-home-above-grocery-store-in-maharashtra/article71683897.ece",
+          "type": "reporting",
+          "date": "2026-11-09"
+        }
+      ],
+      "sections": {
+        "event": "A boy, who was brought downstairs to safety by his parents before they went back in an effort to rescue the others, was the sole survivor",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-09",
+            "text": "Reported by The Hindu — National"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to GS II.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "policeman-beaten-to-death-in-theni-over-deepavali--2026-11-09",
+      "title": "Policeman beaten to death in Theni over Deepavali celebration dispute",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "International Relations",
+      "tags": [
+        "International Relations"
+      ],
+      "gsPapers": [
+        "GS II"
+      ],
+      "summary": "Special Police Sub-Inspector Senthilkumar was killed while questioning a gang who were filming reels about bursting firecrackers on the road on November 8 night.",
+      "whyItMatters": "",
+      "image": "https://th-i.thgim.com/public/incoming/lj25uu/article71681329.ece/alternates/LANDSCAPE_1200/Copy%20of%20Untitled%20Design%203.jpg",
+      "imageCredit": "The Hindu — National",
+      "readTime": 3,
+      "published": "2026-11-09",
+      "updated": "2026-11-10",
+      "importance": 36,
+      "importanceReason": "Maps to GS II. Signals exam recurrence.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Policeman beaten to death in Theni over Deepavali celebration dispute",
+          "publisher": "The Hindu — National",
+          "url": "https://www.thehindu.com/news/cities/Madurai/special-sub-inspector-of-police-beaten-to-death-in-theni/article71681282.ece",
+          "type": "reporting",
+          "date": "2026-11-09"
+        }
+      ],
+      "sections": {
+        "event": "Special Police Sub-Inspector Senthilkumar was killed while questioning a gang who were filming reels about bursting firecrackers on the road on November 8 night.",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-09",
+            "text": "Reported by The Hindu — National"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to GS II.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
       "id": "families-who-fled-ethiopia-for-kenya-s-moyale-need-2026-11-09",
       "title": "Families who fled Ethiopia for Kenya’s Moyale need food, water and shelter",
       "region": "world",
@@ -3734,177 +4362,6 @@
         "challenges": "",
         "solutions": "",
         "upsc": "Auto-tagged to GS III.",
-        "prelimsNotes": [],
-        "mainsNotes": []
-      },
-      "prelimsQuestions": [],
-      "mainsQuestions": []
-    },
-    {
-      "id": "who-s-three-messages-for-unga75-2020-09-15",
-      "title": "WHO’s three messages for UNGA75",
-      "region": "world",
-      "regions": [
-        "world"
-      ],
-      "category": "International Relations",
-      "tags": [
-        "International Relations"
-      ],
-      "gsPapers": [
-        "GS II"
-      ],
-      "summary": "As the world comes together at an unprecedented virtual session of the 75th UN General Assembly (UNGA), WHO has three messages to share.",
-      "whyItMatters": "",
-      "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "imageCredit": "SanjanaIAS category illustration",
-      "readTime": 3,
-      "published": "2020-09-15",
-      "updated": "2026-11-09",
-      "importance": 36,
-      "importanceReason": "Maps to GS II. Signals exam recurrence.",
-      "curated": false,
-      "sources": [
-        {
-          "title": "WHO’s three messages for UNGA75",
-          "publisher": "WHO",
-          "url": "https://www.who.int/news/item/15-09-2020-who-s-three-messages-for-unga75",
-          "type": "primary",
-          "date": "2020-09-15"
-        }
-      ],
-      "sections": {
-        "event": "As the world comes together at an unprecedented virtual session of the 75th UN General Assembly (UNGA), WHO has three messages to share.",
-        "background": "",
-        "causes": "",
-        "stakeholders": "",
-        "timeline": [
-          {
-            "date": "2020-09-15",
-            "text": "Reported by WHO"
-          }
-        ],
-        "data": [],
-        "geography": "",
-        "india": "",
-        "telangana": "",
-        "challenges": "",
-        "solutions": "",
-        "upsc": "Auto-tagged to GS II.",
-        "prelimsNotes": [],
-        "mainsNotes": []
-      },
-      "prelimsQuestions": [],
-      "mainsQuestions": []
-    },
-    {
-      "id": "who-and-unicef-warn-of-a-decline-in-vaccinations-d-2020-07-15",
-      "title": "WHO and UNICEF warn of a decline in vaccinations during COVID-19",
-      "region": "world",
-      "regions": [
-        "world"
-      ],
-      "category": "International Relations",
-      "tags": [
-        "International Relations"
-      ],
-      "gsPapers": [
-        "GS II"
-      ],
-      "summary": "WHO and UNICEF call for immediate efforts to vaccinate all children as new data shows that, before the COVID-19 pandemic, vaccine coverage stalled at 85 per cent for nearly a decade, with 14 million unvaccinated infants yearly",
-      "whyItMatters": "",
-      "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "imageCredit": "SanjanaIAS category illustration",
-      "readTime": 3,
-      "published": "2020-07-15",
-      "updated": "2026-11-09",
-      "importance": 36,
-      "importanceReason": "Maps to GS II. Signals exam recurrence.",
-      "curated": false,
-      "sources": [
-        {
-          "title": "WHO and UNICEF warn of a decline in vaccinations during COVID-19",
-          "publisher": "WHO",
-          "url": "https://www.who.int/news/item/15-07-2020-who-and-unicef-warn-of-a-decline-in-vaccinations-during-covid-19",
-          "type": "primary",
-          "date": "2020-07-15"
-        }
-      ],
-      "sections": {
-        "event": "WHO and UNICEF call for immediate efforts to vaccinate all children as new data shows that, before the COVID-19 pandemic, vaccine coverage stalled at 85 per cent for nearly a decade, with 14 million unvaccinated infants yearly",
-        "background": "",
-        "causes": "",
-        "stakeholders": "",
-        "timeline": [
-          {
-            "date": "2020-07-15",
-            "text": "Reported by WHO"
-          }
-        ],
-        "data": [],
-        "geography": "",
-        "india": "",
-        "telangana": "",
-        "challenges": "",
-        "solutions": "",
-        "upsc": "Auto-tagged to GS II.",
-        "prelimsNotes": [],
-        "mainsNotes": []
-      },
-      "prelimsQuestions": [],
-      "mainsQuestions": []
-    },
-    {
-      "id": "who-discontinues-hydroxychloroquine-and-lopinavir--2020-07-04",
-      "title": "WHO discontinues hydroxychloroquine and lopinavir/ritonavir treatment arms for COVID-19",
-      "region": "world",
-      "regions": [
-        "world"
-      ],
-      "category": "International Relations",
-      "tags": [
-        "International Relations"
-      ],
-      "gsPapers": [
-        "GS II"
-      ],
-      "summary": "WHO today accepted the recommendation from the Solidarity Trial&rsquo;s International Steering Committee to discontinue the trial&rsquo;s hydroxychloroquine and lopinavir/ritonavir arms. The Solidarity Trial was established by WHO to find an effective COVID-19 treatment for…",
-      "whyItMatters": "",
-      "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "imageCredit": "SanjanaIAS category illustration",
-      "readTime": 4,
-      "published": "2020-07-04",
-      "updated": "2026-11-09",
-      "importance": 36,
-      "importanceReason": "Maps to GS II. Signals exam recurrence.",
-      "curated": false,
-      "sources": [
-        {
-          "title": "WHO discontinues hydroxychloroquine and lopinavir/ritonavir treatment arms for COVID-19",
-          "publisher": "WHO",
-          "url": "https://www.who.int/news/item/04-07-2020-who-discontinues-hydroxychloroquine-and-lopinavir-ritonavir-treatment-arms-for-covid-19",
-          "type": "primary",
-          "date": "2020-07-04"
-        }
-      ],
-      "sections": {
-        "event": "WHO today accepted the recommendation from the Solidarity Trial&rsquo;s International Steering Committee to discontinue the trial&rsquo;s hydroxychloroquine and lopinavir/ritonavir arms. The Solidarity Trial was established by WHO to find an effective COVID-19 treatment for hospitalized patients. The International Steering Committee formulated the recommendation in light of the evidence for hydroxychloroquine vs standard-of-care and for lopinavir/ritonavir vs standard-of-care from the Solidarity trial interim results, and from a review of the evidence from all trials presented at the 1-2 July…",
-        "background": "",
-        "causes": "",
-        "stakeholders": "",
-        "timeline": [
-          {
-            "date": "2020-07-04",
-            "text": "Reported by WHO"
-          }
-        ],
-        "data": [],
-        "geography": "",
-        "india": "",
-        "telangana": "",
-        "challenges": "",
-        "solutions": "",
-        "upsc": "Auto-tagged to GS II.",
         "prelimsNotes": [],
         "mainsNotes": []
       },
@@ -5284,6 +5741,59 @@
       "mainsQuestions": []
     },
     {
+      "id": "world-news-in-brief-el-ni-o-s-11-trillion-price-ta-2026-11-09",
+      "title": "World News in Brief: El Niño’s $11 trillion price tag, Mozambique and Yemen updates",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "The El Niño extreme weather pattern could cost the global economy up to $11 trillion and seriously impact food security, said the UN agency tackling rural poverty in developing countries on Monday.",
+      "whyItMatters": "",
+      "image": "https://global.unitednations.entermediadb.net/assets/mediadb/services/module/asset/downloads/preset/Collections/Embargoed/2026/11/03-11-2026-Climate-Visuals-Uganda.jpg/image560x340cropped.jpg",
+      "imageCredit": "UN News",
+      "readTime": 3,
+      "published": "2026-11-09",
+      "updated": "2026-11-10",
+      "importance": 29,
+      "importanceReason": "Signals constitutional legal. Signals environment social. Signals exam recurrence.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "World News in Brief: El Niño’s $11 trillion price tag, Mozambique and Yemen updates",
+          "publisher": "UN News",
+          "url": "https://news.un.org/feed/view/en/story/2026/11/1168768",
+          "type": "primary",
+          "date": "2026-11-09"
+        }
+      ],
+      "sections": {
+        "event": "The El Niño extreme weather pattern could cost the global economy up to $11 trillion and seriously impact food security, said the UN agency tackling rural poverty in developing countries on Monday.",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-09",
+            "text": "Reported by UN News"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
       "id": "five-persons-including-four-girls-drown-in-irrigat-2026-11-09",
       "title": "Five persons, including four girls, drown in irrigation tank in Tiruvannamalai",
       "region": "world",
@@ -5850,6 +6360,112 @@
       "mainsQuestions": []
     },
     {
+      "id": "trump-says-fbi-investigating-nvidia-boss-s-affair--2026-11-10",
+      "title": "Trump says FBI investigating Nvidia boss's affair with alleged Chinese spy",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "The US president said he spoke with Jensen Huang on Monday and asked him about the affair with the alleged spy.",
+      "whyItMatters": "",
+      "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "imageCredit": "SanjanaIAS category illustration",
+      "readTime": 3,
+      "published": "2026-11-10",
+      "updated": "2026-11-10",
+      "importance": 14,
+      "importanceReason": "Signals national significance.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Trump says FBI investigating Nvidia boss's affair with alleged Chinese spy",
+          "publisher": "BBC News — World",
+          "url": "https://www.bbc.co.uk/news/articles/cqg7x7dpvym8o?at_medium=RSS&at_campaign=rss",
+          "type": "reporting",
+          "date": "2026-11-10"
+        }
+      ],
+      "sections": {
+        "event": "The US president said he spoke with Jensen Huang on Monday and asked him about the affair with the alleged spy.",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-10",
+            "text": "Reported by BBC News — World"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "dana-white-declines-trump-s-offer-to-be-white-hous-2026-11-09",
+      "title": "Dana White declines Trump’s offer to be White House press secretary",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "In a social media post over the weekend, the president asked the UFC boss to take over the role, but later said he was \"having a little fun\".",
+      "whyItMatters": "",
+      "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "imageCredit": "SanjanaIAS category illustration",
+      "readTime": 3,
+      "published": "2026-11-09",
+      "updated": "2026-11-10",
+      "importance": 14,
+      "importanceReason": "Signals national significance.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Dana White declines Trump’s offer to be White House press secretary",
+          "publisher": "BBC News — World",
+          "url": "https://www.bbc.co.uk/news/videos/cwm2328pyy1jo?at_medium=RSS&at_campaign=rss",
+          "type": "reporting",
+          "date": "2026-11-09"
+        }
+      ],
+      "sections": {
+        "event": "In a social media post over the weekend, the president asked the UFC boss to take over the role, but later said he was \"having a little fun\".",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-09",
+            "text": "Reported by BBC News — World"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
       "id": "exceptional-extreme-temperatures-to-continue-into--2026-11-09",
       "title": "‘Exceptional’ extreme temperatures to continue into next year, UN reports",
       "region": "india",
@@ -6327,6 +6943,59 @@
       "mainsQuestions": []
     },
     {
+      "id": "hegseth-faces-expected-u-s-house-impeachment-vote--2026-11-09",
+      "title": "Hegseth faces expected U.S. House impeachment vote this week",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "U.S. Representative Thomas Massie, a Kentucky Republican, introduced articles of impeachment on Monday, setting off a two-day ‌clock for an expected House vote on charges including waging war against Iran without congressional approval and other abuses of power",
+      "whyItMatters": "",
+      "image": "https://th-i.thgim.com/public/incoming/ch8qbv/article71683992.ece/alternates/LANDSCAPE_1200/2026-11-09T195325Z_1319361631_RC20IOAC26VE_RTRMADP_3_USA-TRUMP-HEGSETH.JPG",
+      "imageCredit": "The Hindu — International",
+      "readTime": 3,
+      "published": "2026-11-09",
+      "updated": "2026-11-10",
+      "importance": 11,
+      "importanceReason": "Signals constitutional legal.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Hegseth faces expected U.S. House impeachment vote this week",
+          "publisher": "The Hindu — International",
+          "url": "https://www.thehindu.com/news/international/hegseth-faces-expected-us-house-impeachment-vote-this-week/article71683990.ece",
+          "type": "reporting",
+          "date": "2026-11-09"
+        }
+      ],
+      "sections": {
+        "event": "U.S. Representative Thomas Massie, a Kentucky Republican, introduced articles of impeachment on Monday, setting off a two-day ‌clock for an expected House vote on charges including waging war against Iran without congressional approval and other abuses of power",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-09",
+            "text": "Reported by The Hindu — International"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
       "id": "settle-down-do-your-own-swabs-how-alleged-rape-vic-2026-11-09",
       "title": "‘Settle down’, ‘do your own swabs’: how alleged rape victims are treated in Queensland revealed in major report",
       "region": "world",
@@ -6417,6 +7086,59 @@
           {
             "date": "2026-11-07",
             "text": "Reported by The Guardian — World"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "managing-the-covid-19-infodemic-promoting-healthy--2020-09-23",
+      "title": "Managing the COVID-19 infodemic: Promoting healthy behaviours and mitigating the harm from misinformation and disinformation",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "The Coronavirus disease (COVID-19) is the first pandemic in history in which technology and social media are being used on a massive scale to keep people safe, informed, productive and connected. At the same time, the technology we rely on to keep connected and informed is…",
+      "whyItMatters": "",
+      "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "imageCredit": "SanjanaIAS category illustration",
+      "readTime": 3,
+      "published": "2020-09-23",
+      "updated": "2026-11-10",
+      "importance": 9,
+      "importanceReason": "Signals environment social.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Managing the COVID-19 infodemic: Promoting healthy behaviours and mitigating the harm from misinformation and disinformation",
+          "publisher": "WHO",
+          "url": "https://www.who.int/news/item/23-09-2020-managing-the-covid-19-infodemic-promoting-healthy-behaviours-and-mitigating-the-harm-from-misinformation-and-disinformation",
+          "type": "primary",
+          "date": "2020-09-23"
+        }
+      ],
+      "sections": {
+        "event": "The Coronavirus disease (COVID-19) is the first pandemic in history in which technology and social media are being used on a massive scale to keep people safe, informed, productive and connected. At the same time, the technology we rely on to keep connected and informed is enabling and amplifying an infodemic that continues to undermine the global response and jeopardizes measures to control the pandemic.",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2020-09-23",
+            "text": "Reported by WHO"
           }
         ],
         "data": [],
@@ -6629,59 +7351,6 @@
           {
             "date": "2026-11-04",
             "text": "Reported by UN News"
-          }
-        ],
-        "data": [],
-        "geography": "",
-        "india": "",
-        "telangana": "",
-        "challenges": "",
-        "solutions": "",
-        "upsc": "Auto-tagged to no paper.",
-        "prelimsNotes": [],
-        "mainsNotes": []
-      },
-      "prelimsQuestions": [],
-      "mainsQuestions": []
-    },
-    {
-      "id": "managing-the-covid-19-infodemic-promoting-healthy--2020-09-23",
-      "title": "Managing the COVID-19 infodemic: Promoting healthy behaviours and mitigating the harm from misinformation and disinformation",
-      "region": "world",
-      "regions": [
-        "world"
-      ],
-      "category": "General Studies",
-      "tags": [],
-      "gsPapers": [],
-      "summary": "The Coronavirus disease (COVID-19) is the first pandemic in history in which technology and social media are being used on a massive scale to keep people safe, informed, productive and connected. At the same time, the technology we rely on to keep connected and informed is…",
-      "whyItMatters": "",
-      "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "imageCredit": "SanjanaIAS category illustration",
-      "readTime": 3,
-      "published": "2020-09-23",
-      "updated": "2026-11-09",
-      "importance": 9,
-      "importanceReason": "Signals environment social.",
-      "curated": false,
-      "sources": [
-        {
-          "title": "Managing the COVID-19 infodemic: Promoting healthy behaviours and mitigating the harm from misinformation and disinformation",
-          "publisher": "WHO",
-          "url": "https://www.who.int/news/item/23-09-2020-managing-the-covid-19-infodemic-promoting-healthy-behaviours-and-mitigating-the-harm-from-misinformation-and-disinformation",
-          "type": "primary",
-          "date": "2020-09-23"
-        }
-      ],
-      "sections": {
-        "event": "The Coronavirus disease (COVID-19) is the first pandemic in history in which technology and social media are being used on a massive scale to keep people safe, informed, productive and connected. At the same time, the technology we rely on to keep connected and informed is enabling and amplifying an infodemic that continues to undermine the global response and jeopardizes measures to control the pandemic.",
-        "background": "",
-        "causes": "",
-        "stakeholders": "",
-        "timeline": [
-          {
-            "date": "2020-09-23",
-            "text": "Reported by WHO"
           }
         ],
         "data": [],
@@ -7000,6 +7669,854 @@
           {
             "date": "2026-11-09",
             "text": "Reported by The Hindu — National"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "children-among-the-dead-as-heavy-rains-flood-tents-2026-11-09",
+      "title": "Children among the dead as heavy rains flood tents and shelters in Gaza",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "An infant reportedly drowned and five Gazans were killed – including three children – when a sand dune collapsed on their tents as the first heavy rains swept across the enclave at the weekend, according to the UN aid coordination office (OCHA).",
+      "whyItMatters": "",
+      "image": "https://global.unitednations.entermediadb.net/assets/mediadb/services/module/asset/downloads/preset/Collections/Production%20Library/2026/11/07-11-2026-UNNews-Gaza-Winer-Children.jpg/image560x340cropped.jpg",
+      "imageCredit": "UN News",
+      "readTime": 3,
+      "published": "2026-11-09",
+      "updated": "2026-11-10",
+      "importance": 5,
+      "importanceReason": "Generic coverage with no clear syllabus anchor.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Children among the dead as heavy rains flood tents and shelters in Gaza",
+          "publisher": "UN News",
+          "url": "https://news.un.org/feed/view/en/story/2026/11/1168766",
+          "type": "primary",
+          "date": "2026-11-09"
+        }
+      ],
+      "sections": {
+        "event": "An infant reportedly drowned and five Gazans were killed – including three children – when a sand dune collapsed on their tents as the first heavy rains swept across the enclave at the weekend, according to the UN aid coordination office (OCHA).",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-09",
+            "text": "Reported by UN News"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "ukraine-peace-talks-resume-with-some-flexibility-b-2026-11-10",
+      "title": "Ukraine peace talks resume with 'some flexibility' by warring sides, US officials say",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "Kyiv, Washington and Moscow are all sending delegation to the United Arab Emirates for the first trilateral talks since February.",
+      "whyItMatters": "",
+      "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "imageCredit": "SanjanaIAS category illustration",
+      "readTime": 3,
+      "published": "2026-11-10",
+      "updated": "2026-11-10",
+      "importance": 5,
+      "importanceReason": "Generic coverage with no clear syllabus anchor.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Ukraine peace talks resume with 'some flexibility' by warring sides, US officials say",
+          "publisher": "BBC News — World",
+          "url": "https://www.bbc.co.uk/news/articles/cqpvgvrpjvv8o?at_medium=RSS&at_campaign=rss",
+          "type": "reporting",
+          "date": "2026-11-10"
+        }
+      ],
+      "sections": {
+        "event": "Kyiv, Washington and Moscow are all sending delegation to the United Arab Emirates for the first trilateral talks since February.",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-10",
+            "text": "Reported by BBC News — World"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "judge-denies-motion-to-dismiss-lindsay-clancy-s-mu-2026-11-09",
+      "title": "Judge denies motion to dismiss Lindsay Clancy's murder case",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "The ruling means the case can move forward, possibly with reduced charges in a new trial.",
+      "whyItMatters": "",
+      "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "imageCredit": "SanjanaIAS category illustration",
+      "readTime": 3,
+      "published": "2026-11-09",
+      "updated": "2026-11-10",
+      "importance": 5,
+      "importanceReason": "Generic coverage with no clear syllabus anchor.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Judge denies motion to dismiss Lindsay Clancy's murder case",
+          "publisher": "BBC News — World",
+          "url": "https://www.bbc.co.uk/news/articles/ck1l3le7q29vo?at_medium=RSS&at_campaign=rss",
+          "type": "reporting",
+          "date": "2026-11-09"
+        }
+      ],
+      "sections": {
+        "event": "The ruling means the case can move forward, possibly with reduced charges in a new trial.",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-09",
+            "text": "Reported by BBC News — World"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "trial-date-of-alleged-charlie-kirk-killer-set-for--2026-11-09",
+      "title": "Trial date of alleged Charlie Kirk killer set for June 2028",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "Tyler Robinson has pleaded not guilty to aggravated murder and six other charges in connection with the 2025 killing of the conservative activist.",
+      "whyItMatters": "",
+      "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "imageCredit": "SanjanaIAS category illustration",
+      "readTime": 3,
+      "published": "2026-11-09",
+      "updated": "2026-11-10",
+      "importance": 5,
+      "importanceReason": "Generic coverage with no clear syllabus anchor.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Trial date of alleged Charlie Kirk killer set for June 2028",
+          "publisher": "BBC News — World",
+          "url": "https://www.bbc.co.uk/news/articles/cq0mem8d2p3xo?at_medium=RSS&at_campaign=rss",
+          "type": "reporting",
+          "date": "2026-11-09"
+        }
+      ],
+      "sections": {
+        "event": "Tyler Robinson has pleaded not guilty to aggravated murder and six other charges in connection with the 2025 killing of the conservative activist.",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-09",
+            "text": "Reported by BBC News — World"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "millions-fill-buenos-aires-streets-to-welcome-pope-2026-11-09",
+      "title": "Millions fill Buenos Aires streets to welcome Pope Leo XIV",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "The Pope celebrated an outdoor Mass in Argentina's capital, the second stop on a 12-day tour of Latin America, just three weeks after having had surgery for lung cancer.",
+      "whyItMatters": "",
+      "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "imageCredit": "SanjanaIAS category illustration",
+      "readTime": 3,
+      "published": "2026-11-09",
+      "updated": "2026-11-10",
+      "importance": 5,
+      "importanceReason": "Generic coverage with no clear syllabus anchor.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Millions fill Buenos Aires streets to welcome Pope Leo XIV",
+          "publisher": "BBC News — World",
+          "url": "https://www.bbc.co.uk/news/videos/cvp8g82pled5o?at_medium=RSS&at_campaign=rss",
+          "type": "reporting",
+          "date": "2026-11-09"
+        }
+      ],
+      "sections": {
+        "event": "The Pope celebrated an outdoor Mass in Argentina's capital, the second stop on a 12-day tour of Latin America, just three weeks after having had surgery for lung cancer.",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-09",
+            "text": "Reported by BBC News — World"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "zoe-kleinman-nvidia-ceo-s-affair-will-cause-ripple-2026-11-09",
+      "title": "Zoe Kleinman: Nvidia CEO's affair will cause ripples across US and beyond",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "Jensen Huang is being investigated by his own company over an extramarital affair with a woman alleged to be a Chinese spy.",
+      "whyItMatters": "",
+      "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "imageCredit": "SanjanaIAS category illustration",
+      "readTime": 3,
+      "published": "2026-11-09",
+      "updated": "2026-11-10",
+      "importance": 5,
+      "importanceReason": "Generic coverage with no clear syllabus anchor.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Zoe Kleinman: Nvidia CEO's affair will cause ripples across US and beyond",
+          "publisher": "BBC News — World",
+          "url": "https://www.bbc.co.uk/news/articles/cj3vqv3nee72o?at_medium=RSS&at_campaign=rss",
+          "type": "reporting",
+          "date": "2026-11-09"
+        }
+      ],
+      "sections": {
+        "event": "Jensen Huang is being investigated by his own company over an extramarital affair with a woman alleged to be a Chinese spy.",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-09",
+            "text": "Reported by BBC News — World"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "beau-lamarre-condon-denies-being-obsessed-with-jes-2026-11-10",
+      "title": "Beau Lamarre-Condon denies being ‘obsessed’ with Jesse Baird as evidence to double murder trial continues",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "Former police officer tells jury he joked about being ‘white girl crazy’ with friends as lawyer questions him over start of relationship with Baird Beau Lamarre-Condon has denied being “obsessed” with Jesse Baird from the start of their relationship, telling a court he would…",
+      "whyItMatters": "",
+      "image": "https://i.guim.co.uk/img/media/69a781da23f48b2cde91996a93de7520bc4ee220/202_458_2489_1992/master/2489.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=244895ce0fcf3d33c7803d343519e647",
+      "imageCredit": "The Guardian — World",
+      "readTime": 4,
+      "published": "2026-11-10",
+      "updated": "2026-11-10",
+      "importance": 5,
+      "importanceReason": "Generic coverage with no clear syllabus anchor.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Beau Lamarre-Condon denies being ‘obsessed’ with Jesse Baird as evidence to double murder trial continues",
+          "publisher": "The Guardian — World",
+          "url": "https://www.theguardian.com/australia-news/2026/nov/10/beau-lamarre-condon-murder-trial-ntwnfb",
+          "type": "reporting",
+          "date": "2026-11-10"
+        }
+      ],
+      "sections": {
+        "event": "Former police officer tells jury he joked about being ‘white girl crazy’ with friends as lawyer questions him over start of relationship with Baird Beau Lamarre-Condon has denied being “obsessed” with Jesse Baird from the start of their relationship, telling a court he would have liked the TV presenter even if he was “a garbage cleaner”. The former police officer is accused of fatally shooting Baird and his new partner, Luke Davies, with his police service weapon in Baird’s Paddington home in Sydney on 19 February 2024. In Australia, the crisis support service Lifeline is on 13 11 14. In the…",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-10",
+            "text": "Reported by The Guardian — World"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "return-of-patriarch-farooq-steps-in-as-nc-old-guar-2026-11-09",
+      "title": "Return of patriarch: Farooq steps in as NC old guard reasserts influence to check Omar",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "Return of patriarch: Farooq steps in as NC old guard reasserts influence to check Omar",
+      "whyItMatters": "",
+      "image": "https://th-i.thgim.com/public/incoming/gvslw4/article71683984.ece/alternates/LANDSCAPE_1200/PTI10_27_2026_000084A.jpg",
+      "imageCredit": "The Hindu — National",
+      "readTime": 3,
+      "published": "2026-11-09",
+      "updated": "2026-11-10",
+      "importance": 5,
+      "importanceReason": "Generic coverage with no clear syllabus anchor.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Return of patriarch: Farooq steps in as NC old guard reasserts influence to check Omar",
+          "publisher": "The Hindu — National",
+          "url": "https://www.thehindu.com/news/national/jammu-and-kashmir/return-of-patriarch-farooq-steps-in-as-nc-old-guard-reasserts-influence-to-check-omar/article71683985.ece",
+          "type": "reporting",
+          "date": "2026-11-09"
+        }
+      ],
+      "sections": {
+        "event": "Return of patriarch: Farooq steps in as NC old guard reasserts influence to check Omar",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-09",
+            "text": "Reported by The Hindu — National"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "trinamool-mla-paresh-ram-das-arrested-on-charges-o-2026-11-09",
+      "title": "Trinamool MLA Paresh Ram Das arrested on charges of rape and extortion",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "Several leaders of the Trinamool Congress have been arrested after the BJP came to power in May 2026, which includes five former Ministers",
+      "whyItMatters": "",
+      "image": "https://th-i.thgim.com/public/incoming/jhqori/article71397834.ece/alternates/LANDSCAPE_1200/IMG_vbk-HANDCUFF-arrest_2_1_46C98QUC.jpg",
+      "imageCredit": "The Hindu — National",
+      "readTime": 3,
+      "published": "2026-11-09",
+      "updated": "2026-11-10",
+      "importance": 5,
+      "importanceReason": "Generic coverage with no clear syllabus anchor.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Trinamool MLA Paresh Ram Das arrested on charges of rape and extortion",
+          "publisher": "The Hindu — National",
+          "url": "https://www.thehindu.com/news/cities/kolkata/trinamool-mla-paresh-ram-das-arrested-on-charges-of-rape-and-extortion/article71683579.ece",
+          "type": "reporting",
+          "date": "2026-11-09"
+        }
+      ],
+      "sections": {
+        "event": "Several leaders of the Trinamool Congress have been arrested after the BJP came to power in May 2026, which includes five former Ministers",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-09",
+            "text": "Reported by The Hindu — National"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "bengaluru-family-murders-all-seven-bodies-recovere-2026-11-09",
+      "title": "Bengaluru family murders: All seven bodies recovered",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "The latest breakthrough came on Monday (November 9, 2026), with the police recovering two more bodies from Shiradi Ghat, in the Western Ghats of Karnataka.",
+      "whyItMatters": "",
+      "image": "https://th-i.thgim.com/public/incoming/nytdvo/article71681776.ece/alternates/LANDSCAPE_1200/10505_22_7_2025_13_38_3_1_IMG_0112.JPEG",
+      "imageCredit": "The Hindu — National",
+      "readTime": 3,
+      "published": "2026-11-09",
+      "updated": "2026-11-10",
+      "importance": 5,
+      "importanceReason": "Generic coverage with no clear syllabus anchor.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Bengaluru family murders: All seven bodies recovered",
+          "publisher": "The Hindu — National",
+          "url": "https://www.thehindu.com/news/cities/bangalore/bengaluru-family-murders-two-more-bodies-found-in-shiradi-ghat-all-seven-bodies-recovered/article71681705.ece",
+          "type": "reporting",
+          "date": "2026-11-09"
+        }
+      ],
+      "sections": {
+        "event": "The latest breakthrough came on Monday (November 9, 2026), with the police recovering two more bodies from Shiradi Ghat, in the Western Ghats of Karnataka.",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-09",
+            "text": "Reported by The Hindu — National"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "ethanol-blend-row-minister-stands-firm-on-claim-de-2026-11-09",
+      "title": "Ethanol blend row: Minister stands firm on claim, demands independent fuel testing",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "It was the OMC laboratories’ failure to provide the required result that raised suspicion; the samples were then sent to NABL-accredited and ISO-certified laboratories, says Rizwan Arshad",
+      "whyItMatters": "",
+      "image": "https://th-i.thgim.com/public/incoming/vrayjm/article71683369.ece/alternates/LANDSCAPE_1200/IMG_1387.jpeg",
+      "imageCredit": "The Hindu — National",
+      "readTime": 3,
+      "published": "2026-11-09",
+      "updated": "2026-11-10",
+      "importance": 5,
+      "importanceReason": "Generic coverage with no clear syllabus anchor.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Ethanol blend row: Minister stands firm on claim, demands independent fuel testing",
+          "publisher": "The Hindu — National",
+          "url": "https://www.thehindu.com/news/national/karnataka/ethanol-blend-row-minister-stands-firm-on-claim-demands-independent-fuel-testing/article71682523.ece",
+          "type": "reporting",
+          "date": "2026-11-09"
+        }
+      ],
+      "sections": {
+        "event": "It was the OMC laboratories’ failure to provide the required result that raised suspicion; the samples were then sent to NABL-accredited and ISO-certified laboratories, says Rizwan Arshad",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-09",
+            "text": "Reported by The Hindu — National"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "u-k-writer-m-john-harrison-wins-booker-for-ai-ting-2026-11-09",
+      "title": "U.K. writer M. John Harrison wins Booker for AI-tinged apocalyptic novel",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "M. John Harrison, 81, became the oldest winner of the award, which comes with a £50,000 ($67,000) prize",
+      "whyItMatters": "",
+      "image": "https://th-i.thgim.com/public/incoming/yk71gc/article71684120.ece/alternates/LANDSCAPE_1200/Britain_Booker_Prize_65251.jpg",
+      "imageCredit": "The Hindu — International",
+      "readTime": 3,
+      "published": "2026-11-09",
+      "updated": "2026-11-10",
+      "importance": 5,
+      "importanceReason": "Generic coverage with no clear syllabus anchor.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "U.K. writer M. John Harrison wins Booker for AI-tinged apocalyptic novel",
+          "publisher": "The Hindu — International",
+          "url": "https://www.thehindu.com/books/books-authors/uk-author-m-john-harrison-wins-booker-prize-for-the-end-of-everything/article71684119.ece",
+          "type": "reporting",
+          "date": "2026-11-09"
+        }
+      ],
+      "sections": {
+        "event": "M. John Harrison, 81, became the oldest winner of the award, which comes with a £50,000 ($67,000) prize",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-09",
+            "text": "Reported by The Hindu — International"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "trump-says-u-s-military-action-against-iran-not-ne-2026-11-09",
+      "title": "Trump says U.S. military action against Iran not necessary ‘at this point’",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "“At this point ... taking ​the military ‌action doesn’t seem to be a very necessary ‌thing. But ​we’re locked and loaded, ⁠ready to go for any ‌reason that changes,” Mr. Trump said",
+      "whyItMatters": "",
+      "image": "https://th-i.thgim.com/public/incoming/a7ite3/article71684118.ece/alternates/LANDSCAPE_1200/2026-11-09T220240Z_509183839_RC2KKOAN4EM7_RTRMADP_3_USA-TRUMP.JPG",
+      "imageCredit": "The Hindu — International",
+      "readTime": 3,
+      "published": "2026-11-09",
+      "updated": "2026-11-10",
+      "importance": 5,
+      "importanceReason": "Generic coverage with no clear syllabus anchor.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Trump says U.S. military action against Iran not necessary ‘at this point’",
+          "publisher": "The Hindu — International",
+          "url": "https://www.thehindu.com/news/international/us-president-donald-trump-military-action-on-iran/article71684117.ece",
+          "type": "reporting",
+          "date": "2026-11-09"
+        }
+      ],
+      "sections": {
+        "event": "“At this point ... taking ​the military ‌action doesn’t seem to be a very necessary ‌thing. But ​we’re locked and loaded, ⁠ready to go for any ‌reason that changes,” Mr. Trump said",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-09",
+            "text": "Reported by The Hindu — International"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "nvidia-plunges-but-tech-shares-rebound-oil-prices--2026-11-09",
+      "title": "Nvidia plunges but tech shares rebound, oil prices slump",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "Nvidia shares slumped more than 8% as trading got under way in New York but recovered to stand down more than 5% in early afternoon trading",
+      "whyItMatters": "",
+      "image": "https://th-i.thgim.com/public/incoming/h6s1jd/article71683997.ece/alternates/LANDSCAPE_1200/2026-11-05T101450Z_482908626_RC2B6OA6O7CN_RTRMADP_3_NVIDIA-CHINA.JPG",
+      "imageCredit": "The Hindu — International",
+      "readTime": 3,
+      "published": "2026-11-09",
+      "updated": "2026-11-10",
+      "importance": 5,
+      "importanceReason": "Generic coverage with no clear syllabus anchor.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Nvidia plunges but tech shares rebound, oil prices slump",
+          "publisher": "The Hindu — International",
+          "url": "https://www.thehindu.com/business/markets/nvidia-plunges-but-tech-shares-rebound-oil-prices-slump/article71683988.ece",
+          "type": "reporting",
+          "date": "2026-11-09"
+        }
+      ],
+      "sections": {
+        "event": "Nvidia shares slumped more than 8% as trading got under way in New York but recovered to stand down more than 5% in early afternoon trading",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-09",
+            "text": "Reported by The Hindu — International"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "trump-s-close-ties-to-nvidia-s-huang-scrutinised-a-2026-11-09",
+      "title": "Trump’s close ties to Nvidia’s Huang scrutinised after foreign intelligence concerns",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "Mr. Huang is one of Mr. Trump’s closest allies in Silicon Valley",
+      "whyItMatters": "",
+      "image": "https://th-i.thgim.com/public/incoming/g9cf5z/article71683996.ece/alternates/LANDSCAPE_1200/2026-11-09T144344Z_331264129_RC27ZNA967HK_RTRMADP_3_USA-TRUMP.JPG",
+      "imageCredit": "The Hindu — International",
+      "readTime": 3,
+      "published": "2026-11-09",
+      "updated": "2026-11-10",
+      "importance": 5,
+      "importanceReason": "Generic coverage with no clear syllabus anchor.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Trump’s close ties to Nvidia’s Huang scrutinised after foreign intelligence concerns",
+          "publisher": "The Hindu — International",
+          "url": "https://www.thehindu.com/news/international/trumps-close-ties-to-nvidias-huang-scrutinised-after-foreign-intelligence-concerns/article71683989.ece",
+          "type": "reporting",
+          "date": "2026-11-09"
+        }
+      ],
+      "sections": {
+        "event": "Mr. Huang is one of Mr. Trump’s closest allies in Silicon Valley",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-09",
+            "text": "Reported by The Hindu — International"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "point-of-no-return-on-israel-s-next-government-2026-11-09",
+      "title": "Point of no return: On Israel’s next government",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "Without peace, Israel risks descending into chaos",
+      "whyItMatters": "",
+      "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "imageCredit": "SanjanaIAS category illustration",
+      "readTime": 3,
+      "published": "2026-11-09",
+      "updated": "2026-11-10",
+      "importance": 5,
+      "importanceReason": "Generic coverage with no clear syllabus anchor.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Point of no return: On Israel’s next government",
+          "publisher": "The Hindu — International",
+          "url": "https://www.thehindu.com/opinion/editorial/point-of-no-return-on-israels-next-government/article71683836.ece",
+          "type": "reporting",
+          "date": "2026-11-09"
+        }
+      ],
+      "sections": {
+        "event": "Without peace, Israel risks descending into chaos",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-09",
+            "text": "Reported by The Hindu — International"
           }
         ],
         "data": [],
