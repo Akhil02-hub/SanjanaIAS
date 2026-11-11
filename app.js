@@ -2096,12 +2096,15 @@
         var main = $('#main');
         if (!Pages[page]) {
             markActive('');
-            main.innerHTML = '<div class="panel" style="text-align:center; padding: 60px 20px; max-width: 600px; margin: 40px auto;">' +
-                '<h1 style="font-size: 5rem; color: var(--gold); margin-bottom: 0; line-height: 1;">404</h1>' +
-                '<h2 style="margin-top: 10px; font-size: 1.5rem;">Page not found</h2>' +
-                '<p class="fine" style="margin-bottom: 30px; font-size: 1rem;">The page you are looking for does not exist, has been moved, or is temporarily unavailable.</p>' +
+            main.innerHTML = '<div class="panel" style="text-align:center; padding: 60px 20px; max-width: 600px; margin: 40px auto; border-radius: 16px; border: 1px solid var(--border); background: var(--surface); box-shadow: var(--shadow);">' +
+                '<h1 style="font-size: 6rem; color: var(--gold); margin: 0 0 16px; line-height: 1; font-family: var(--serif); font-weight: 800;">404</h1>' +
+                '<h2 style="margin-top: 0; font-size: 1.5rem;">Page not found</h2>' +
+                '<p class="fine" style="margin-bottom: 24px; font-size: 1rem; line-height: 1.6;">The page you are looking for does not exist, has been moved, or is temporarily unavailable.</p>' +
+                '<div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">' +
+                '<button class="btn" onclick="history.back()">← Go Back</button>' +
                 '<a class="btn btn-primary" href="/dashboard">Go to Overview</a>' +
-                '<a class="btn" href="/ai-tutor" style="margin-left: 8px;">Ask Sanjana AI</a>' +
+                '<a class="btn" href="/ai-tutor">Ask Sanjana AI</a>' +
+                '</div>' +
                 '</div>';
             document.body.classList.remove('nav-open');
             return;
