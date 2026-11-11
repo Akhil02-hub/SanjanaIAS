@@ -166,19 +166,24 @@
     var SEED_SOURCES = {
         sources: [
             { id: 'un-news', name: 'UN News', level: 'primary', region: 'world', feed: 'https://news.un.org/feed/subscribe/en/news/all/rss.xml', enabled: true },
-            { id: 'un-geneva', name: 'UN Geneva', level: 'primary', region: 'world', feed: 'https://www.ungeneva.org/en/news-media/rss', enabled: true },
-            { id: 'who', name: 'WHO', level: 'primary', region: 'world', feed: 'https://www.who.int/rss-feeds/news-english.xml', enabled: true },
-            { id: 'world-bank', name: 'World Bank', level: 'primary', region: 'world', feed: 'https://www.worldbank.org/en/news/rss', enabled: true },
-            { id: 'imf', name: 'IMF', level: 'primary', region: 'world', feed: 'https://www.imf.org/en/News/RSS', enabled: true },
+            { id: 'un-geneva', name: 'UN Geneva', level: 'primary', region: 'world', feed: 'https://www.ungeneva.org/en/news-media/rss', enabled: false },
+            { id: 'who', name: 'WHO', level: 'primary', region: 'world', feed: 'https://www.who.int/rss-feeds/news-english.xml', enabled: false },
+            { id: 'world-bank', name: 'World Bank', level: 'primary', region: 'world', feed: 'https://www.worldbank.org/en/news/rss', enabled: false },
+            { id: 'imf', name: 'IMF', level: 'primary', region: 'world', feed: 'https://www.imf.org/en/News/RSS', enabled: false },
             { id: 'pib', name: 'PIB', level: 'primary', region: 'india', feed: 'https://pib.gov.in/RssMain.aspx?ModId=6&Lang=1&Regid=3', enabled: true },
             { id: 'rbi', name: 'RBI', level: 'primary', region: 'india', feed: 'https://rbi.org.in/pressreleases_rss.xml', enabled: true },
             { id: 'bbc-world', name: 'BBC News — World', level: 'reporting', region: 'world', feed: 'https://feeds.bbci.co.uk/news/world/rss.xml', enabled: true },
-            { id: 'guardian-world', name: 'The Guardian — World', level: 'reporting', region: 'world', feed: 'https://www.theguardian.com/world/rss', enabled: true },
-            { id: 'ie-world', name: 'Indian Express — World', level: 'reporting', region: 'world', feed: 'https://indianexpress.com/section/world/feed/', enabled: true },
+            { id: 'guardian-world', name: 'The Guardian — World', level: 'reporting', region: 'world', feed: 'https://www.theguardian.com/world/rss', enabled: false },
+            { id: 'ie-world', name: 'Indian Express — World', level: 'reporting', region: 'world', feed: 'https://indianexpress.com/section/world/feed/', enabled: false },
             { id: 'ie-india', name: 'Indian Express — India', level: 'reporting', region: 'india', feed: 'https://indianexpress.com/section/india/feed/', enabled: true },
             { id: 'ie-hyderabad', name: 'Indian Express — Hyderabad', level: 'reporting', region: 'telangana', feed: 'https://indianexpress.com/section/cities/hyderabad/feed/', enabled: true },
             { id: 'hindu-national', name: 'The Hindu — National', level: 'reporting', region: 'india', feed: 'https://www.thehindu.com/news/national/feeder/default.rss', enabled: true },
-            { id: 'hindu-international', name: 'The Hindu — International', level: 'reporting', region: 'world', feed: 'https://www.thehindu.com/news/international/feeder/default.rss', enabled: true }
+            { id: 'hindu-international', name: 'The Hindu — International', level: 'reporting', region: 'world', feed: 'https://www.thehindu.com/news/international/feeder/default.rss', enabled: true },
+            { id: 'prs-india', name: 'PRS India', level: 'primary', region: 'india', feed: 'https://prsindia.org/rss', enabled: true },
+            { id: 'mea', name: 'MEA India', level: 'primary', region: 'india', feed: 'https://www.mea.gov.in/press-releases.htm?rss=1', enabled: true },
+            { id: 'toi-india', name: 'Times of India — India', level: 'reporting', region: 'india', feed: 'https://timesofindia.indiatimes.com/rssfeeds/-2128936835.cms', enabled: true },
+            { id: 'hindu-telangana', name: 'The Hindu — Telangana', level: 'reporting', region: 'telangana', feed: 'https://www.thehindu.com/news/national/telangana/feeder/default.rss', enabled: true },
+            { id: 'siasat', name: 'The Siasat Daily — Telangana', level: 'reporting', region: 'telangana', feed: 'https://www.siasat.com/category/telangana/feed/', enabled: true }
         ]
     };
 
