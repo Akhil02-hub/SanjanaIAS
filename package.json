@@ -3,7 +3,6 @@
     "version": "1.0.0",
     "description": "UPSC Current Affairs Collector",
     "main": "scripts/collect-news.js",
-    "type": "module",
     "scripts": {
         "collect": "node scripts/collect-news.js"
     },

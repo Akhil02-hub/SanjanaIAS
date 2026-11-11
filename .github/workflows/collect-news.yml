@@ -30,7 +30,7 @@ jobs:
           node-version: "22"
 
       - name: Run collector
-        run: node scripts/collect-news.cjs
+        run: node scripts/collect-news.js
 
       - name: Validate generated data
         run: |
