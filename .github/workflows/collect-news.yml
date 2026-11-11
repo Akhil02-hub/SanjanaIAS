@@ -34,7 +34,31 @@ jobs:
 
       - name: Validate generated data
         run: |
-          node -e "const fs=require('fs'); const p='data/news.json'; if(!fs.existsSync(p)){console.error('news.json missing');process.exit(1);} const d=JSON.parse(fs.readFileSync(p,'utf8')); if(!Array.isArray(d.topics)){console.error('topics is not an array');process.exit(1);} const bad=d.topics.filter(t=>!t.id||!t.title||!t.region); if(bad.length){console.error('Malformed topics:',bad.length);process.exit(1);} console.log('Validated',d.topics.length,'topics.');"
+          node -e "
+          const fs = require('fs');
+          const p = 'data/news.json';
+          if (!fs.existsSync(p)) {
+            console.error('❌ news.json missing');
+            process.exit(1);
+          }
+          try {
+            const d = JSON.parse(fs.readFileSync(p, 'utf8'));
+            if (!Array.isArray(d.topics)) {
+              console.error('❌ topics is not an array');
+              process.exit(1);
+            }
+            const bad = d.topics.filter(t => !t.id || !t.title || !t.region);
+            if (bad.length) {
+              console.error('❌ Malformed topics found:', bad.length);
+              bad.forEach(t => console.error('   - Missing fields:', t.title || 'NO TITLE'));
+              process.exit(1);
+            }
+            console.log('✅ Validated', d.topics.length, 'topics.');
+          } catch (e) {
+            console.error('❌ Invalid JSON:', e.message);
+            process.exit(1);
+          }
+          "
 
       - name: Commit changes
         run: |
