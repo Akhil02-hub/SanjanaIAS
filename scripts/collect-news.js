@@ -23,7 +23,7 @@ const {
     SEED_NEWS,
     SEED_SOURCES,
     ILLUSTRATIONS
-} = require('../app.js');
+} = require('../app.cjs');
 
 function loadNews() {
     const jsonPath = path.join(DATA, 'news.json');
