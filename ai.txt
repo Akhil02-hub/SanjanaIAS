@@ -1,6 +1,7 @@
 # ai.txt for SanjanaIAS
+#Developer: Amarachintha Akhil
 # Base: https://sanjanaias.vercel.app
-# Contact: mailto:contact@sanjanaias.com
+# Contact: mailto:amarachinthaakhil@gmail.com
 # Policy: https://sanjanaias.vercel.app/privacy.html
 
 # Allow AI crawlers to read for search/indexing and citations

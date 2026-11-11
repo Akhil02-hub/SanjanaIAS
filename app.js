@@ -83,6 +83,9 @@
             try {
                 localStorage.removeItem('sanjana.guest_quiz');
                 localStorage.removeItem('sanjana.guest_tutor');
+                localStorage.removeItem('sanjana.notes');
+                localStorage.removeItem('sanjana.missed');
+                localStorage.removeItem('sanjana.quiz');
             } catch (e) { }
             SI_AUTH._emit();
             return { ok: true };
@@ -97,6 +100,9 @@
             try {
                 localStorage.removeItem('sanjana.guest_quiz');
                 localStorage.removeItem('sanjana.guest_tutor');
+                localStorage.removeItem('sanjana.notes');
+                localStorage.removeItem('sanjana.missed');
+                localStorage.removeItem('sanjana.quiz');
             } catch (e) { }
             SI_AUTH._emit();
             return { ok: true };
@@ -418,6 +424,50 @@
         ]
     };
 
+    SEED_QUESTIONS.prelims = [];
+    SEED_QUESTIONS.mains = [];
+
+    function generateDynamicQuestions(t) {
+        var pub = t.gsPapers && t.gsPapers.length ? t.gsPapers[0] : 'GS II';
+        var cat = t.category || 'General Studies';
+        var sum = t.summary || t.title;
+        var reg = t.region === 'india' ? 'India' : t.region === 'telangana' ? 'Telangana' : 'World affairs';
+
+        // 25% probability for each option
+        var safeTitle = esc(t.title);
+        var safeCat = esc(cat);
+        var safeReg = esc(reg);
+        var rand = Math.floor(Math.random() * 4);
+        var opt1 = (rand === 0 || rand === 2) ? 'It is categorised under ' + safeCat + '.' : 'It is NOT categorised under ' + safeCat + '.';
+        var opt2 = (rand === 1 || rand === 2) ? 'It is associated with ' + safeReg + '.' : 'It is NOT associated with ' + safeReg + '.';
+        var explanations = [
+            'Statement 1 is correct, but statement 2 is incorrect. ' + sum,
+            'Statement 1 is incorrect, but statement 2 is correct. ' + sum,
+            'Both statements are correct. ' + sum,
+            'Both statements are incorrect. ' + sum
+        ];
+
+        return {
+            prelims: {
+                id: 'p-' + t.id, topicId: t.id, paper: pub,
+                question: 'With reference to "' + t.title + '", consider the following statements:\n1) ' + opt1 + '\n2) ' + opt2 + '\nWhich of the statements given above is/are correct?',
+                options: ['1 only', '2 only', 'Both 1 and 2', 'Neither 1 nor 2'],
+                answer: rand,
+                explanation: explanations[rand]
+            },
+            mains: {
+                id: 'm-' + t.id, topicId: t.id, paper: pub, marks: 15,
+                question: 'Critically examine the significance of: "' + t.title + '" in the context of ' + cat + '. (15 Marks)',
+                checklist: ['Defined the core issue', 'Contextualized it within ' + cat, 'Highlighted the implications', 'Provided a way forward'],
+                approach: {
+                    intro: 'Introduce the topic: ' + t.title,
+                    body: ['Context: ' + sum, 'Implications: ' + (t.whyItMatters || 'Analyze the broader impact.'), 'Challenges / Way forward: Suggest policy measures.'],
+                    conclusion: 'Summarise the key takeaways.'
+                }
+            }
+        };
+    }
+
     /* ============================================================
        3. Utilities
        ============================================================ */
@@ -539,7 +589,15 @@
 
     async function _loadUserData() {
         if (!SI_AUTH.user || !supabaseClient) {
-            _mem = { bookmarks: [], read: {}, notes: {}, missed: {}, mains: {}, quiz: { attempts: [], best: 0 }, days: [] };
+            _mem = {
+                bookmarks: [],
+                read: {},
+                notes: storeGet('notes', {}),
+                missed: storeGet('missed', {}),
+                mains: {},
+                quiz: storeGet('quiz', { attempts: [], best: 0 }),
+                days: []
+            };
             return;
         }
         var uid = SI_AUTH.user.id;
@@ -609,8 +667,11 @@
             _safeWrite(_cloud('notes').upsert({ user_id: SI_AUTH.user.id, topic_slug: id, text: text, updated_at: new Date().toISOString() }));
         },
         deleteNote: function (id) {
-            if (!SI_AUTH.user) return;
             delete _mem.notes[id];
+            if (!SI_AUTH.user) {
+                storeSet('notes', _mem.notes);
+                return;
+            }
             _safeWrite(_cloud('notes').delete().eq('user_id', SI_AUTH.user.id).eq('topic_slug', id));
         },
 
@@ -621,14 +682,17 @@
             _safeWrite(_cloud('revision_entries').insert({ user_id: SI_AUTH.user.id, item_id: id, type: 'missed' }));
         },
         removeMissed: function (id) {
-            if (!SI_AUTH.user) return;
             delete _mem.missed[id];
+            if (!SI_AUTH.user) {
+                storeSet('missed', _mem.missed);
+                return;
+            }
             _safeWrite(_cloud('revision_entries').delete().eq('user_id', SI_AUTH.user.id).eq('item_id', id).eq('type', 'missed'));
         },
 
         mains: function () { return Object.assign({}, _mem.mains); },
         saveMains: function (id, patch) {
-            if (!_requireLogin('save drafts')) return;
+            if (!_requireLogin('save drafts')) return false;
             _mem.mains[id] = Object.assign({}, _mem.mains[id], patch, { at: Date.now() });
             var checklist = {};
             Object.keys(_mem.mains[id]).forEach(function (k) { if (k.indexOf('c') === 0) checklist[k] = _mem.mains[id][k]; });
@@ -637,6 +701,7 @@
                 text: _mem.mains[id].text || '', checklist: checklist,
                 updated_at: new Date().toISOString()
             }));
+            return true;
         },
         deleteMains: function (id) {
             if (!SI_AUTH.user) return;
@@ -667,7 +732,14 @@
 
         reset: async function () {
             _mem = { bookmarks: [], read: {}, notes: {}, missed: {}, mains: {}, quiz: { attempts: [], best: 0 }, days: [] };
-            if (!SI_AUTH.user) return; // Guest just cleared memory
+            if (!SI_AUTH.user) {
+                storeSet('notes', {});
+                storeSet('missed', {});
+                storeSet('quiz', { attempts: [], best: 0 });
+                localStorage.removeItem('sanjana.guest_quiz');
+                localStorage.removeItem('sanjana.guest_tutor');
+                return;
+            }
             await Promise.all([
                 _cloud('bookmarks').delete().eq('user_id', SI_AUTH.user.id),
                 _cloud('notes').delete().eq('user_id', SI_AUTH.user.id),
@@ -1012,6 +1084,7 @@
         render: function (root, id) {
             var t = getTopic(id);
             if (!t) {
+                document.title = 'Topic not found · SanjanaIAS';
                 root.innerHTML = '<div class="panel"><h1>Topic not found</h1>' +
                     '<p class="fine">This research page does not exist in the library.</p>' +
                     '<a class="btn" href="/dashboard">Back to the dashboard</a></div>';
@@ -1028,9 +1101,9 @@
                 if (Array.isArray(val) && !val.length) return '';
                 if (typeof val === 'string' && (val.indexOf('has not been written yet') > -1 || val.indexOf('Auto-classified under') > -1)) return '';
                 var body = '';
-                if (key === 'timeline') {
+                if (key === 'timeline' && Array.isArray(val)) {
                     body = '<ul class="timeline">' + val.map(function (e) { return '<li><time>' + esc(e.date) + '</time>' + esc(e.text) + '</li>'; }).join('') + '</ul>';
-                } else if (key === 'data') {
+                } else if (key === 'data' && Array.isArray(val)) {
                     body = '<dl class="kv">' + val.map(function (d) { return '<dt>' + esc(d.label) + '</dt><dd>' + esc(d.value) + '</dd>'; }).join('') + '</dl>';
                 } else if (Array.isArray(val)) {
                     body = '<ul>' + val.map(function (v) { return '<li>' + esc(v) + '</li>'; }).join('') + '</ul>';
@@ -1041,12 +1114,13 @@
             }
 
             function practiceHTML() {
-                var p = SEED_QUESTIONS.prelims.filter(function (q) { return q.topicId === t.id; });
-                var m = SEED_QUESTIONS.mains.filter(function (q) { return q.topicId === t.id; });
+                var qs = generateDynamicQuestions(t);
+                var p = [qs.prelims];
+                var m = [qs.mains];
                 if (!p.length && !m.length) return '';
                 var out = '<section class="art-sec" id="sec-practice"><h2>Practice questions</h2>';
                 if (p.length) {
-                    out += '<h3>Prelims</h3><ol>' + p.map(function (q) { return '<li>' + esc(q.question) + '</li>'; }).join('') + '</ol>' +
+                    out += '<h3>Prelims</h3><ol>' + p.map(function (q) { return '<li>' + esc(q.question).replace(/\r?\n/g, '<br>') + '</li>'; }).join('') + '</ol>' +
                         '<a class="btn" href="/prelims">Attempt these MCQs</a>';
                 }
                 if (m.length) {
@@ -1106,7 +1180,7 @@
                 '</section>' +
                 '</div>' +
                 '<nav class="toc" aria-label="On this page"><strong>On this page</strong>' +
-                (t.whyItMatters ? '<a href="#sec-why" data-scroll-to="sec-why">Why it matters</a>' : '') +
+                (t.whyItMatters && t.whyItMatters.indexOf('Add an editorial note') === -1 ? '<a href="#sec-why" data-scroll-to="sec-why">Why it matters</a>' : '') +
                 ARTICLE_SECTIONS.filter(function (p) {
                     var val = s[p[0]];
                     return val && (!Array.isArray(val) || val.length > 0);
@@ -1138,105 +1212,476 @@
     /* ============================================================
        9. Tutor + Revision
        ============================================================ */
-    function intentOf(q) {
-        var s = q.toLowerCase();
-        if (/mcq|multiple choice|prelims question|quiz/.test(s)) return 'mcq';
-        if (/mains question|answer writing|15 marks|250 words/.test(s)) return 'mains';
-        if (/syllabus|gs paper|which paper/.test(s)) return 'syllabus';
-        if (/affect india|india'?s? (interest|perspective|stand)/.test(s)) return 'india';
-        if (/background|history|origin|why did/.test(s)) return 'background';
-        if (/timeline|chronolog|what happened/.test(s)) return 'timeline';
-        if (/simple|easy|beginner|explain/.test(s)) return 'explain';
-        return 'general';
+    function findTopicByFragment(frag) {
+        if (!frag) return null;
+        var lower = frag.toLowerCase().trim();
+        var hit = allTopics().filter(function (t) { return t.id.toLowerCase() === lower; })[0];
+        if (hit) return hit;
+        hit = allTopics().filter(function (t) { return t.title.toLowerCase().indexOf(lower) > -1; })[0];
+        if (hit) return hit;
+        var results = SI_SEARCH.query(lower, { limit: 1 });
+        return results.length ? results[0].topic : null;
     }
-    function buildFromTopic(t, intent) {
-        var s = t.sections || {};
-        var head = '<h3>' + esc(t.title) + '</h3><div class="chips">' + chips(t) + '</div>';
-        var body = '';
-        if (intent === 'background') {
-            body = '<p>' + esc(stripHtml(s.background || t.summary)) + '</p>';
-            if (s.causes) body += '<h4>Why it happened</h4><p>' + esc(s.causes) + '</p>';
-        } else if (intent === 'india') {
-            body = '<p>' + esc(s.india || 'No India-specific implication recorded yet.') + '</p>';
-            if (s.telangana) body += '<h4>Telangana angle</h4><p>' + esc(s.telangana) + '</p>';
-        } else if (intent === 'syllabus') {
-            body = '<p>This topic is tagged to <strong>' + esc((t.gsPapers || []).join(', ') || 'no paper yet') + '</strong>.</p>' +
-                '<p>' + esc(s.upsc || '') + '</p>';
-            if ((s.prelimsNotes || []).length) body += '<h4>Prelims facts</h4><ul>' + s.prelimsNotes.slice(0, 4).map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul>';
-        } else if (intent === 'timeline') {
-            var tl = s.timeline || [];
-            body = tl.length
-                ? '<ol>' + tl.map(function (e) { return '<li><strong>' + esc(e.date) + '</strong> — ' + esc(e.text) + '</li>'; }).join('') + '</ol>'
-                : '<p>No timeline recorded for this topic.</p>';
-        } else if (intent === 'mcq') {
-            var qs = SEED_QUESTIONS.prelims.filter(function (q) { return q.topicId === t.id; }).slice(0, 5);
-            body = qs.length
-                ? '<p>Practice questions from this topic:</p><ol>' + qs.map(function (q) { return '<li>' + esc(q.question) + '</li>'; }).join('') + '</ol>' +
-                '<p><a class="btn" href="/prelims">Attempt with explanations</a></p>'
-                : '<p>No MCQs authored for this topic yet.</p>';
-        } else if (intent === 'mains') {
-            var ms = SEED_QUESTIONS.mains.filter(function (q) { return q.topicId === t.id; }).slice(0, 2);
-            body = ms.length ? ms.map(function (q) { return '<p><strong>' + q.marks + ' marks:</strong> ' + esc(q.question) + '</p>'; }).join('') : '<p>No Mains question attached to this topic yet.</p>';
-        } else {
-            body = '<p>' + esc(stripHtml(t.summary)) + '</p>';
-            if (t.whyItMatters) body += '<h4>Why it matters for UPSC</h4><p>' + esc(stripHtml(t.whyItMatters)) + '</p>';
-            if ((s.prelimsNotes || []).length) body += '<h4>Remember for Prelims</h4><ul>' + s.prelimsNotes.slice(0, 4).map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul>';
+    function topicsIn(region) {
+        return allTopics().filter(function (t) {
+            return t.region === region || (Array.isArray(t.regions) && t.regions.indexOf(region) > -1);
+        });
+    }
+    function topicsWithPaper(paper) {
+        return allTopics().filter(function (t) { return (t.gsPapers || []).indexOf(paper) > -1; });
+    }
+    function topicsInCategory(cat) {
+        var c = (cat || '').toLowerCase();
+        return allTopics().filter(function (t) {
+            var text = ((t.category || '') + ' ' + (t.tags || []).join(' ')).toLowerCase();
+            return c && text.indexOf(c) > -1;
+        });
+    }
+    function rankedTopics() { return byImportance(allTopics()); }
+
+    var R = {
+        para: function (s) { return '<p>' + esc(s) + '</p>'; },
+        bullets: function (items) {
+            if (!items || !items.length) return '';
+            return '<ul>' + items.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul>';
+        },
+        numbered: function (items) {
+            if (!items || !items.length) return '';
+            return '<ol>' + items.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ol>';
+        },
+        timeline: function (items) {
+            if (!items || !items.length) return '';
+            return '<ol>' + items.map(function (e) {
+                return '<li><strong>' + esc(e.date) + '</strong> — ' + esc(e.text) + '</li>';
+            }).join('') + '</ol>';
+        },
+        kv: function (pairs) {
+            if (!pairs.length) return '';
+            return '<dl class="kv">' + pairs.map(function (p) {
+                return '<dt>' + esc(p[0]) + '</dt><dd>' + esc(p[1]) + '</dd>';
+            }).join('') + '</dl>';
+        },
+        table: function (headers, rows) {
+            var out = '<table class="cmp-table"><thead><tr>';
+            headers.forEach(function (h) { out += '<th>' + esc(h) + '</th>'; });
+            out += '</tr></thead><tbody>';
+            rows.forEach(function (row) {
+                out += '<tr>';
+                row.forEach(function (c) { out += '<td>' + esc(c) + '</td>'; });
+                out += '</tr>';
+            });
+            return out + '</tbody></table>';
+        },
+        chips: function (t) { return '<div class="chips">' + chips(t) + '</div>'; },
+        mcq: function (q) {
+            return '<p><strong>' + esc(q.question).replace(/\n/g, '<br>') + '</strong></p>' +
+                '<ol type="a">' + q.options.map(function (o) { return '<li>' + esc(o) + '</li>'; }).join('') + '</ol>' +
+                '<p class="fine"><em>Explanation:</em> ' + esc(q.explanation) + '</p>';
+        },
+        mainsSkeleton: function (q) {
+            return '<p><strong>' + q.marks + ' marks · ' + esc(q.paper) + '</strong></p>' +
+                '<p>' + esc(q.question) + '</p>' +
+                '<p class="fine">Structure:</p><ol>' +
+                '<li><strong>Intro:</strong> ' + esc(q.approach.intro) + '</li>' +
+                q.approach.body.map(function (b) { return '<li>' + esc(b) + '</li>'; }).join('') +
+                '<li><strong>Conclusion:</strong> ' + esc(q.approach.conclusion) + '</li></ol>';
         }
-        var srcs = (t.sources || []).slice(0, 3);
-        var srcHTML = srcs.length
-            ? '<div class="src">Sources: ' + srcs.map(function (sr) { return '<a href="' + esc(sr.url) + '" target="_blank" rel="noopener noreferrer">' + esc(sr.publisher) + '</a>'; }).join(' · ') + '</div>'
-            : '';
-        var related = SI_SEARCH.related(t, 3);
-        var relHTML = related.length
-            ? '<h4>Related in the library</h4><ul>' + related.map(function (r) { return '<li><a href="/article/' + encodeURIComponent(r.id) + '">' + esc(r.title) + '</a></li>'; }).join('') + '</ul>'
-            : '';
-        return head + body + srcHTML +
-            '<p><a class="btn" href="/article/' + encodeURIComponent(t.id) + '">Read the full research page</a></p>' + relHTML;
+    };
+
+    var H = {
+        summary: function (ctx) {
+            var t = ctx.topic;
+            var out = R.chips(t) + R.para(stripHtml(t.summary));
+            if (t.whyItMatters) out += '<h4>Why it matters</h4>' + R.para(stripHtml(t.whyItMatters));
+            return out + relatedBlock(t);
+        },
+        oneLiner: function (ctx) {
+            var t = ctx.topic;
+            var line = t.whyItMatters
+                ? stripHtml(t.whyItMatters).split(/[.!?]/)[0]
+                : stripHtml(t.summary).split(/[.!?]/)[0];
+            return R.chips(t) + '<p><strong>In one line:</strong> ' + esc(line) + '.</p>';
+        },
+        eli5: function (ctx) {
+            var t = ctx.topic;
+            var s = t.sections || {};
+            var out = R.chips(t) + R.para('In simple words: ' + stripHtml(t.summary));
+            if (s.prelimsNotes && s.prelimsNotes.length) {
+                out += '<h4>Remember just this</h4>' + R.bullets(s.prelimsNotes.slice(0, 3));
+            }
+            return out + relatedBlock(t, 2);
+        },
+        definition: function (ctx) {
+            var t = ctx.topic;
+            var s = t.sections || {};
+            return R.chips(t) + R.para((s.event || t.summary) ? 'Definition: ' + stripHtml(s.event || t.summary) : 'No definition recorded.');
+        },
+        list: function (ctx) {
+            var items = ctx.topics.map(function (t) { return t.title; });
+            return '<p>Found ' + items.length + ' topic' + (items.length === 1 ? '' : 's') + ':</p>' + R.bullets(items);
+        },
+        dataPoints: function (ctx) {
+            var t = ctx.topic;
+            var data = (t.sections && t.sections.data) || [];
+            if (!data.length) return R.chips(t) + '<p class="fine">No structured data points recorded for this topic.</p>';
+            return R.chips(t) + '<h4>Key figures</h4>' + R.kv(data.map(function (d) { return [d.label, d.value]; }));
+        },
+        timeline: function (ctx) {
+            var t = ctx.topic;
+            var tl = (t.sections && t.sections.timeline) || [];
+            return R.chips(t) + '<h4>Timeline</h4>' +
+                (tl.length ? R.timeline(tl) : '<p class="fine">No timeline recorded. Summary: ' + esc(stripHtml(t.summary)) + '</p>');
+        },
+        location: function (ctx) {
+            var t = ctx.topic;
+            var s = t.sections || {};
+            return R.chips(t) + R.para(s.geography || ('Primary region: ' + regionLabel(t.region)));
+        },
+        why: function (ctx) {
+            var t = ctx.topic;
+            var s = t.sections || {};
+            var out = R.chips(t);
+            if (s.causes) out += '<h4>What caused it</h4>' + R.para(s.causes);
+            if (t.whyItMatters) out += '<h4>Why it matters</h4>' + R.para(stripHtml(t.whyItMatters));
+            if (s.upsc) out += '<h4>UPSC connection</h4>' + R.para(s.upsc);
+            if (!s.causes && !t.whyItMatters && !s.upsc) out += R.para(stripHtml(t.summary));
+            return out + relatedBlock(t, 2);
+        },
+        causes: function (ctx) {
+            var s = ctx.topic.sections || {};
+            return R.chips(ctx.topic) + R.para(s.causes || 'No causes recorded.');
+        },
+        consequences: function (ctx) {
+            var s = ctx.topic.sections || {};
+            var items = [];
+            if (s.challenges) items.push(s.challenges);
+            if (s.india) items.push('India angle: ' + s.india);
+            if (s.telangana) items.push('Telangana angle: ' + s.telangana);
+            return R.chips(ctx.topic) +
+                (items.length ? '<h4>Consequences / implications</h4>' + R.bullets(items) : R.para(stripHtml(ctx.topic.summary)));
+        },
+        background: function (ctx) {
+            var t = ctx.topic;
+            var s = t.sections || {};
+            var out = R.chips(t) + R.para(stripHtml(s.background || t.summary));
+            if (s.timeline && s.timeline.length) out += '<h4>Timeline</h4>' + R.timeline(s.timeline);
+            return out + relatedBlock(t, 2);
+        },
+        indiaAngle: function (ctx) {
+            var t = ctx.topic;
+            var s = t.sections || {};
+            var out = R.chips(t) + R.para(s.india || 'No India-specific implication recorded yet.');
+            if (s.telangana) out += '<h4>Telangana angle</h4>' + R.para(s.telangana);
+            return out + relatedBlock(t, 2);
+        },
+        telanganaAngle: function (ctx) {
+            var s = ctx.topic.sections || {};
+            return R.chips(ctx.topic) + R.para(s.telangana || 'No Telangana-specific angle recorded.');
+        },
+        globalAngle: function (ctx) {
+            var t = ctx.topic;
+            var global = topicsIn('world').filter(function (x) { return x.id !== t.id; }).slice(0, 3);
+            return R.chips(t) + R.para('Global context — related world-affairs items:') +
+                R.bullets(global.map(function (g) { return g.title; })) + relatedBlock(t, 2);
+        },
+        stakeholders: function (ctx) {
+            var s = ctx.topic.sections || {};
+            return R.chips(ctx.topic) + R.para(s.stakeholders || 'No stakeholders recorded.');
+        },
+        challenges: function (ctx) {
+            var s = ctx.topic.sections || {};
+            return R.chips(ctx.topic) + R.para(s.challenges || 'No challenges recorded.');
+        },
+        solutions: function (ctx) {
+            var s = ctx.topic.sections || {};
+            return R.chips(ctx.topic) + R.para(s.solutions || 'No solutions recorded.');
+        },
+        prosCons: function (ctx) {
+            var t = ctx.topic;
+            var s = t.sections || {};
+            var pros = [], cons = [];
+            if (s.solutions) pros.push(s.solutions);
+            if (t.whyItMatters) pros.push(stripHtml(t.whyItMatters));
+            if (s.challenges) cons.push(s.challenges);
+            return R.chips(t) + '<h4>Positives</h4>' + R.bullets(pros) + '<h4>Concerns</h4>' + R.bullets(cons);
+        },
+        criticism: function (ctx) {
+            var s = ctx.topic.sections || {};
+            return R.chips(ctx.topic) + R.para(s.challenges || 'No critical concerns recorded.') +
+                '<p class="fine">Counter-argument: consider equity, implementation, and second-order effects.</p>';
+        },
+        future: function (ctx) {
+            var s = ctx.topic.sections || {};
+            return R.chips(ctx.topic) + R.para(s.solutions || 'No forward-looking solutions recorded yet.');
+        },
+        recommendation: function (ctx) {
+            var s = ctx.topic.sections || {};
+            return R.chips(ctx.topic) + '<h4>Way forward</h4>' + R.para(s.solutions || 'No recommendations recorded.');
+        },
+        compare: function (ctx) {
+            var a = ctx.topics[0], b = ctx.topics[1];
+            if (!b) return H.summary({ topic: a });
+            var rows = [
+                ['Region', regionLabel(a.region), regionLabel(b.region)],
+                ['Category', a.category || '—', b.category || '—'],
+                ['GS Paper', (a.gsPapers || []).join(', ') || '—', (b.gsPapers || []).join(', ') || '—'],
+                ['Summary', truncate(stripHtml(a.summary), 120), truncate(stripHtml(b.summary), 120)]
+            ];
+            return '<h3>Comparing two topics</h3>' +
+                '<p><strong>A:</strong> ' + esc(a.title) + '</p>' +
+                '<p><strong>B:</strong> ' + esc(b.title) + '</p>' +
+                R.table(['Attribute', 'A', 'B'], rows);
+        },
+        contrastRegions: function () {
+            var world = topicsIn('world').slice(0, 3);
+            var india = topicsIn('india').slice(0, 3);
+            return '<h4>World focus</h4>' + R.bullets(world.map(function (t) { return t.title; })) +
+                '<h4>India focus</h4>' + R.bullets(india.map(function (t) { return t.title; }));
+        },
+        mostImportant: function () {
+            var t = rankedTopics()[0];
+            return H.summary({ topic: t }) + sourceFooter(t);
+        },
+        prelimsMcq: function (ctx) {
+            var out = '<h3>Prelims practice</h3>';
+            ctx.topics.slice(0, 3).forEach(function (t) { out += R.mcq(generateDynamicQuestions(t).prelims); });
+            return out + '<p><a class="btn" href="/prelims">Attempt with explanations →</a></p>';
+        },
+        prelimsStatements: function (ctx) {
+            return '<h4>Statement-based question</h4>' + R.mcq(generateDynamicQuestions(ctx.topic).prelims);
+        },
+        mainsQuestion: function (ctx) {
+            var out = '<h3>Mains practice</h3>';
+            ctx.topics.slice(0, 2).forEach(function (t) { out += R.mainsSkeleton(generateDynamicQuestions(t).mains); });
+            return out + '<p><a class="btn" href="/mains">Write an answer →</a></p>';
+        },
+        mainsSkeleton: function (ctx) {
+            return R.mainsSkeleton(generateDynamicQuestions(ctx.topic).mains);
+        },
+        mainsEssay: function (ctx) {
+            var t = ctx.topic;
+            return '<h4>Essay angle</h4>' +
+                R.para('Explore "' + t.title + '" — trace causes, weigh consequences, argue a clear position. Use the topic as the spine of a 1,000-word essay.') + R.chips(t);
+        },
+        interviewQuestion: function (ctx) {
+            var t = ctx.topic;
+            return '<h4>Interview probe</h4>' +
+                R.para('If asked about "' + t.title + '" in 30 seconds, structure as: what → why → what next.') +
+                R.chips(t) + R.para(stripHtml(t.summary));
+        },
+        syllabusMapping: function (ctx) {
+            var t = ctx.topic;
+            var gs = (t.gsPapers || []).join(' · ') || 'No paper tagged';
+            var s = t.sections || {};
+            var out = R.chips(t) + '<p><strong>Maps to:</strong> ' + esc(gs) + ' · <strong>Category:</strong> ' + esc(t.category || 'General') + '</p>';
+            if (s.upsc) out += '<h4>How to use this in an answer</h4>' + R.para(s.upsc);
+            if (s.prelimsNotes && s.prelimsNotes.length) out += '<h4>Facts for Prelims</h4>' + R.bullets(s.prelimsNotes.slice(0, 5));
+            return out;
+        },
+        pyqAnalogy: function (ctx) {
+            var t = ctx.topic;
+            return '<h4>Likely PYQ analogy</h4>' +
+                R.para('A PYQ of similar shape: "Evaluate the significance of ' + t.title.toLowerCase() + '." (250 words)') + R.chips(t);
+        },
+        related: function (ctx) {
+            var rel = SI_SEARCH.related(ctx.topic, 5);
+            return '<h4>Related in the library</h4>' + R.bullets(rel.map(function (r) { return r.title; }));
+        },
+        sources: function (ctx) {
+            var srcs = ctx.topic.sources || [];
+            if (!srcs.length) return R.chips(ctx.topic) + '<p class="fine">No sources recorded.</p>';
+            return '<h4>Sources</h4><ul class="src-list">' + srcs.map(function (s) {
+                return '<li><span class="src-type">' + esc(s.type || 'source') + '</span>' +
+                    '<a href="' + esc(s.url) + '" target="_blank" rel="noopener">' + esc(s.title) + '</a></li>';
+            }).join('') + '</ul>';
+        },
+        stats: function (region) {
+            var all = region ? topicsIn(region) : allTopics();
+            return '<h4>Library stats' + (region ? ' (' + regionLabel(region) + ')' : '') + '</h4>' + R.kv([
+                ['Total topics', String(all.length)],
+                ['World', String(topicsIn('world').length)],
+                ['India', String(topicsIn('india').length)],
+                ['Telangana', String(topicsIn('telangana').length)],
+                ['Last updated', all[0] ? fmtDate(all[0].published) : '—']
+            ]);
+        },
+        greeting: function () {
+            var weekTopics = allTopics().filter(function (t) {
+                return (t.published || '').slice(0, 10) >= getWeekAgoLocal() || t.curated;
+            });
+            var recent = byImportance(weekTopics).slice(0, 3);
+
+            var out = '<p>Hello! I am Sanjana AI. How can I help you today?</p>';
+            out += '<p>I am fully synced with the library from <strong>the last 7 days</strong>. I can explain topics, map them to the syllabus, or generate practice questions.</p>';
+
+            if (recent.length) {
+                out += '<h4>Here are the top topics from the past week:</h4>';
+                out += '<ul>' + recent.map(function (t) {
+                    return '<li><a href="/article/' + encodeURIComponent(t.id) + '">' + esc(t.title) + '</a></li>';
+                }).join('') + '</ul>';
+            }
+
+            out += '<p>Ask me anything about these, or type <strong>"help"</strong> to see what I can do.</p>';
+            return out;
+        },
+        help: function () {
+            return '<h4>What I can answer</h4>' + R.bullets([
+                'Explain — "tell me about <topic>"',
+                'Why — "why is <topic> important"',
+                'Background or timeline',
+                'India / Telangana angle',
+                'Syllabus — "which GS paper"',
+                'Prelims MCQs — "give me a prelims MCQ"',
+                'Mains questions — "give me a mains question"',
+                'Compare — "<A> vs <B>"',
+                'Statistics — "how many topics today"',
+                'Related — "what is related to <topic>"'
+            ]) + '<p class="fine">I only answer from content already collected here. I don\'t browse the internet.</p>';
+        }
+    };
+
+    var INTENTS = [
+        { name: 'greeting', patterns: [/^(hi|hello|hey|greetings|namaste)[\s!?.,]*$/, /^good (morning|afternoon|evening)[\s!?.,]*$/, /^who are you[\s!?.,]*$/], handler: 'greeting' },
+        { name: 'help', patterns: [/^help\b/, /what can you do/, /capabilities/], handler: 'help' },
+        { name: 'stats', patterns: [/how many (?:topics|articles)/, /\bstats\b/, /\bcount\b/], handler: 'stats' },
+        { name: 'compare', patterns: [/\bcompare\b/, /\bvs\.? /, /\bdifference between\b/, /\bcontrast\b/], handler: 'compare' },
+        { name: 'contrastRegions', patterns: [/world vs india/, /india vs world/, /compare regions/], handler: 'contrastRegions' },
+        { name: 'mostImportant', patterns: [/top \d+/, /most important/, /rank(?:ing)?/], handler: 'mostImportant' },
+        { name: 'prelimsMcq', patterns: [/prelims mcq/, /give me.*mcq/, /practice mcq/, /quiz me/, /objective question/], handler: 'prelimsMcq' },
+        { name: 'prelimsStatements', patterns: [/statement based/, /assertion reason/], handler: 'prelimsStatements' },
+        { name: 'mainsQuestion', patterns: [/mains question/, /give me.*mains/, /practice.*mains/, /15 marks/], handler: 'mainsQuestion' },
+        { name: 'mainsSkeleton', patterns: [/mains skeleton/, /answer structure/, /how to write.*answer/], handler: 'mainsSkeleton' },
+        { name: 'mainsEssay', patterns: [/\bessay\b/, /essay angle/], handler: 'mainsEssay' },
+        { name: 'interviewQuestion', patterns: [/interview question/, /interview probe/], handler: 'interviewQuestion' },
+        { name: 'pyqAnalogy', patterns: [/previous year|pyq|past question/], handler: 'pyqAnalogy' },
+        { name: 'timeline', patterns: [/timeline/, /chronology/, /when did/, /sequence of events/], handler: 'timeline' },
+        { name: 'indiaAngle', patterns: [/affect india/, /impact on india/, /india'?s? (?:interest|perspective|stand|position)/], handler: 'indiaAngle' },
+        { name: 'telanganaAngle', patterns: [/telangana angle/, /telangana perspective/, /telangana connection/], handler: 'telanganaAngle' },
+        { name: 'globalAngle', patterns: [/global angle/, /world perspective/, /global context/], handler: 'globalAngle' },
+        { name: 'syllabusMapping', patterns: [/syllabus/, /gs paper/, /which paper/, /paper 1|paper 2|paper 3|paper 4/], handler: 'syllabusMapping' },
+        { name: 'causes', patterns: [/\bcauses?\b/, /what led to/, /what caused/], handler: 'causes' },
+        { name: 'consequences', patterns: [/consequences?/, /implications?/, /impact of/, /effects? of/], handler: 'consequences' },
+        { name: 'background', patterns: [/background/, /history/, /context/, /precedent/, /why did/], handler: 'background' },
+        { name: 'stakeholders', patterns: [/stakeholders?/, /who is involved/, /key actors/], handler: 'stakeholders' },
+        { name: 'challenges', patterns: [/challenges?/, /obstacles?/, /problems?/, /concerns?/], handler: 'challenges' },
+        { name: 'solutions', patterns: [/solutions?/, /way forward/, /remedy/, /fix/], handler: 'solutions' },
+        { name: 'prosCons', patterns: [/pros and cons/, /advantages and disadvantages/, /strengths? and weaknesses?/], handler: 'prosCons' },
+        { name: 'criticism', patterns: [/criticism/, /critique/, /limitations?/, /weakness/], handler: 'criticism' },
+        { name: 'future', patterns: [/future/, /what next/, /prospects/], handler: 'future' },
+        { name: 'recommendation', patterns: [/recommend/, /what should (?:be done|india do)/, /suggest/], handler: 'recommendation' },
+        { name: 'dataPoints', patterns: [/data/, /figures/, /statistics on/, /numbers/], handler: 'dataPoints' },
+        { name: 'location', patterns: [/where (?:is|are)/, /location of/, /geography/], handler: 'location' },
+        { name: 'definition', patterns: [/what is a\b/, /what is the\b/, /definition of/, /meaning of/], handler: 'definition' },
+        { name: 'related', patterns: [/related to/, /similar topics/, /what else/], handler: 'related' },
+        { name: 'sources', patterns: [/sources?/, /citations?/, /references?/, /where did you (?:get|find)/], handler: 'sources' },
+        { name: 'eli5', patterns: [/simpl/, /easy/, /beginner/, /layman/, /eli5/, /in simple words/, /tl;?dr/], handler: 'eli5' },
+        { name: 'oneLiner', patterns: [/one line/, /in one sentence/], handler: 'oneLiner' },
+        { name: 'list', patterns: [/list (?:all|the)/, /show (?:all|me)/, /enumerate/], handler: 'list' },
+        { name: 'why', patterns: [/why (?:is|does|did|should|this)/, /significance/, /importance/, /matters?/, /relevance/], handler: 'why' },
+        { name: 'summary', patterns: [/^(?:what|tell me about|explain|summar)/, /\boverview\b/, /\bsummar(y|ize)\b/], handler: 'summary' }
+    ];
+
+    function matchIntent(q) {
+        var s = ' ' + q.toLowerCase() + ' ';
+        for (var i = 0; i < INTENTS.length; i++) {
+            for (var j = 0; j < INTENTS[i].patterns.length; j++) {
+                if (INTENTS[i].patterns[j].test(s)) return INTENTS[i];
+            }
+        }
+        return { name: 'summary', handler: 'summary' };
     }
+
+    function extractParams(q) {
+        var s = q.toLowerCase();
+        var params = { q: q };
+        if (/\b(world|international|global)\b/.test(s)) params.region = 'world';
+        else if (/\btelangana\b/.test(s)) params.region = 'telangana';
+        else if (/\bindia\b/.test(s)) params.region = 'india';
+
+        var paper = s.match(/\bgs\s*(i{1,3}|iv)\b/i);
+        if (paper) params.paper = 'GS ' + paper[1].toUpperCase();
+
+        var vs = q.match(/(.+?)\s+(?:vs\.?|versus)\s+(.+)/i);
+        if (vs) { params.compareA = vs[1].trim(); params.compareB = vs[2].trim(); }
+        var cmp = q.match(/compare\s+(.+?)\s+(?:and|with|to)\s+(.+)/i);
+        if (cmp && !params.compareA) { params.compareA = cmp[1].trim(); params.compareB = cmp[2].trim(); }
+        return params;
+    }
+
+    function selectTopics(intent, params) {
+        if (intent.handler === 'compare' && params.compareA && params.compareB) {
+            return [findTopicByFragment(params.compareA), findTopicByFragment(params.compareB)].filter(Boolean);
+        }
+        if (intent.handler === 'list') {
+            if (params.region) return topicsIn(params.region);
+            if (params.paper) return topicsWithPaper(params.paper);
+            return allTopics();
+        }
+        if (['stats', 'help', 'contrastRegions', 'mostImportant'].indexOf(intent.handler) > -1) {
+            return allTopics();
+        }
+        var hits = SI_SEARCH.query(params.q, { limit: 3 });
+        if (hits.length) return hits.map(function (h) { return h.topic; });
+        return rankedTopics().slice(0, 3);
+    }
+
+    function sourceFooter(t) {
+        var srcs = (t && t.sources ? t.sources : []).filter(function (s) { return s.publisher; }).slice(0, 3);
+        var srcPart = srcs.length
+            ? 'Sources: ' + srcs.map(function (s) {
+                return '<a href="' + esc(s.url) + '" target="_blank" rel="noopener">' + esc(s.publisher) + '</a>';
+            }).join(' · ') + ' — '
+            : '';
+        return '<div class="src">' + srcPart + 'Grounded in the SanjanaIAS library.</div>';
+    }
+    function relatedBlock(t, limit) {
+        var rel = SI_SEARCH.related(t, limit || 3);
+        if (!rel.length) return '';
+        return '<h4>Related in the library</h4>' +
+            '<ul>' + rel.map(function (r) {
+                return '<li><a href="/article/' + encodeURIComponent(r.id) + '">' + esc(r.title) + '</a></li>';
+            }).join('') + '</ul>';
+    }
+    function notFound(q) {
+        return {
+            html:
+                '<h3>Not in the library yet</h3>' +
+                '<p>I couldn\'t match <em>' + esc(q) + '</em> to any collected topic.</p>' +
+                '<p>I answer only from content already here — I don\'t browse the internet and I don\'t invent facts.</p>' +
+                '<h4>Try one of these</h4>' +
+                '<ul>' + rankedTopics().slice(0, 4).map(function (t) {
+                    return '<li><a href="/article/' + encodeURIComponent(t.id) + '">' + esc(t.title) + '</a></li>';
+                }).join('') + '</ul>' +
+                '<p class="fine">Or type "help" to see what I can answer.</p>'
+        };
+    }
+
     var SI_TUTOR = {
         answer: function (q) {
             if (allTopics().length === 0) {
-                return { html: '<p>No news collected yet. Please check back later.</p>' };
+                return { html: '<h3>No content yet</h3><p>The library is empty. Please check back once today\'s current affairs are collected.</p>' };
             }
-            var intent = intentOf(q);
-            var lower = q.toLowerCase();
-            var hits = [];
 
-            if (lower.includes('most important topic')) {
-                hits = [{ topic: allTopics()[0], score: 100 }];
-            } else if (lower.includes('affect india')) {
-                hits = SI_SEARCH.query('india', { limit: 1 });
-                intent = 'india';
-            } else if (lower.includes('prelims mcq')) {
-                hits = [{ topic: allTopics()[0], score: 100 }];
-                intent = 'mcq';
-            } else if (lower.includes('mains question')) {
-                hits = [{ topic: allTopics()[0], score: 100 }];
-                intent = 'mains';
-            } else if (lower.includes('syllabus connection')) {
-                hits = [{ topic: allTopics()[0], score: 100 }];
-                intent = 'syllabus';
-            } else {
-                hits = SI_SEARCH.query(q, { limit: 3 });
+            var intent = matchIntent(q);
+            var params = extractParams(q);
+
+            if (intent.handler === 'help') return { html: H.help() };
+            if (intent.handler === 'stats') return { html: H.stats() };
+            if (intent.handler === 'contrastRegions') return { html: H.contrastRegions() };
+            if (intent.handler === 'mostImportant') return { html: H.mostImportant() };
+
+            var topics = selectTopics(intent, params);
+            if (!topics.length) return notFound(q);
+
+            var ctx = { topic: topics[0], topics: topics, params: params, q: q };
+            var html;
+            try {
+                html = H[intent.handler](ctx);
+            } catch (e) {
+                console.error('[Tutor] handler failed:', intent.name, e);
+                html = '<p>The tutor hit an error building this answer. Try rephrasing.</p>';
             }
-            if (!hits.length) {
-                return {
-                    html:
-                        '<h3>Not in the library yet</h3><p>No content in the SanjanaIAS collection matches “' + esc(q) + '”.</p>' +
-                        '<p>I only answer from content already collected here — I am not a general-purpose chatbot and I do not browse the internet.</p>' +
-                        '<h4>Try one of these</h4><ul>' + allTopics().slice(0, 4).map(function (t) {
-                            return '<li><a href="/article/' + encodeURIComponent(t.id) + '">' + esc(t.title) + '</a></li>';
-                        }).join('') + '</ul>'
-                };
-            }
-            var html = buildFromTopic(hits[0].topic, intent);
-            if (hits.length > 1 && intent !== 'mcq' && intent !== 'mains') {
-                html += '<h4>Also relevant</h4><ul>' + hits.slice(1).map(function (h) {
-                    return '<li><a href="/article/' + encodeURIComponent(h.topic.id) + '">' + esc(h.topic.title) + '</a></li>';
-                }).join('') + '</ul>';
-            }
-            html += '<div class="src">Grounded in ' + hits.length + ' SanjanaIAS topic' + (hits.length === 1 ? '' : 's') + '. No external model was used.</div>';
-            return { html: html };
+            return { html: html + sourceFooter(ctx.topic) };
         }
     };
 
@@ -1251,8 +1696,11 @@
             var missedMap = SI_STORE.missed();
             var missedQs = Object.keys(missedMap)
                 .filter(function (id) { return missedMap[id] > cutoff30; })
-                .map(function (id) { return SEED_QUESTIONS.prelims.filter(function (q) { return q.id === id; })[0]; })
-                .filter(Boolean);
+                .map(function (id) {
+                    var topicId = id.replace('p-', '');
+                    var t = getTopic(topicId);
+                    return { id: id, q: t ? generateDynamicQuestions(t).prelims : null };
+                });
             var bookmarks = SI_STORE.bookmarks().map(getTopic).filter(Boolean);
             var weekAgo = Date.now() - 7 * 86400000;
             var thisWeek = allTopics().filter(function (t) { return new Date(t.published || 0).getTime() > weekAgo; });
@@ -1262,9 +1710,13 @@
                 (readTopics.length ? '<div class="card-grid">' + readTopics.slice(0, 6).map(card).join('') + '</div>' : '<p class="fine">Nothing read yet.</p>') +
                 '</section>' +
                 '<section class="panel"><div class="panel-head"><h2>Questions to retry</h2><span class="chip">' + missedQs.length + '</span></div>' +
-                (missedQs.length ? missedQs.map(function (q) {
-                    return '<div class="list-row"><div class="lr-body"><h3>' + esc(q.question) + '</h3><p>' + esc(q.explanation) + '</p></div>' +
-                        '<button class="btn" data-clear="' + esc(q.id) + '" type="button">Mark revised</button></div>';
+                (missedQs.length ? missedQs.map(function (item) {
+                    if (!item.q) {
+                        return '<div class="list-row"><div class="lr-body"><h3>Question for an expired topic</h3><p class="fine">This topic is no longer available.</p></div>' +
+                            '<button class="btn" data-clear="' + esc(item.id) + '" type="button">Mark revised</button></div>';
+                    }
+                    return '<div class="list-row"><div class="lr-body"><h3>' + esc(item.q.question).replace(/\n/g, '<br>') + '</h3><p>' + esc(item.q.explanation) + '</p></div>' +
+                        '<button class="btn" data-clear="' + esc(item.id) + '" type="button">Mark revised</button></div>';
                 }).join('') : '<p class="fine">No missed questions.</p>') +
                 '</section>' +
                 '<section class="panel"><div class="panel-head"><h2>Saved for later</h2><span class="chip">' + bookmarks.length + '</span></div>' +
@@ -1327,14 +1779,17 @@
         $('#timeToggle', container).addEventListener('click', function (e) {
             var btn = e.target.closest('button'); if (!btn) return;
             activeTime = btn.dataset.time;
-            $('#timeToggle button', container).forEach(function (b) { b.classList.toggle('btn-primary', b === btn); });
+            $$('#timeToggle button', container).forEach(function (b) { b.classList.toggle('btn-primary', b === btn); });
             draw();
         });
 
         function draw() {
             var list = topics.slice();
+            var latestDate = topics.reduce(function (max, t) { var d = (t.published || '').slice(0, 10); return d > max ? d : max; }, '');
+            var targetDate = topics.some(function (t) { return (t.published || '').slice(0, 10) === todayStr; }) ? todayStr : latestDate;
+
             if (activeTime === 'daily') {
-                list = list.filter(function (t) { return (t.published || '').slice(0, 10) === todayStr || t.curated; });
+                list = list.filter(function (t) { return (t.published || '').slice(0, 10) === targetDate || t.curated; });
             } else if (activeTime === 'weekly') {
                 var weekAgo = getWeekAgoLocal();
                 list = list.filter(function (t) { return (t.published || '').slice(0, 10) >= weekAgo || t.curated; });
@@ -1359,8 +1814,12 @@
             var activeTime = 'daily';
 
             function renderDash() {
-                var topics = allTopics().filter(function (t) {
-                    if (activeTime === 'daily') return (t.published || '').slice(0, 10) === todayStr || t.curated;
+                var allT = allTopics();
+                var latestDate = allT.length ? (allT[0].published || '').slice(0, 10) : todayStr;
+                var targetDate = allT.some(function (t) { return (t.published || '').slice(0, 10) === todayStr; }) ? todayStr : latestDate;
+
+                var topics = allT.filter(function (t) {
+                    if (activeTime === 'daily') return (t.published || '').slice(0, 10) === targetDate || t.curated;
                     if (activeTime === 'weekly') return (t.published || '').slice(0, 10) >= weekAgo || t.curated;
                     return true; // all
                 });
@@ -1372,7 +1831,6 @@
                     '<div class="time-toggle" id="dashTimeToggle" style="margin-bottom: 20px; display: flex; gap: 8px;">' +
                     '<button class="btn ' + (activeTime === 'daily' ? 'btn-primary' : '') + '" data-time="daily" type="button">Today</button>' +
                     '<button class="btn ' + (activeTime === 'weekly' ? 'btn-primary' : '') + '" data-time="weekly" type="button">This Week</button>' +
-                    '<button class="btn ' + (activeTime === 'all' ? 'btn-primary' : '') + '" data-time="all" type="button">All Time</button>' +
                     '</div>' +
                     '<section class="hero-block">' +
                     '<p class="eyebrow" id="todayLabel"></p>' +
@@ -1421,6 +1879,7 @@
                 $('#dashTimeToggle').addEventListener('click', function (e) {
                     var btn = e.target.closest('button'); if (!btn) return;
                     activeTime = btn.dataset.time;
+                    $$('#dashTimeToggle button').forEach(function (b) { b.classList.toggle('btn-primary', b === btn); });
                     renderDash();
                 });
             }
@@ -1500,15 +1959,18 @@
                     '<div class="time-toggle" id="subTimeToggle" style="margin-bottom: 20px; display: flex; gap: 8px;">' +
                     '<button class="btn ' + (activeTime === 'daily' ? 'btn-primary' : '') + '" data-time="daily" type="button">Today</button>' +
                     '<button class="btn ' + (activeTime === 'weekly' ? 'btn-primary' : '') + '" data-time="weekly" type="button">This Week</button>' +
-                    '<button class="btn ' + (activeTime === 'all' ? 'btn-primary' : '') + '" data-time="all" type="button">All Time</button>' +
                     '</div>';
 
                 var weekAgo = getWeekAgoLocal();
 
+                var allT = allTopics();
+                var latestDate = allT.length ? (allT[0].published || '').slice(0, 10) : todayStr;
+                var targetDate = allT.some(function (t) { return (t.published || '').slice(0, 10) === todayStr; }) ? todayStr : latestDate;
+
                 subjects.forEach(function (subj) {
-                    var matchedTopics = allTopics().filter(function (t) {
+                    var matchedTopics = allT.filter(function (t) {
                         // Apply Time Filter first
-                        if (activeTime === 'daily' && (t.published || '').slice(0, 10) !== todayStr && !t.curated) return false;
+                        if (activeTime === 'daily' && (t.published || '').slice(0, 10) !== targetDate && !t.curated) return false;
                         if (activeTime === 'weekly' && (t.published || '').slice(0, 10) < weekAgo && !t.curated) return false;
 
                         // Apply Subject Filter
@@ -1529,6 +1991,7 @@
 
                 $('#subTimeToggle').addEventListener('click', function (e) {
                     var btn = e.target.closest('button'); if (!btn) return;
+                    $$('#subTimeToggle button', main).forEach(function (b) { b.classList.toggle('btn-primary', b === btn); });
                     activeTime = btn.dataset.time;
                     renderSubjects();
                 });
@@ -1560,7 +2023,7 @@
                     var list = byImportance(topics.filter(function (t) { return t.region === r; })).slice(0, 3);
                     return '<div class="mini-col"><h3>' + regionLabel(r) + '</h3><ul class="mini-list">' +
                         (list.length ? list.map(function (t) {
-                            return '<li><a href="/article?id=' + encodeURIComponent(t.id) + '">' + esc(t.title) + '</a></li>';
+                            return '<li><a href="/article/' + encodeURIComponent(t.id) + '">' + esc(t.title) + '</a></li>';
                         }).join('') : '<li class="fine">Nothing collected yet.</li>') + '</ul></div>';
                 }).join('') +
                 '</div></section>' +
@@ -1612,17 +2075,20 @@
 
         'ai-tutor': function (main) {
             main.innerHTML =
-                '<header class="page-head"><p class="eyebrow">UPSC-focused learning assistant</p><h1>Sanjana AI Tutor</h1>' +
-                '<p class="lede">Answers are retrieved from the SanjanaIAS library and cite their sources. It is a grounded study assistant, not a general-purpose chatbot.</p></header>' +
-                '<div class="notice"><strong>How this works:</strong> Sanjana AI searches topics already collected by SanjanaIAS and builds an answer from their summaries, notes and sources. No external language model is connected — it cannot reason about content outside this library, and it will say so.</div>' +
+                '<header class="page-head" style="margin-bottom: 20px;"><p class="eyebrow">UPSC-focused learning assistant</p><h1>Sanjana AI Tutor</h1></header>' +
                 '<div class="chat-shell">' +
                 '<div class="chat-log" id="chatLog" aria-live="polite"></div>' +
+                '<div class="chat-input-wrapper">' +
                 '<form class="chat-form" id="chatForm">' +
-                '<input id="chatInput" type="text" autocomplete="off" placeholder="Ask about a topic, e.g. “Why is the Strait of Hormuz important for India?”" aria-label="Ask Sanjana">' +
-                '<button class="btn btn-primary" type="submit">Ask</button>' +
+                '<input id="chatInput" type="text" autocomplete="off" placeholder="Ask about this week\'s news..." aria-label="Ask Sanjana">' +
+                '<button class="btn btn-primary chat-send-btn" type="submit" aria-label="Send">' +
+                '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>' +
+                '</button>' +
                 '</form>' +
+                '</div>' +
                 '<div class="suggestions" id="suggestions"></div>' +
-                '</div>';
+                '</div>' +
+                '<div class="notice" style="margin-top: 16px; background: transparent; border: none; padding: 0; font-size: 0.8rem; text-align: center;"><strong>Note:</strong> Sanjana AI only answers from the collected library and does not browse the internet.</div>';
 
             var log = $('#chatLog', main);
             var input = $('#chatInput', main);
@@ -1632,12 +2098,17 @@
             function add(html, cls) {
                 var div = document.createElement('div');
                 div.className = 'msg ' + (cls || '');
-                div.innerHTML = html;
+                var avatar = cls === 'user'
+                    ? '<div class="msg-avatar user-avatar"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></div>'
+                    : '<div class="msg-avatar bot-avatar">✦</div>';
+                var content = '<div class="msg-content">' + html + '</div>';
+
+                div.innerHTML = cls === 'user' ? content + avatar : avatar + content;
                 log.appendChild(div);
                 log.scrollTop = log.scrollHeight;
                 return div;
             }
-            add('<p>Hello. Ask me about any topic in today\'s library — I will point you to the summary, the UPSC relevance and the original sources.</p>', 'bot');
+            add('<p>Hello! I am Sanjana AI. Ask me about any topic in today\'s library — I will point you to the summary, the UPSC relevance, and the original sources.</p>', 'bot');
 
             var presets = ['Explain today\'s most important topic', 'How does this affect India?', 'Give me 5 Prelims MCQs', 'Ask me a difficult Mains question', 'What is the syllabus connection?'];
             sug.innerHTML = presets.map(function (p) { return '<button class="chip chip-btn" type="button">' + esc(p) + '</button>'; }).join('');
@@ -1658,10 +2129,19 @@
 
                 add('<p class="you">' + esc(q) + '</p>', 'user');
                 input.value = '';
-                var pending = add('<p class="typing">Searching the SanjanaIAS library…</p>', 'bot');
+
+                // ChatGPT-style Thinking Effect
+                var pending = add(
+                    '<div class="thinking-dots"><span></span><span></span><span></span></div>',
+                    'bot'
+                );
+
                 setTimeout(function () {
-                    pending.innerHTML = SI_TUTOR.answer(q).html;
-                }, 260);
+                    var answerHTML = SI_TUTOR.answer(q).html;
+                    // We replace the inner content of .msg-content to keep the avatar
+                    pending.querySelector('.msg-content').innerHTML = answerHTML;
+                    log.scrollTop = log.scrollHeight;
+                }, 600);
             });
         },
 
@@ -1675,14 +2155,15 @@
                 '<div style="flex: 1; min-width: 150px;">' +
                 '<label class="field-label" style="font-size: 0.75rem; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; display: block;">Scope</label>' +
                 '<select id="quizScope" style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface-2); color: var(--text);">' +
-                '<option value="today">Today\'s News</option>' +
-                '<option value="week">This Week\'s News</option>' +
-                '<option value="all">All Collected</option>' +
+                '<option value="today">Today</option>' +
+                '<option value="week">This Week</option>' +
+                '<option value="custom">Custom Date</option>' +
+                '<option value="library">My Library (Saved/Missed)</option>' +
                 '</select>' +
                 '</div>' +
-                '<div style="flex: 1; min-width: 150px;">' +
-                '<label class="field-label" style="font-size: 0.75rem; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; display: block;">Specific Date</label>' +
-                '<input type="date" id="quizDate" style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface-2); color: var(--text);">' +
+                '<div id="dateWrapper" style="flex: 1; min-width: 150px; display: none;">' +
+                '<label class="field-label" style="font-size: 0.75rem; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; display: block;">Select Date</label>' +
+                '<select id="quizDate" style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface-2); color: var(--text);"></select>' +
                 '</div>' +
                 '<button class="btn btn-primary" id="fetchBtn" style="height: 42px;">Fetch Topics</button>' +
                 '</div></div>' +
@@ -1690,46 +2171,112 @@
                 '<div id="fetchResults" style="display: none;">' +
                 '<div class="panel" style="text-align: center;">' +
                 '<h3 id="fetchMsg" style="margin-top: 0;">Found 0 questions</h3>' +
-                '<div class="row-actions" style="justify-content: center;">' +
-                '<button class="btn btn-primary" id="startQuizBtn">Start Quiz</button>' +
-                '<button class="btn" id="allQuestionsBtn">Show All Questions</button>' +
+
+                '<div style="display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; align-items: flex-end; margin-bottom: 24px; text-align: left;">' +
+                '<div style="flex: 1; min-width: 200px;">' +
+                '<label class="field-label" style="font-size: 0.75rem; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; display: block;">Filter by Topic</label>' +
+                '<select id="quizTopicFilter" style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface-2); color: var(--text);">' +
+                '<option value="">All Fetched Topics</option>' +
+                '</select>' +
                 '</div>' +
+                '<div style="flex: 1; min-width: 150px;">' +
+                '<label class="field-label" style="font-size: 0.75rem; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; display: block;">Number of Questions</label>' +
+                '<select id="quizCount" style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface-2); color: var(--text);">' +
+                '<option value="5">5 Questions</option>' +
+                '<option value="10" selected>10 Questions</option>' +
+                '<option value="20">20 Questions</option>' +
+                '<option value="50">50 Questions</option>' +
+                '<option value="all">All Questions</option>' +
+                '</select>' +
+                '</div>' +
+                '</div>' +
+
+                '<button class="btn btn-primary" id="startQuizBtn" style="padding: 12px 32px; font-size: 1.05rem; width: 100%;">Start Quiz</button>' +
                 '</div>' +
                 '</div>' +
 
                 '<div id="quizStage" class="panel" style="display: none;"></div>' +
                 '<div id="quizResult"></div>';
 
-            var bank = SEED_QUESTIONS.prelims;
+            var bank = [];
+            allTopics().forEach(function (t) {
+                bank.push(generateDynamicQuestions(t).prelims);
+            });
             var stage = $('#quizStage', main);
             var result = $('#quizResult', main);
             var fetchResults = $('#fetchResults', main);
             var filterPanel = $('#prelimsFilterPanel', main);
             var fetchedQuestions = [];
 
+            // Populate custom date dropdown with available dates
+            var dateSelect = $('#quizDate', main);
+            var dates = new Set();
+            allTopics().forEach(function (t) { if (t.published) dates.add(t.published.slice(0, 10)); });
+            dateSelect.innerHTML = Array.from(dates).sort().reverse().map(function (d) { return '<option value="' + d + '">' + d + '</option>'; }).join('') || '<option value="">No dates available</option>';
+
+            $('#quizScope', main).addEventListener('change', function () {
+                $('#dateWrapper', main).style.display = this.value === 'custom' ? 'block' : 'none';
+            });
+
             $('#fetchBtn', main).addEventListener('click', function () {
                 var scope = $('#quizScope', main).value;
-                var specificDate = $('#quizDate', main).value;
+                var specificDate = dateSelect.value;
+                var allT = allTopics();
 
-                var validTopicIds = allTopics().filter(function (t) {
-                    var pub = (t.published || '').slice(0, 10);
-                    if (specificDate) return pub === specificDate;
-                    if (scope === 'today') return pub === getTodayLocal() || t.curated;
-                    if (scope === 'week') return pub >= getWeekAgoLocal() || t.curated;
-                    return true; // all
-                }).map(function (t) { return t.id; });
+                // Find the latest date available in the database
+                var latestDate = allT.reduce(function (max, t) { var d = (t.published || '').slice(0, 10); return d > max ? d : max; }, '');
+                var targetDate = allT.some(function (t) { return (t.published || '').slice(0, 10) === getTodayLocal(); }) ? getTodayLocal() : latestDate;
 
-                fetchedQuestions = bank.filter(function (q) { return validTopicIds.indexOf(q.topicId) > -1; });
+                if (scope === 'library') {
+                    var missedIds = Object.keys(SI_STORE.missed());
+                    var bmTopicIds = SI_STORE.bookmarks();
+                    fetchedQuestions = bank.filter(function (q) {
+                        return missedIds.indexOf(q.id) > -1 || bmTopicIds.indexOf(q.topicId) > -1;
+                    });
+                } else {
+                    var validTopicIds = allT.filter(function (t) {
+                        var pub = (t.published || '').slice(0, 10);
+                        if (scope === 'today') return pub === targetDate || t.curated; // Uses latest date if today is empty
+                        if (scope === 'week') return pub >= getWeekAgoLocal() || t.curated;
+                        if (scope === 'custom') {
+                            if (!specificDate) return false;
+                            return pub === specificDate;
+                        }
+                        return false;
+                    }).map(function (t) { return t.id; });
 
-                $('#fetchMsg', main).textContent = 'Found ' + fetchedQuestions.length + ' questions for this filter.';
+                    fetchedQuestions = bank.filter(function (q) { return validTopicIds.indexOf(q.topicId) > -1; });
+
+                    // Fallback: If 0 questions match the date, show all available questions so it's never empty
+                    if (fetchedQuestions.length === 0 && bank.length > 0) {
+                        fetchedQuestions = bank;
+                        $('#fetchMsg', main).textContent = 'No questions matched this filter. Showing all ' + fetchedQuestions.length + ' questions.';
+                        fetchResults.style.display = 'block';
+                        stage.style.display = 'none';
+                        result.innerHTML = '';
+                        return;
+                    }
+                }
+
+                $('#fetchMsg', main).textContent = fetchedQuestions.length ? 'Found ' + fetchedQuestions.length + ' questions.' : 'No questions found in your library.';
+
+                // Populate the topic filter dropdown
+                var topicFilter = $('#quizTopicFilter', main);
+                topicFilter.innerHTML = '<option value="">All Fetched Topics</option>';
+                var uniqueTopics = {};
+                fetchedQuestions.forEach(function (q) {
+                    uniqueTopics[q.topicId] = true;
+                });
+                Object.keys(uniqueTopics).forEach(function (tid) {
+                    var t = getTopic(tid);
+                    if (t) {
+                        topicFilter.innerHTML += '<option value="' + tid + '">' + esc(t.title.slice(0, 60)) + '…</option>';
+                    }
+                });
+
                 fetchResults.style.display = 'block';
                 stage.style.display = 'none';
                 result.innerHTML = '';
-            });
-
-            $('#allQuestionsBtn', main).addEventListener('click', function () {
-                fetchedQuestions = bank.slice();
-                $('#fetchMsg', main).textContent = 'Using all ' + fetchedQuestions.length + ' questions in the library.';
             });
 
             var state = null;
@@ -1742,11 +2289,29 @@
                 }
                 if (!SI_AUTH.user) _incGuestCount('quiz');
 
+                // Apply topic filter
+                var selectedTopic = $('#quizTopicFilter', main).value;
+                var pool = fetchedQuestions;
+                if (selectedTopic) {
+                    pool = pool.filter(function (q) { return q.topicId === selectedTopic; });
+                }
+
+                // Apply count filter
+                var count = $('#quizCount', main).value;
+                pool = shuffle(pool); // Shuffle before slicing
+                if (count !== 'all') {
+                    pool = pool.slice(0, parseInt(count, 10));
+                }
+
+                if (!pool.length) {
+                    toast('No questions available for this topic.');
+                    return;
+                }
+
                 filterPanel.style.display = 'none';
                 fetchResults.style.display = 'none';
                 stage.style.display = 'block';
 
-                var pool = shuffle(fetchedQuestions).slice(0, 10);
                 state = { list: pool, i: 0, score: 0, answered: false, answers: [] };
                 result.innerHTML = '';
                 render();
@@ -1759,7 +2324,7 @@
                     '<div class="quiz-meta"><span class="chip">Question ' + (state.i + 1) + ' / ' + state.list.length + '</span>' +
                     '<span class="chip">' + esc(q.paper) + '</span>' +
                     (topic ? '<a class="chip chip-link" href="/article/' + encodeURIComponent(topic.id) + '">' + esc(topic.title.slice(0, 48)) + '…</a>' : '') + '</div>' +
-                    '<h2 class="quiz-q">' + esc(q.question) + '</h2>' +
+                    '<h2 class="quiz-q">' + esc(q.question).replace(/\r?\n/g, '<br>') + '</h2>' +
                     '<div class="options" id="options">' +
                     q.options.map(function (o, idx) {
                         return '<button class="option" data-idx="' + idx + '" type="button"><span class="opt-key">' + 'abcd'[idx] + '</span>' + esc(o) + '</button>';
@@ -1804,22 +2369,33 @@
                     '<button class="btn btn-primary" id="againBtn" type="button">Start Over</button></div></div>';
                 $('#againBtn', result).addEventListener('click', function () {
                     filterPanel.style.display = 'block';
+                    fetchResults.style.display = 'none';
+                    $('#fetchMsg', main).textContent = 'Found 0 questions';
+                    $('#quizTopicFilter', main).innerHTML = '<option value="">All Fetched Topics</option>';
+                    stage.innerHTML = '';
                     result.innerHTML = '';
                     fetchedQuestions = [];
                 });
             }
         },
 
-        mains: function (main) {
+        mains: function (main, params) {
             main.innerHTML =
                 '<header class="page-head"><p class="eyebrow">Analytical questions and answer writing</p><h1>Mains Practice</h1>' +
                 '<p class="lede">Write your answer, check it against a structured self-evaluation list, then compare with the model approach.</p></header>' +
-                '<div class="filter-bar" id="mainsFilters" style="margin-bottom: 20px; display: flex; gap: 8px; flex-wrap: wrap;">' +
-                '<button class="btn btn-primary" data-paper="" type="button">All</button>' +
+                '<div class="filter-bar" id="mainsFilters" style="margin-bottom: 12px; display: flex; gap: 8px; flex-wrap: wrap;">' +
+                '<button class="btn btn-primary" data-paper="" type="button">All Papers</button>' +
                 '<button class="btn" data-paper="GS I" type="button">GS I</button>' +
                 '<button class="btn" data-paper="GS II" type="button">GS II</button>' +
                 '<button class="btn" data-paper="GS III" type="button">GS III</button>' +
                 '<button class="btn" data-paper="GS IV" type="button">GS IV</button>' +
+                '</div>' +
+                '<div class="filter-bar" id="mainsTimeFilter" style="margin-bottom: 20px; display: flex; gap: 8px; flex-wrap: wrap; align-items: center;">' +
+                '<button class="btn btn-primary" data-time="today" type="button">Today</button>' +
+                '<button class="btn" data-time="week" type="button">This Week</button>' +
+                '<button class="btn" data-time="custom" type="button">Custom Date</button>' +
+                '<button class="btn" data-time="library" type="button">My Library (Drafts)</button>' +
+                '<select id="mainsDate" style="display: none; padding: 8px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface-2); color: var(--text);"></select>' +
                 '</div>' +
                 '<div class="mains-layout">' +
                 '<div class="mains-list" id="mainsList"></div>' +
@@ -1827,27 +2403,75 @@
                 '</div>' +
                 '<p class="disclaimer">Automated answer evaluation requires a language model. Until one is connected, SanjanaIAS provides a structured self-evaluation checklist — it does not grade your answer.</p>';
 
-            var bank = SEED_QUESTIONS.mains;
+            var bank = [];
+            allTopics().forEach(function (t) {
+                bank.push(generateDynamicQuestions(t).mains);
+            });
             var list = $('#mainsList', main);
             var work = $('#mainsWork', main);
             var saved = SI_STORE.mains();
+            var activePaper = '';
+            var activeTime = 'today';
+            var mainsDateSelect = $('#mainsDate', main);
 
-            function renderMainsList(paper) {
-                var filtered = paper ? bank.filter(function (q) { return q.paper === paper; }) : bank;
+            // Populate custom date dropdown with available dates
+            var dates = new Set();
+            allTopics().forEach(function (t) { if (t.published) dates.add(t.published.slice(0, 10)); });
+            mainsDateSelect.innerHTML = Array.from(dates).sort().reverse().map(function (d) { return '<option value="' + d + '">' + d + '</option>'; }).join('') || '<option value="">No dates available</option>';
+
+            function renderMainsList() {
+                var specificDate = mainsDateSelect.value;
+                var filtered = bank.filter(function (q) {
+                    if (activePaper && q.paper !== activePaper) return false;
+
+                    if (activeTime === 'library') {
+                        var draftIds = Object.keys(SI_STORE.mains());
+                        return draftIds.indexOf(q.id) > -1;
+                    }
+
+                    var t = getTopic(q.topicId);
+                    var pub = (t && t.published) ? t.published.slice(0, 10) : '';
+
+                    if (activeTime === 'today') return pub === getTodayLocal() || (t && t.curated);
+                    if (activeTime === 'week') return pub >= getWeekAgoLocal() || (t && t.curated);
+                    if (activeTime === 'custom') {
+                        if (!specificDate) return false;
+                        return pub === specificDate;
+                    }
+                    return false;
+                });
+
+                // Fallback: If 0 questions match the date, show all available questions for the selected paper
+                if (filtered.length === 0 && activeTime !== 'library' && bank.length > 0) {
+                    filtered = bank.filter(function (q) { return !activePaper || q.paper === activePaper; });
+                }
+
                 list.innerHTML = filtered.map(function (q) {
                     return '<button class="mains-item" data-id="' + q.id + '" type="button">' +
                         '<span class="chip">' + esc(q.paper) + '</span>' +
                         '<span class="chip">' + q.marks + ' marks</span>' +
                         (saved[q.id] ? '<span class="chip chip-ok">draft saved</span>' : '') +
                         '<p>' + esc(q.question) + '</p></button>';
-                }).join('') || '<p class="fine">No Mains questions for this paper.</p>';
+                }).join('') || '<p class="fine">No Mains questions found for this filter.</p>';
             }
-            renderMainsList('');
+            renderMainsList();
+
             $('#mainsFilters', main).addEventListener('click', function (e) {
                 var b = e.target.closest('button'); if (!b) return;
-                $('#mainsFilters button', main).forEach(function (x) { x.classList.toggle('btn-primary', x === b); });
-                renderMainsList(b.dataset.paper);
+                $$('#mainsFilters button', main).forEach(function (x) { x.classList.toggle('btn-primary', x === b); });
+                activePaper = b.dataset.paper;
+                renderMainsList();
             });
+
+            $('#mainsTimeFilter', main).addEventListener('click', function (e) {
+                var b = e.target.closest('button'); if (!b) return;
+                $$('#mainsTimeFilter button', main).forEach(function (x) { x.classList.toggle('btn-primary', x === b); });
+                activeTime = b.dataset.time;
+                mainsDateSelect.style.display = activeTime === 'custom' ? 'inline-block' : 'none';
+                renderMainsList();
+            });
+
+            mainsDateSelect.addEventListener('change', renderMainsList);
 
             list.addEventListener('click', function (e) {
                 var b = e.target.closest('.mains-item'); if (!b) return;
@@ -1886,8 +2510,12 @@
                 $('#saveBtn', work).addEventListener('click', function () {
                     var data = { text: box.value };
                     $$('#checklist input', work).forEach(function (inp) { data['c' + inp.dataset.i] = inp.checked; });
-                    SI_STORE.saveMains(id, data);
-                    toast('Draft saved to My Library.');
+                    var success = SI_STORE.saveMains(id, data);
+                    if (success) {
+                        toast('Draft saved to My Library.');
+                        saved = SI_STORE.mains(); // Refresh saved state
+                        renderMainsList();        // Refresh chip
+                    }
                 });
                 $('#revealBtn', work).addEventListener('click', function () {
                     $('#approachBox', work).hidden = false;
@@ -1954,13 +2582,22 @@
                     });
                 } else if (tab === 'mains') {
                     var drafts = SI_STORE.mains();
-                    var rows2 = Object.keys(drafts).map(function (id) { return { q: SEED_QUESTIONS.mains.filter(function (q) { return q.id === id; })[0], d: drafts[id] }; }).filter(function (r) { return r.q; });
+                    var rows2 = Object.keys(drafts).map(function (id) {
+                        var topicId = id.replace('m-', '');
+                        var t = getTopic(topicId);
+                        return { id: id, q: t ? generateDynamicQuestions(t).mains : null, d: drafts[id] };
+                    });
                     body.innerHTML = rows2.map(function (r) {
+                        if (!r.q) {
+                            return '<div class="panel" style="display:flex;justify-content:space-between;align-items:center;gap:12px;">' +
+                                '<span class="fine">Draft for a topic no longer in the library (expired)</span>' +
+                                '<button class="btn btn-sm danger" data-del-mains="' + esc(r.id) + '" type="button">Delete draft</button></div>';
+                        }
                         return '<div class="panel"><p class="fine">' + esc(r.q.paper) + ' · ' + r.q.marks + ' marks</p>' +
                             '<h3>' + esc(r.q.question) + '</h3>' +
                             '<p class="answer-preview">' + esc((r.d.text || '').slice(0, 400)) + ((r.d.text || '').length > 400 ? '…' : '') + '</p>' +
-                            '<div class="row-actions"><a class="btn" href="/mains">Continue writing →</a>' +
-                            '<button class="btn btn-sm danger" data-del-mains="' + r.q.id + '" type="button">Delete draft</button></div></div>';
+                            '<div class="row-actions"><a class="btn" href="/mains?draft=' + esc(r.id) + '">Continue writing →</a>' +
+                            '<button class="btn btn-sm danger" data-del-mains="' + esc(r.id) + '" type="button">Delete draft</button></div></div>';
                     }).join('') || '<p class="fine">No Mains drafts saved.</p>';
                     $$('[data-del-mains]', body).forEach(function (b) {
                         b.addEventListener('click', function () {
@@ -1977,10 +2614,6 @@
                     $('#resetBtn', body).addEventListener('click', async function () {
                         if (confirm('Erase bookmarks, notes, drafts and progress?')) {
                             await SI_STORE.reset();
-                            if (!SI_AUTH.user) {
-                                localStorage.removeItem('sanjana.guest_quiz');
-                                localStorage.removeItem('sanjana.guest_tutor');
-                            }
                             toast('All data erased.');
                             draw('bookmarks');
                         }
@@ -2048,7 +2681,7 @@
        11. Shell wiring + router + boot
        ============================================================ */
     var PAGE_TITLES = {
-        dashboard: 'Daily Overview', weekly: 'Weekly Overview', subjects: 'Subjects', world: 'World', india: 'India', telangana: 'Telangana',
+        dashboard: 'Overview', weekly: 'Weekly Overview', subjects: 'Subjects', world: 'World', india: 'India', telangana: 'Telangana',
         briefing: 'Daily Briefing', article: 'Research', syllabus: 'Syllabus Explorer',
         'ai-tutor': 'Sanjana AI Tutor', prelims: 'Prelims Practice', mains: 'Mains Practice',
         library: 'My Library', revision: 'Revision', progress: 'Progress'
@@ -2100,6 +2733,7 @@
         var main = $('#main');
         if (!Pages[page]) {
             markActive('');
+            document.title = 'Page Not Found · SanjanaIAS';
             main.innerHTML = '<div class="panel" style="text-align:center; padding: 60px 20px; max-width: 600px; margin: 40px auto; border-radius: 16px; border: 1px solid var(--border); background: var(--surface); box-shadow: var(--shadow);">' +
                 '<h1 style="font-size: 6rem; color: var(--gold); margin: 0 0 16px; line-height: 1; font-family: var(--serif); font-weight: 800;">404</h1>' +
                 '<h2 style="margin-top: 0; font-size: 1.5rem;">Page not found</h2>' +
@@ -2119,10 +2753,6 @@
         document.body.classList.remove('nav-open');
         try {
             Pages[page](main, r.params);
-            // Force animation re-trigger
-            main.style.animation = 'none';
-            main.offsetHeight; /* trigger reflow */
-            main.style.animation = null;
         }
         catch (err) {
             console.error('[SanjanaIAS] page error:', err);
@@ -2152,6 +2782,53 @@
             document.documentElement.setAttribute('data-theme', next);
             try { localStorage.setItem('sanjana.theme', next); } catch (e) { }
         });
+
+        /* Eye Protection Toggle */
+        var eyeBtn = $('#eyeToggle');
+        if (eyeBtn) {
+            eyeBtn.addEventListener('click', function () {
+                var isActive = document.documentElement.classList.toggle('eye-care-active');
+                this.classList.toggle('active', isActive);
+                try { localStorage.setItem('sanjana.eyecare', isActive); } catch (e) { }
+            });
+            if (localStorage.getItem('sanjana.eyecare') === 'true') {
+                eyeBtn.classList.add('active');
+            }
+        }
+
+        /* Night-Time Premium Popup */
+        setTimeout(function () {
+            var hour = new Date().getHours();
+            var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            var isEyeCare = document.documentElement.classList.contains('eye-care-active');
+            var popupShown = localStorage.getItem('sanjana.night_popup_shown');
+            var popup = $('#premiumPopup');
+
+            // If it's between 7 PM and 6 AM, and they are not in dark/warm mode, and haven't seen the popup today
+            if ((hour >= 19 || hour < 6) && !isDark && !isEyeCare && popupShown !== new Date().toDateString() && popup) {
+                popup.classList.add('show');
+
+                $('#popupDarkMode').onclick = function () {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                    localStorage.setItem('sanjana.theme', 'dark');
+                    popup.classList.remove('show');
+                    localStorage.setItem('sanjana.night_popup_shown', new Date().toDateString());
+                };
+
+                $('#popupEyeCare').onclick = function () {
+                    document.documentElement.classList.add('eye-care-active');
+                    localStorage.setItem('sanjana.eyecare', 'true');
+                    $('#eyeToggle').classList.add('active');
+                    popup.classList.remove('show');
+                    localStorage.setItem('sanjana.night_popup_shown', new Date().toDateString());
+                };
+
+                $('#popupClose').onclick = function () {
+                    popup.classList.remove('show');
+                    localStorage.setItem('sanjana.night_popup_shown', new Date().toDateString());
+                };
+            }
+        }, 3000); // Triggers 3 seconds after page load
 
         /* Mobile nav toggle */
         $('#navToggle').addEventListener('click', function () {
@@ -2205,7 +2882,8 @@
             if (e.key === 'Escape') {
                 closeSearch();
                 document.body.classList.remove('nav-open');
-                document.getElementById('authModal').classList.remove('open');
+                var m = document.getElementById('authModal');
+                if (m) m.classList.remove('open');
             }
         });
         results.addEventListener('click', function (e) {
@@ -2304,6 +2982,8 @@
     }
 
     async function boot() {
+        var seo = document.getElementById('seo-static-content');
+        if (seo) seo.remove();
         wireShell();
         wireAuthUI();
         await loadFeed();
@@ -2311,6 +2991,7 @@
         await _loadUserData();
         SI_AUTH.onChange(async function () {
             await _loadUserData();
+            if (SI_AUTH.user) SI_STORE.touchDay();
             route();
         });
         var upd = $('#lastUpdated');
@@ -2346,7 +3027,7 @@
         function close() { modal.classList.remove('open'); }
 
         window._openAuthModal = open;
-        btn.addEventListener('click', open);
+        btn.addEventListener('click', function () { open(); });
         closeBtn.addEventListener('click', close);
         modal.addEventListener('click', function (e) { if (e.target === modal) close(); });
 
@@ -2545,6 +3226,7 @@
         SI_TUTOR: SI_TUTOR,
         SI_REVISION: SI_REVISION,
         SEED_NEWS: SEED_NEWS,
+        generateDynamicQuestions: generateDynamicQuestions,
         SEED_SOURCES: SEED_SOURCES,
         SEED_SYLLABUS: SEED_SYLLABUS,
         SEED_QUESTIONS: SEED_QUESTIONS,

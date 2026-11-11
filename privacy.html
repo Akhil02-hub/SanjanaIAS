@@ -13,7 +13,7 @@
         (function () {
             try {
                 var t = localStorage.getItem('sanjana.theme');
-                if (!t) t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+                if (!t) t = 'light'; // Default to light mode
                 document.documentElement.setAttribute('data-theme', t);
             } catch (e) { }
         })();

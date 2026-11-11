@@ -46,8 +46,12 @@
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap"
         rel="stylesheet">
 
-    <!-- Favicon -->
-    <link rel="icon" href="/logo.png">
+    <!-- Favicons for Google Search & Browsers -->
+    <link rel="icon" type="image/png" sizes="192x192" href="/logo.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/logo.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="/logo.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/logo.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/logo.png">
 
     <!-- Styles -->
     <link rel="stylesheet" href="/styles.css">
@@ -59,7 +63,7 @@
       "@graph": [
         {
           "@type": "WebSite",
-          "@id": "https://sanjanaias.vercel.app/website",
+          "@id": "https://sanjanaias.vercel.app/#website",
           "url": "https://sanjanaias.vercel.app/",
           "name": "SanjanaIAS",
           "description": "Free Daily UPSC Current Affairs & Study Intelligence",
@@ -72,21 +76,33 @@
         },
         {
           "@type": "EducationalOrganization",
-          "@id": "https://sanjanaias.vercel.app/organization",
+          "@id": "https://sanjanaias.vercel.app/#organization",
           "name": "SanjanaIAS",
           "url": "https://sanjanaias.vercel.app/",
-          "logo": "https://sanjanaias.vercel.app/logo.png",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://sanjanaias.vercel.app/logo.png",
+            "width": 512,
+            "height": 512
+          },
           "sameAs": [
-            "https://instagram.com/sanjjuu.thoughts"
-          ]
+            "https://instagram.com/sanjjuu.thoughts",
+            "https://www.linkedin.com/in/thondupallisanjana/"
+          ],
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "email": "amarachinthaakhil@gmail.com",
+            "contactType": "customer support",
+            "availableLanguage": ["English", "Hindi", "Telugu"]
+          }
         },
         {
           "@type": "WebPage",
           "@id": "https://sanjanaias.vercel.app/webpage",
           "url": "https://sanjanaias.vercel.app/",
           "name": "SanjanaIAS — Free Daily UPSC Current Affairs",
-          "isPartOf": { "@id": "https://sanjanaias.vercel.app/website" },
-          "about": { "@id": "https://sanjanaias.vercel.app/organization" },
+          "isPartOf": { "@id": "https://sanjanaias.vercel.app/#website" },
+          "about": { "@id": "https://sanjanaias.vercel.app/#organization" },
           "primaryImageOfPage": {
             "@type": "ImageObject",
             "url": "https://sanjanaias.vercel.app/logo.png"
@@ -97,13 +113,18 @@
     }
     </script>
 
-    <!-- Theme Initialization -->
+    <!-- Theme Initialization (Default to Light mode until clicked) -->
     <script>
         (function () {
             try {
                 var t = localStorage.getItem('sanjana.theme');
-                if (!t) t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+                if (!t) t = 'light'; // Default is now light mode
                 document.documentElement.setAttribute('data-theme', t);
+
+                // Check eye protection
+                if (localStorage.getItem('sanjana.eyecare') === 'true') {
+                    document.documentElement.classList.add('eye-care-active');
+                }
             } catch (e) { }
         })();
     </script>
@@ -153,6 +174,13 @@
                     <circle cx="12" cy="7" r="4"></circle>
                 </svg>
             </button>
+            <button class="icon-btn" id="eyeToggle" type="button" aria-label="Toggle eye protection">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                    <circle cx="12" cy="12" r="3"></circle>
+                </svg>
+            </button>
             <button class="icon-btn" id="themeToggle" type="button" aria-label="Toggle dark mode">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -174,17 +202,35 @@
                         <rect x="14" y="14" width="7" height="7"></rect>
                         <rect x="3" y="14" width="7" height="7"></rect>
                     </svg>
-                    Daily Overview
+                    Overview
                 </a>
-                <a class="nav-item" data-page="weekly" href="/weekly">
+                <a class="nav-item" data-page="world" href="/world">
                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                        <line x1="16" y1="2" x2="16" y2="6"></line>
-                        <line x1="8" y1="2" x2="8" y2="6"></line>
-                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="2" y1="12" x2="22" y2="12"></line>
+                        <path
+                            d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z">
+                        </path>
                     </svg>
-                    Weekly Overview
+                    World News
+                </a>
+                <a class="nav-item" data-page="india" href="/india">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon
+                            points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                        </polygon>
+                    </svg>
+                    India News
+                </a>
+                <a class="nav-item" data-page="telangana" href="/telangana">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                        <circle cx="12" cy="10" r="3"></circle>
+                    </svg>
+                    Telangana News
                 </a>
                 <a class="nav-item" data-page="subjects" href="/subjects">
                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
@@ -262,10 +308,59 @@
                     </svg>
                     Revision
                 </a>
+                <a class="nav-item" data-page="progress" href="/progress">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="20" x2="18" y2="10"></line>
+                        <line x1="12" y1="20" x2="12" y2="4"></line>
+                        <line x1="6" y1="20" x2="6" y2="14"></line>
+                    </svg>
+                    Progress
+                </a>
             </div>
         </aside>
 
         <main id="main" class="content" tabindex="-1">
+            <!-- SEO H1 and Content for Bots (Wrapped in noscript so it doesn't flash for users) -->
+            <noscript>
+                <div id="seo-static-content">
+                    <h1>SanjanaIAS — Free Daily UPSC Current Affairs & Study Intelligence</h1>
+                    <p>Welcome to SanjanaIAS, India's premier free platform for daily UPSC current affairs, IAS exam
+                        preparation, and government job study intelligence. We provide syllabus-mapped daily news
+                        analysis
+                        covering World Affairs, National (India) News, and Telangana state affairs.</p>
+
+                    <h2>Why Choose SanjanaIAS for UPSC Preparation?</h2>
+                    <p>Preparing for the civil services examination requires a deep understanding of daily current
+                        events.
+                        SanjanaIAS simplifies this by automatically collecting, classifying, and scoring news articles
+                        based
+                        on their relevance to the UPSC syllabus. Our platform covers General Studies Papers I, II, III,
+                        and
+                        IV, ensuring you never miss a crucial topic.</p>
+
+                    <h2>Free Daily Current Affairs & Quizzes</h2>
+                    <p>We offer a comprehensive suite of free study tools. Take our daily Prelims practice quizzes with
+                        detailed explanations, or practice your answer writing with our Mains practice questions. Our
+                        unique
+                        Sanjana AI Tutor helps you understand the UPSC relevance of any topic and provides instant,
+                        grounded
+                        answers from our library.</p>
+
+                    <h2>24/7 Support and Assistance</h2>
+                    <p>We are committed to providing a seamless study experience. If you ever face any issues with our
+                        platform, our dedicated support team is available 24/7. You can reach us at
+                        amarachinthaakhil@gmail.com
+                        for any queries, technical assistance, or feedback.</p>
+
+                    <h2>Complete Syllabus Mapping</h2>
+                    <p>Our Syllabus Explorer reverses the traditional preparation process. Instead of reading news and
+                        guessing which paper it belongs to, you can explore specific syllabus areas and immediately see
+                        all
+                        related current affairs collected by our system. Stay ahead of the competition with SanjanaIAS.
+                    </p>
+                </div>
+            </noscript>
             <div class="skeleton tall"></div>
         </main>
     </div>
@@ -358,25 +453,46 @@
             <div>
                 <h4
                     style="color: var(--text); margin-bottom: 12px; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em;">
-                    Legal & Connect</h4>
+                    Legal & Support</h4>
                 <ul
                     style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px; font-size: 0.85rem;">
-                    <li><a href="privacy.html" style="color: var(--muted); text-decoration: none;">Privacy Policy</a>
+                    <li><a href="/privacy.html" style="color: var(--muted); text-decoration: none;">Privacy Policy</a>
                     </li>
-                    <li><a href="terms.html" style="color: var(--muted); text-decoration: none;">Terms of Use</a></li>
-                    <li>
-                        <a href="https://instagram.com/sanjjuu.thoughts" target="_blank" rel="noopener noreferrer"
-                            class="insta-badge"
-                            style="margin-top: 8px; display: inline-flex; padding: 6px 12px; font-size: 0.75rem;">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" style="margin-right: 6px;">
-                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                            </svg>
-                            @sanjjuu.thoughts
-                        </a>
+                    <li><a href="/terms.html" style="color: var(--muted); text-decoration: none;">Terms of Use</a></li>
+                    <li><a href="mailto:amarachinthaakhil@gmail.com"
+                            style="color: var(--muted); text-decoration: none;">✉
+                            24/7 Support: amarachinthaakhil@gmail.com</a></li>
+
+                    <li style="margin-top: 16px;">
+                        <h4
+                            style="color: var(--text); margin-bottom: 8px; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em;">
+                            Follow Us</h4>
+                        <div style="display: flex; gap: 12px;">
+                            <!-- Instagram -->
+                            <a href="https://instagram.com/sanjjuu.thoughts" target="_blank" rel="noopener noreferrer"
+                                aria-label="Instagram" style="color: var(--muted);">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                                </svg>
+                            </a>
+                            <!-- LinkedIn -->
+                            <a href="https://www.linkedin.com/in/thondupallisanjana/" target="_blank"
+                                rel="noopener noreferrer" aria-label="LinkedIn" style="color: var(--muted);">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path
+                                        d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
+                                    </path>
+                                    <rect x="2" y="9" width="4" height="12"></rect>
+                                    <circle cx="4" cy="4" r="2"></circle>
+                                </svg>
+                            </a>
+                        </div>
                     </li>
                 </ul>
             </div>
@@ -417,6 +533,22 @@
         <div class="auth-box">
             <button class="icon-btn auth-close" id="authClose" type="button" aria-label="Close">✕</button>
             <div id="authBody"></div>
+        </div>
+    </div>
+
+    <!-- Eye Protection Overlay -->
+    <div id="eyeCareOverlay"></div>
+
+    <!-- Premium Night Popup -->
+    <div class="premium-popup" id="premiumPopup">
+        <button class="icon-btn premium-close" id="popupClose" type="button" aria-label="Close">✕</button>
+        <div class="popup-icon">🌙</div>
+        <h3>Protect Your Eyes</h3>
+        <p class="fine" style="margin-bottom: 16px;">It's getting late. Switch to Dark Mode or turn on Eye Protection to
+            reduce eye strain while studying.</p>
+        <div class="popup-actions">
+            <button class="btn btn-primary" id="popupDarkMode" type="button">Dark Mode</button>
+            <button class="btn" id="popupEyeCare" type="button">Warm Mode</button>
         </div>
     </div>
 

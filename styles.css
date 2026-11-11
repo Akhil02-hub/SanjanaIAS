@@ -1444,17 +1444,19 @@ p {
 }
 
 /* ============================================================
-   7. Chat Tutor
+   7. Chat Tutor (ChatGPT Style)
    ============================================================ */
 .chat-shell {
     display: flex;
     flex-direction: column;
-    background: var(--surface);
+    background: var(--bg);
     border: 1px solid var(--border);
     border-radius: var(--radius);
     box-shadow: var(--shadow-lg);
-    height: 600px;
+    height: calc(100vh - 180px);
+    min-height: 500px;
     overflow: hidden;
+    position: relative;
 }
 
 .chat-log {
@@ -1463,40 +1465,83 @@ p {
     padding: 24px;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 24px;
+    background: var(--surface);
 }
 
+/* ChatGPT Message Structure */
 .msg {
+    display: flex;
+    gap: 16px;
     max-width: 85%;
-    padding: 16px 20px;
-    border-radius: 20px;
-    font-size: 0.95rem;
-    line-height: 1.6;
+    align-items: flex-start;
 }
 
 .msg.user {
     align-self: flex-end;
-    background: var(--accent);
-    color: #fff;
-    border-bottom-right-radius: 4px;
+    flex-direction: row-reverse;
 }
 
 .msg.bot {
     align-self: flex-start;
+}
+
+.msg-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.bot-avatar {
+    background: var(--accent);
+    color: #fff;
+    font-size: 1.1rem;
+}
+
+.user-avatar {
+    background: var(--surface-2);
+    color: var(--text);
+    border: 1px solid var(--border);
+}
+
+.msg-content {
+    padding: 12px 18px;
+    border-radius: 16px;
+    font-size: 0.95rem;
+    line-height: 1.6;
     background: var(--surface-2);
     border: 1px solid var(--border);
-    border-bottom-left-radius: 4px;
+    color: var(--text);
+}
+
+.msg.user .msg-content {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+    border-top-right-radius: 4px;
+}
+
+.msg.bot .msg-content {
+    border-top-left-radius: 4px;
 }
 
 .msg .you {
     margin: 0;
-    font-weight: 600;
+    font-weight: 500;
 }
 
 .msg h3 {
     margin: 0 0 8px;
-    font-size: 1rem;
+    font-size: 1.05rem;
     color: var(--accent);
+}
+
+.msg.user h3 {
+    color: #fff;
 }
 
 .msg h4 {
@@ -1520,7 +1565,7 @@ p {
 .msg .src {
     font-size: 0.8rem;
     color: var(--muted);
-    margin-top: 12px;
+    margin-top: 16px;
     border-top: 1px dashed var(--border);
     padding-top: 12px;
 }
@@ -1530,41 +1575,108 @@ p {
     color: var(--gold);
 }
 
-.typing {
-    color: var(--muted);
-    font-style: italic;
-    margin: 0;
+/* Modern Input Area */
+.chat-input-wrapper {
+    padding: 16px 24px;
+    background: var(--surface);
+    border-top: 1px solid var(--border);
 }
 
 .chat-form {
     display: flex;
-    gap: 12px;
-    padding: 16px;
-    border-top: 1px solid var(--border);
+    align-items: center;
+    gap: 8px;
+    padding: 8px 8px 8px 16px;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+}
+
+.chat-form:focus-within {
+    border-color: var(--accent);
     background: var(--surface);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.1);
 }
 
 .chat-form input {
     flex: 1;
-    padding: 12px 16px;
-    border-radius: 999px;
-    border: 1px solid var(--border);
-    background: var(--surface-2);
+    border: none;
+    background: transparent;
     font-family: inherit;
+    font-size: 0.95rem;
+    color: var(--text);
     outline: none;
+    padding: 8px 0;
 }
 
-.chat-form input:focus {
+.chat-form input::placeholder {
+    color: var(--muted);
+}
+
+.chat-send-btn {
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--accent);
     border-color: var(--accent);
-    background: var(--surface);
+    color: #fff;
+    flex-shrink: 0;
+}
+
+.chat-send-btn:hover {
+    transform: scale(1.05);
+    background: var(--accent-2);
 }
 
 .suggestions {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
-    padding: 0 16px 16px;
+    padding: 0 24px 16px;
     background: var(--surface);
+}
+
+/* ChatGPT Typing Animation */
+.thinking-dots {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    height: 24px;
+}
+
+.thinking-dots span {
+    width: 6px;
+    height: 6px;
+    background-color: var(--muted);
+    border-radius: 50%;
+    animation: bounce 1.4s infinite ease-in-out both;
+}
+
+.thinking-dots span:nth-child(1) {
+    animation-delay: -0.32s;
+}
+
+.thinking-dots span:nth-child(2) {
+    animation-delay: -0.16s;
+}
+
+@keyframes bounce {
+
+    0%,
+    80%,
+    100% {
+        transform: scale(0);
+    }
+
+    40% {
+        transform: scale(1);
+    }
 }
 
 /* ============================================================
@@ -2097,22 +2209,15 @@ button:focus-visible {
    11. Mobile Fixes, 3D Animations & Instagram
    ============================================================ */
 
-/* 3D Card Tilt Effect — desktop only (sticky :hover broke mobile layout) */
-@media (hover: hover) and (pointer: fine) {
-    .card-grid {
-        perspective: 1000px;
-    }
+/* Clean Card Hover Effect (Removed the broken 3D tilt) */
+.topic-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
-    .topic-card {
-        transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
-        transform-style: preserve-3d;
-    }
-
-    .topic-card:hover {
-        transform: translateY(-8px) rotateX(4deg) rotateY(-4deg) scale(1.02);
-        box-shadow: 0 25px 35px -5px rgba(0, 0, 0, 0.1), 0 10px 20px -5px rgba(0, 0, 0, 0.04);
-        z-index: 10;
-    }
+.topic-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--accent);
 }
 
 /* Floating Animation */
@@ -2269,7 +2374,56 @@ button:focus-visible {
     }
 }
 
+/* Tutor MCQ options — quiet list, not a card */
+.msg ol[type="a"] {
+    margin: 4px 0 12px 0;
+    padding-left: 28px;
+    font-size: 0.95rem;
+}
+
+.msg ol[type="a"] li {
+    margin-bottom: 4px;
+}
+
+.msg .fine {
+    color: var(--muted);
+}
+
+.msg ul li+li {
+    margin-top: 4px;
+}
+
+/* Clean filter inputs */
+.cmp-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+    margin: 12px 0;
+}
+
+.cmp-table th,
+.cmp-table td {
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--border);
+    text-align: left;
+    vertical-align: top;
+}
+
+.cmp-table th {
+    background: var(--surface-2);
+    font-weight: 700;
+    color: var(--muted);
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+}
+
 @media (max-width: 900px) {
+
+    /* Hide inline SVG because ::before is used */
+    .search-trigger svg {
+        display: none;
+    }
 
     /* 1. Sidebar scrolling & body lock */
     body.nav-open {
@@ -2285,7 +2439,7 @@ button:focus-visible {
     /* 2. Bottom nav overlap fix */
     .content,
     .site-footer {
-        padding-bottom: calc(90px + env(safe-area-inset-bottom)) !important;
+        padding-bottom: calc(100px + env(safe-area-inset-bottom)) !important;
     }
 
     /* 3. Auth Modal height */
@@ -2327,6 +2481,10 @@ button:focus-visible {
         background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%2364748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>');
         background-size: contain;
         background-repeat: no-repeat;
+    }
+
+    [data-theme="dark"] .search-trigger::before {
+        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%2394a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>');
     }
 
     /* 5. Layout stacking */
@@ -2382,6 +2540,12 @@ button:focus-visible {
 }
 
 @media (max-width: 900px) {
+
+    /* Hide inline SVG because ::before is used */
+    .search-trigger svg {
+        display: none;
+    }
+
     .toast {
         bottom: calc(90px + env(safe-area-inset-bottom));
     }
@@ -2449,17 +2613,6 @@ button:focus-visible {
     opacity: 1;
 }
 
-/* Clean filter inputs */
-.field-label {
-    display: block;
-    font-size: 0.75rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--muted);
-    margin-bottom: 6px;
-}
-
 select,
 input[type="date"] {
     background: var(--surface-2);
@@ -2483,4 +2636,168 @@ input[type="date"]:focus {
 
 .site-header.hide-header {
     transform: translateY(-100%);
+}
+
+/* ============================================================
+   14. Eye Protection & Premium Popups
+   ============================================================ */
+
+/* Eye Protection Overlay */
+#eyeCareOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(255, 170, 0, 0.15);
+    pointer-events: none;
+    z-index: 99999;
+    mix-blend-mode: multiply;
+    transition: opacity 0.4s ease;
+    opacity: 0;
+}
+
+.eye-care-active #eyeCareOverlay {
+    opacity: 1;
+}
+
+/* Eye Care Button Active State */
+#eyeToggle.active {
+    color: var(--gold);
+    border-color: var(--gold);
+    background: rgba(180, 83, 9, 0.1);
+}
+
+/* Premium Popup */
+.premium-popup {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    width: 340px;
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.15);
+    z-index: 10000;
+    transform: translateY(20px) scale(0.95);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+[data-theme="dark"] .premium-popup {
+    background: rgba(17, 24, 39, 0.95);
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
+}
+
+.premium-popup.show {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+    visibility: visible;
+}
+
+.premium-close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 28px;
+    height: 28px;
+    font-size: 0.8rem;
+}
+
+.popup-icon {
+    font-size: 2rem;
+    margin-bottom: 12px;
+}
+
+.premium-popup h3 {
+    margin: 0 0 8px;
+    font-size: 1.1rem;
+    color: var(--text);
+}
+
+.popup-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.popup-actions .btn {
+    flex: 1;
+    padding: 10px;
+    font-size: 0.85rem;
+}
+
+@media (max-width: 560px) {
+    .premium-popup {
+        bottom: 90px;
+        /* Above bottom nav */
+        left: 16px;
+        right: 16px;
+        width: auto;
+    }
+}
+
+/* ============================================================
+   Mobile & All-Screen Responsiveness Fixes
+   ============================================================ */
+
+/* 1. Prevent long words from breaking the bubble layout */
+.msg-content {
+    word-break: break-word;
+    overflow-wrap: break-word;
+}
+
+/* 2. Mobile-Specific Tweaks */
+@media (max-width: 768px) {
+
+    /* Use dynamic viewport height (dvh) so mobile keyboards don't hide the input */
+    .chat-shell {
+        height: calc(100vh - 160px);
+        height: calc(100dvh - 160px);
+        /* Modern fix for iOS/Android browsers */
+        min-height: 400px;
+        /* Allow smaller screens to fit */
+        border-radius: 0;
+        /* Optional: Full-screen edge-to-edge look on mobile */
+        border-left: none;
+        border-right: none;
+    }
+
+    .chat-log {
+        padding: 16px;
+        gap: 16px;
+        overscroll-behavior: contain;
+        /* Stops the whole page from bouncing when scrolling chat */
+    }
+
+    .msg {
+        max-width: 95%;
+        /* Allow bubbles to be wider on tiny screens */
+        gap: 10px;
+    }
+
+    .msg-avatar {
+        width: 28px;
+        height: 28px;
+    }
+
+    .msg-content {
+        padding: 10px 14px;
+        font-size: 0.9rem;
+    }
+
+    .chat-input-wrapper {
+        padding: 12px;
+        /* Fix for iPhone bottom home bar (Safe Area) */
+        padding-bottom: calc(12px + env(safe-area-inset-bottom));
+    }
+
+    .suggestions {
+        padding: 0 12px 12px;
+        gap: 6px;
+    }
+
+    .chat-form {
+        padding: 6px 6px 6px 14px;
+    }
 }

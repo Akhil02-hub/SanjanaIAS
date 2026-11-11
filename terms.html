@@ -1,30 +1,60 @@
 <!doctype html>
-<html lang="en">
+<html lang="en-IN">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Terms of Use · SanjanaIAS</title>
-    <link rel="stylesheet" href="styles.css">
+    <meta name="description" content="Terms of Use for SanjanaIAS.">
+    <link rel="icon" href="/logo.png">
+    <link rel="stylesheet" href="/styles.css">
+    <script>
+        (function () {
+            try {
+                var t = localStorage.getItem('sanjana.theme');
+                if (!t) t = 'light';
+                document.documentElement.setAttribute('data-theme', t);
+            } catch (e) { }
+        })();
+    </script>
 </head>
 
-<body>
-    <div class="content" style="padding-top: 60px; max-width: 800px;">
-        <h1>Terms of Use</h1>
-        <p class="fine">Last updated: Today</p>
-        <h2>Educational Purpose Only</h2>
-        <p>SanjanaIAS is an independent educational platform. It is <strong>not affiliated with UPSC or the Government
-                of India</strong>. All content is compiled from public sources and is intended for study and
-            informational purposes only.</p>
-        <h2>Accuracy of Information</h2>
-        <p>While we strive to aggregate news accurately, we do not guarantee the completeness or accuracy of any
-            information provided. Always verify facts against official government documents or primary sources before
-            relying on them.</p>
-        <h2>User Conduct</h2>
-        <p>You are responsible for maintaining the confidentiality of your account credentials. Do not abuse the
-            platform or attempt to scrape or disrupt the service.</p>
-        <p><a href="index.html" class="btn">Back to App</a></p>
-    </div>
+<body style="background: var(--bg);">
+    <!-- Simple Header -->
+    <header class="site-header"
+        style="justify-content: center; padding: 16px; background: var(--surface); border-bottom: 1px solid var(--border);">
+        <a class="brand" href="/dashboard">
+            <img src="/logo.png" alt="SanjanaIAS Logo" width="32" height="32"
+                style="border-radius: 8px; object-fit: cover;">
+            <span class="brand-text"><strong>SanjanaIAS</strong><em>Study Intelligence</em></span>
+        </a>
+    </header>
+
+    <!-- Main Content -->
+    <main class="content" style="padding-top: 60px; max-width: 800px; margin: 0 auto; min-height: 80vh;">
+        <div class="panel">
+            <h1>Terms of Use</h1>
+            <p class="fine">Last updated: November 2026</p>
+
+            <h2 style="margin-top: 32px;">Educational Purpose Only</h2>
+            <p>SanjanaIAS is an independent educational platform. It is <strong>not affiliated with UPSC or the
+                    Government of India</strong>. All content is compiled from public sources and is intended for study
+                and informational purposes only.</p>
+
+            <h2 style="margin-top: 32px;">Accuracy of Information</h2>
+            <p>While we strive to aggregate news accurately, we do not guarantee the completeness or accuracy of any
+                information provided. Always verify facts against official government documents or primary sources
+                before relying on them.</p>
+
+            <h2 style="margin-top: 32px;">User Conduct</h2>
+            <p>You are responsible for maintaining the confidentiality of your account credentials. Do not abuse the
+                platform or attempt to scrape or disrupt the service.</p>
+
+            <div class="row-actions" style="margin-top: 40px; border-top: 1px solid var(--border); padding-top: 24px;">
+                <a href="/dashboard" class="btn btn-primary">← Back to App</a>
+            </div>
+        </div>
+    </main>
 </body>
 
 </html>

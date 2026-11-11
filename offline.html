@@ -5,15 +5,42 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Offline · SanjanaIAS</title>
+    <link rel="icon" href="/logo.png">
     <link rel="stylesheet" href="/styles.css">
+    <script>
+        (function () {
+            try {
+                var t = localStorage.getItem('sanjana.theme');
+                if (!t) t = 'light';
+                document.documentElement.setAttribute('data-theme', t);
+            } catch (e) { }
+        })();
+    </script>
 </head>
 
-<body style="display: flex; align-items: center; justify-content: center; min-height: 100vh; text-align: center;">
-    <div class="panel" style="max-width: 400px;">
-        <h1>You are offline</h1>
-        <p class="fine">Please check your internet connection and try again.</p>
-        <button class="btn btn-primary" onclick="window.location.reload()">Retry</button>
-    </div>
+<body style="background: var(--bg);">
+    <!-- Simple Header -->
+    <header class="site-header"
+        style="justify-content: center; padding: 16px; background: transparent; border-bottom: none;">
+        <a class="brand" href="/dashboard">
+            <img src="/logo.png" alt="SanjanaIAS Logo" width="32" height="32"
+                style="border-radius: 8px; object-fit: cover;">
+            <span class="brand-text"><strong>SanjanaIAS</strong><em>Study Intelligence</em></span>
+        </a>
+    </header>
+
+    <!-- Main Content -->
+    <main class="content"
+        style="display: flex; align-items: center; justify-content: center; min-height: 80vh; padding: 20px;">
+        <div class="panel" style="max-width: 450px; text-align: center; padding: 50px 24px;">
+            <div style="font-size: 4rem; margin-bottom: 16px;">📡</div>
+            <h1 style="font-size: 1.8rem; margin-bottom: 12px;">You are offline</h1>
+            <p class="fine" style="margin-bottom: 32px; font-size: 1rem; line-height: 1.6;">
+                Please check your internet connection and try again. Don't worry, your saved data is safe.
+            </p>
+            <button class="btn btn-primary block" onclick="window.location.reload()">Retry Connection</button>
+        </div>
+    </main>
 </body>
 
 </html>
