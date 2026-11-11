@@ -64,7 +64,7 @@ jobs:
         run: |
           git config user.name  "akhil02-hub"
           git config user.email "amarachinthaakhil@gmail.com"
-          git add data/news.json
+          git add data/news.json sitemap-articles.xml
           if git diff --staged --quiet; then
             echo "No changes to commit."
           else
