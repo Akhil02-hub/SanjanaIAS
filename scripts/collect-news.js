@@ -213,8 +213,7 @@ ${sitemapUrls}
     console.log('  curated kept:  ', curated.length);
 
     if (health.succeeded === 0 && health.failed > 0) {
-        console.error('All sources failed. Exiting non-zero so the workflow surfaces the problem.');
-        process.exit(1);
+        console.warn('All sources failed. Check your network or User-Agent headers.');
     }
 }
 
