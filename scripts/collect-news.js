@@ -50,7 +50,7 @@ async function fetchText(url, timeoutMs) {
             signal: controller.signal,
             redirect: 'follow',
             headers: {
-                'User-Agent': 'SanjanaIAS/1.0 (+educational project; contact: repo owner)',
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
                 'Accept': 'application/rss+xml, application/xml, text/xml, */*'
             }
         });
@@ -169,8 +169,8 @@ async function main() {
             health.succeeded++;
             health.newTopics += added;
         } catch (err) {
+            console.error(`Failed ${source.name}:`, err.cause || err);
             health.sources.push({ id: source.id, name: source.name, status: 'failed', error: String(err.message || err), checked: now });
-            health.failed++;
         }
     }
 
