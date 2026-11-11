@@ -2058,13 +2058,17 @@
         var path = window.location.pathname.slice(1); // Remove leading slash
         if (!path || path === 'index.html') return { page: 'dashboard', params: {} };
 
-        var parts = path.split('/');
+        var parts = path.split('/').filter(Boolean);
         var page = parts[0] || 'dashboard';
         var params = {};
 
-        // Handle /article/slug-name
-        if (page === 'article' && parts[1]) {
+        // Handle /article/slug-name (Must be exactly 2 parts)
+        if (page === 'article') {
+            if (parts.length !== 2) return { page: 'invalid_404', params: {} };
             params.id = decodeURIComponent(parts[1]);
+        } else {
+            // All other pages must be exactly 1 part (e.g., just /dashboard)
+            if (parts.length > 1) return { page: 'invalid_404', params: {} };
         }
 
         // Handle query strings if any remain
