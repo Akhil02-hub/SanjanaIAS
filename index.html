@@ -467,9 +467,19 @@
                     <img src="/logo.png" alt="Logo" width="24" height="24" style="border-radius: 4px;">
                     <strong style="color: var(--text); font-size: 1.1rem;">SanjanaIAS</strong>
                 </p>
-                <p style="font-size: 0.85rem;">Understand the world.<br>Prepare for the future.</p>
-                <p style="font-size: 0.8rem; color: var(--green); font-weight: 700; margin-top: 8px;">100% Free. No Ads.
-                </p>
+                <div class="notification-settings" style="margin-top: 16px;">
+                    <h4
+                        style="color: var(--text); margin-bottom: 8px; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em;">
+                        Stay Updated 🔔
+                    </h4>
+                    <p style="font-size: 0.8rem; margin-bottom: 8px;">
+                        Receive UPSC current affairs, important updates, mock tests and announcements.
+                    </p>
+                    <button id="enableNotifications" class="btn btn-primary" type="button">
+                        Enable Notifications
+                    </button>
+                    <p id="notificationStatus" class="fine" style="margin-top: 8px;"></p>
+                </div>
             </div>
             <div>
                 <h4
@@ -599,6 +609,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.8/dist/umd/supabase.js"></script>
     <script src="/app.js"></script>
+    <script type="module" src="/js/notifications.js"></script>
 
     <script>
         if ('serviceWorker' in navigator) {
