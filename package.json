@@ -7,8 +7,9 @@
         "collect": "node scripts/collect-news.js"
     },
     "dependencies": {
-        "@supabase/supabase-js": "^2.39.8",
-        "rss-parser": "^3.13.0",
-        "dotenv": "^16.4.5"
+        "@supabase/supabase-js": "^2.119.0",
+        "dotenv": "^16.4.5",
+        "google-auth-library": "^11.3.4",
+        "rss-parser": "^3.13.0"
     }
 }
