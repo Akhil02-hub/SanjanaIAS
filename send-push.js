@@ -1,17 +1,49 @@
 const { JWT } = require("google-auth-library");
-const sa = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT);
+
+let saStr = process.env.FIREBASE_SERVICE_ACCOUNT;
+if (!saStr) {
+    console.error("❌ CRASH ERROR: The GitHub Secret FIREBASE_SERVICE_ACCOUNT is completely empty.");
+    process.exit(1);
+}
+
+saStr = saStr.trim();
+
+// If you accidentally left the Base64 string in GitHub, this decodes it automatically
+if (saStr.startsWith("ewogIC")) {
+    saStr = Buffer.from(saStr, 'base64').toString('utf8');
+}
+
+let sa;
+try {
+    sa = JSON.parse(saStr);
+} catch (e) {
+    console.error("❌ CRASH ERROR: The secret is not valid JSON. It starts with:", saStr.slice(0, 30));
+    process.exit(1);
+}
+
+if (!sa.private_key) {
+    console.error("❌ CRASH ERROR: The JSON is missing 'private_key'. Keys found:", Object.keys(sa));
+    process.exit(1);
+}
+
+// Fix newline formatting for GitHub Actions
+sa.private_key = sa.private_key.replace(/\\n/g, '\n');
 
 const SUPA_URL = "https://lbcxwmyppnmnezyxyvon.supabase.co";
 const SUPA_KEY = "sb_publishable_8acY7UihRJ2tSpW3zmFDUA_n24G5Ayq";
 
 (async () => {
     try {
-        // Get tokens directly from Supabase REST API
         const res = await fetch(`${SUPA_URL}/rest/v1/fcm_tokens?select=token&enabled=eq.true`, {
             headers: { apikey: SUPA_KEY, Authorization: `Bearer ${SUPA_KEY}` }
         });
 
         const data = await res.json();
+        if (!Array.isArray(data)) {
+            console.error("❌ CRASH ERROR: Supabase returned an error:", data);
+            process.exit(1);
+        }
+
         const tokens = data.map(r => r.token);
 
         if (!tokens.length) {
