@@ -215,3 +215,25 @@ if (document.readyState === 'loading') {
 } else {
     setTimeout(checkNotificationPrompt, 3000);
 }
+
+// Add this to your code
+async function disableNotifications() {
+    try {
+        const registration = await navigator.serviceWorker.getRegistration("/firebase-messaging-sw.js");
+        if (registration) {
+            const subscription = await registration.pushManager.getSubscription();
+            if (subscription) {
+                await subscription.unsubscribe(); // Unsubscribes from browser
+
+                // Remove token from Supabase
+                const supabaseClient = window.sanjanaSupabase;
+                if (supabaseClient) {
+                    await supabaseClient.from("fcm_tokens").delete().eq("token", token);
+                }
+                alert("Notifications disabled.");
+            }
+        }
+    } catch (e) {
+        console.error("Error disabling notifications:", e);
+    }
+}
