@@ -89,7 +89,23 @@ async function enableNotifications() {
             { scope: "/firebase-messaging-sw-scope/" }
         );
 
-        await navigator.serviceWorker.ready;
+        // Wait for THIS registration's worker to become active.
+        // navigator.serviceWorker.ready can resolve to the old sw.js,
+        // which has no active worker for this scope.
+        await new Promise((resolve, reject) => {
+            const worker = registration.installing || registration.waiting || registration.active;
+            if (!worker) {
+                reject(new Error("Service worker registration has no worker."));
+                return;
+            }
+            if (worker.state === "activated") {
+                resolve();
+                return;
+            }
+            worker.addEventListener("statechange", () => {
+                if (worker.state === "activated") resolve();
+            });
+        });
 
         messaging = getMessaging(app);
 
