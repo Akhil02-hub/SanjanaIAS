@@ -7,8 +7,6 @@ if (!saStr) {
 }
 
 saStr = saStr.trim();
-
-// If you accidentally left the Base64 string in GitHub, this decodes it automatically
 if (saStr.startsWith("ewogIC")) {
     saStr = Buffer.from(saStr, 'base64').toString('utf8');
 }
@@ -26,7 +24,6 @@ if (!sa.private_key) {
     process.exit(1);
 }
 
-// Fix newline formatting for GitHub Actions
 sa.private_key = sa.private_key.replace(/\\n/g, '\n');
 
 const SUPA_URL = "https://lbcxwmyppnmnezyxyvon.supabase.co";
@@ -51,7 +48,13 @@ const SUPA_KEY = "sb_publishable_8acY7UihRJ2tSpW3zmFDUA_n24G5Ayq";
             return;
         }
 
-        const jwt = new JWT(sa.client_email, null, sa.private_key, ["https://www.googleapis.com/auth/cloud-platform"]);
+        // ✅ THE FIX IS HERE: Passing an object instead of positional arguments
+        const jwt = new JWT({
+            email: sa.client_email,
+            key: sa.private_key,
+            scopes: ["https://www.googleapis.com/auth/cloud-platform"]
+        });
+
         const { access_token } = await jwt.getAccessToken();
 
         for (const token of tokens) {
