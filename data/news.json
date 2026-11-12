@@ -1,7 +1,7 @@
 {
-  "updated": "2026-11-12T03:15:32.605Z",
+  "updated": "2026-11-12T03:40:05.186Z",
   "health": {
-    "checked": "2026-11-12T03:15:32.605Z",
+    "checked": "2026-11-12T03:40:05.186Z",
     "sources": [
       {
         "id": "un-news",
@@ -9,39 +9,38 @@
         "status": "ok",
         "items": 25,
         "added": 4,
-        "checked": "2026-11-12T03:15:32.605Z"
+        "checked": "2026-11-12T03:40:05.186Z"
       },
       {
         "id": "un-geneva",
         "name": "UN Geneva",
         "status": "not-configured",
-        "checked": "2026-11-12T03:15:32.605Z"
+        "checked": "2026-11-12T03:40:05.186Z"
       },
       {
         "id": "who",
         "name": "WHO",
         "status": "not-configured",
-        "checked": "2026-11-12T03:15:32.605Z"
+        "checked": "2026-11-12T03:40:05.186Z"
       },
       {
         "id": "world-bank",
         "name": "World Bank",
         "status": "not-configured",
-        "checked": "2026-11-12T03:15:32.605Z"
+        "checked": "2026-11-12T03:40:05.186Z"
       },
       {
         "id": "imf",
         "name": "IMF",
         "status": "not-configured",
-        "checked": "2026-11-12T03:15:32.605Z"
+        "checked": "2026-11-12T03:40:05.186Z"
       },
       {
         "id": "pib",
         "name": "PIB",
-        "status": "ok",
-        "items": 20,
-        "added": 0,
-        "checked": "2026-11-12T03:15:32.605Z"
+        "status": "failed",
+        "error": "This operation was aborted",
+        "checked": "2026-11-12T03:40:05.186Z"
       },
       {
         "id": "rbi",
@@ -49,98 +48,98 @@
         "status": "ok",
         "items": 10,
         "added": 0,
-        "checked": "2026-11-12T03:15:32.605Z"
+        "checked": "2026-11-12T03:40:05.186Z"
       },
       {
         "id": "bbc-world",
         "name": "BBC News — World",
         "status": "ok",
         "items": 25,
-        "added": 18,
-        "checked": "2026-11-12T03:15:32.605Z"
+        "added": 0,
+        "checked": "2026-11-12T03:40:05.186Z"
       },
       {
         "id": "guardian-world",
         "name": "The Guardian — World",
         "status": "not-configured",
-        "checked": "2026-11-12T03:15:32.605Z"
+        "checked": "2026-11-12T03:40:05.186Z"
       },
       {
         "id": "ie-world",
         "name": "Indian Express — World",
         "status": "not-configured",
-        "checked": "2026-11-12T03:15:32.605Z"
+        "checked": "2026-11-12T03:40:05.186Z"
       },
       {
         "id": "ie-india",
         "name": "Indian Express — India",
         "status": "failed",
         "error": "HTTP 403",
-        "checked": "2026-11-12T03:15:32.605Z"
+        "checked": "2026-11-12T03:40:05.186Z"
       },
       {
         "id": "ie-hyderabad",
         "name": "Indian Express — Hyderabad",
         "status": "failed",
         "error": "HTTP 403",
-        "checked": "2026-11-12T03:15:32.605Z"
+        "checked": "2026-11-12T03:40:05.186Z"
       },
       {
         "id": "hindu-national",
         "name": "The Hindu — National",
         "status": "ok",
         "items": 25,
-        "added": 25,
-        "checked": "2026-11-12T03:15:32.605Z"
+        "added": 0,
+        "checked": "2026-11-12T03:40:05.186Z"
       },
       {
         "id": "hindu-international",
         "name": "The Hindu — International",
         "status": "ok",
         "items": 25,
-        "added": 19,
-        "checked": "2026-11-12T03:15:32.605Z"
+        "added": 1,
+        "checked": "2026-11-12T03:40:05.186Z"
       },
       {
         "id": "prs-india",
         "name": "PRS India",
         "status": "failed",
         "error": "HTTP 404",
-        "checked": "2026-11-12T03:15:32.605Z"
+        "checked": "2026-11-12T03:40:05.186Z"
       },
       {
         "id": "mea",
         "name": "MEA India",
         "status": "failed",
         "error": "HTTP 403",
-        "checked": "2026-11-12T03:15:32.605Z"
+        "checked": "2026-11-12T03:40:05.186Z"
       },
       {
         "id": "toi-india",
         "name": "Times of India — India",
         "status": "ok",
         "items": 20,
-        "added": 20,
-        "checked": "2026-11-12T03:15:32.605Z"
+        "added": 2,
+        "checked": "2026-11-12T03:40:05.186Z"
       },
       {
         "id": "hindu-telangana",
         "name": "The Hindu — Telangana",
         "status": "ok",
         "items": 25,
-        "added": 23,
-        "checked": "2026-11-12T03:15:32.605Z"
+        "added": 0,
+        "checked": "2026-11-12T03:40:05.186Z"
       },
       {
         "id": "siasat",
         "name": "The Siasat Daily — Telangana",
         "status": "no-new-articles",
-        "checked": "2026-11-12T03:15:32.605Z"
+        "checked": "2026-11-12T03:40:05.186Z"
       }
     ],
-    "succeeded": 8,
+    "succeeded": 7,
     "failed": 0,
-    "newTopics": 109
+    "newTopics": 7
   },
   "topics": [
     {
@@ -271,6 +270,65 @@
         "data": [],
         "geography": "",
         "india": "Flagged as India-relevant by the classifier.",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to GS II, GS III.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "india-slips-5-spots-on-climate-change-index-2026-11-12",
+      "title": "India slips 5 spots on climate change index",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "Governance",
+      "tags": [
+        "Governance",
+        "Environment"
+      ],
+      "gsPapers": [
+        "GS II",
+        "GS III"
+      ],
+      "summary": "India has experienced a decline in the Climate Change Performance Index, falling from prior high rankings. The country now sits at 28th position due to rising greenhouse gas emissions and energy use. While India has made significant strides in renewable energy, the overall…",
+      "whyItMatters": "",
+      "image": "https://static.toiimg.com/photo/msid-135753289,imgsize-400824.cms",
+      "imageCredit": "Times of India — India",
+      "readTime": 3,
+      "published": "2026-11-12",
+      "updated": "2026-11-12",
+      "importance": 66,
+      "importanceReason": "Maps to GS II, GS III. Signals environment social. Signals long term.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "India slips 5 spots on climate change index",
+          "publisher": "Times of India — India",
+          "url": "https://timesofindia.indiatimes.com/india/india-slips-5-spots-on-climate-change-index/articleshow/135753099.cms",
+          "type": "reporting",
+          "date": "2026-11-12"
+        }
+      ],
+      "sections": {
+        "event": "India has experienced a decline in the Climate Change Performance Index, falling from prior high rankings. The country now sits at 28th position due to rising greenhouse gas emissions and energy use. While India has made significant strides in renewable energy, the overall performance remains low. Comparatively, Pakistan, with lower emissions, is ranked just above India at 26th.",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-12",
+            "text": "Reported by Times of India — India"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
         "telangana": "",
         "challenges": "",
         "solutions": "",
@@ -6145,6 +6203,63 @@
         "challenges": "",
         "solutions": "",
         "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "g7-foreign-ministers-say-china-s-actions-east-of-t-2026-11-12",
+      "title": "G7 Foreign Ministers say China's actions east of Taiwan threaten stability",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "International Relations",
+      "tags": [
+        "International Relations"
+      ],
+      "gsPapers": [
+        "GS II"
+      ],
+      "summary": "The G7 statement said the Ministers ⁠stressed the importance of maintaining peace and stability across the Taiwan Strait",
+      "whyItMatters": "",
+      "image": "https://th-i.thgim.com/public/incoming/mr07uj/article71692228.ece/alternates/LANDSCAPE_1200/2026-11-10T121337Z_384871899_RC20LOAAGCKJ_RTRMADP_3_G7-FOREIGN.JPG",
+      "imageCredit": "The Hindu — International",
+      "readTime": 3,
+      "published": "2026-11-12",
+      "updated": "2026-11-12",
+      "importance": 36,
+      "importanceReason": "Maps to GS II. Signals exam recurrence.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "G7 Foreign Ministers say China's actions east of Taiwan threaten stability",
+          "publisher": "The Hindu — International",
+          "url": "https://www.thehindu.com/news/international/g7-foreign-ministers-say-chinas-actions-east-of-taiwan-threaten-stability/article71692205.ece",
+          "type": "reporting",
+          "date": "2026-11-12"
+        }
+      ],
+      "sections": {
+        "event": "The G7 statement said the Ministers ⁠stressed the importance of maintaining peace and stability across the Taiwan Strait",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-12",
+            "text": "Reported by The Hindu — International"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to GS II.",
         "prelimsNotes": [],
         "mainsNotes": []
       },
@@ -15790,6 +15905,271 @@
       "mainsQuestions": []
     },
     {
+      "id": "children-among-the-dead-as-heavy-rains-flood-tents-2026-11-09",
+      "title": "Children among the dead as heavy rains flood tents and shelters in Gaza",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "An infant reportedly drowned and five Gazans were killed – including three children – when a sand dune collapsed on their tents as the first heavy rains swept across the enclave at the weekend, according to the UN aid coordination office (OCHA).",
+      "whyItMatters": "",
+      "image": "https://global.unitednations.entermediadb.net/assets/mediadb/services/module/asset/downloads/preset/Collections/Production%20Library/2026/11/07-11-2026-UNNews-Gaza-Winer-Children.jpg/image560x340cropped.jpg",
+      "imageCredit": "UN News",
+      "readTime": 3,
+      "published": "2026-11-09",
+      "updated": "2026-11-12",
+      "importance": 5,
+      "importanceReason": "Generic coverage with no clear syllabus anchor.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Children among the dead as heavy rains flood tents and shelters in Gaza",
+          "publisher": "UN News",
+          "url": "https://news.un.org/feed/view/en/story/2026/11/1168766",
+          "type": "primary",
+          "date": "2026-11-09"
+        }
+      ],
+      "sections": {
+        "event": "An infant reportedly drowned and five Gazans were killed – including three children – when a sand dune collapsed on their tents as the first heavy rains swept across the enclave at the weekend, according to the UN aid coordination office (OCHA).",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-09",
+            "text": "Reported by UN News"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "beyond-the-broken-glass-the-human-cost-of-the-1938-2026-11-08",
+      "title": "Beyond the broken glass: The human cost of the 1938 November Pogrom",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "On his way to school in Vienna on the morning of 10 November 1938, eight-year-old Arthur Schneier watched his synagogue burn while firefighters and police officers stood by “rejoicing”.",
+      "whyItMatters": "",
+      "image": "https://global.unitednations.entermediadb.net/assets/mediadb/services/module/asset/downloads/preset/Collections/Production%20Library/2026/11/06-11-2026-synagogue-Aachen.jpg/image560x340cropped.jpg",
+      "imageCredit": "UN News",
+      "readTime": 3,
+      "published": "2026-11-08",
+      "updated": "2026-11-12",
+      "importance": 5,
+      "importanceReason": "Generic coverage with no clear syllabus anchor.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Beyond the broken glass: The human cost of the 1938 November Pogrom",
+          "publisher": "UN News",
+          "url": "https://news.un.org/feed/view/en/story/2026/11/1168756",
+          "type": "primary",
+          "date": "2026-11-08"
+        }
+      ],
+      "sections": {
+        "event": "On his way to school in Vienna on the morning of 10 November 1938, eight-year-old Arthur Schneier watched his synagogue burn while firefighters and police officers stood by “rejoicing”.",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-08",
+            "text": "Reported by UN News"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "for-the-first-time-i-have-my-own-chair-gaza-siblin-2026-11-07",
+      "title": "‘For the first time I have my own chair’: Gaza siblings find new freedom",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "In Gaza, 10-year-old Anas is one of three siblings born without legs and with only two fingers on each of their hands. They struggle to move around and perform daily activities like eating and writing independently.&nbsp;",
+      "whyItMatters": "",
+      "image": "https://global.unitednations.entermediadb.net/assets/mediadb/services/module/asset/downloads/preset/Collections/Production%20Library/2026/11/06-11-2026-EducAid-Gaza-03.jpg/image560x340cropped.jpg",
+      "imageCredit": "UN News",
+      "readTime": 3,
+      "published": "2026-11-07",
+      "updated": "2026-11-12",
+      "importance": 5,
+      "importanceReason": "Generic coverage with no clear syllabus anchor.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "‘For the first time I have my own chair’: Gaza siblings find new freedom",
+          "publisher": "UN News",
+          "url": "https://news.un.org/feed/view/en/story/2026/11/1168759",
+          "type": "primary",
+          "date": "2026-11-07"
+        }
+      ],
+      "sections": {
+        "event": "In Gaza, 10-year-old Anas is one of three siblings born without legs and with only two fingers on each of their hands. They struggle to move around and perform daily activities like eating and writing independently.&nbsp;",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-07",
+            "text": "Reported by UN News"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "world-news-in-brief-civilians-killed-in-dr-congo-u-2026-11-06",
+      "title": "World News in Brief: Civilians killed in DR Congo, Ukrainians wrestle with return, Guterres calls out ‘normalisation’ of force",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "At least 30 civilians were killed overnight on Thursday in Beni Territory, North Kivu in the Democratic Republic of the Congo, according to local sources&nbsp;cited by the UN aid coordination office (OCHA).",
+      "whyItMatters": "",
+      "image": "https://global.unitednations.entermediadb.net/assets/mediadb/services/module/asset/downloads/preset/Collections/Embargoed/20-02-2025-UNICEF-DR-Congo-01.jpg/image560x340cropped.jpg",
+      "imageCredit": "UN News",
+      "readTime": 3,
+      "published": "2026-11-06",
+      "updated": "2026-11-12",
+      "importance": 5,
+      "importanceReason": "Generic coverage with no clear syllabus anchor.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "World News in Brief: Civilians killed in DR Congo, Ukrainians wrestle with return, Guterres calls out ‘normalisation’ of force",
+          "publisher": "UN News",
+          "url": "https://news.un.org/feed/view/en/story/2026/11/1168757",
+          "type": "primary",
+          "date": "2026-11-06"
+        }
+      ],
+      "sections": {
+        "event": "At least 30 civilians were killed overnight on Thursday in Beni Territory, North Kivu in the Democratic Republic of the Congo, according to local sources&nbsp;cited by the UN aid coordination office (OCHA).",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-06",
+            "text": "Reported by UN News"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "new-blue-and-white-droplet-logo-on-milk-curd-and-p-2026-11-12",
+      "title": "New blue-and-white droplet logo on milk, curd and paneer packs from July 2028",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "FSSAI says it will help consumers identify dairy products",
+      "whyItMatters": "",
+      "image": "https://static.toiimg.com/photo/msid-135753181,imgsize-174242.cms",
+      "imageCredit": "Times of India — India",
+      "readTime": 3,
+      "published": "2026-11-12",
+      "updated": "2026-11-12",
+      "importance": 5,
+      "importanceReason": "Generic coverage with no clear syllabus anchor.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "New blue-and-white droplet logo on milk, curd and paneer packs from July 2028",
+          "publisher": "Times of India — India",
+          "url": "https://timesofindia.indiatimes.com/india/new-blue-and-white-droplet-logo-on-milk-curd-and-paneer-packs-from-july-2028/articleshow/135753118.cms",
+          "type": "reporting",
+          "date": "2026-11-12"
+        }
+      ],
+      "sections": {
+        "event": "FSSAI says it will help consumers identify dairy products",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-12",
+            "text": "Reported by Times of India — India"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
       "id": "gaza-winter-aid-no-more-delay-fletcher-tells-gover-2026-11-11",
       "title": "Gaza winter aid: ‘No more delay’, Fletcher tells governments stalling on support",
       "region": "world",
@@ -21869,377 +22249,6 @@
           {
             "date": "2026-11-10",
             "text": "Reported by BBC News — World"
-          }
-        ],
-        "data": [],
-        "geography": "",
-        "india": "",
-        "telangana": "",
-        "challenges": "",
-        "solutions": "",
-        "upsc": "Auto-tagged to no paper.",
-        "prelimsNotes": [],
-        "mainsNotes": []
-      },
-      "prelimsQuestions": [],
-      "mainsQuestions": []
-    },
-    {
-      "id": "cruise-for-life-ship-seized-in-singapore-2026-11-10",
-      "title": "'Cruise for life' ship seized in Singapore",
-      "region": "world",
-      "regions": [
-        "world"
-      ],
-      "category": "General Studies",
-      "tags": [],
-      "gsPapers": [],
-      "summary": "The Odyssey was meant to take guests around the world for years, but the trip was cut short after its operator ran out of money.",
-      "whyItMatters": "",
-      "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "imageCredit": "SanjanaIAS category illustration",
-      "readTime": 3,
-      "published": "2026-11-10",
-      "updated": "2026-11-10",
-      "importance": 5,
-      "importanceReason": "Generic coverage with no clear syllabus anchor.",
-      "curated": false,
-      "sources": [
-        {
-          "title": "'Cruise for life' ship seized in Singapore",
-          "publisher": "BBC News — World",
-          "url": "https://www.bbc.co.uk/news/articles/cqr7y7myer53o?at_medium=RSS&at_campaign=rss",
-          "type": "reporting",
-          "date": "2026-11-10"
-        }
-      ],
-      "sections": {
-        "event": "The Odyssey was meant to take guests around the world for years, but the trip was cut short after its operator ran out of money.",
-        "background": "",
-        "causes": "",
-        "stakeholders": "",
-        "timeline": [
-          {
-            "date": "2026-11-10",
-            "text": "Reported by BBC News — World"
-          }
-        ],
-        "data": [],
-        "geography": "",
-        "india": "",
-        "telangana": "",
-        "challenges": "",
-        "solutions": "",
-        "upsc": "Auto-tagged to no paper.",
-        "prelimsNotes": [],
-        "mainsNotes": []
-      },
-      "prelimsQuestions": [],
-      "mainsQuestions": []
-    },
-    {
-      "id": "eu-manufacturers-could-give-up-on-competing-with-c-2026-11-10",
-      "title": "EU manufacturers could give up on competing with China by 2030, warns commerce chief",
-      "region": "world",
-      "regions": [
-        "world"
-      ],
-      "category": "General Studies",
-      "tags": [],
-      "gsPapers": [],
-      "summary": "Jens Eskelund says Europe may need to allow its companies to become part of Chinese firms’ supply chains Europe’s manufacturers could give up on attempting to compete with their Chinese counterparts by the end of the decade if current trends continue amid fears over mass job…",
-      "whyItMatters": "",
-      "image": "https://i.guim.co.uk/img/media/e1035f797cd03f2b0cc1d628d816df8072bbfa03/329_0_5000_4000/master/5000.jpg?width=140&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=110d3a2338b374252f82a2f881338df5",
-      "imageCredit": "The Guardian — World",
-      "readTime": 4,
-      "published": "2026-11-10",
-      "updated": "2026-11-10",
-      "importance": 5,
-      "importanceReason": "Generic coverage with no clear syllabus anchor.",
-      "curated": false,
-      "sources": [
-        {
-          "title": "EU manufacturers could give up on competing with China by 2030, warns commerce chief",
-          "publisher": "The Guardian — World",
-          "url": "https://www.theguardian.com/business/2026/nov/10/eu-manufacturers-china-jens-eskelund",
-          "type": "reporting",
-          "date": "2026-11-10"
-        }
-      ],
-      "sections": {
-        "event": "Jens Eskelund says Europe may need to allow its companies to become part of Chinese firms’ supply chains Europe’s manufacturers could give up on attempting to compete with their Chinese counterparts by the end of the decade if current trends continue amid fears over mass job losses, the head of the European Union Chamber of Commerce in China has warned. In a case of “if you can’t beat them, join them”, Jens Eskelund said European companies operating in China were now thinking “Made in China for China” could be replaced by a philosophy of “Made in China for the world”. Continue reading...",
-        "background": "",
-        "causes": "",
-        "stakeholders": "",
-        "timeline": [
-          {
-            "date": "2026-11-10",
-            "text": "Reported by The Guardian — World"
-          }
-        ],
-        "data": [],
-        "geography": "",
-        "india": "",
-        "telangana": "",
-        "challenges": "",
-        "solutions": "",
-        "upsc": "Auto-tagged to no paper.",
-        "prelimsNotes": [],
-        "mainsNotes": []
-      },
-      "prelimsQuestions": [],
-      "mainsQuestions": []
-    },
-    {
-      "id": "kerala-hc-allows-hotel-radisson-blu-in-kochi-to-op-2026-11-10",
-      "title": "Kerala HC allows hotel Radisson Blu in Kochi to operate till 3 a.m.",
-      "region": "world",
-      "regions": [
-        "world"
-      ],
-      "category": "General Studies",
-      "tags": [],
-      "gsPapers": [],
-      "summary": "Justice Murali Purushothaman sets aside notice by police authorities banning the hotel from operating and conducting DJ parties after 11 p.m.",
-      "whyItMatters": "",
-      "image": "https://th-i.thgim.com/public/news/national/kerala/61ar45/article71685246.ece/alternates/LANDSCAPE_1200/Kerala%20HC%20%20%20-%20R%20K%20Nithin.jpg",
-      "imageCredit": "The Hindu — National",
-      "readTime": 3,
-      "published": "2026-11-10",
-      "updated": "2026-11-10",
-      "importance": 5,
-      "importanceReason": "Generic coverage with no clear syllabus anchor.",
-      "curated": false,
-      "sources": [
-        {
-          "title": "Kerala HC allows hotel Radisson Blu in Kochi to operate till 3 a.m.",
-          "publisher": "The Hindu — National",
-          "url": "https://www.thehindu.com/news/national/kerala/kerala-hc-allows-hotel-radisson-blu-in-kochi-to-operate-till-3-am/article71685175.ece",
-          "type": "reporting",
-          "date": "2026-11-10"
-        }
-      ],
-      "sections": {
-        "event": "Justice Murali Purushothaman sets aside notice by police authorities banning the hotel from operating and conducting DJ parties after 11 p.m.",
-        "background": "",
-        "causes": "",
-        "stakeholders": "",
-        "timeline": [
-          {
-            "date": "2026-11-10",
-            "text": "Reported by The Hindu — National"
-          }
-        ],
-        "data": [],
-        "geography": "",
-        "india": "",
-        "telangana": "",
-        "challenges": "",
-        "solutions": "",
-        "upsc": "Auto-tagged to no paper.",
-        "prelimsNotes": [],
-        "mainsNotes": []
-      },
-      "prelimsQuestions": [],
-      "mainsQuestions": []
-    },
-    {
-      "id": "pm-modi-and-railway-minister-likely-to-flag-off-be-2026-11-10",
-      "title": "PM Modi and Railway Minister likely to flag off Bengaluru–Mangaluru–Goa Vande Bharat Express on November 13",
-      "region": "world",
-      "regions": [
-        "world"
-      ],
-      "category": "General Studies",
-      "tags": [],
-      "gsPapers": [],
-      "summary": "While Narendra Modi flags off the much awaited service from Bengaluru, Ashwini Vaishnaw will do it from Mangaluru Junction",
-      "whyItMatters": "",
-      "image": "https://th-i.thgim.com/public/incoming/6q7tie/article71685228.ece/alternates/LANDSCAPE_1200/10505_10_11_2026_12_3_31_1_IMG_6311.JPEG",
-      "imageCredit": "The Hindu — National",
-      "readTime": 3,
-      "published": "2026-11-10",
-      "updated": "2026-11-10",
-      "importance": 5,
-      "importanceReason": "Generic coverage with no clear syllabus anchor.",
-      "curated": false,
-      "sources": [
-        {
-          "title": "PM Modi and Railway Minister likely to flag off Bengaluru–Mangaluru–Goa Vande Bharat Express on November 13",
-          "publisher": "The Hindu — National",
-          "url": "https://www.thehindu.com/news/cities/Mangalore/pm-modi-and-railway-minister-likely-to-flag-off-bengalurumangalurugoa-vande-bharat-express-on-november-13/article71685225.ece",
-          "type": "reporting",
-          "date": "2026-11-10"
-        }
-      ],
-      "sections": {
-        "event": "While Narendra Modi flags off the much awaited service from Bengaluru, Ashwini Vaishnaw will do it from Mangaluru Junction",
-        "background": "",
-        "causes": "",
-        "stakeholders": "",
-        "timeline": [
-          {
-            "date": "2026-11-10",
-            "text": "Reported by The Hindu — National"
-          }
-        ],
-        "data": [],
-        "geography": "",
-        "india": "",
-        "telangana": "",
-        "challenges": "",
-        "solutions": "",
-        "upsc": "Auto-tagged to no paper.",
-        "prelimsNotes": [],
-        "mainsNotes": []
-      },
-      "prelimsQuestions": [],
-      "mainsQuestions": []
-    },
-    {
-      "id": "hmws-sb-fines-akshayakalpa-farms-20-000-for-wastin-2026-11-10",
-      "title": "HMWS&SB fines Akshayakalpa Farms ₹20,000 for wasting drinking water in Hyderabad’s Jubilee Hills",
-      "region": "world",
-      "regions": [
-        "world"
-      ],
-      "category": "General Studies",
-      "tags": [],
-      "gsPapers": [],
-      "summary": "HMWS&SB fines Akshayakalpa Farms ₹20,000 for wasting drinking water in Hyderabad’s Jubilee Hills",
-      "whyItMatters": "",
-      "image": "https://th-i.thgim.com/public/news/cities/Hyderabad/h9tzql/article71685417.ece/alternates/LANDSCAPE_1200/Image%2024.jpeg",
-      "imageCredit": "The Hindu — National",
-      "readTime": 3,
-      "published": "2026-11-10",
-      "updated": "2026-11-10",
-      "importance": 5,
-      "importanceReason": "Generic coverage with no clear syllabus anchor.",
-      "curated": false,
-      "sources": [
-        {
-          "title": "HMWS&SB fines Akshayakalpa Farms ₹20,000 for wasting drinking water in Hyderabad’s Jubilee Hills",
-          "publisher": "The Hindu — National",
-          "url": "https://www.thehindu.com/news/cities/Hyderabad/hmwsampsb-fines-akshayakalpa-farms-20000-for-wasting-drinking-water-in-jubilee-hills/article71678681.ece",
-          "type": "reporting",
-          "date": "2026-11-10"
-        }
-      ],
-      "sections": {
-        "event": "HMWS&SB fines Akshayakalpa Farms ₹20,000 for wasting drinking water in Hyderabad’s Jubilee Hills",
-        "background": "",
-        "causes": "",
-        "stakeholders": "",
-        "timeline": [
-          {
-            "date": "2026-11-10",
-            "text": "Reported by The Hindu — National"
-          }
-        ],
-        "data": [],
-        "geography": "",
-        "india": "",
-        "telangana": "",
-        "challenges": "",
-        "solutions": "",
-        "upsc": "Auto-tagged to no paper.",
-        "prelimsNotes": [],
-        "mainsNotes": []
-      },
-      "prelimsQuestions": [],
-      "mainsQuestions": []
-    },
-    {
-      "id": "newly-inducted-j-k-minister-mir-saifullah-pledges--2026-11-10",
-      "title": "Newly-inducted J&K Minister Mir Saifullah pledges that NC will ‘restore pre-1953 position, get back J&K flag’",
-      "region": "world",
-      "regions": [
-        "world"
-      ],
-      "category": "General Studies",
-      "tags": [],
-      "gsPapers": [],
-      "summary": "Mr. Saifullah said Kashmir was reduced to a Union Territory (UT) brazenly on August 5, 2019",
-      "whyItMatters": "",
-      "image": "https://th-i.thgim.com/public/incoming/sn2gqp/article71685011.ece/alternates/LANDSCAPE_1200/20261027508L.jpg",
-      "imageCredit": "The Hindu — National",
-      "readTime": 3,
-      "published": "2026-11-10",
-      "updated": "2026-11-10",
-      "importance": 5,
-      "importanceReason": "Generic coverage with no clear syllabus anchor.",
-      "curated": false,
-      "sources": [
-        {
-          "title": "Newly-inducted J&K Minister Mir Saifullah pledges that NC will ‘restore pre-1953 position, get back J&K flag’",
-          "publisher": "The Hindu — National",
-          "url": "https://www.thehindu.com/news/national/jammu-and-kashmir/newly-inducted-jk-minister-mir-saifullah-pledgesthat-nc-will-restore-pre-1953-position-get-back-jk-flag/article71683608.ece",
-          "type": "reporting",
-          "date": "2026-11-10"
-        }
-      ],
-      "sections": {
-        "event": "Mr. Saifullah said Kashmir was reduced to a Union Territory (UT) brazenly on August 5, 2019",
-        "background": "",
-        "causes": "",
-        "stakeholders": "",
-        "timeline": [
-          {
-            "date": "2026-11-10",
-            "text": "Reported by The Hindu — National"
-          }
-        ],
-        "data": [],
-        "geography": "",
-        "india": "",
-        "telangana": "",
-        "challenges": "",
-        "solutions": "",
-        "upsc": "Auto-tagged to no paper.",
-        "prelimsNotes": [],
-        "mainsNotes": []
-      },
-      "prelimsQuestions": [],
-      "mainsQuestions": []
-    },
-    {
-      "id": "sitla-estate-mukteshwar-why-this-40-acre-himalayan-2026-11-10",
-      "title": "Sitla Estate, Mukteshwar: Why this 40-acre Himalayan retreat has just 12 rooms",
-      "region": "world",
-      "regions": [
-        "world"
-      ],
-      "category": "General Studies",
-      "tags": [],
-      "gsPapers": [],
-      "summary": "After leaving Mumbai in 1998, Vikram Maira turned his family’s holiday home and orchard in Uttarakhand’s Kumaon hills into an intimate Himalayan retreat where thoughtful cooking, a close-knit local team and personal attention matter more than expansion",
-      "whyItMatters": "",
-      "image": "https://th-i.thgim.com/public/life-and-style/vwos4w/article71639690.ece/alternates/LANDSCAPE_1200/_DSC0294.jpg",
-      "imageCredit": "The Hindu — National",
-      "readTime": 3,
-      "published": "2026-11-10",
-      "updated": "2026-11-10",
-      "importance": 5,
-      "importanceReason": "Generic coverage with no clear syllabus anchor.",
-      "curated": false,
-      "sources": [
-        {
-          "title": "Sitla Estate, Mukteshwar: Why this 40-acre Himalayan retreat has just 12 rooms",
-          "publisher": "The Hindu — National",
-          "url": "https://www.thehindu.com/life-and-style/travel/sitla-estate-mukteshwar-why-this-40-acre-himalayan-retreat-has-just-12-rooms/article71616381.ece",
-          "type": "reporting",
-          "date": "2026-11-10"
-        }
-      ],
-      "sections": {
-        "event": "After leaving Mumbai in 1998, Vikram Maira turned his family’s holiday home and orchard in Uttarakhand’s Kumaon hills into an intimate Himalayan retreat where thoughtful cooking, a close-knit local team and personal attention matter more than expansion",
-        "background": "",
-        "causes": "",
-        "stakeholders": "",
-        "timeline": [
-          {
-            "date": "2026-11-10",
-            "text": "Reported by The Hindu — National"
           }
         ],
         "data": [],
