@@ -2,8 +2,8 @@ name: Send Daily Push Notification
 
 on:
   schedule:
-    - cron: '30 1 * * *' # Runs at 7:00 AM IST (1:30 AM UTC)
-  workflow_dispatch: # Allows you to click a "Run" button in GitHub manually
+    - cron: '30 1 * * *'
+  workflow_dispatch:
 
 jobs:
   send-push:
@@ -18,10 +18,7 @@ jobs:
       - name: Install dependencies
         run: npm install google-auth-library @supabase/supabase-js
         
-      - name: Recreate service account
-        env:
-          FIREBASE_KEY: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
-        run: node -e "require('fs').writeFileSync('service-account.json', Buffer.from(process.env.FIREBASE_KEY, 'base64').toString('utf8'))"
-        
       - name: Send Push
+        env:
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
         run: node send-push.js "Daily Current Affairs are ready" "Start your UPSC prep for today."

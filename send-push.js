@@ -1,6 +1,6 @@
 const { JWT } = require("google-auth-library");
 const { createClient } = require("@supabase/supabase-js");
-const sa = require("./service-account.json");
+const sa = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT);
 
 // Fix newline formatting for GitHub Actions
 if (sa.private_key) {
