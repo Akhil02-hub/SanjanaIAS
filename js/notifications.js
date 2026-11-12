@@ -118,19 +118,24 @@ async function enableNotifications() {
             throw new Error("Could not generate an FCM token.");
         }
 
-        // Save token to backend so you can send notifications later
-        try {
-            const response = await fetch("/api/save-token", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ token: token, platform: "web" }),
-            });
+        console.log("FCM Token:", token);
 
-            if (!response.ok) {
-                console.warn("Token was generated but not saved on the server.");
+        // Save token to Supabase so you can send notifications later
+        try {
+            const supabaseClient = window.supabaseClient || window.supabase;
+            if (!supabaseClient) {
+                console.warn("Supabase client not found on window.");
+            } else {
+                const { error: saveError } = await supabaseClient
+                    .from("fcm_tokens")
+                    .insert({ token: token, platform: "web" });
+
+                if (saveError && saveError.code !== "23505") {
+                    console.warn("Could not save token to Supabase:", saveError);
+                }
             }
         } catch (saveError) {
-            console.warn("Could not save token on the server:", saveError);
+            console.warn("Could not save token to Supabase:", saveError);
         }
 
         notificationsEnabled = true;
