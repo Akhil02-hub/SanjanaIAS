@@ -19,8 +19,9 @@ jobs:
         run: npm install google-auth-library @supabase/supabase-js
         
       - name: Recreate service account
-        run: echo "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}" | base64 -d > service-account.json
-
+        env:
+          FIREBASE_KEY: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+        run: node -e "require('fs').writeFileSync('service-account.json', Buffer.from(process.env.FIREBASE_KEY, 'base64').toString('utf8'))"
         
       - name: Send Push
         run: node send-push.js "Daily Current Affairs are ready" "Start your UPSC prep for today."
