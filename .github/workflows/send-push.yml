@@ -9,9 +9,9 @@ jobs:
   send-push:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
           node-version: '20'
           
@@ -19,8 +19,9 @@ jobs:
         run: npm install google-auth-library @supabase/supabase-js
         
       - name: Recreate service account
-        # This safely pulls the JSON from GitHub Secrets
-        run: echo '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}' > service-account.json
+        env:
+          FIREBASE_KEY: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+        run: echo "$FIREBASE_KEY" > service-account.json
         
       - name: Send Push
         run: node send-push.js "Daily Current Affairs are ready" "Start your UPSC prep for today."
