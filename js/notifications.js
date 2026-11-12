@@ -165,3 +165,53 @@ if (button) {
 } else {
     console.warn('Button with id="enableNotifications" was not found.');
 }
+
+/* ---------------------------------------------------------
+   7. Auto-Prompt Popup (Shows if notifications are OFF)
+   --------------------------------------------------------- */
+function checkNotificationPrompt() {
+    // 1. If browser doesn't support it, stop.
+    if (!("Notification" in window)) return;
+
+    // 2. If they ALREADY enabled it, NEVER show the popup.
+    if (Notification.permission === "granted") return;
+
+    // 3. If they blocked it in browser settings, we can't ask again.
+    if (Notification.permission === "denied") return;
+
+    // 4. Check if they clicked "X" recently (hide for 7 days).
+    const dismissedAt = localStorage.getItem('sanjana.push_prompt_dismissed');
+    if (dismissedAt && Date.now() - dismissedAt < 7 * 24 * 60 * 60 * 1000) return;
+
+    // 5. Inject the popup UI
+    const promptHTML = `
+        <div id="pushPrompt" style="position: fixed; bottom: 20px; right: 20px; background: var(--surface, #fff); border: 1px solid var(--border, #ddd); padding: 16px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); z-index: 9999; max-width: 320px; display: flex; flex-direction: column; gap: 12px; font-family: inherit;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                <strong style="color: var(--text, #000); font-size: 1rem;">🔔 Stay Updated</strong>
+                <button id="closePushPrompt" style="background: none; border: none; cursor: pointer; font-size: 1.2rem; color: var(--muted, #666); padding: 0; line-height: 1;">&times;</button>
+            </div>
+            <p style="font-size: 0.85rem; color: var(--muted, #666); margin: 0; line-height: 1.4;">Get daily current affairs, quizzes, and UPSC updates directly on your device.</p>
+            <button id="enablePushPrompt" class="btn btn-primary" style="padding: 8px 16px; font-size: 0.9rem; width: 100%; cursor: pointer; border-radius: 8px;">Enable Notifications</button>
+        </div>
+    `;
+    document.body.insertAdjacentHTML('beforeend', promptHTML);
+
+    // 6. Handle "X" button click (hide for 7 days)
+    document.getElementById('closePushPrompt').addEventListener('click', () => {
+        document.getElementById('pushPrompt').remove();
+        localStorage.setItem('sanjana.push_prompt_dismissed', Date.now());
+    });
+
+    // 7. Handle "Enable" button click (triggers your existing function)
+    document.getElementById('enablePushPrompt').addEventListener('click', () => {
+        document.getElementById('pushPrompt').remove();
+        enableNotifications(); // This calls the function you already have
+    });
+}
+
+// Run the check 3 seconds after the page loads (so it doesn't interrupt immediately)
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => setTimeout(checkNotificationPrompt, 3000));
+} else {
+    setTimeout(checkNotificationPrompt, 3000);
+}
