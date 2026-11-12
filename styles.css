@@ -1443,6 +1443,18 @@ p {
     break-inside: avoid;
 }
 
+/* Reading Progress Bar */
+#readingProgress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 4px;
+    background: var(--accent);
+    width: 0%;
+    z-index: 9999;
+    transition: width 0.1s ease;
+}
+
 /* ============================================================
    7. Chat Tutor (ChatGPT Style)
    ============================================================ */

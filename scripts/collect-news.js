@@ -75,7 +75,7 @@ function summarise(text, max) {
 
 function buildTopic(group, source) {
     const lead = group.lead;
-    const cls = CLASSIFY.classify(lead);
+    const cls = CLASSIFY.classify(lead, source.region);
     const rel = RELEVANCE.score({ title: lead.title, summary: lead.description, tags: cls.tags, gsPapers: cls.gsPapers });
     if (rel.excluded) return null;
 
@@ -97,11 +97,11 @@ function buildTopic(group, source) {
         gsPapers: cls.gsPapers,
         summary: summarise(lead.description || lead.title, 280),
         whyItMatters: '',
-        image: lead.image || ILLUSTRATIONS[cls.region] || ILLUSTRATIONS.default,
+        image: lead.image || (ILLUSTRATIONS[cls.region] || ILLUSTRATIONS.default)[0],
         imageCredit: lead.image ? source.name : 'SanjanaIAS category illustration',
         readTime: Math.max(2, Math.round((lead.description || '').split(/\s+/).length / 200) + 3),
-        published: (lead.published || new Date().toISOString()).slice(0, 10),
-        updated: new Date().toISOString().slice(0, 10),
+        published: lead.published || new Date().toISOString(),
+        updated: new Date().toISOString(),
         importance: rel.score,
         importanceReason: rel.reasons.slice(0, 3).join(' '),
         curated: false,
@@ -111,10 +111,10 @@ function buildTopic(group, source) {
             background: '',
             causes: '',
             stakeholders: '',
-            timeline: lead.published ? [{ date: lead.published.slice(0, 10), text: 'Reported by ' + source.name }] : [],
+            timeline: lead.published ? [{ date: lead.published, text: 'Reported by ' + source.name }] : [],
             data: [],
             geography: '',
-            india: cls.regions.indexOf('india') > -1 ? 'Flagged as India-relevant by the classifier.' : '',
+            india: (cls.regions.indexOf('india') > -1 || cls.region === 'telangana') ? 'Flagged as India-relevant by the classifier.' : '',
             telangana: cls.region === 'telangana' ? 'Telangana-specific item.' : '',
             challenges: '',
             solutions: '',
@@ -134,8 +134,12 @@ async function main() {
 
     const curated = (existing.topics || []).filter(t => t.curated);
     const auto = (existing.topics || []).filter(t => !t.curated);
-    const cutoff = Date.now() - 60 * 86400000;
-    const fresh = auto.filter(t => new Date(t.published || 0).getTime() > cutoff);
+    const cutoff = Date.now() - 7 * 86400000;
+    const fresh = auto.filter(t => {
+        const p = new Date(t.published || 0).getTime();
+        const u = new Date(t.updated || 0).getTime();
+        return p > cutoff || u > cutoff;
+    });
 
     const health = { checked: now, sources: [], succeeded: 0, failed: 0, newTopics: 0 };
     const collected = [];
@@ -147,9 +151,18 @@ async function main() {
         }
         try {
             const xml = await fetchText(source.feed);
-            const items = RSS.parse(xml).slice(0, 25);
+            const parsedItems = RSS.parse(xml);
+
+            // Strict 7 days rolling window
+            const cutoffTime = Date.now() - 7 * 24 * 60 * 60 * 1000; // Fetch last 7 days
+            const items = parsedItems.filter(function (item) {
+                if (!item.published) return false; // Drop items with no date to prevent ghosts
+                return new Date(item.published).getTime() >= cutoffTime;
+            }).slice(0, 50); // 50 is just a safety limit for performance, not a hard cutoff
+
             if (!items.length) {
                 health.sources.push({ id: source.id, name: source.name, status: 'no-new-articles', checked: now });
+                health.succeeded++;
                 continue;
             }
             const groups = DEDUPE.group(items, 0.55);
@@ -171,6 +184,7 @@ async function main() {
         } catch (err) {
             console.error(`Failed ${source.name}:`, err.cause || err);
             health.sources.push({ id: source.id, name: source.name, status: 'failed', error: String(err.message || err), checked: now });
+            health.failed++;
         }
     }
 

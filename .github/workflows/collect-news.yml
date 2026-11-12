@@ -62,13 +62,10 @@ jobs:
 
       - name: Commit changes
         run: |
-          git config user.name  "akhil02-hub"
+          git config user.name "akhil02-hub"
           git config user.email "amarachinthaakhil@gmail.com"
-          git add data/news.json sitemap-articles.xml
-          if git diff --staged --quiet; then
-            echo "No changes to commit."
-          else
-            git commit -m "chore(data): update news collection"
-            git pull --rebase origin main
-            git push
-          fi
+          date > last_run.txt
+          git add last_run.txt data/news.json sitemap-articles.xml
+          git commit -m "Daily update and keep-alive"
+          git pull --rebase
+          git push

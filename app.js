@@ -148,11 +148,21 @@
         return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(s);
     }
     var ILLUSTRATIONS = {
-        world: svgData('WORLD', '#1e3a8a'),
-        india: svgData('INDIA', '#065f46'),
-        telangana: svgData('TELANGANA', '#7c2d12'),
-        default: svgData('SANJANAIAS', '#0e1a33')
+        world: [svgData('WORLD', '#1e3a8a'), svgData('WORLD', '#1e40af'), svgData('WORLD', '#0f172a')],
+        india: [svgData('INDIA', '#065f46'), svgData('INDIA', '#047857'), svgData('INDIA', '#064e3b')],
+        telangana: [svgData('TELANGANA', '#7c2d12'), svgData('TELANGANA', '#9a3412'), svgData('TELANGANA', '#451a03')],
+        default: [svgData('SANJANAIAS', '#0e1a33'), svgData('SANJANAIAS', '#1e293b')]
     };
+
+    function getFallbackImage(region, id) {
+        var arr = ILLUSTRATIONS[region] || ILLUSTRATIONS.default;
+        var hash = 0;
+        if (id) {
+            for (var i = 0; i < id.length; i++) hash = id.charCodeAt(i) + ((hash << 5) - hash);
+        }
+        var img = arr[Math.abs(hash) % arr.length];
+        return typeof img === 'string' ? img : img[0];
+    }
 
     /* ============================================================
        2. Seed data
@@ -429,8 +439,7 @@
         ]
     };
 
-    SEED_QUESTIONS.prelims = [];
-    SEED_QUESTIONS.mains = [];
+    // Seed questions are kept intact
 
     function generateDynamicQuestions(t) {
         var pub = t.gsPapers && t.gsPapers.length ? t.gsPapers[0] : 'GS II';
@@ -442,7 +451,12 @@
         var safeTitle = esc(t.title);
         var safeCat = esc(cat);
         var safeReg = esc(reg);
-        var rand = Math.floor(Math.random() * 4);
+        var rand = 0;
+        if (t.id) {
+            var hash = 0;
+            for (var i = 0; i < t.id.length; i++) hash = t.id.charCodeAt(i) + ((hash << 5) - hash);
+            rand = Math.abs(hash) % 4;
+        }
         var opt1 = (rand === 0 || rand === 2) ? 'It is categorised under ' + safeCat + '.' : 'It is NOT categorised under ' + safeCat + '.';
         var opt2 = (rand === 1 || rand === 2) ? 'It is associated with ' + safeReg + '.' : 'It is NOT associated with ' + safeReg + '.';
         var explanations = [
@@ -485,11 +499,17 @@
     }
     function stripHtml(s) {
         if (!s) return '';
-        return String(s)
+        var txt = String(s)
             .replace(/&lt;/g, '<').replace(/&gt;/g, '>')
-            .replace(/<[^>]+>/g, '')
+            .replace(/<[^>]+>/g, ' ')
+            .replace(/&nbsp;/g, ' ')
             .replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&#39;/g, "'")
             .trim();
+
+        // Decode numeric HTML entities like &#8377; (Rupee symbol)
+        return txt.replace(/&#(\d+);/g, function (match, dec) {
+            return String.fromCharCode(dec);
+        });
     }
     // Fix Timezone: Get local YYYY-MM-DD
     function getTodayLocal() {
@@ -498,11 +518,25 @@
     function getWeekAgoLocal() {
         return new Date(Date.now() - 7 * 86400000).toLocaleDateString('en-CA');
     }
+    function getLocalDateStr(iso) {
+        if (!iso) return '';
+        if (typeof iso === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(iso)) return iso;
+        var d = new Date(iso);
+        if (isNaN(d)) return '';
+        return d.toLocaleDateString('en-CA');
+    }
     function fmtDate(iso) {
         if (!iso) return '—';
         var d = new Date(iso);
         if (isNaN(d)) return '—';
         return d.toLocaleDateString(undefined, { day: '2-digit', month: 'short', year: 'numeric' });
+    }
+    function fmtDateTime(iso) {
+        if (!iso) return '—';
+        var d = new Date(iso);
+        if (isNaN(d)) return '—';
+        return d.toLocaleDateString(undefined, { day: '2-digit', month: 'short', year: 'numeric' }) + ', ' +
+            d.toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' });
     }
     function fmtRelative(iso) {
         var d = new Date(iso); if (isNaN(d)) return '';
@@ -539,7 +573,8 @@
         el._t = setTimeout(function () { el.classList.remove('show'); }, 2200);
     }
     function topicImage(t) {
-        return t.image || ILLUSTRATIONS[t.region] || ILLUSTRATIONS.default;
+        if (t.image) return t.image;
+        return getFallbackImage(t.region, t.id);
     }
 
     /* ============================================================
@@ -840,7 +875,7 @@
         ];
         var TELANGANA = ['telangana', 'hyderabad', 'warangal', 'karimnagar', 'nizamabad', 'khammam', 'nalgonda',
             'medak', 'adilabad', 'mahbubnagar', 'rangareddy', 'siddipet', 'kaleshwaram', 'godavari', 'musi',
-            'charminar', 'secunderabad', 'telugu', 'golconda', 'nagarjuna sagar', 'srisailam'];
+            'charminar', 'secunderabad', 'telugu', 'golconda', 'nagarjuna sagar', 'srisailam', 'revanth reddy', 'brs', 'trs'];
         var INDIA = ['india', 'indian', 'parliament', 'lok sabha', 'rajya sabha', 'supreme court of india',
             'rbi', 'pib', 'isro', 'upsc', 'delhi', 'mumbai', 'kolkata', 'chennai', 'bengaluru', 'union government',
             'niti aayog', 'election commission of india'];
@@ -850,13 +885,14 @@
         }
         return {
             RULES: RULES,
-            classify: function (input) {
+            classify: function (input, defaultRegion) {
                 var text = [input.title, input.description, input.summary].filter(Boolean).join(' ');
                 var tel = hits(text, TELANGANA);
                 var ind = hits(text, INDIA);
                 var region = 'world';
                 if (tel.length >= 2 && tel.length >= ind.length) region = 'telangana';
                 else if (ind.length >= 2) region = 'india';
+                else if (defaultRegion) region = defaultRegion;
                 var regions = [region];
                 if (region !== 'world' && hits(text, ['united nations', 'unsc', 'g20', 'wto', 'imf', 'world bank', 'bilateral', 'treaty']).length) {
                     regions.push('world');
@@ -866,7 +902,7 @@
                 var category = 'General Studies';
                 RULES.forEach(function (rule) {
                     var found = hits(text, rule.words);
-                    if (found.length) {
+                    if (found.length >= 2 || (found.length === 1 && rule.words[0] === found[0])) {
                         papers[rule.paper] = true;
                         matched.push({ category: rule.category, keywords: found });
                         if (category === 'General Studies') category = rule.category;
@@ -1045,15 +1081,15 @@
         var bm = SI_STORE.isBookmarked(t.id);
         return '<article class="topic-card">' +
             '<a class="card-media" href="' + href + '">' +
-            '<img src="' + esc(topicImage(t)) + '" alt="" loading="lazy" onerror="this.onerror=null; this.src=\'' + (ILLUSTRATIONS[t.region] || ILLUSTRATIONS.default) + '\'">' +
+            '<img src="' + esc(topicImage(t)) + '" alt="" loading="lazy" onerror="this.onerror=null; this.src=\'' + getFallbackImage(t.region, t.id) + '\'">' +
             '<span class="region-badge ' + esc(t.region) + '">' + esc(regionLabel(t.region)) + '</span>' +
             '</a>' +
             '<div class="card-body">' +
             '<div class="chips">' + chips(t) + '</div>' +
             '<h3 class="card-title"><a href="' + href + '">' + esc(t.title) + '</a></h3>' +
-            '<p class="card-summary">' + esc(truncate(t.summary, 160)) + '</p>' +
+            '<p class="card-summary">' + esc(truncate(stripHtml(t.summary), 160)) + '</p>' +
             '<div class="card-foot">' +
-            '<span>' + fmtDate(t.published) + '</span><span>·</span>' +
+            '<span>' + fmtDateTime(t.published) + '</span><span>·</span>' +
             '<span>' + (t.readTime || 5) + ' min read</span>' +
             '<span class="dot"></span>' +
             '<span>' + (t.sources || []).length + ' source' + ((t.sources || []).length === 1 ? '' : 's') + '</span>' +
@@ -1069,9 +1105,26 @@
             '<div class="lr-body">' +
             '<div class="chips">' + chips(t) + '</div>' +
             '<h3><a href="' + href + '">' + esc(t.title) + '</a></h3>' +
-            '<p>' + esc(truncate(t.summary, 140)) + '</p>' +
+            '<p>' + esc(truncate(stripHtml(t.summary), 140)) + '</p>' +
             '</div>' +
-            '<span class="lr-meta">' + fmtRelative(t.published) + '</span>' +
+            '<span class="lr-meta">' + fmtDateTime(t.published) + '</span>' +
+            '</div>';
+    }
+
+    function emptyStateHTML(context) {
+        var txt = context ? ' for ' + context : '';
+        return '<div class="panel" style="text-align: center; padding: 48px 24px; border-radius: 16px; border: 1px dashed var(--border); background: var(--surface); max-width: 600px; margin: 20px auto;">' +
+            '<div style="margin-bottom: 24px; color: var(--accent); display: inline-flex; align-items: center; justify-content: center; width: 80px; height: 80px; border-radius: 50%; background: var(--accent-soft);">' +
+            '<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">' +
+            '<path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/>' +
+            '<path d="M18 14h-8M15 18h-5M10 6h8v4h-8V6Z"/>' +
+            '</svg>' +
+            '</div>' +
+            '<h2 style="margin-bottom: 12px; font-size: 1.5rem;">Sorry, no news today' + txt + '</h2>' +
+            '<p class="lede" style="margin-bottom: 28px; color: var(--muted); font-size: 1rem; max-width: 400px; margin-left: auto; margin-right: auto;">Our system has not collected any fresh updates for today yet. Take a look at this week\'s curated news.</p>' +
+            '<div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">' +
+            '<a class="btn btn-primary" href="/weekly" style="padding: 12px 24px; font-size: 1rem;">Explore Weekly News</a>' +
+            '</div>' +
             '</div>';
     }
 
@@ -1079,11 +1132,17 @@
        8. Article renderer
        ============================================================ */
     var ARTICLE_SECTIONS = [
-        ['event', 'The event'], ['background', 'Background'], ['causes', 'Causes'],
-        ['stakeholders', 'Important stakeholders'], ['timeline', 'Timeline'], ['data', 'Important data'],
-        ['geography', 'Geography'], ['india', "India's perspective"], ['telangana', 'Telangana connection'],
-        ['challenges', 'Challenges'], ['solutions', 'Possible solutions'], ['upsc', 'UPSC connection'],
-        ['prelimsNotes', 'Prelims notes'], ['mainsNotes', 'Mains notes']
+        ['event', 'What happened?'],
+        ['data', 'Important facts and figures'],
+        ['background', 'Background and conceptual explanation'],
+        ['mechanism', 'How does it work?'],
+        ['india', "India's perspective"],
+        ['telangana', 'Telangana connection'],
+        ['challenges', 'Significance, challenges and way forward'],
+        ['upsc', 'UPSC syllabus connection'],
+        ['prelimsNotes', 'Prelims takeaways'],
+        ['mainsNotes', 'Mains analysis'],
+        ['timeline', 'Timeline']
     ];
     var SI_ARTICLE = {
         render: function (root, id) {
@@ -1107,7 +1166,7 @@
                 if (typeof val === 'string' && (val.indexOf('has not been written yet') > -1 || val.indexOf('Auto-classified under') > -1)) return '';
                 var body = '';
                 if (key === 'timeline' && Array.isArray(val)) {
-                    body = '<ul class="timeline">' + val.map(function (e) { return '<li><time>' + esc(e.date) + '</time>' + esc(e.text) + '</li>'; }).join('') + '</ul>';
+                    body = '<ul class="timeline">' + val.map(function (e) { return '<li><time>' + fmtDateTime(e.date) + '</time>' + esc(e.text) + '</li>'; }).join('') + '</ul>';
                 } else if (key === 'data' && Array.isArray(val)) {
                     body = '<dl class="kv">' + val.map(function (d) { return '<dt>' + esc(d.label) + '</dt><dd>' + esc(d.value) + '</dd>'; }).join('') + '</dl>';
                 } else if (Array.isArray(val)) {
@@ -1140,32 +1199,34 @@
                 var out = '<section class="art-sec" id="sec-references"><h2>References</h2>';
                 if (list.length) {
                     out += '<ul class="src-list">' + list.map(function (sr) {
-                        return '<li><span class="src-type">' + esc(sr.type || 'source') + '</span>' +
-                            '<a href="' + esc(sr.url) + '" target="_blank" rel="noopener noreferrer">' + esc(sr.title) + '</a>' +
-                            ' <span class="fine">— ' + esc(sr.publisher) + (sr.date ? ', ' + fmtDate(sr.date) : '') + '</span></li>';
+                        var typeLabel = sr.type === 'primary' ? 'Official/Primary' : 'Reporting/Secondary';
+                        return '<li style="margin-bottom: 12px;"><span class="src-type" style="background: var(--accent-soft); color: var(--accent);">' + esc(typeLabel) + '</span>' +
+                            '<a href="' + esc(sr.url) + '" target="_blank" rel="noopener noreferrer" style="font-weight: 600; display: block; margin: 4px 0;">' + esc(sr.title) + '</a>' +
+                            '<span class="fine">Publisher: ' + esc(sr.publisher) + (sr.date ? ' | Published: ' + fmtDateTime(sr.date) : '') + '</span></li>';
                     }).join('') + '</ul>';
                 } else {
                     out += '<p class="fine">No sources recorded.</p>';
                 }
-                out += '<p class="fine">Two outlets repeating the same agency report are not treated as two independent confirmations.</p></section>';
+                out += '<p class="fine" style="margin-top: 16px; border-top: 1px dashed var(--border); padding-top: 12px;">* Note: Two outlets repeating the same agency report are not treated as independent confirmations.</p></section>';
                 return out;
             }
 
             root.innerHTML =
+                '<div id="readingProgress"></div>' +
                 '<article>' +
                 '<header class="article-head">' +
                 '<div class="chips"><span class="chip">' + esc(regionLabel(t.region)) + '</span>' + chips(t) + '</div>' +
                 '<h1>' + esc(t.title) + '</h1>' +
-                '<p class="lede">' + esc(t.summary) + '</p>' +
+                '<p class="lede">' + esc(stripHtml(t.summary)) + '</p>' +
                 '<div class="article-meta">' +
-                '<span>Published ' + fmtDate(t.published) + '</span><span>·</span>' +
-                '<span>Last updated ' + fmtDate(t.updated || t.published) + '</span><span>·</span>' +
+                '<span>Published ' + fmtDateTime(t.published) + '</span><span>·</span>' +
+                '<span>Last updated ' + fmtDateTime(t.updated || t.published) + '</span><span>·</span>' +
                 '<span>' + (t.readTime || 5) + ' min read</span><span>·</span>' +
                 '<span>' + (t.sources || []).length + ' references</span>' +
                 (t.importance ? '<span>·</span><span>Relevance score ' + t.importance + '/100</span>' : '') +
                 '</div>' +
                 (t.curated ? '' : '<div class="banner">Auto-collected item. The summary is derived from the publisher description and has not been editorially verified.</div>') +
-                '<img class="article-hero" src="' + esc(topicImage(t)) + '" alt="" onerror="this.onerror=null; this.src=\'' + (ILLUSTRATIONS[t.region] || ILLUSTRATIONS.default) + '\'">' +
+                '<img class="article-hero" src="' + esc(topicImage(t)) + '" alt="" onerror="this.onerror=null; this.src=\'' + getFallbackImage(t.region, t.id) + '\'">' +
                 '<p class="img-credit">' + esc(t.imageCredit || 'SanjanaIAS category illustration') + '</p>' +
                 '<div class="article-actions">' +
                 '<button class="btn ' + (bm ? 'btn-primary' : '') + '" id="bmBtn" type="button">' + (bm ? '★ Saved' : '☆ Save to library') + '</button>' +
@@ -1206,11 +1267,23 @@
                 toast(on ? 'Saved to My Library.' : 'Removed from My Library.');
             });
             var box = document.getElementById('noteBox');
-            box.addEventListener('change', function () {
+            box.addEventListener('blur', function () {
                 SI_STORE.saveNote(t.id, box.value);
                 toast(SI_AUTH.user ? 'Note saved.' : 'Note saved locally (log in to sync).');
             });
             document.title = t.title + ' · SanjanaIAS';
+
+            var progressBar = document.getElementById('readingProgress');
+            if (progressBar) {
+                if (window._scrollHandler) window.removeEventListener('scroll', window._scrollHandler);
+                window._scrollHandler = function () {
+                    var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+                    var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                    var scrolled = (winScroll / height) * 100;
+                    progressBar.style.width = scrolled + "%";
+                };
+                window.addEventListener('scroll', window._scrollHandler);
+            }
         }
     };
 
@@ -1587,7 +1660,7 @@
     ];
 
     function matchIntent(q) {
-        var s = ' ' + q.toLowerCase() + ' ';
+        var s = q.toLowerCase();
         for (var i = 0; i < INTENTS.length; i++) {
             for (var j = 0; j < INTENTS[i].patterns.length; j++) {
                 if (INTENTS[i].patterns[j].test(s)) return INTENTS[i];
@@ -1763,7 +1836,6 @@
             '<div class="time-toggle" id="timeToggle" style="margin-bottom: 20px; display: flex; gap: 8px;">' +
             '<button class="btn btn-primary" data-time="daily" type="button">Today</button>' +
             '<button class="btn" data-time="weekly" type="button">This Week</button>' +
-            '<button class="btn" data-time="all" type="button">All Time</button>' +
             '</div>' +
             '<div class="filter-bar">' +
             '<input type="search" id="localSearch" placeholder="Filter ' + regionLabel(region) + ' topics…" aria-label="Filter">' +
@@ -1790,14 +1862,12 @@
 
         function draw() {
             var list = topics.slice();
-            var latestDate = topics.reduce(function (max, t) { var d = (t.published || '').slice(0, 10); return d > max ? d : max; }, '');
-            var targetDate = topics.some(function (t) { return (t.published || '').slice(0, 10) === todayStr; }) ? todayStr : latestDate;
 
             if (activeTime === 'daily') {
-                list = list.filter(function (t) { return (t.published || '').slice(0, 10) === targetDate || t.curated; });
+                list = list.filter(function (t) { return getLocalDateStr(t.published) === todayStr || getLocalDateStr(t.updated) === todayStr || t.curated; });
             } else if (activeTime === 'weekly') {
                 var weekAgo = getWeekAgoLocal();
-                list = list.filter(function (t) { return (t.published || '').slice(0, 10) >= weekAgo || t.curated; });
+                list = list.filter(function (t) { return getLocalDateStr(t.published) >= weekAgo || getLocalDateStr(t.updated) >= weekAgo || t.curated; });
             }
             if (paper.value) list = list.filter(function (t) { return (t.gsPapers || []).indexOf(paper.value) > -1; });
             var q = search.value.trim().toLowerCase();
@@ -1805,7 +1875,7 @@
                 return (t.title + ' ' + t.summary + ' ' + (t.tags || []).join(' ')).toLowerCase().indexOf(q) > -1;
             });
             list = sort.value === 'importance' ? byImportance(list) : byDate(list);
-            grid.innerHTML = list.map(card).join('') || '<p class="fine">No news found for this timeframe.</p>';
+            grid.innerHTML = list.map(card).join('') || emptyStateHTML(regionLabel(region).toLowerCase());
             count.textContent = list.length + ' topic' + (list.length === 1 ? '' : 's') + ' in ' + regionLabel(region);
         }
         [search, paper, sort].forEach(function (el) { el.addEventListener('input', draw); });
@@ -1820,15 +1890,13 @@
 
             function renderDash() {
                 var allT = allTopics();
-                var latestDate = allT.length ? (allT[0].published || '').slice(0, 10) : todayStr;
-                var targetDate = allT.some(function (t) { return (t.published || '').slice(0, 10) === todayStr; }) ? todayStr : latestDate;
 
                 var topics = allT.filter(function (t) {
-                    if (activeTime === 'daily') return (t.published || '').slice(0, 10) === targetDate || t.curated;
-                    if (activeTime === 'weekly') return (t.published || '').slice(0, 10) >= weekAgo || t.curated;
+                    if (activeTime === 'daily') return getLocalDateStr(t.published) === todayStr || getLocalDateStr(t.updated) === todayStr || t.curated;
+                    if (activeTime === 'weekly') return getLocalDateStr(t.published) >= weekAgo || getLocalDateStr(t.updated) >= weekAgo || t.curated;
                     return true; // all
                 });
-                var byRegion = function (r) { return topics.filter(function (t) { return t.region === r; }).length; };
+                var byRegion = function (r) { return topics.filter(function (t) { return t.region === r || (Array.isArray(t.regions) && t.regions.indexOf(r) > -1); }).length; };
                 var ranked = byImportance(topics);
                 var tod = ranked[0];
 
@@ -1848,13 +1916,13 @@
                     '</div>' +
                     '</section>' +
                     '<section class="panel"><div class="panel-head"><h2>Most important topics</h2><a class="link" href="/briefing">Full briefing →</a></div>' +
-                    '<div class="topic-list">' + (ranked.length ? ranked.slice(0, 5).map(function (t, i) { return listRow(t, i); }).join('') : '<p class="fine">No news collected for this timeframe.</p>') + '</div></section>' +
+                    '<div class="topic-list">' + (ranked.length ? ranked.slice(0, 5).map(function (t, i) { return listRow(t, i); }).join('') : emptyStateHTML('collected')) + '</div></section>' +
                     '<section class="split">' +
                     '<div class="panel"><div class="panel-head"><h2>Topic of the day</h2></div>' +
                     (tod ? '<a class="tod" href="/article/' + encodeURIComponent(tod.id) + '">' +
-                        '<img src="' + esc(topicImage(tod)) + '" alt="" onerror="this.onerror=null; this.src=\'' + (ILLUSTRATIONS[tod.region] || ILLUSTRATIONS.default) + '\'">' +
+                        '<img src="' + esc(topicImage(tod)) + '" alt="" onerror="this.onerror=null; this.src=\'' + getFallbackImage(tod.region, tod.id) + '\'">' +
                         '<div><div class="chips">' + chips(tod) + '</div>' +
-                        '<h3>' + esc(tod.title) + '</h3><p>' + esc(tod.whyItMatters || tod.summary) + '</p>' +
+                        '<h3>' + esc(tod.title) + '</h3><p>' + esc(stripHtml(tod.whyItMatters || tod.summary)) + '</p>' +
                         '<span class="link">Open complete research →</span></div></a>' : '<p class="fine">No topics yet.</p>') +
                     '</div>' +
                     '<div class="panel"><div class="panel-head"><h2>Preparation plan</h2></div>' +
@@ -1875,7 +1943,7 @@
                     '</div>' +
                     '</section>' +
                     '<section class="panel"><div class="panel-head"><h2>Latest across SanjanaIAS</h2><a class="link" href="/world">All research →</a></div>' +
-                    '<div class="card-grid">' + byDate(topics).slice(0, 6).map(card).join('') + '</div></section>' +
+                    '<div class="card-grid">' + (topics.length ? byDate(topics).slice(0, 6).map(card).join('') : emptyStateHTML('available')) + '</div></section>' +
                     '<p class="disclaimer">SanjanaIAS is an independent educational platform. It is not affiliated with UPSC or the Government of India.</p>';
 
                 var el = $('#todayLabel');
@@ -1894,7 +1962,7 @@
 
         weekly: function (main) {
             var weekAgo = getWeekAgoLocal();
-            var topics = allTopics().filter(function (t) { return (t.published || '').slice(0, 10) >= weekAgo || t.curated; });
+            var topics = allTopics().filter(function (t) { return getLocalDateStr(t.published) >= weekAgo || getLocalDateStr(t.updated) >= weekAgo || t.curated; });
             var byRegion = function (r) { return topics.filter(function (t) { return t.region === r; }).length; };
             var ranked = byImportance(topics);
             var tod = ranked[0];
@@ -1915,7 +1983,7 @@
                 '<section class="split">' +
                 '<div class="panel"><div class="panel-head"><h2>Topic of the week</h2></div>' +
                 (tod ? '<a class="tod" href="/article/' + encodeURIComponent(tod.id) + '">' +
-                    '<img src="' + esc(topicImage(tod)) + '" alt="" onerror="this.onerror=null; this.src=\'' + (ILLUSTRATIONS[tod.region] || ILLUSTRATIONS.default) + '\'">' +
+                    '<img src="' + esc(topicImage(tod)) + '" alt="" onerror="this.onerror=null; this.src=\'' + getFallbackImage(tod.region, tod.id) + '\'">' +
                     '<div><div class="chips">' + chips(tod) + '</div>' +
                     '<h3>' + esc(tod.title) + '</h3><p>' + esc(tod.whyItMatters || tod.summary) + '</p>' +
                     '<span class="link">Open complete research →</span></div></a>' : '<p class="fine">No topics yet.</p>') +
@@ -1969,14 +2037,12 @@
                 var weekAgo = getWeekAgoLocal();
 
                 var allT = allTopics();
-                var latestDate = allT.length ? (allT[0].published || '').slice(0, 10) : todayStr;
-                var targetDate = allT.some(function (t) { return (t.published || '').slice(0, 10) === todayStr; }) ? todayStr : latestDate;
 
                 subjects.forEach(function (subj) {
                     var matchedTopics = allT.filter(function (t) {
                         // Apply Time Filter first
-                        if (activeTime === 'daily' && (t.published || '').slice(0, 10) !== targetDate && !t.curated) return false;
-                        if (activeTime === 'weekly' && (t.published || '').slice(0, 10) < weekAgo && !t.curated) return false;
+                        if (activeTime === 'daily' && getLocalDateStr(t.published) !== todayStr && getLocalDateStr(t.updated) !== todayStr && !t.curated) return false;
+                        if (activeTime === 'weekly' && getLocalDateStr(t.published) < weekAgo && getLocalDateStr(t.updated) < weekAgo && !t.curated) return false;
 
                         // Apply Subject Filter
                         var text = (t.category + ' ' + (t.tags || []).join(' ')).toLowerCase();
@@ -1987,7 +2053,7 @@
                     if (matchedTopics.length) {
                         html += '<div class="card-grid">' + matchedTopics.slice(0, 6).map(card).join('') + '</div>';
                     } else {
-                        html += '<p class="fine">No topics found for this subject in the selected timeframe.</p>';
+                        html += '<p class="fine" style="text-align: center; padding: 24px; background: var(--surface-2); border-radius: 12px; border: 1px dashed var(--border);">No topics found for this subject today.<br><br><a href="/weekly" class="btn btn-primary btn-sm">Explore Weekly News</a></p>';
                     }
                     html += '</section>';
                 });
@@ -2011,15 +2077,30 @@
         telangana: function (main) { sectionPage('telangana', main); },
 
         briefing: function (main) {
-            var topics = allTopics();
+            var todayStr = getTodayLocal();
+            var allT = allTopics();
+
+            // STRICTLY FILTER FOR TODAY'S NEWS
+            var topics = allT.filter(function (t) {
+                return getLocalDateStr(t.published) === todayStr || getLocalDateStr(t.updated) === todayStr || t.curated;
+            });
+
+            var headerHTML = '<header class="page-head"><p class="eyebrow">Consolidated daily report</p><h1>Daily Briefing</h1>' +
+                '<p class="lede">' + new Date().toLocaleDateString(undefined, { weekday: 'long', day: '2-digit', month: 'long', year: 'numeric' }) + '</p></header>';
+
+            // IF NO NEWS TODAY, SHOW EMPTY STATE AND STOP
+            if (!topics.length) {
+                main.innerHTML = headerHTML + emptyStateHTML('available for the briefing');
+                return;
+            }
+
             var ranked = byImportance(topics);
             var tod = ranked[0];
             var facts = [];
             topics.forEach(function (t) { (t.sections && t.sections.data || []).forEach(function (d) { facts.push({ data: d, topic: t }); }); });
 
             main.innerHTML =
-                '<header class="page-head"><p class="eyebrow">Consolidated daily report</p><h1>Daily Briefing</h1>' +
-                '<p class="lede">' + new Date().toLocaleDateString(undefined, { weekday: 'long', day: '2-digit', month: 'long', year: 'numeric' }) + '</p></header>' +
+                headerHTML +
                 '<section class="panel"><div class="panel-head"><h2>Part A — Today\'s most important topics</h2></div>' +
                 '<div class="topic-list">' + (ranked.slice(0, 6).map(function (t, i) { return listRow(t, i); }).join('') || '<p class="fine">No topics collected yet.</p>') + '</div></section>' +
                 '<section class="panel"><div class="panel-head"><h2>Part B — Geographic summaries</h2></div>' +
@@ -2125,7 +2206,7 @@
                 e.preventDefault();
                 var q = input.value.trim(); if (!q) return;
 
-                // Limit guests to 1 question
+                // Limit guests to 3 questions
                 if (!SI_AUTH.user && _getGuestCount('tutor') >= 3) {
                     _requireLogin('ask more questions');
                     return;
@@ -2228,9 +2309,7 @@
                 var specificDate = dateSelect.value;
                 var allT = allTopics();
 
-                // Find the latest date available in the database
-                var latestDate = allT.reduce(function (max, t) { var d = (t.published || '').slice(0, 10); return d > max ? d : max; }, '');
-                var targetDate = allT.some(function (t) { return (t.published || '').slice(0, 10) === getTodayLocal(); }) ? getTodayLocal() : latestDate;
+                var targetDate = getTodayLocal();
 
                 if (scope === 'library') {
                     var missedIds = Object.keys(SI_STORE.missed());
@@ -2240,9 +2319,10 @@
                     });
                 } else {
                     var validTopicIds = allT.filter(function (t) {
-                        var pub = (t.published || '').slice(0, 10);
-                        if (scope === 'today') return pub === targetDate || t.curated; // Uses latest date if today is empty
-                        if (scope === 'week') return pub >= getWeekAgoLocal() || t.curated;
+                        var pub = getLocalDateStr(t.published);
+                        var upd = getLocalDateStr(t.updated);
+                        if (scope === 'today') return pub === targetDate || upd === targetDate || t.curated;
+                        if (scope === 'week') return pub >= getWeekAgoLocal() || upd >= getWeekAgoLocal() || t.curated;
                         if (scope === 'custom') {
                             if (!specificDate) return false;
                             return pub === specificDate;
@@ -2252,18 +2332,10 @@
 
                     fetchedQuestions = bank.filter(function (q) { return validTopicIds.indexOf(q.topicId) > -1; });
 
-                    // Fallback: If 0 questions match the date, show all available questions so it's never empty
-                    if (fetchedQuestions.length === 0 && bank.length > 0) {
-                        fetchedQuestions = bank;
-                        $('#fetchMsg', main).textContent = 'No questions matched this filter. Showing all ' + fetchedQuestions.length + ' questions.';
-                        fetchResults.style.display = 'block';
-                        stage.style.display = 'none';
-                        result.innerHTML = '';
-                        return;
-                    }
+                    // Fallback removed: strictly enforce the selected timeframe
                 }
 
-                $('#fetchMsg', main).textContent = fetchedQuestions.length ? 'Found ' + fetchedQuestions.length + ' questions.' : 'No questions found in your library.';
+                $('#fetchMsg', main).innerHTML = fetchedQuestions.length ? 'Found ' + fetchedQuestions.length + ' questions.' : 'Sorry, no questions for today.<br><br><a href="/weekly" class="btn btn-primary" style="padding: 10px 20px;">Take a look at Weekly News</a>';
 
                 // Populate the topic filter dropdown
                 var topicFilter = $('#quizTopicFilter', main);
@@ -2415,6 +2487,7 @@
             var list = $('#mainsList', main);
             var work = $('#mainsWork', main);
             var saved = SI_STORE.mains();
+            if (params && params.draft) { setTimeout(function () { renderQ(params.draft); }, 100); }
             var activePaper = '';
             var activeTime = 'today';
             var mainsDateSelect = $('#mainsDate', main);
@@ -2435,10 +2508,11 @@
                     }
 
                     var t = getTopic(q.topicId);
-                    var pub = (t && t.published) ? t.published.slice(0, 10) : '';
+                    var pub = getLocalDateStr(t && t.published);
+                    var upd = getLocalDateStr(t && t.updated);
 
-                    if (activeTime === 'today') return pub === getTodayLocal() || (t && t.curated);
-                    if (activeTime === 'week') return pub >= getWeekAgoLocal() || (t && t.curated);
+                    if (activeTime === 'today') return pub === getTodayLocal() || upd === getTodayLocal() || (t && t.curated);
+                    if (activeTime === 'week') return pub >= getWeekAgoLocal() || upd >= getWeekAgoLocal() || (t && t.curated);
                     if (activeTime === 'custom') {
                         if (!specificDate) return false;
                         return pub === specificDate;
@@ -2446,10 +2520,7 @@
                     return false;
                 });
 
-                // Fallback: If 0 questions match the date, show all available questions for the selected paper
-                if (filtered.length === 0 && activeTime !== 'library' && bank.length > 0) {
-                    filtered = bank.filter(function (q) { return !activePaper || q.paper === activePaper; });
-                }
+                // Fallback removed: strictly enforce the selected timeframe
 
                 list.innerHTML = filtered.map(function (q) {
                     return '<button class="mains-item" data-id="' + q.id + '" type="button">' +
@@ -2457,7 +2528,7 @@
                         '<span class="chip">' + q.marks + ' marks</span>' +
                         (saved[q.id] ? '<span class="chip chip-ok">draft saved</span>' : '') +
                         '<p>' + esc(q.question) + '</p></button>';
-                }).join('') || '<p class="fine">No Mains questions found for this filter.</p>';
+                }).join('') || '<div style="text-align: center; padding: 24px;"><p class="fine" style="margin-bottom: 16px;">Sorry, no Mains questions found for today.</p><a href="/weekly" class="btn btn-primary">Take a look at Weekly News</a></div>';
             }
             renderMainsList();
 
@@ -2928,9 +2999,15 @@
                 var sb = await supabaseClient
                     .from('topics')
                     .select('*')
-                    .or('published.gte.' + cutoff + ',curated.eq.true')
+                    .or('published.gte.' + new Date(cutoff).toISOString() + ',curated.eq.true')
                     .order('published', { ascending: false });
                 if (!sb.error && Array.isArray(sb.data) && sb.data.length) {
+                    var sevenDaysAgo = new Date(Date.now() - 7 * 86400000).getTime();
+                    sb.data = sb.data.filter(function (row) {
+                        var d = new Date(row.published || 0).getTime();
+                        var u = new Date(row.updated || 0).getTime();
+                        return row.curated || (!isNaN(d) && d >= sevenDaysAgo) || (!isNaN(u) && u >= sevenDaysAgo);
+                    });
                     State.news = {
                         updated: new Date().toISOString(),
                         topics: sb.data.map(function (row) {
@@ -2966,13 +3043,16 @@
 
         /* 2. Static JSON (written by the collector) */
         try {
-            var res = await fetch('data/news.json', { cache: 'no-store' });
+            var res = await fetch('/data/news.json', { cache: 'no-store' });
             if (res.ok) {
                 var json = await res.json();
                 if (json && Array.isArray(json.topics) && json.topics.length) {
                     var c7 = getWeekAgoLocal();
+                    var sevenDaysAgo = new Date(Date.now() - 7 * 86400000).getTime();
                     json.topics = json.topics.filter(function (t) {
-                        return t.curated || (t.published || '').slice(0, 10) >= c7;
+                        var d = new Date(t.published || 0).getTime();
+                        var u = new Date(t.updated || 0).getTime();
+                        return t.curated || (!isNaN(d) && d >= sevenDaysAgo) || (!isNaN(u) && u >= sevenDaysAgo);
                     });
                     State.news = json;
                     return;
@@ -3199,6 +3279,8 @@
             if (!href) return;
 
             if (href.indexOf('http') === 0 ||
+                href.startsWith('mailto:') ||
+                href.startsWith('tel:') ||
                 href.endsWith('.html') ||
                 href.startsWith('#') ||
                 link.classList.contains('skip') ||
@@ -3236,6 +3318,7 @@
         SEED_SYLLABUS: SEED_SYLLABUS,
         SEED_QUESTIONS: SEED_QUESTIONS,
         ILLUSTRATIONS: ILLUSTRATIONS,
+        getFallbackImage: getFallbackImage,
         State: State
     };
 
