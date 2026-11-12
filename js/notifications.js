@@ -122,7 +122,7 @@ async function enableNotifications() {
 
         // Save token to Supabase so you can send notifications later
         try {
-            const supabaseClient = window.supabaseClient || window.supabase;
+            const supabaseClient = window.sanjanaSupabase;
             if (!supabaseClient) {
                 console.warn("Supabase client not found on window.");
             } else {

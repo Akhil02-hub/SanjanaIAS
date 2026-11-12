@@ -28,6 +28,7 @@
         });
     }
 
+    window.sanjanaSupabase = supabaseClient;
     var SI_AUTH = {
         user: null,
         ready: false,
