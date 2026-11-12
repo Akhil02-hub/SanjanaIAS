@@ -65,7 +65,7 @@ const SUPA_KEY = "sb_publishable_8acY7UihRJ2tSpW3zmFDUA_n24G5Ayq";
                     message: {
                         token: token,
                         notification: { title: process.argv[2] || "SanjanaIAS", body: process.argv[3] || "Update" },
-                        webpush: { fcmOptions: { link: "https://sanjanaias.vercel.app/" } }
+                        webpush: { fcmOptions: { link: process.argv[4] || "https://sanjanaias.vercel.app/" } }
                     }
                 })
             });

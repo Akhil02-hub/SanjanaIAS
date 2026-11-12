@@ -1,9 +1,14 @@
-name: Send Daily Push Notification
+name: SanjanaIAS Daily Push Schedule
 
 on:
   schedule:
-    - cron: '30 1 * * *'
-  workflow_dispatch:
+    - cron: '30 1 * * *'  # 7:00 AM IST - Current Affairs
+    - cron: '30 3 * * *'  # 9:00 AM IST - Briefing
+    - cron: '30 6 * * *'  # 12:00 PM IST - Telangana
+    - cron: '30 10 * * *' # 4:00 PM IST - Mains
+    - cron: '30 13 * * *' # 7:00 PM IST - Prelims Quiz
+    - cron: '0 16 * * *'  # 9:30 PM IST - Revision
+  workflow_dispatch:      # Allows you to test manually from the Actions tab
 
 jobs:
   send-push:
@@ -18,7 +23,38 @@ jobs:
       - name: Install dependencies
         run: npm install google-auth-library
         
-      - name: Send Push
+      - name: Send 7 AM CA
+        if: github.event.schedule == '30 1 * * *'
         env:
           FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
-        run: node send-push.js "Daily Current Affairs are ready" "Start your UPSC prep for today."
+        run: node send-push.js "Today's Current Affairs are ready" "World, India and Telangana updates mapped to GS Papers." "https://sanjanaias.vercel.app/dashboard"
+
+      - name: Send 9 AM Briefing
+        if: github.event.schedule == '30 3 * * *'
+        env:
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+        run: node send-push.js "Your 5-minute UPSC Briefing" "Read the top 10 stories that matter today." "https://sanjanaias.vercel.app/briefing"
+
+      - name: Send 12 PM Telangana
+        if: github.event.schedule == '30 6 * * *'
+        env:
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+        run: node send-push.js "Telangana Special Update" "Important state affairs and policies added to the library." "https://sanjanaias.vercel.app/telangana"
+
+      - name: Send 4 PM Mains
+        if: github.event.schedule == '30 10 * * *'
+        env:
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+        run: node send-push.js "Time for Mains Practice" "Today's GS Paper II question is live. Test your writing skills." "https://sanjanaias.vercel.app/mains"
+
+      - name: Send 7 PM Prelims
+        if: github.event.schedule == '30 13 * * *'
+        env:
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+        run: node send-push.js "Daily Prelims Quiz is live" "10 questions with detailed explanations. Test yourself!" "https://sanjanaias.vercel.app/prelims"
+
+      - name: Send 9:30 PM Revision
+        if: github.event.schedule == '0 16 * * *'
+        env:
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+        run: node send-push.js "Time to Revise" "Review your missed questions or ask Sanjana AI anything." "https://sanjanaias.vercel.app/revision"
