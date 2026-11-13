@@ -1,45 +1,45 @@
 {
-  "updated": "2026-11-13T02:51:09.010Z",
+  "updated": "2026-11-13T03:15:54.458Z",
   "health": {
-    "checked": "2026-11-13T02:51:09.010Z",
+    "checked": "2026-11-13T03:15:54.458Z",
     "sources": [
       {
         "id": "un-news",
         "name": "UN News",
         "status": "ok",
         "items": 30,
-        "added": 14,
-        "checked": "2026-11-13T02:51:09.010Z"
+        "added": 0,
+        "checked": "2026-11-13T03:15:54.458Z"
       },
       {
         "id": "un-geneva",
         "name": "UN Geneva",
         "status": "not-configured",
-        "checked": "2026-11-13T02:51:09.010Z"
+        "checked": "2026-11-13T03:15:54.458Z"
       },
       {
         "id": "who",
         "name": "WHO",
         "status": "not-configured",
-        "checked": "2026-11-13T02:51:09.010Z"
+        "checked": "2026-11-13T03:15:54.458Z"
       },
       {
         "id": "world-bank",
         "name": "World Bank",
         "status": "not-configured",
-        "checked": "2026-11-13T02:51:09.010Z"
+        "checked": "2026-11-13T03:15:54.458Z"
       },
       {
         "id": "imf",
         "name": "IMF",
         "status": "not-configured",
-        "checked": "2026-11-13T02:51:09.010Z"
+        "checked": "2026-11-13T03:15:54.458Z"
       },
       {
         "id": "pib",
         "name": "PIB",
         "status": "no-new-articles",
-        "checked": "2026-11-13T02:51:09.010Z"
+        "checked": "2026-11-13T03:15:54.458Z"
       },
       {
         "id": "rbi",
@@ -47,99 +47,99 @@
         "status": "ok",
         "items": 10,
         "added": 0,
-        "checked": "2026-11-13T02:51:09.010Z"
+        "checked": "2026-11-13T03:15:54.458Z"
       },
       {
         "id": "bbc-world",
         "name": "BBC News — World",
         "status": "ok",
-        "items": 33,
-        "added": 19,
-        "checked": "2026-11-13T02:51:09.010Z"
+        "items": 34,
+        "added": 12,
+        "checked": "2026-11-13T03:15:54.458Z"
       },
       {
         "id": "guardian-world",
         "name": "The Guardian — World",
         "status": "not-configured",
-        "checked": "2026-11-13T02:51:09.010Z"
+        "checked": "2026-11-13T03:15:54.458Z"
       },
       {
         "id": "ie-world",
         "name": "Indian Express — World",
         "status": "not-configured",
-        "checked": "2026-11-13T02:51:09.010Z"
+        "checked": "2026-11-13T03:15:54.458Z"
       },
       {
         "id": "ie-india",
         "name": "Indian Express — India",
         "status": "failed",
         "error": "HTTP 403",
-        "checked": "2026-11-13T02:51:09.010Z"
+        "checked": "2026-11-13T03:15:54.458Z"
       },
       {
         "id": "ie-hyderabad",
         "name": "Indian Express — Hyderabad",
         "status": "failed",
         "error": "HTTP 403",
-        "checked": "2026-11-13T02:51:09.010Z"
+        "checked": "2026-11-13T03:15:54.458Z"
       },
       {
         "id": "hindu-national",
         "name": "The Hindu — National",
         "status": "ok",
         "items": 50,
-        "added": 50,
-        "checked": "2026-11-13T02:51:09.010Z"
+        "added": 28,
+        "checked": "2026-11-13T03:15:54.458Z"
       },
       {
         "id": "hindu-international",
         "name": "The Hindu — International",
         "status": "ok",
         "items": 50,
-        "added": 37,
-        "checked": "2026-11-13T02:51:09.010Z"
+        "added": 32,
+        "checked": "2026-11-13T03:15:54.458Z"
       },
       {
         "id": "prs-india",
         "name": "PRS India",
         "status": "failed",
         "error": "HTTP 404",
-        "checked": "2026-11-13T02:51:09.010Z"
+        "checked": "2026-11-13T03:15:54.458Z"
       },
       {
         "id": "mea",
         "name": "MEA India",
         "status": "failed",
         "error": "HTTP 403",
-        "checked": "2026-11-13T02:51:09.010Z"
+        "checked": "2026-11-13T03:15:54.458Z"
       },
       {
         "id": "toi-india",
         "name": "Times of India — India",
         "status": "ok",
         "items": 20,
-        "added": 20,
-        "checked": "2026-11-13T02:51:09.010Z"
+        "added": 15,
+        "checked": "2026-11-13T03:15:54.458Z"
       },
       {
         "id": "hindu-telangana",
         "name": "The Hindu — Telangana",
         "status": "ok",
         "items": 50,
-        "added": 38,
-        "checked": "2026-11-13T02:51:09.010Z"
+        "added": 27,
+        "checked": "2026-11-13T03:15:54.458Z"
       },
       {
         "id": "siasat",
         "name": "The Siasat Daily — Telangana",
         "status": "failed",
         "error": "HTTP 429",
-        "checked": "2026-11-13T02:51:09.010Z"
+        "checked": "2026-11-13T03:15:54.458Z"
       }
     ],
     "succeeded": 8,
     "failed": 5,
-    "newTopics": 178
+    "newTopics": 114
   },
   "topics": [
     {
@@ -4446,6 +4446,63 @@
         "challenges": "",
         "solutions": "",
         "upsc": "Auto-tagged to GS II.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "un-climate-summit-pushes-electrification-goal-as-g-2026-11-13",
+      "title": "UN climate summit pushes electrification goal as groups call for mining safeguards",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "Environment",
+      "tags": [
+        "Environment"
+      ],
+      "gsPapers": [
+        "GS III"
+      ],
+      "summary": "The pledge builds on commitments made at previous UN climate summits: At COP28, countries agreed to work toward tripling renewable energy capacity and transitioning away from fossil fuels. COP29 focused on energy storage, grid modernisation and climate finance",
+      "whyItMatters": "",
+      "image": "https://th-i.thgim.com/public/incoming/3ohzna/article71696424.ece/alternates/LANDSCAPE_1200/2026-11-11T171921Z_1875082018_RC2TLOADAYK7_RTRMADP_3_CLIMATE-COP31.JPG",
+      "imageCredit": "The Hindu — International",
+      "readTime": 3,
+      "published": "2026-11-13T02:50:37.000Z",
+      "updated": "2026-11-13T03:15:57.565Z",
+      "importance": 45,
+      "importanceReason": "Maps to GS III. Signals environment social. Signals exam recurrence.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "UN climate summit pushes electrification goal as groups call for mining safeguards",
+          "publisher": "The Hindu — International",
+          "url": "https://www.thehindu.com/sci-tech/energy-and-environment/un-climate-summit-pushes-electrification-goal-as-groups-call-for-mining-safeguards/article71696419.ece",
+          "type": "reporting",
+          "date": "2026-11-13"
+        }
+      ],
+      "sections": {
+        "event": "The pledge builds on commitments made at previous UN climate summits: At COP28, countries agreed to work toward tripling renewable energy capacity and transitioning away from fossil fuels. COP29 focused on energy storage, grid modernisation and climate finance",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-13T02:50:37.000Z",
+            "text": "Reported by The Hindu — International"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to GS III.",
         "prelimsNotes": [],
         "mainsNotes": []
       },
@@ -10751,6 +10808,63 @@
       "mainsQuestions": []
     },
     {
+      "id": "north-korean-hackers-used-fake-video-calls-in-400m-2026-11-13",
+      "title": "North Korean hackers used fake video calls in $400m crypto hack, says FBI",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "Governance",
+      "tags": [
+        "Governance"
+      ],
+      "gsPapers": [
+        "GS II"
+      ],
+      "summary": "More than 900 victims are thought to have fallen prey to the FaceStealer scheme in the last 18 months.",
+      "whyItMatters": "",
+      "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "imageCredit": "SanjanaIAS category illustration",
+      "readTime": 3,
+      "published": "2026-11-13T02:48:29.000Z",
+      "updated": "2026-11-13T03:15:56.818Z",
+      "importance": 27,
+      "importanceReason": "Maps to GS II.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "North Korean hackers used fake video calls in $400m crypto hack, says FBI",
+          "publisher": "BBC News — World",
+          "url": "https://www.bbc.co.uk/news/articles/cqdj1ellpd70o?at_medium=RSS&at_campaign=rss",
+          "type": "reporting",
+          "date": "2026-11-13"
+        }
+      ],
+      "sections": {
+        "event": "More than 900 victims are thought to have fallen prey to the FaceStealer scheme in the last 18 months.",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-13T02:48:29.000Z",
+            "text": "Reported by BBC News — World"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to GS II.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
       "id": "brs-opposes-nod-for-green-sm-cabs-says-it-threaten-2026-11-12",
       "title": "BRS opposes nod for Green SM cabs, says it threatens livelihood of other cab drivers",
       "region": "telangana",
@@ -12663,6 +12777,59 @@
       "mainsQuestions": []
     },
     {
+      "id": "former-nvidia-ceo-huang-had-a-relationship-with-a--2026-11-13",
+      "title": "Former Nvidia CEO Huang had a relationship with a second employee, sources say",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "The two women so far are Alice Huang, who U.S. ‌intelligence suspects of being a Chinese spy, and Kimberly Powell, Nvidia’s vice president of health ‌care",
+      "whyItMatters": "",
+      "image": "https://th-i.thgim.com/public/incoming/p6efek/article71696427.ece/alternates/LANDSCAPE_1200/2026-11-12T184839Z_510794723_RC2IMOA622A8_RTRMADP_3_NVIDIA-CEO.JPG",
+      "imageCredit": "The Hindu — International",
+      "readTime": 3,
+      "published": "2026-11-13T02:52:59.000Z",
+      "updated": "2026-11-13T03:15:57.560Z",
+      "importance": 23,
+      "importanceReason": "Signals environment social. Signals national significance.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Former Nvidia CEO Huang had a relationship with a second employee, sources say",
+          "publisher": "The Hindu — International",
+          "url": "https://www.thehindu.com/sci-tech/technology/former-nvidia-ceo-huang-had-a-relationship-with-a-second-employee-sources-say/article71696426.ece",
+          "type": "reporting",
+          "date": "2026-11-13"
+        }
+      ],
+      "sections": {
+        "event": "The two women so far are Alice Huang, who U.S. ‌intelligence suspects of being a Chinese spy, and Kimberly Powell, Nvidia’s vice president of health ‌care",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-13T02:52:59.000Z",
+            "text": "Reported by The Hindu — International"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
       "id": "trump-says-u-s-does-not-need-a-deal-with-iran-2026-11-12",
       "title": "Trump says U.S. does not ‘need a deal with Iran’",
       "region": "world",
@@ -13659,6 +13826,113 @@
         "data": [],
         "geography": "",
         "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "india-needs-to-create-high-quality-jobs-increase-p-2026-11-13",
+      "title": "India needs to create high-quality jobs, increase productivity growth: IMF",
+      "region": "india",
+      "regions": [
+        "india",
+        "world"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "In its October World Economic Outlook, the IMF had upgraded India’s medium-term potential growth to 6.8% from its earlier estimate of 6.5%",
+      "whyItMatters": "",
+      "image": "https://th-i.thgim.com/public/incoming/58ezm/article71696441.ece/alternates/LANDSCAPE_1200/AFP__20261014__D37X24B__v1__HighRes__ThailandEconomyImf.jpg",
+      "imageCredit": "The Hindu — National",
+      "readTime": 3,
+      "published": "2026-11-13T03:03:15.000Z",
+      "updated": "2026-11-13T03:15:57.226Z",
+      "importance": 14,
+      "importanceReason": "Signals india impact.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "India needs to create high-quality jobs, increase productivity growth: IMF",
+          "publisher": "The Hindu — National",
+          "url": "https://www.thehindu.com/news/national/india-needs-to-create-high-quality-jobs-increase-productivity-growth-imf/article71696425.ece",
+          "type": "reporting",
+          "date": "2026-11-13"
+        }
+      ],
+      "sections": {
+        "event": "In its October World Economic Outlook, the IMF had upgraded India’s medium-term potential growth to 6.8% from its earlier estimate of 6.5%",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-13T03:03:15.000Z",
+            "text": "Reported by The Hindu — National"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "Flagged as India-relevant by the classifier.",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "india-makes-gains-against-tb-deaths-down-38-since--2026-11-13",
+      "title": "India makes gains against TB, deaths down 38% since 2015: Centre",
+      "region": "india",
+      "regions": [
+        "india"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "India's estimated TB deaths declined by 38% between 2015 and 2025, signaling significant progress in controlling the disease. The treatment success rate for drug-susceptible TB reached 94%, supported by innovative diagnostic methods and comprehensive patient care. The ongoing TB…",
+      "whyItMatters": "",
+      "image": "https://static.toiimg.com/photo/msid-135787402,imgsize-56348.cms",
+      "imageCredit": "Times of India — India",
+      "readTime": 3,
+      "published": "2026-11-13T03:05:29.000Z",
+      "updated": "2026-11-13T03:15:58.831Z",
+      "importance": 14,
+      "importanceReason": "Signals india impact.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "India makes gains against TB, deaths down 38% since 2015: Centre",
+          "publisher": "Times of India — India",
+          "url": "https://timesofindia.indiatimes.com/india/india-makes-gains-against-tb-deaths-down-38-since-2015-centre/articleshow/135787287.cms",
+          "type": "reporting",
+          "date": "2026-11-13"
+        }
+      ],
+      "sections": {
+        "event": "India's estimated TB deaths declined by 38% between 2015 and 2025, signaling significant progress in controlling the disease. The treatment success rate for drug-susceptible TB reached 94%, supported by innovative diagnostic methods and comprehensive patient care. The ongoing TB Mukt Bharat Abhiyaan effectively identified nearly 15 lakh asymptomatic TB cases throughout the campaign. Despite progress, drug-resistant TB remains a challenge, with a notable treatment gap.",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-13T03:05:29.000Z",
+            "text": "Reported by Times of India — India"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "Flagged as India-relevant by the classifier.",
         "telangana": "",
         "challenges": "",
         "solutions": "",
@@ -16574,6 +16848,59 @@
         "data": [],
         "geography": "",
         "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "gem-granites-veeramani-pocso-case-first-charge-she-2026-11-13",
+      "title": "‘Gem Granites’ Veeramani POCSO case: First charge sheet filed, Madras High Court told",
+      "region": "india",
+      "regions": [
+        "india"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "Justice V. Lakshminarayanan told that the charge sheet was filed before a special court for POCSO cases in Chennai on November 11, 2026, and that the SIT intends to file multiple charge sheets in the next few days",
+      "whyItMatters": "",
+      "image": "https://th-i.thgim.com/public/incoming/k4sr20/article71693061.ece/alternates/LANDSCAPE_1200/DSC_5795.JPG",
+      "imageCredit": "The Hindu — National",
+      "readTime": 3,
+      "published": "2026-11-13T03:02:29.000Z",
+      "updated": "2026-11-13T03:15:57.232Z",
+      "importance": 11,
+      "importanceReason": "Signals constitutional legal.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "‘Gem Granites’ Veeramani POCSO case: First charge sheet filed, Madras High Court told",
+          "publisher": "The Hindu — National",
+          "url": "https://www.thehindu.com/news/national/tamil-nadu/gem-granites-veeramani-pocso-case-first-charge-sheet-filed-state-public-prosecutor-tells-madras-high-court-told/article71692753.ece",
+          "type": "reporting",
+          "date": "2026-11-13"
+        }
+      ],
+      "sections": {
+        "event": "Justice V. Lakshminarayanan told that the charge sheet was filed before a special court for POCSO cases in Chennai on November 11, 2026, and that the SIT intends to file multiple charge sheets in the next few days",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-13T03:02:29.000Z",
+            "text": "Reported by The Hindu — National"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "Flagged as India-relevant by the classifier.",
         "telangana": "",
         "challenges": "",
         "solutions": "",
@@ -19712,6 +20039,59 @@
       "mainsQuestions": []
     },
     {
+      "id": "new-york-building-collapse-at-least-8-people-dead--2026-11-12",
+      "title": "New York building collapse: At least 8 people dead as rescuers dig through rubble",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "The collapse cause was under investigation, but NYC buildings commissioner Ahmed Tigani said workers were excavating an empty lot next door for a new building when it fell",
+      "whyItMatters": "",
+      "image": "https://th-i.thgim.com/public/incoming/oi4ntu/article71693968.ece/alternates/LANDSCAPE_1200/AP11_12_2026_000208B.jpg",
+      "imageCredit": "The Hindu — International",
+      "readTime": 3,
+      "published": "2026-11-12T13:19:14.000Z",
+      "updated": "2026-11-13T03:15:57.626Z",
+      "importance": 7,
+      "importanceReason": "Signals long term.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "New York building collapse: At least 8 people dead as rescuers dig through rubble",
+          "publisher": "The Hindu — International",
+          "url": "https://www.thehindu.com/news/international/brooklyn-building-collapse-updates/article71692198.ece",
+          "type": "reporting",
+          "date": "2026-11-12"
+        }
+      ],
+      "sections": {
+        "event": "The collapse cause was under investigation, but NYC buildings commissioner Ahmed Tigani said workers were excavating an empty lot next door for a new building when it fell",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-12T13:19:14.000Z",
+            "text": "Reported by The Hindu — International"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
       "id": "aid-is-the-only-hope-for-millions-in-sudan-wfp-chi-2026-11-12",
       "title": "Aid is the ‘only hope’ for millions in Sudan, WFP chief warns, as funding cuts deepen hunger crisis",
       "region": "world",
@@ -20561,8 +20941,8 @@
       "mainsQuestions": []
     },
     {
-      "id": "six-killed-in-israeli-airstrike-on-gaza-s-nasser-h-2026-11-12",
-      "title": "Six killed in Israeli airstrike on Gaza’s Nasser Hospital",
+      "id": "democrat-scott-colom-makes-history-as-mississippi--2026-11-12",
+      "title": "Democrat Scott Colom makes history as Mississippi's first black senator since 19th Century",
       "region": "world",
       "regions": [
         "world"
@@ -20570,34 +20950,34 @@
       "category": "General Studies",
       "tags": [],
       "gsPapers": [],
-      "summary": "An Israeli airstrike on Gaza’s Nasser Hospital on Wednesday night killed six people, injured 27 others and caused extensive damage.&nbsp;",
+      "summary": "In a state Trump won two years ago by 22 points, Colom's victory extends a string of Democratic wins in the Senate.",
       "whyItMatters": "",
-      "image": "https://global.unitednations.entermediadb.net/assets/mediadb/services/module/asset/downloads/preset/Collections/Production%20Library/2026/11/07-11-2026-UNNews-Gaza-Winer-Building.jpg/image560x340cropped.jpg",
-      "imageCredit": "UN News",
+      "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "imageCredit": "SanjanaIAS category illustration",
       "readTime": 3,
-      "published": "2026-11-12T12:00:00.000Z",
-      "updated": "2026-11-13T02:51:09.161Z",
+      "published": "2026-11-12T12:56:55.000Z",
+      "updated": "2026-11-13T03:15:56.860Z",
       "importance": 5,
       "importanceReason": "Generic coverage with no clear syllabus anchor.",
       "curated": false,
       "sources": [
         {
-          "title": "Six killed in Israeli airstrike on Gaza’s Nasser Hospital",
-          "publisher": "UN News",
-          "url": "https://news.un.org/feed/view/en/story/2026/11/1168796",
-          "type": "primary",
+          "title": "Democrat Scott Colom makes history as Mississippi's first black senator since 19th Century",
+          "publisher": "BBC News — World",
+          "url": "https://www.bbc.co.uk/news/articles/cw7vppyr80eeo?at_medium=RSS&at_campaign=rss",
+          "type": "reporting",
           "date": "2026-11-12"
         }
       ],
       "sections": {
-        "event": "An Israeli airstrike on Gaza’s Nasser Hospital on Wednesday night killed six people, injured 27 others and caused extensive damage.&nbsp;",
+        "event": "In a state Trump won two years ago by 22 points, Colom's victory extends a string of Democratic wins in the Senate.",
         "background": "",
         "causes": "",
         "stakeholders": "",
         "timeline": [
           {
-            "date": "2026-11-12T12:00:00.000Z",
-            "text": "Reported by UN News"
+            "date": "2026-11-12T12:56:55.000Z",
+            "text": "Reported by BBC News — World"
           }
         ],
         "data": [],
@@ -20614,8 +20994,8 @@
       "mainsQuestions": []
     },
     {
-      "id": "kenya-begins-countdown-towards-end-of-ebola-after--2026-11-12",
-      "title": "Kenya begins countdown towards end of Ebola after last patient discharged",
+      "id": "clashes-erupt-in-barcelona-after-thousands-join-sp-2026-11-11",
+      "title": "Clashes erupt in Barcelona after thousands join Spain general strike",
       "region": "world",
       "regions": [
         "world"
@@ -20623,140 +21003,34 @@
       "category": "General Studies",
       "tags": [],
       "gsPapers": [],
-      "summary": "Kenya began a 42-day countdown to the end of its Ebola outbreak on Thursday, a day after the last patient being treated for the disease went home and 11 people were released from quarantine.",
+      "summary": "Tens of thousands of people have been taking part in the strike, called by the country's main unions over housing and the high cost of living.",
       "whyItMatters": "",
-      "image": "https://global.unitednations.entermediadb.net/assets/mediadb/services/module/asset/downloads/preset/Collections/Production%20Library/2026/10/06-10-2026-WHO-Kenya-Bundibugyo-02.jpg/image560x340cropped.jpg",
-      "imageCredit": "UN News",
+      "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "imageCredit": "SanjanaIAS category illustration",
       "readTime": 3,
-      "published": "2026-11-12T12:00:00.000Z",
-      "updated": "2026-11-13T02:51:09.209Z",
+      "published": "2026-11-11T22:07:37.000Z",
+      "updated": "2026-11-13T03:15:56.906Z",
       "importance": 5,
       "importanceReason": "Generic coverage with no clear syllabus anchor.",
       "curated": false,
       "sources": [
         {
-          "title": "Kenya begins countdown towards end of Ebola after last patient discharged",
-          "publisher": "UN News",
-          "url": "https://news.un.org/feed/view/en/story/2026/11/1168790",
-          "type": "primary",
-          "date": "2026-11-12"
-        }
-      ],
-      "sections": {
-        "event": "Kenya began a 42-day countdown to the end of its Ebola outbreak on Thursday, a day after the last patient being treated for the disease went home and 11 people were released from quarantine.",
-        "background": "",
-        "causes": "",
-        "stakeholders": "",
-        "timeline": [
-          {
-            "date": "2026-11-12T12:00:00.000Z",
-            "text": "Reported by UN News"
-          }
-        ],
-        "data": [],
-        "geography": "",
-        "india": "",
-        "telangana": "",
-        "challenges": "",
-        "solutions": "",
-        "upsc": "Auto-tagged to no paper.",
-        "prelimsNotes": [],
-        "mainsNotes": []
-      },
-      "prelimsQuestions": [],
-      "mainsQuestions": []
-    },
-    {
-      "id": "haiti-more-than-1-000-killed-between-july-and-sept-2026-11-12",
-      "title": "Haiti: More than 1,000 killed between July and September, UN report reveals",
-      "region": "world",
-      "regions": [
-        "world"
-      ],
-      "category": "General Studies",
-      "tags": [],
-      "gsPapers": [],
-      "summary": "More than 1,000 people were killed in Haiti during the third quarter of this year, as armed gangs continue to terrorize the population in the capital Port-au-Prince and beyond, the UN team in the island nation, said in its latest human rights report.",
-      "whyItMatters": "",
-      "image": "https://global.unitednations.entermediadb.net/assets/mediadb/services/module/asset/downloads/preset/Collections/Embargoed/2026/11/03-11-2026-UNOCHA-Haiti-03.jpg/image560x340cropped.jpg",
-      "imageCredit": "UN News",
-      "readTime": 3,
-      "published": "2026-11-12T12:00:00.000Z",
-      "updated": "2026-11-13T02:51:09.220Z",
-      "importance": 5,
-      "importanceReason": "Generic coverage with no clear syllabus anchor.",
-      "curated": false,
-      "sources": [
-        {
-          "title": "Haiti: More than 1,000 killed between July and September, UN report reveals",
-          "publisher": "UN News",
-          "url": "https://news.un.org/feed/view/en/story/2026/11/1168789",
-          "type": "primary",
-          "date": "2026-11-12"
-        }
-      ],
-      "sections": {
-        "event": "More than 1,000 people were killed in Haiti during the third quarter of this year, as armed gangs continue to terrorize the population in the capital Port-au-Prince and beyond, the UN team in the island nation, said in its latest human rights report.",
-        "background": "",
-        "causes": "",
-        "stakeholders": "",
-        "timeline": [
-          {
-            "date": "2026-11-12T12:00:00.000Z",
-            "text": "Reported by UN News"
-          }
-        ],
-        "data": [],
-        "geography": "",
-        "india": "",
-        "telangana": "",
-        "challenges": "",
-        "solutions": "",
-        "upsc": "Auto-tagged to no paper.",
-        "prelimsNotes": [],
-        "mainsNotes": []
-      },
-      "prelimsQuestions": [],
-      "mainsQuestions": []
-    },
-    {
-      "id": "gaza-winter-aid-no-more-delay-fletcher-tells-gover-2026-11-11",
-      "title": "Gaza winter aid: ‘No more delay’, Fletcher tells governments stalling on support",
-      "region": "world",
-      "regions": [
-        "world"
-      ],
-      "category": "General Studies",
-      "tags": [],
-      "gsPapers": [],
-      "summary": "The UN’s Emergency Relief Coordinator, Tom Fletcher,&nbsp;expressed deep concern about the deteriorating humanitarian situation in Gaza, as UN member states and partners have been repeatedly delaying sending their support to the Strip.&nbsp;",
-      "whyItMatters": "",
-      "image": "https://global.unitednations.entermediadb.net/assets/mediadb/services/module/asset/downloads/preset/Collections/Embargoed/13-01-2025-UNRWA-Gaza-13.jpg/image560x340cropped.jpg",
-      "imageCredit": "UN News",
-      "readTime": 3,
-      "published": "2026-11-11T12:00:00.000Z",
-      "updated": "2026-11-13T02:51:09.229Z",
-      "importance": 5,
-      "importanceReason": "Generic coverage with no clear syllabus anchor.",
-      "curated": false,
-      "sources": [
-        {
-          "title": "Gaza winter aid: ‘No more delay’, Fletcher tells governments stalling on support",
-          "publisher": "UN News",
-          "url": "https://news.un.org/feed/view/en/story/2026/11/1168788",
-          "type": "primary",
+          "title": "Clashes erupt in Barcelona after thousands join Spain general strike",
+          "publisher": "BBC News — World",
+          "url": "https://www.bbc.co.uk/news/articles/cwvg25nypmrvo?at_medium=RSS&at_campaign=rss",
+          "type": "reporting",
           "date": "2026-11-11"
         }
       ],
       "sections": {
-        "event": "The UN’s Emergency Relief Coordinator, Tom Fletcher,&nbsp;expressed deep concern about the deteriorating humanitarian situation in Gaza, as UN member states and partners have been repeatedly delaying sending their support to the Strip.&nbsp;",
+        "event": "Tens of thousands of people have been taking part in the strike, called by the country's main unions over housing and the high cost of living.",
         "background": "",
         "causes": "",
         "stakeholders": "",
         "timeline": [
           {
-            "date": "2026-11-11T12:00:00.000Z",
-            "text": "Reported by UN News"
+            "date": "2026-11-11T22:07:37.000Z",
+            "text": "Reported by BBC News — World"
           }
         ],
         "data": [],
@@ -20773,8 +21047,8 @@
       "mainsQuestions": []
     },
     {
-      "id": "from-japan-to-rwanda-early-warnings-are-saving-liv-2026-11-11",
-      "title": "From Japan to Rwanda, early warnings are saving lives – but millions remain unprotected",
+      "id": "australian-teen-missing-in-bush-for-six-days-rescu-2026-11-12",
+      "title": "Australian teen missing in bush for six days rescued alive",
       "region": "world",
       "regions": [
         "world"
@@ -20782,298 +21056,139 @@
       "category": "General Studies",
       "tags": [],
       "gsPapers": [],
-      "summary": "Early warning systems are saving lives across the globe, but for millions of people the warning never arrives, UN Secretary-General António Guterres said on Wednesday, urging the world to protect every person on Earth by the end of 2027.",
+      "summary": "The 17-year-old's mum has joked that he is \"grounded for life\" and \"never leaving the house again\".",
       "whyItMatters": "",
-      "image": "https://global.unitednations.entermediadb.net/assets/mediadb/services/module/asset/downloads/preset/Collections/Embargoed/31-05-2023-UNDP-Cambodia-EWS.jpg/image560x340cropped.jpg",
-      "imageCredit": "UN News",
+      "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "imageCredit": "SanjanaIAS category illustration",
       "readTime": 3,
-      "published": "2026-11-11T12:00:00.000Z",
-      "updated": "2026-11-13T02:51:09.253Z",
+      "published": "2026-11-12T02:40:18.000Z",
+      "updated": "2026-11-13T03:15:56.913Z",
       "importance": 5,
       "importanceReason": "Generic coverage with no clear syllabus anchor.",
       "curated": false,
       "sources": [
         {
-          "title": "From Japan to Rwanda, early warnings are saving lives – but millions remain unprotected",
-          "publisher": "UN News",
-          "url": "https://news.un.org/feed/view/en/story/2026/11/1168787",
-          "type": "primary",
+          "title": "Australian teen missing in bush for six days rescued alive",
+          "publisher": "BBC News — World",
+          "url": "https://www.bbc.co.uk/news/articles/ckvg25zmppglo?at_medium=RSS&at_campaign=rss",
+          "type": "reporting",
+          "date": "2026-11-12"
+        }
+      ],
+      "sections": {
+        "event": "The 17-year-old's mum has joked that he is \"grounded for life\" and \"never leaving the house again\".",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-12T02:40:18.000Z",
+            "text": "Reported by BBC News — World"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "famed-ship-ss-united-states-deliberately-sunk-off--2026-11-12",
+      "title": "Famed ship SS United States deliberately sunk off Florida coast to become a reef",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "Activists wanted the historic liner to be turned into a museum, but it will instead become the world's largest artificial ocean reef.",
+      "whyItMatters": "",
+      "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "imageCredit": "SanjanaIAS category illustration",
+      "readTime": 3,
+      "published": "2026-11-12T04:03:13.000Z",
+      "updated": "2026-11-13T03:15:56.925Z",
+      "importance": 5,
+      "importanceReason": "Generic coverage with no clear syllabus anchor.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Famed ship SS United States deliberately sunk off Florida coast to become a reef",
+          "publisher": "BBC News — World",
+          "url": "https://www.bbc.co.uk/news/articles/c3x298n87rn2o?at_medium=RSS&at_campaign=rss",
+          "type": "reporting",
+          "date": "2026-11-12"
+        }
+      ],
+      "sections": {
+        "event": "Activists wanted the historic liner to be turned into a museum, but it will instead become the world's largest artificial ocean reef.",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-12T04:03:13.000Z",
+            "text": "Reported by BBC News — World"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "kidnapper-74-escapes-from-house-arrest-in-argentin-2026-11-11",
+      "title": "Kidnapper, 74, escapes from house arrest in Argentina by abseiling from balcony",
+      "region": "world",
+      "regions": [
+        "world"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "Leonardo Bertulazzi, a former member of the Marxist guerrilla group the Red Brigades, was about to be extradited to his home country of Italy.",
+      "whyItMatters": "",
+      "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "imageCredit": "SanjanaIAS category illustration",
+      "readTime": 3,
+      "published": "2026-11-11T14:56:11.000Z",
+      "updated": "2026-11-13T03:15:56.933Z",
+      "importance": 5,
+      "importanceReason": "Generic coverage with no clear syllabus anchor.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Kidnapper, 74, escapes from house arrest in Argentina by abseiling from balcony",
+          "publisher": "BBC News — World",
+          "url": "https://www.bbc.co.uk/news/articles/c933gn6710lyo?at_medium=RSS&at_campaign=rss",
+          "type": "reporting",
           "date": "2026-11-11"
         }
       ],
       "sections": {
-        "event": "Early warning systems are saving lives across the globe, but for millions of people the warning never arrives, UN Secretary-General António Guterres said on Wednesday, urging the world to protect every person on Earth by the end of 2027.",
+        "event": "Leonardo Bertulazzi, a former member of the Marxist guerrilla group the Red Brigades, was about to be extradited to his home country of Italy.",
         "background": "",
         "causes": "",
         "stakeholders": "",
         "timeline": [
           {
-            "date": "2026-11-11T12:00:00.000Z",
-            "text": "Reported by UN News"
-          }
-        ],
-        "data": [],
-        "geography": "",
-        "india": "",
-        "telangana": "",
-        "challenges": "",
-        "solutions": "",
-        "upsc": "Auto-tagged to no paper.",
-        "prelimsNotes": [],
-        "mainsNotes": []
-      },
-      "prelimsQuestions": [],
-      "mainsQuestions": []
-    },
-    {
-      "id": "children-among-the-dead-as-heavy-rains-flood-tents-2026-11-09",
-      "title": "Children among the dead as heavy rains flood tents and shelters in Gaza",
-      "region": "world",
-      "regions": [
-        "world"
-      ],
-      "category": "General Studies",
-      "tags": [],
-      "gsPapers": [],
-      "summary": "An infant reportedly drowned and five Gazans were killed – including three children – when a sand dune collapsed on their tents as the first heavy rains swept across the enclave at the weekend, according to the UN aid coordination office (OCHA).",
-      "whyItMatters": "",
-      "image": "https://global.unitednations.entermediadb.net/assets/mediadb/services/module/asset/downloads/preset/Collections/Production%20Library/2026/11/07-11-2026-UNNews-Gaza-Winer-Children.jpg/image560x340cropped.jpg",
-      "imageCredit": "UN News",
-      "readTime": 3,
-      "published": "2026-11-09T12:00:00.000Z",
-      "updated": "2026-11-13T02:51:09.296Z",
-      "importance": 5,
-      "importanceReason": "Generic coverage with no clear syllabus anchor.",
-      "curated": false,
-      "sources": [
-        {
-          "title": "Children among the dead as heavy rains flood tents and shelters in Gaza",
-          "publisher": "UN News",
-          "url": "https://news.un.org/feed/view/en/story/2026/11/1168766",
-          "type": "primary",
-          "date": "2026-11-09"
-        }
-      ],
-      "sections": {
-        "event": "An infant reportedly drowned and five Gazans were killed – including three children – when a sand dune collapsed on their tents as the first heavy rains swept across the enclave at the weekend, according to the UN aid coordination office (OCHA).",
-        "background": "",
-        "causes": "",
-        "stakeholders": "",
-        "timeline": [
-          {
-            "date": "2026-11-09T12:00:00.000Z",
-            "text": "Reported by UN News"
-          }
-        ],
-        "data": [],
-        "geography": "",
-        "india": "",
-        "telangana": "",
-        "challenges": "",
-        "solutions": "",
-        "upsc": "Auto-tagged to no paper.",
-        "prelimsNotes": [],
-        "mainsNotes": []
-      },
-      "prelimsQuestions": [],
-      "mainsQuestions": []
-    },
-    {
-      "id": "beyond-the-broken-glass-the-human-cost-of-the-1938-2026-11-08",
-      "title": "Beyond the broken glass: The human cost of the 1938 November Pogrom",
-      "region": "world",
-      "regions": [
-        "world"
-      ],
-      "category": "General Studies",
-      "tags": [],
-      "gsPapers": [],
-      "summary": "On his way to school in Vienna on the morning of 10 November 1938, eight-year-old Arthur Schneier watched his synagogue burn while firefighters and police officers stood by “rejoicing”.",
-      "whyItMatters": "",
-      "image": "https://global.unitednations.entermediadb.net/assets/mediadb/services/module/asset/downloads/preset/Collections/Production%20Library/2026/11/06-11-2026-synagogue-Aachen.jpg/image560x340cropped.jpg",
-      "imageCredit": "UN News",
-      "readTime": 3,
-      "published": "2026-11-08T12:00:00.000Z",
-      "updated": "2026-11-13T02:51:09.317Z",
-      "importance": 5,
-      "importanceReason": "Generic coverage with no clear syllabus anchor.",
-      "curated": false,
-      "sources": [
-        {
-          "title": "Beyond the broken glass: The human cost of the 1938 November Pogrom",
-          "publisher": "UN News",
-          "url": "https://news.un.org/feed/view/en/story/2026/11/1168756",
-          "type": "primary",
-          "date": "2026-11-08"
-        }
-      ],
-      "sections": {
-        "event": "On his way to school in Vienna on the morning of 10 November 1938, eight-year-old Arthur Schneier watched his synagogue burn while firefighters and police officers stood by “rejoicing”.",
-        "background": "",
-        "causes": "",
-        "stakeholders": "",
-        "timeline": [
-          {
-            "date": "2026-11-08T12:00:00.000Z",
-            "text": "Reported by UN News"
-          }
-        ],
-        "data": [],
-        "geography": "",
-        "india": "",
-        "telangana": "",
-        "challenges": "",
-        "solutions": "",
-        "upsc": "Auto-tagged to no paper.",
-        "prelimsNotes": [],
-        "mainsNotes": []
-      },
-      "prelimsQuestions": [],
-      "mainsQuestions": []
-    },
-    {
-      "id": "for-the-first-time-i-have-my-own-chair-gaza-siblin-2026-11-07",
-      "title": "‘For the first time I have my own chair’: Gaza siblings find new freedom",
-      "region": "world",
-      "regions": [
-        "world"
-      ],
-      "category": "General Studies",
-      "tags": [],
-      "gsPapers": [],
-      "summary": "In Gaza, 10-year-old Anas is one of three siblings born without legs and with only two fingers on each of their hands. They struggle to move around and perform daily activities like eating and writing independently.&nbsp;",
-      "whyItMatters": "",
-      "image": "https://global.unitednations.entermediadb.net/assets/mediadb/services/module/asset/downloads/preset/Collections/Production%20Library/2026/11/06-11-2026-EducAid-Gaza-03.jpg/image560x340cropped.jpg",
-      "imageCredit": "UN News",
-      "readTime": 3,
-      "published": "2026-11-07T12:00:00.000Z",
-      "updated": "2026-11-13T02:51:09.324Z",
-      "importance": 5,
-      "importanceReason": "Generic coverage with no clear syllabus anchor.",
-      "curated": false,
-      "sources": [
-        {
-          "title": "‘For the first time I have my own chair’: Gaza siblings find new freedom",
-          "publisher": "UN News",
-          "url": "https://news.un.org/feed/view/en/story/2026/11/1168759",
-          "type": "primary",
-          "date": "2026-11-07"
-        }
-      ],
-      "sections": {
-        "event": "In Gaza, 10-year-old Anas is one of three siblings born without legs and with only two fingers on each of their hands. They struggle to move around and perform daily activities like eating and writing independently.&nbsp;",
-        "background": "",
-        "causes": "",
-        "stakeholders": "",
-        "timeline": [
-          {
-            "date": "2026-11-07T12:00:00.000Z",
-            "text": "Reported by UN News"
-          }
-        ],
-        "data": [],
-        "geography": "",
-        "india": "",
-        "telangana": "",
-        "challenges": "",
-        "solutions": "",
-        "upsc": "Auto-tagged to no paper.",
-        "prelimsNotes": [],
-        "mainsNotes": []
-      },
-      "prelimsQuestions": [],
-      "mainsQuestions": []
-    },
-    {
-      "id": "world-news-in-brief-civilians-killed-in-dr-congo-u-2026-11-06",
-      "title": "World News in Brief: Civilians killed in DR Congo, Ukrainians wrestle with return, Guterres calls out ‘normalisation’ of force",
-      "region": "world",
-      "regions": [
-        "world"
-      ],
-      "category": "General Studies",
-      "tags": [],
-      "gsPapers": [],
-      "summary": "At least 30 civilians were killed overnight on Thursday in Beni Territory, North Kivu in the Democratic Republic of the Congo, according to local sources&nbsp;cited by the UN aid coordination office (OCHA).",
-      "whyItMatters": "",
-      "image": "https://global.unitednations.entermediadb.net/assets/mediadb/services/module/asset/downloads/preset/Collections/Embargoed/20-02-2025-UNICEF-DR-Congo-01.jpg/image560x340cropped.jpg",
-      "imageCredit": "UN News",
-      "readTime": 3,
-      "published": "2026-11-06T12:00:00.000Z",
-      "updated": "2026-11-13T02:51:09.336Z",
-      "importance": 5,
-      "importanceReason": "Generic coverage with no clear syllabus anchor.",
-      "curated": false,
-      "sources": [
-        {
-          "title": "World News in Brief: Civilians killed in DR Congo, Ukrainians wrestle with return, Guterres calls out ‘normalisation’ of force",
-          "publisher": "UN News",
-          "url": "https://news.un.org/feed/view/en/story/2026/11/1168757",
-          "type": "primary",
-          "date": "2026-11-06"
-        }
-      ],
-      "sections": {
-        "event": "At least 30 civilians were killed overnight on Thursday in Beni Territory, North Kivu in the Democratic Republic of the Congo, according to local sources&nbsp;cited by the UN aid coordination office (OCHA).",
-        "background": "",
-        "causes": "",
-        "stakeholders": "",
-        "timeline": [
-          {
-            "date": "2026-11-06T12:00:00.000Z",
-            "text": "Reported by UN News"
-          }
-        ],
-        "data": [],
-        "geography": "",
-        "india": "",
-        "telangana": "",
-        "challenges": "",
-        "solutions": "",
-        "upsc": "Auto-tagged to no paper.",
-        "prelimsNotes": [],
-        "mainsNotes": []
-      },
-      "prelimsQuestions": [],
-      "mainsQuestions": []
-    },
-    {
-      "id": "scandal-hit-nvidia-ceo-jensen-huang-quits-plunging-2026-11-13",
-      "title": "Scandal-hit Nvidia CEO Jensen Huang quits, plunging AI chipmaking giant into turmoil",
-      "region": "world",
-      "regions": [
-        "world"
-      ],
-      "category": "General Studies",
-      "tags": [],
-      "gsPapers": [],
-      "summary": "US lawmakers now want to question him over whether one of his alleged relationships was with a Chinese spy.",
-      "whyItMatters": "",
-      "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "imageCredit": "SanjanaIAS category illustration",
-      "readTime": 3,
-      "published": "2026-11-13T02:39:00.000Z",
-      "updated": "2026-11-13T02:51:11.747Z",
-      "importance": 5,
-      "importanceReason": "Generic coverage with no clear syllabus anchor.",
-      "curated": false,
-      "sources": [
-        {
-          "title": "Scandal-hit Nvidia CEO Jensen Huang quits, plunging AI chipmaking giant into turmoil",
-          "publisher": "BBC News — World",
-          "url": "https://www.bbc.co.uk/news/articles/cmq5vd1wdgz6o?at_medium=RSS&at_campaign=rss",
-          "type": "reporting",
-          "date": "2026-11-13"
-        }
-      ],
-      "sections": {
-        "event": "US lawmakers now want to question him over whether one of his alleged relationships was with a Chinese spy.",
-        "background": "",
-        "causes": "",
-        "stakeholders": "",
-        "timeline": [
-          {
-            "date": "2026-11-13T02:39:00.000Z",
+            "date": "2026-11-11T14:56:11.000Z",
             "text": "Reported by BBC News — World"
           }
         ],
@@ -21091,8 +21206,8 @@
       "mainsQuestions": []
     },
     {
-      "id": "neither-war-nor-peace-in-tigray-is-ethiopia-s-late-2026-11-13",
-      "title": "Neither war nor peace in Tigray - is Ethiopia's latest conflict really over?",
+      "id": "schools-in-italy-scotland-and-northern-ireland-hit-2026-11-11",
+      "title": "Schools in Italy, Scotland and Northern Ireland hit by threats in suspected bomb hoax",
       "region": "world",
       "regions": [
         "world"
@@ -21100,33 +21215,33 @@
       "category": "General Studies",
       "tags": [],
       "gsPapers": [],
-      "summary": "The army has taken control of most of Tigray's main towns - it is unclear if the TPLF is capable of fighting back.",
+      "summary": "More than 6,000 Italian schools received a threat. Authorities in all three countries say there appears to be no risk to the public.",
       "whyItMatters": "",
       "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
       "imageCredit": "SanjanaIAS category illustration",
       "readTime": 3,
-      "published": "2026-11-13T00:20:24.000Z",
-      "updated": "2026-11-13T02:51:11.769Z",
+      "published": "2026-11-11T18:38:45.000Z",
+      "updated": "2026-11-13T03:15:56.941Z",
       "importance": 5,
       "importanceReason": "Generic coverage with no clear syllabus anchor.",
       "curated": false,
       "sources": [
         {
-          "title": "Neither war nor peace in Tigray - is Ethiopia's latest conflict really over?",
+          "title": "Schools in Italy, Scotland and Northern Ireland hit by threats in suspected bomb hoax",
           "publisher": "BBC News — World",
-          "url": "https://www.bbc.co.uk/news/articles/cm3egjgvp794o?at_medium=RSS&at_campaign=rss",
+          "url": "https://www.bbc.co.uk/news/articles/cwz0k79pr8z2o?at_medium=RSS&at_campaign=rss",
           "type": "reporting",
-          "date": "2026-11-13"
+          "date": "2026-11-11"
         }
       ],
       "sections": {
-        "event": "The army has taken control of most of Tigray's main towns - it is unclear if the TPLF is capable of fighting back.",
+        "event": "More than 6,000 Italian schools received a threat. Authorities in all three countries say there appears to be no risk to the public.",
         "background": "",
         "causes": "",
         "stakeholders": "",
         "timeline": [
           {
-            "date": "2026-11-13T00:20:24.000Z",
+            "date": "2026-11-11T18:38:45.000Z",
             "text": "Reported by BBC News — World"
           }
         ],
@@ -21144,8 +21259,8 @@
       "mainsQuestions": []
     },
     {
-      "id": "russian-warship-hit-by-ukrainian-drone-in-gulf-of--2026-11-12",
-      "title": "Russian warship hit by Ukrainian drone in Gulf of Finland",
+      "id": "missing-11-month-old-baby-rescued-after-being-buri-2026-11-11",
+      "title": "Missing 11-month-old baby rescued after being buried alive in a crate in South Carolina",
       "region": "world",
       "regions": [
         "world"
@@ -21153,33 +21268,33 @@
       "category": "General Studies",
       "tags": [],
       "gsPapers": [],
-      "summary": "The attack is thought to be the first time Ukrainian drones have attacked a Russian ship in an open stretch of the Baltic Sea.",
+      "summary": "Officials say the child was found close to his father's home on Tuesday, a day after he was taken, and is being cared for in hospital.",
       "whyItMatters": "",
       "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
       "imageCredit": "SanjanaIAS category illustration",
       "readTime": 3,
-      "published": "2026-11-12T20:09:16.000Z",
-      "updated": "2026-11-13T02:51:11.781Z",
+      "published": "2026-11-11T18:10:57.000Z",
+      "updated": "2026-11-13T03:15:56.949Z",
       "importance": 5,
       "importanceReason": "Generic coverage with no clear syllabus anchor.",
       "curated": false,
       "sources": [
         {
-          "title": "Russian warship hit by Ukrainian drone in Gulf of Finland",
+          "title": "Missing 11-month-old baby rescued after being buried alive in a crate in South Carolina",
           "publisher": "BBC News — World",
-          "url": "https://www.bbc.co.uk/news/articles/cmn0d33zz34zo?at_medium=RSS&at_campaign=rss",
+          "url": "https://www.bbc.co.uk/news/articles/c8e391xzg6z2o?at_medium=RSS&at_campaign=rss",
           "type": "reporting",
-          "date": "2026-11-12"
+          "date": "2026-11-11"
         }
       ],
       "sections": {
-        "event": "The attack is thought to be the first time Ukrainian drones have attacked a Russian ship in an open stretch of the Baltic Sea.",
+        "event": "Officials say the child was found close to his father's home on Tuesday, a day after he was taken, and is being cared for in hospital.",
         "background": "",
         "causes": "",
         "stakeholders": "",
         "timeline": [
           {
-            "date": "2026-11-12T20:09:16.000Z",
+            "date": "2026-11-11T18:10:57.000Z",
             "text": "Reported by BBC News — World"
           }
         ],
@@ -21197,8 +21312,8 @@
       "mainsQuestions": []
     },
     {
-      "id": "suspected-bomb-hoax-threats-force-fresh-evacuation-2026-11-12",
-      "title": "Suspected bomb hoax threats force fresh evacuations of Italian schools",
+      "id": "us-treasury-secretary-scott-bessent-relocated-afte-2026-11-11",
+      "title": "US Treasury Secretary Scott Bessent relocated after alleged Iranian threats",
       "region": "world",
       "regions": [
         "world"
@@ -21206,33 +21321,33 @@
       "category": "General Studies",
       "tags": [],
       "gsPapers": [],
-      "summary": "Schools across Italy have received bomb threats for the second day in a row, sparking fresh panic and evacuations.",
+      "summary": "Bessent is now one of several Trump administration officials to live on military bases due to safety concerns.",
       "whyItMatters": "",
       "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
       "imageCredit": "SanjanaIAS category illustration",
       "readTime": 3,
-      "published": "2026-11-12T19:23:02.000Z",
-      "updated": "2026-11-13T02:51:11.791Z",
+      "published": "2026-11-11T16:45:11.000Z",
+      "updated": "2026-11-13T03:15:56.957Z",
       "importance": 5,
       "importanceReason": "Generic coverage with no clear syllabus anchor.",
       "curated": false,
       "sources": [
         {
-          "title": "Suspected bomb hoax threats force fresh evacuations of Italian schools",
+          "title": "US Treasury Secretary Scott Bessent relocated after alleged Iranian threats",
           "publisher": "BBC News — World",
-          "url": "https://www.bbc.co.uk/news/articles/cr894w453e90o?at_medium=RSS&at_campaign=rss",
+          "url": "https://www.bbc.co.uk/news/articles/cqr7gr0010r2o?at_medium=RSS&at_campaign=rss",
           "type": "reporting",
-          "date": "2026-11-12"
+          "date": "2026-11-11"
         }
       ],
       "sections": {
-        "event": "Schools across Italy have received bomb threats for the second day in a row, sparking fresh panic and evacuations.",
+        "event": "Bessent is now one of several Trump administration officials to live on military bases due to safety concerns.",
         "background": "",
         "causes": "",
         "stakeholders": "",
         "timeline": [
           {
-            "date": "2026-11-12T19:23:02.000Z",
+            "date": "2026-11-11T16:45:11.000Z",
             "text": "Reported by BBC News — World"
           }
         ],
@@ -21250,8 +21365,8 @@
       "mainsQuestions": []
     },
     {
-      "id": "australian-footballers-will-not-be-charged-after-h-2026-11-13",
-      "title": "Australian footballers will not be charged after hotel incident, police say",
+      "id": "four-grizzly-bears-killed-in-canada-after-fatal-at-2026-11-11",
+      "title": "Four grizzly bears killed in Canada after fatal attack on mother and daughter",
       "region": "world",
       "regions": [
         "world"
@@ -21259,33 +21374,33 @@
       "category": "General Studies",
       "tags": [],
       "gsPapers": [],
-      "summary": "Four Sydney Swans players had been under investigation after an alleged sexual assault after a game in Melbourne.",
+      "summary": "The sow and her three cubs were responsible for killing Jennifer Balcarras, 48, and her daughter Selah Reed, 20, earlier this month.",
       "whyItMatters": "",
       "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
       "imageCredit": "SanjanaIAS category illustration",
       "readTime": 3,
-      "published": "2026-11-13T02:33:07.000Z",
-      "updated": "2026-11-13T02:51:11.802Z",
+      "published": "2026-11-11T13:24:29.000Z",
+      "updated": "2026-11-13T03:15:56.964Z",
       "importance": 5,
       "importanceReason": "Generic coverage with no clear syllabus anchor.",
       "curated": false,
       "sources": [
         {
-          "title": "Australian footballers will not be charged after hotel incident, police say",
+          "title": "Four grizzly bears killed in Canada after fatal attack on mother and daughter",
           "publisher": "BBC News — World",
-          "url": "https://www.bbc.co.uk/news/articles/ckregjwr7njqo?at_medium=RSS&at_campaign=rss",
+          "url": "https://www.bbc.co.uk/news/articles/cwg5r8zrm11mo?at_medium=RSS&at_campaign=rss",
           "type": "reporting",
-          "date": "2026-11-13"
+          "date": "2026-11-11"
         }
       ],
       "sections": {
-        "event": "Four Sydney Swans players had been under investigation after an alleged sexual assault after a game in Melbourne.",
+        "event": "The sow and her three cubs were responsible for killing Jennifer Balcarras, 48, and her daughter Selah Reed, 20, earlier this month.",
         "background": "",
         "causes": "",
         "stakeholders": "",
         "timeline": [
           {
-            "date": "2026-11-13T02:33:07.000Z",
+            "date": "2026-11-11T13:24:29.000Z",
             "text": "Reported by BBC News — World"
           }
         ],
@@ -21303,8 +21418,8 @@
       "mainsQuestions": []
     },
     {
-      "id": "hegseth-awards-medal-to-war-memorial-guard-who-rep-2026-11-12",
-      "title": "Hegseth awards medal to war memorial guard who reprimanded him and group",
+      "id": "kenya-discharges-last-ebola-patient-in-major-miles-2026-11-11",
+      "title": "Kenya discharges last Ebola patient in major milestone towards virus-free status",
       "region": "world",
       "regions": [
         "world"
@@ -21312,33 +21427,33 @@
       "category": "General Studies",
       "tags": [],
       "gsPapers": [],
-      "summary": "Specialist Thomas Iglesias had shouted at Hegseth's group to be quiet after they could be heard talking and laughing at the Tomb of the Unknown Soldier.",
+      "summary": "The country begins a 42-day countdown to being declared Ebola-free, provided no new cases are recorded.",
       "whyItMatters": "",
       "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
       "imageCredit": "SanjanaIAS category illustration",
       "readTime": 3,
-      "published": "2026-11-12T18:47:35.000Z",
-      "updated": "2026-11-13T02:51:11.813Z",
+      "published": "2026-11-11T12:53:11.000Z",
+      "updated": "2026-11-13T03:15:56.972Z",
       "importance": 5,
       "importanceReason": "Generic coverage with no clear syllabus anchor.",
       "curated": false,
       "sources": [
         {
-          "title": "Hegseth awards medal to war memorial guard who reprimanded him and group",
+          "title": "Kenya discharges last Ebola patient in major milestone towards virus-free status",
           "publisher": "BBC News — World",
-          "url": "https://www.bbc.co.uk/news/articles/cmvg2r3dq7xno?at_medium=RSS&at_campaign=rss",
+          "url": "https://www.bbc.co.uk/news/articles/cwe9kzv0g0v7o?at_medium=RSS&at_campaign=rss",
           "type": "reporting",
-          "date": "2026-11-12"
+          "date": "2026-11-11"
         }
       ],
       "sections": {
-        "event": "Specialist Thomas Iglesias had shouted at Hegseth's group to be quiet after they could be heard talking and laughing at the Tomb of the Unknown Soldier.",
+        "event": "The country begins a 42-day countdown to being declared Ebola-free, provided no new cases are recorded.",
         "background": "",
         "causes": "",
         "stakeholders": "",
         "timeline": [
           {
-            "date": "2026-11-12T18:47:35.000Z",
+            "date": "2026-11-11T12:53:11.000Z",
             "text": "Reported by BBC News — World"
           }
         ],
@@ -21356,8 +21471,8 @@
       "mainsQuestions": []
     },
     {
-      "id": "millions-of-ebola-dollars-missing-with-staff-unpai-2026-11-12",
-      "title": "Millions of Ebola dollars missing with staff unpaid while virus spreads, charity says",
+      "id": "watch-vin-cius-jr-s-surprise-message-to-boy-who-re-2026-11-11",
+      "title": "Watch: Vinícius Jr's surprise message to boy who received prosthetic legs after Sudan drone strike",
       "region": "world",
       "regions": [
         "world"
@@ -21365,33 +21480,33 @@
       "category": "General Studies",
       "tags": [],
       "gsPapers": [],
-      "summary": "Medical staff are going unpaid, lack proper training and are struggling with shortages of essential supplies, MSF warns",
+      "summary": "Real Madrid player Vinícius Jr sent a surprise message to 13-year-old fan Zaher who lost both his legs after being hit by a drone in Khartoum, in 2024.",
       "whyItMatters": "",
       "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
       "imageCredit": "SanjanaIAS category illustration",
       "readTime": 3,
-      "published": "2026-11-12T15:18:20.000Z",
-      "updated": "2026-11-13T02:51:11.832Z",
+      "published": "2026-11-11T09:28:36.000Z",
+      "updated": "2026-11-13T03:15:56.986Z",
       "importance": 5,
       "importanceReason": "Generic coverage with no clear syllabus anchor.",
       "curated": false,
       "sources": [
         {
-          "title": "Millions of Ebola dollars missing with staff unpaid while virus spreads, charity says",
+          "title": "Watch: Vinícius Jr's surprise message to boy who received prosthetic legs after Sudan drone strike",
           "publisher": "BBC News — World",
-          "url": "https://www.bbc.co.uk/news/articles/cx98757ymm6zo?at_medium=RSS&at_campaign=rss",
+          "url": "https://www.bbc.co.uk/news/videos/cm894wg251pzo?at_medium=RSS&at_campaign=rss",
           "type": "reporting",
-          "date": "2026-11-12"
+          "date": "2026-11-11"
         }
       ],
       "sections": {
-        "event": "Medical staff are going unpaid, lack proper training and are struggling with shortages of essential supplies, MSF warns",
+        "event": "Real Madrid player Vinícius Jr sent a surprise message to 13-year-old fan Zaher who lost both his legs after being hit by a drone in Khartoum, in 2024.",
         "background": "",
         "causes": "",
         "stakeholders": "",
         "timeline": [
           {
-            "date": "2026-11-12T15:18:20.000Z",
+            "date": "2026-11-11T09:28:36.000Z",
             "text": "Reported by BBC News — World"
           }
         ],
@@ -21409,326 +21524,8 @@
       "mainsQuestions": []
     },
     {
-      "id": "five-new-miniature-frog-species-found-in-eastern-h-2026-11-12",
-      "title": "Five new miniature frog species found in eastern Himalayas",
-      "region": "world",
-      "regions": [
-        "world"
-      ],
-      "category": "General Studies",
-      "tags": [],
-      "gsPapers": [],
-      "summary": "Scientists say the frogs evolved as the Himalayas rose and the Asian monsoon took shape.",
-      "whyItMatters": "",
-      "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "imageCredit": "SanjanaIAS category illustration",
-      "readTime": 3,
-      "published": "2026-11-12T11:07:19.000Z",
-      "updated": "2026-11-13T02:51:11.854Z",
-      "importance": 5,
-      "importanceReason": "Generic coverage with no clear syllabus anchor.",
-      "curated": false,
-      "sources": [
-        {
-          "title": "Five new miniature frog species found in eastern Himalayas",
-          "publisher": "BBC News — World",
-          "url": "https://www.bbc.co.uk/news/articles/c8kgkw7dr5rko?at_medium=RSS&at_campaign=rss",
-          "type": "reporting",
-          "date": "2026-11-12"
-        }
-      ],
-      "sections": {
-        "event": "Scientists say the frogs evolved as the Himalayas rose and the Asian monsoon took shape.",
-        "background": "",
-        "causes": "",
-        "stakeholders": "",
-        "timeline": [
-          {
-            "date": "2026-11-12T11:07:19.000Z",
-            "text": "Reported by BBC News — World"
-          }
-        ],
-        "data": [],
-        "geography": "",
-        "india": "",
-        "telangana": "",
-        "challenges": "",
-        "solutions": "",
-        "upsc": "Auto-tagged to no paper.",
-        "prelimsNotes": [],
-        "mainsNotes": []
-      },
-      "prelimsQuestions": [],
-      "mainsQuestions": []
-    },
-    {
-      "id": "oranges-investigated-after-four-girls-die-in-suspe-2026-11-12",
-      "title": "Oranges investigated after four girls die in suspected Uganda school poisoning",
-      "region": "world",
-      "regions": [
-        "world"
-      ],
-      "category": "General Studies",
-      "tags": [],
-      "gsPapers": [],
-      "summary": "The girls started vomiting after eating oranges brought in by a fellow pupil - police are travelling to the village they came from.",
-      "whyItMatters": "",
-      "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "imageCredit": "SanjanaIAS category illustration",
-      "readTime": 3,
-      "published": "2026-11-12T07:45:52.000Z",
-      "updated": "2026-11-13T02:51:11.865Z",
-      "importance": 5,
-      "importanceReason": "Generic coverage with no clear syllabus anchor.",
-      "curated": false,
-      "sources": [
-        {
-          "title": "Oranges investigated after four girls die in suspected Uganda school poisoning",
-          "publisher": "BBC News — World",
-          "url": "https://www.bbc.co.uk/news/articles/ck9d71wyn7wwo?at_medium=RSS&at_campaign=rss",
-          "type": "reporting",
-          "date": "2026-11-12"
-        }
-      ],
-      "sections": {
-        "event": "The girls started vomiting after eating oranges brought in by a fellow pupil - police are travelling to the village they came from.",
-        "background": "",
-        "causes": "",
-        "stakeholders": "",
-        "timeline": [
-          {
-            "date": "2026-11-12T07:45:52.000Z",
-            "text": "Reported by BBC News — World"
-          }
-        ],
-        "data": [],
-        "geography": "",
-        "india": "",
-        "telangana": "",
-        "challenges": "",
-        "solutions": "",
-        "upsc": "Auto-tagged to no paper.",
-        "prelimsNotes": [],
-        "mainsNotes": []
-      },
-      "prelimsQuestions": [],
-      "mainsQuestions": []
-    },
-    {
-      "id": "search-for-british-woman-missing-from-tui-cruise-i-2026-11-12",
-      "title": "Search for British woman missing from Tui cruise in Atlantic called off",
-      "region": "world",
-      "regions": [
-        "world"
-      ],
-      "category": "General Studies",
-      "tags": [],
-      "gsPapers": [],
-      "summary": "The 72-year-old is believed to have gone overboard from the Tui ship on Monday as it headed towards the Caribbean.",
-      "whyItMatters": "",
-      "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "imageCredit": "SanjanaIAS category illustration",
-      "readTime": 3,
-      "published": "2026-11-12T21:27:21.000Z",
-      "updated": "2026-11-13T02:51:11.887Z",
-      "importance": 5,
-      "importanceReason": "Generic coverage with no clear syllabus anchor.",
-      "curated": false,
-      "sources": [
-        {
-          "title": "Search for British woman missing from Tui cruise in Atlantic called off",
-          "publisher": "BBC News — World",
-          "url": "https://www.bbc.co.uk/news/articles/cmy0enrkwkklo?at_medium=RSS&at_campaign=rss",
-          "type": "reporting",
-          "date": "2026-11-12"
-        }
-      ],
-      "sections": {
-        "event": "The 72-year-old is believed to have gone overboard from the Tui ship on Monday as it headed towards the Caribbean.",
-        "background": "",
-        "causes": "",
-        "stakeholders": "",
-        "timeline": [
-          {
-            "date": "2026-11-12T21:27:21.000Z",
-            "text": "Reported by BBC News — World"
-          }
-        ],
-        "data": [],
-        "geography": "",
-        "india": "",
-        "telangana": "",
-        "challenges": "",
-        "solutions": "",
-        "upsc": "Auto-tagged to no paper.",
-        "prelimsNotes": [],
-        "mainsNotes": []
-      },
-      "prelimsQuestions": [],
-      "mainsQuestions": []
-    },
-    {
-      "id": "the-rise-and-fall-of-jensen-huang-how-the-tech-sup-2026-11-12",
-      "title": "The rise and fall of Jensen Huang - how the tech superstar became mired in scandal",
-      "region": "world",
-      "regions": [
-        "world"
-      ],
-      "category": "General Studies",
-      "tags": [],
-      "gsPapers": [],
-      "summary": "Within days, Huang's status as a seemingly untouchable figure leading the global tech race has crumbled.",
-      "whyItMatters": "",
-      "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "imageCredit": "SanjanaIAS category illustration",
-      "readTime": 3,
-      "published": "2026-11-12T17:11:48.000Z",
-      "updated": "2026-11-13T02:51:12.025Z",
-      "importance": 5,
-      "importanceReason": "Generic coverage with no clear syllabus anchor.",
-      "curated": false,
-      "sources": [
-        {
-          "title": "The rise and fall of Jensen Huang - how the tech superstar became mired in scandal",
-          "publisher": "BBC News — World",
-          "url": "https://www.bbc.co.uk/news/articles/cmze750zg0jeo?at_medium=RSS&at_campaign=rss",
-          "type": "reporting",
-          "date": "2026-11-12"
-        }
-      ],
-      "sections": {
-        "event": "Within days, Huang's status as a seemingly untouchable figure leading the global tech race has crumbled.",
-        "background": "",
-        "causes": "",
-        "stakeholders": "",
-        "timeline": [
-          {
-            "date": "2026-11-12T17:11:48.000Z",
-            "text": "Reported by BBC News — World"
-          }
-        ],
-        "data": [],
-        "geography": "",
-        "india": "",
-        "telangana": "",
-        "challenges": "",
-        "solutions": "",
-        "upsc": "Auto-tagged to no paper.",
-        "prelimsNotes": [],
-        "mainsNotes": []
-      },
-      "prelimsQuestions": [],
-      "mainsQuestions": []
-    },
-    {
-      "id": "jensen-huang-has-resigned-what-s-next-for-nvidia-2026-11-12",
-      "title": "Jensen Huang has resigned, what's next for Nvidia?",
-      "region": "world",
-      "regions": [
-        "world"
-      ],
-      "category": "General Studies",
-      "tags": [],
-      "gsPapers": [],
-      "summary": "The BBC's Samira Hussain reports from Wall Street on what the fall of the tech superstar means for the company and AI.",
-      "whyItMatters": "",
-      "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "imageCredit": "SanjanaIAS category illustration",
-      "readTime": 3,
-      "published": "2026-11-12T19:33:37.000Z",
-      "updated": "2026-11-13T02:51:12.037Z",
-      "importance": 5,
-      "importanceReason": "Generic coverage with no clear syllabus anchor.",
-      "curated": false,
-      "sources": [
-        {
-          "title": "Jensen Huang has resigned, what's next for Nvidia?",
-          "publisher": "BBC News — World",
-          "url": "https://www.bbc.co.uk/news/videos/cmdx1r99kp9wo?at_medium=RSS&at_campaign=rss",
-          "type": "reporting",
-          "date": "2026-11-12"
-        }
-      ],
-      "sections": {
-        "event": "The BBC's Samira Hussain reports from Wall Street on what the fall of the tech superstar means for the company and AI.",
-        "background": "",
-        "causes": "",
-        "stakeholders": "",
-        "timeline": [
-          {
-            "date": "2026-11-12T19:33:37.000Z",
-            "text": "Reported by BBC News — World"
-          }
-        ],
-        "data": [],
-        "geography": "",
-        "india": "",
-        "telangana": "",
-        "challenges": "",
-        "solutions": "",
-        "upsc": "Auto-tagged to no paper.",
-        "prelimsNotes": [],
-        "mainsNotes": []
-      },
-      "prelimsQuestions": [],
-      "mainsQuestions": []
-    },
-    {
-      "id": "before-scott-colom-these-two-men-were-the-last-bla-2026-11-12",
-      "title": "Before Scott Colom, these two men were the last black US senators from Mississippi",
-      "region": "world",
-      "regions": [
-        "world"
-      ],
-      "category": "General Studies",
-      "tags": [],
-      "gsPapers": [],
-      "summary": "The Democratic candidate won in a southern state that had not seated a black senator since 1874.",
-      "whyItMatters": "",
-      "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%231e3a8a%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EWORLD%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "imageCredit": "SanjanaIAS category illustration",
-      "readTime": 3,
-      "published": "2026-11-12T14:12:55.000Z",
-      "updated": "2026-11-13T02:51:12.048Z",
-      "importance": 5,
-      "importanceReason": "Generic coverage with no clear syllabus anchor.",
-      "curated": false,
-      "sources": [
-        {
-          "title": "Before Scott Colom, these two men were the last black US senators from Mississippi",
-          "publisher": "BBC News — World",
-          "url": "https://www.bbc.co.uk/news/articles/cmde1y19g19do?at_medium=RSS&at_campaign=rss",
-          "type": "reporting",
-          "date": "2026-11-12"
-        }
-      ],
-      "sections": {
-        "event": "The Democratic candidate won in a southern state that had not seated a black senator since 1874.",
-        "background": "",
-        "causes": "",
-        "stakeholders": "",
-        "timeline": [
-          {
-            "date": "2026-11-12T14:12:55.000Z",
-            "text": "Reported by BBC News — World"
-          }
-        ],
-        "data": [],
-        "geography": "",
-        "india": "",
-        "telangana": "",
-        "challenges": "",
-        "solutions": "",
-        "upsc": "Auto-tagged to no paper.",
-        "prelimsNotes": [],
-        "mainsNotes": []
-      },
-      "prelimsQuestions": [],
-      "mainsQuestions": []
-    },
-    {
-      "id": "twin-cyclone-leave-livelihoods-in-tatters-2026-11-13",
-      "title": "Twin cyclone leave livelihoods in tatters",
+      "id": "mind-the-gap-partial-opening-of-namma-metro-pink-l-2026-11-13",
+      "title": "Mind the gap: Partial opening of Namma Metro Pink Line leaves commuters wanting",
       "region": "india",
       "regions": [
         "india"
@@ -21736,33 +21533,33 @@
       "category": "General Studies",
       "tags": [],
       "gsPapers": [],
-      "summary": "Cyclones, Arnab and Murasu, which hit the Andhra Pradesh coastline within a span of a week, delivered a severe blow to the fisherfolk communities, coconut and casuarina growers in West Godavari and Konaseema districts, many of whom may have to look for alternative livelihoods…",
+      "summary": "The opening of the elevated section of the Pink Line is expected to offer only minor relief to the city’s gridlock, with the crucial underground section connecting the Central Business District to north Bengaluru awaiting completion, writes Darshan Devaiah B.P.",
       "whyItMatters": "",
-      "image": "https://th-i.thgim.com/public/incoming/oi217j/article71695232.ece/alternates/LANDSCAPE_1200/DSC_8181.JPG",
+      "image": "https://th-i.thgim.com/public/incoming/f7035v/article71694075.ece/alternates/LANDSCAPE_1200/_JAI9542.JPG",
       "imageCredit": "The Hindu — National",
       "readTime": 3,
-      "published": "2026-11-13T02:09:23.000Z",
-      "updated": "2026-11-13T02:51:12.224Z",
+      "published": "2026-11-13T01:14:10.000Z",
+      "updated": "2026-11-13T03:15:57.301Z",
       "importance": 5,
       "importanceReason": "Generic coverage with no clear syllabus anchor.",
       "curated": false,
       "sources": [
         {
-          "title": "Twin cyclone leave livelihoods in tatters",
+          "title": "Mind the gap: Partial opening of Namma Metro Pink Line leaves commuters wanting",
           "publisher": "The Hindu — National",
-          "url": "https://www.thehindu.com/news/national/andhra-pradesh/twin-cyclone-leave-livelihoods-in-tatters/article71695213.ece",
+          "url": "https://www.thehindu.com/news/national/karnataka/mind-the-gap-partial-opening-of-namma-metro-pink-line-leaves-commuters-wanting/article71688228.ece",
           "type": "reporting",
           "date": "2026-11-13"
         }
       ],
       "sections": {
-        "event": "Cyclones, Arnab and Murasu, which hit the Andhra Pradesh coastline within a span of a week, delivered a severe blow to the fisherfolk communities, coconut and casuarina growers in West Godavari and Konaseema districts, many of whom may have to look for alternative livelihoods for two to three years, writes Nellore Sravani",
+        "event": "The opening of the elevated section of the Pink Line is expected to offer only minor relief to the city’s gridlock, with the crucial underground section connecting the Central Business District to north Bengaluru awaiting completion, writes Darshan Devaiah B.P.",
         "background": "",
         "causes": "",
         "stakeholders": "",
         "timeline": [
           {
-            "date": "2026-11-13T02:09:23.000Z",
+            "date": "2026-11-13T01:14:10.000Z",
             "text": "Reported by The Hindu — National"
           }
         ],
@@ -21780,8 +21577,8 @@
       "mainsQuestions": []
     },
     {
-      "id": "mahadev-betting-app-kingpin-sent-to-judicial-custo-2026-11-13",
-      "title": "Mahadev betting app kingpin sent to judicial custody till November 19",
+      "id": "sriperumbudur-toll-plaza-gets-mlff-2026-11-13",
+      "title": "Sriperumbudur toll plaza gets MLFF",
       "region": "india",
       "regions": [
         "india"
@@ -21789,33 +21586,33 @@
       "category": "General Studies",
       "tags": [],
       "gsPapers": [],
-      "summary": "After his extradition from Oman, the CBI had arrested Sourabh Chandrakar and was granted his custody by the same court last week",
+      "summary": "The scanners will read FASTag cards and number plates, and the system will automatically collect the amount due at the toll",
       "whyItMatters": "",
-      "image": "https://th-i.thgim.com/public/incoming/ply3of/article71694325.ece/alternates/LANDSCAPE_1200/01th-SHUBHOMOY-GROGOAPG6.4.jpg.jpg",
+      "image": "https://th-i.thgim.com/public/news/national/8c5e87/article71694831.ece/alternates/LANDSCAPE_1200/WhatsApp%20Image%202026-11-12%20at%208.57.53%20PM.jpeg",
       "imageCredit": "The Hindu — National",
       "readTime": 3,
-      "published": "2026-11-13T01:37:29.000Z",
-      "updated": "2026-11-13T02:51:12.246Z",
+      "published": "2026-11-13T01:04:12.000Z",
+      "updated": "2026-11-13T03:15:57.306Z",
       "importance": 5,
       "importanceReason": "Generic coverage with no clear syllabus anchor.",
       "curated": false,
       "sources": [
         {
-          "title": "Mahadev betting app kingpin sent to judicial custody till November 19",
+          "title": "Sriperumbudur toll plaza gets MLFF",
           "publisher": "The Hindu — National",
-          "url": "https://www.thehindu.com/news/national/mahadev-betting-app-kingpin-sent-to-judicial-custody-till-november-19/article71693883.ece",
+          "url": "https://www.thehindu.com/news/cities/chennai/sriperumbudur-toll-plaza-gets-mlff/article71691119.ece",
           "type": "reporting",
           "date": "2026-11-13"
         }
       ],
       "sections": {
-        "event": "After his extradition from Oman, the CBI had arrested Sourabh Chandrakar and was granted his custody by the same court last week",
+        "event": "The scanners will read FASTag cards and number plates, and the system will automatically collect the amount due at the toll",
         "background": "",
         "causes": "",
         "stakeholders": "",
         "timeline": [
           {
-            "date": "2026-11-13T01:37:29.000Z",
+            "date": "2026-11-13T01:04:12.000Z",
             "text": "Reported by The Hindu — National"
           }
         ],
@@ -21833,8 +21630,8 @@
       "mainsQuestions": []
     },
     {
-      "id": "centre-sanctions-new-roads-infrastructure-along-ch-2026-11-13",
-      "title": "Centre sanctions new roads, infrastructure along China’s border",
+      "id": "punjab-assembly-polls-aap-releases-second-list-of--2026-11-12",
+      "title": "Punjab Assembly polls: AAP releases second list of candidates",
       "region": "india",
       "regions": [
         "india"
@@ -21842,139 +21639,33 @@
       "category": "General Studies",
       "tags": [],
       "gsPapers": [],
-      "summary": "The Indo-Tibetan Border Police sanctions the construction of 15 pedestrian suspension bridges and 18 log bridges in Arunachal Pradesh; CCS clears 26 new roads as part of ICBR-III",
-      "whyItMatters": "",
-      "image": "https://th-i.thgim.com/public/news/national/fmxbfe/article71694964.ece/alternates/LANDSCAPE_1200/bridge1.jpg",
-      "imageCredit": "The Hindu — National",
-      "readTime": 3,
-      "published": "2026-11-13T01:37:01.000Z",
-      "updated": "2026-11-13T02:51:12.254Z",
-      "importance": 5,
-      "importanceReason": "Generic coverage with no clear syllabus anchor.",
-      "curated": false,
-      "sources": [
-        {
-          "title": "Centre sanctions new roads, infrastructure along China’s border",
-          "publisher": "The Hindu — National",
-          "url": "https://www.thehindu.com/news/national/centre-sanctions-new-roads-infrastructure-along-chinas-border/article71694100.ece",
-          "type": "reporting",
-          "date": "2026-11-13"
-        }
-      ],
-      "sections": {
-        "event": "The Indo-Tibetan Border Police sanctions the construction of 15 pedestrian suspension bridges and 18 log bridges in Arunachal Pradesh; CCS clears 26 new roads as part of ICBR-III",
-        "background": "",
-        "causes": "",
-        "stakeholders": "",
-        "timeline": [
-          {
-            "date": "2026-11-13T01:37:01.000Z",
-            "text": "Reported by The Hindu — National"
-          }
-        ],
-        "data": [],
-        "geography": "",
-        "india": "Flagged as India-relevant by the classifier.",
-        "telangana": "",
-        "challenges": "",
-        "solutions": "",
-        "upsc": "Auto-tagged to no paper.",
-        "prelimsNotes": [],
-        "mainsNotes": []
-      },
-      "prelimsQuestions": [],
-      "mainsQuestions": []
-    },
-    {
-      "id": "the-morphing-menace-2026-11-13",
-      "title": "The morphing menace",
-      "region": "india",
-      "regions": [
-        "india"
-      ],
-      "category": "General Studies",
-      "tags": [],
-      "gsPapers": [],
-      "summary": "Increasing instances of morphing and deepfakes involving sexually explicit images and creation of non-consensual intimate images using bots and AI have emerged as a major privacy concern in Keralam. G. Ragesh finds out what is happening in the murky world of cybercrimes",
-      "whyItMatters": "",
-      "image": "https://th-i.thgim.com/public/news/national/kerala/j3d3gr/article71694823.ece/alternates/LANDSCAPE_1200/morphing.jpg",
-      "imageCredit": "The Hindu — National",
-      "readTime": 3,
-      "published": "2026-11-13T01:33:04.000Z",
-      "updated": "2026-11-13T02:51:12.261Z",
-      "importance": 5,
-      "importanceReason": "Generic coverage with no clear syllabus anchor.",
-      "curated": false,
-      "sources": [
-        {
-          "title": "The morphing menace",
-          "publisher": "The Hindu — National",
-          "url": "https://www.thehindu.com/news/national/kerala/kerala-morphing-menace-deepfakes-sexually-explicit-images-artificial-intelligence/article71686863.ece",
-          "type": "reporting",
-          "date": "2026-11-13"
-        }
-      ],
-      "sections": {
-        "event": "Increasing instances of morphing and deepfakes involving sexually explicit images and creation of non-consensual intimate images using bots and AI have emerged as a major privacy concern in Keralam. G. Ragesh finds out what is happening in the murky world of cybercrimes",
-        "background": "",
-        "causes": "",
-        "stakeholders": "",
-        "timeline": [
-          {
-            "date": "2026-11-13T01:33:04.000Z",
-            "text": "Reported by The Hindu — National"
-          }
-        ],
-        "data": [],
-        "geography": "",
-        "india": "Flagged as India-relevant by the classifier.",
-        "telangana": "",
-        "challenges": "",
-        "solutions": "",
-        "upsc": "Auto-tagged to no paper.",
-        "prelimsNotes": [],
-        "mainsNotes": []
-      },
-      "prelimsQuestions": [],
-      "mainsQuestions": []
-    },
-    {
-      "id": "crime-branch-arrests-kerala-pravasi-association-ch-2026-11-13",
-      "title": "Crime Branch arrests Kerala Pravasi Association chief for alleged extortion attempt",
-      "region": "india",
-      "regions": [
-        "india"
-      ],
-      "category": "General Studies",
-      "tags": [],
-      "gsPapers": [],
-      "summary": "The society reportedly received the notice on October 5, directing it to produce documents in connection with alleged financial irregularities, including money laundering",
+      "summary": "Two sitting AAP Lok Sabha MPs will enter the fray: Raj Kumar Chabbewal from Phagwara and Gurmeet Singh Meet Hayer from Barnala",
       "whyItMatters": "",
       "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%23065f46%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EINDIA%3C%2Ftext%3E%3C%2Fsvg%3E",
       "imageCredit": "SanjanaIAS category illustration",
       "readTime": 3,
-      "published": "2026-11-13T01:29:26.000Z",
-      "updated": "2026-11-13T02:51:12.268Z",
+      "published": "2026-11-12T23:13:59.000Z",
+      "updated": "2026-11-13T03:15:57.314Z",
       "importance": 5,
       "importanceReason": "Generic coverage with no clear syllabus anchor.",
       "curated": false,
       "sources": [
         {
-          "title": "Crime Branch arrests Kerala Pravasi Association chief for alleged extortion attempt",
+          "title": "Punjab Assembly polls: AAP releases second list of candidates",
           "publisher": "The Hindu — National",
-          "url": "https://www.thehindu.com/news/cities/Kochi/crime-branch-arrests-kerala-pravasi-association-chief-for-alleged-extortion-attempt/article71693248.ece",
+          "url": "https://www.thehindu.com/news/national/punjab/punjab-assembly-polls-aap-releases-second-list-of-candidates/article71694535.ece",
           "type": "reporting",
-          "date": "2026-11-13"
+          "date": "2026-11-12"
         }
       ],
       "sections": {
-        "event": "The society reportedly received the notice on October 5, directing it to produce documents in connection with alleged financial irregularities, including money laundering",
+        "event": "Two sitting AAP Lok Sabha MPs will enter the fray: Raj Kumar Chabbewal from Phagwara and Gurmeet Singh Meet Hayer from Barnala",
         "background": "",
         "causes": "",
         "stakeholders": "",
         "timeline": [
           {
-            "date": "2026-11-13T01:29:26.000Z",
+            "date": "2026-11-12T23:13:59.000Z",
             "text": "Reported by The Hindu — National"
           }
         ],
@@ -21992,8 +21683,8 @@
       "mainsQuestions": []
     },
     {
-      "id": "minister-level-meeting-seeks-report-on-relocation--2026-11-13",
-      "title": "Minister-level meeting seeks report on relocation, rehabilitation plans for P&T Colony residents from Ernakulam Collector",
+      "id": "five-held-for-kidnapping-assaulting-youth-in-keral-2026-11-12",
+      "title": "Five held for kidnapping, assaulting youth in Keralam’s Tirur",
       "region": "india",
       "regions": [
         "india"
@@ -22001,192 +21692,33 @@
       "category": "General Studies",
       "tags": [],
       "gsPapers": [],
-      "summary": "Kochi MLA Mohammed Shiyas had submitted a memorandum to the Minister outlining three possible rehabilitation packages",
-      "whyItMatters": "",
-      "image": "https://th-i.thgim.com/public/incoming/fi4c79/article71695312.ece/alternates/LANDSCAPE_1200/PT_06.jpg",
-      "imageCredit": "The Hindu — National",
-      "readTime": 3,
-      "published": "2026-11-13T01:28:01.000Z",
-      "updated": "2026-11-13T02:51:12.275Z",
-      "importance": 5,
-      "importanceReason": "Generic coverage with no clear syllabus anchor.",
-      "curated": false,
-      "sources": [
-        {
-          "title": "Minister-level meeting seeks report on relocation, rehabilitation plans for P&T Colony residents from Ernakulam Collector",
-          "publisher": "The Hindu — National",
-          "url": "https://www.thehindu.com/news/cities/Kochi/minister-level-meeting-seeks-report-on-relocation-rehabilitation-plans-for-pt-colony-residents-from-ernakulam-collector/article71693526.ece",
-          "type": "reporting",
-          "date": "2026-11-13"
-        }
-      ],
-      "sections": {
-        "event": "Kochi MLA Mohammed Shiyas had submitted a memorandum to the Minister outlining three possible rehabilitation packages",
-        "background": "",
-        "causes": "",
-        "stakeholders": "",
-        "timeline": [
-          {
-            "date": "2026-11-13T01:28:01.000Z",
-            "text": "Reported by The Hindu — National"
-          }
-        ],
-        "data": [],
-        "geography": "",
-        "india": "Flagged as India-relevant by the classifier.",
-        "telangana": "",
-        "challenges": "",
-        "solutions": "",
-        "upsc": "Auto-tagged to no paper.",
-        "prelimsNotes": [],
-        "mainsNotes": []
-      },
-      "prelimsQuestions": [],
-      "mainsQuestions": []
-    },
-    {
-      "id": "softening-the-blow-of-medical-costs-2026-11-13",
-      "title": "Softening the blow of medical costs",
-      "region": "india",
-      "regions": [
-        "india"
-      ],
-      "category": "General Studies",
-      "tags": [],
-      "gsPapers": [],
-      "summary": "Medical treatment can come at a crippling cost, particularly for families with limited means. But the Chief Minister’s Relief Fund has emerged as a source of support for patients across Telangana, helping them access treatment without having to shoulder the entire financial…",
-      "whyItMatters": "",
-      "image": "https://th-i.thgim.com/public/incoming/bos7hp/article71695337.ece/alternates/LANDSCAPE_1200/Chief%20Ministers%20Relief%20Fund%20%2003.jpg",
-      "imageCredit": "The Hindu — National",
-      "readTime": 3,
-      "published": "2026-11-13T01:26:31.000Z",
-      "updated": "2026-11-13T02:51:12.284Z",
-      "importance": 5,
-      "importanceReason": "Generic coverage with no clear syllabus anchor.",
-      "curated": false,
-      "sources": [
-        {
-          "title": "Softening the blow of medical costs",
-          "publisher": "The Hindu — National",
-          "url": "https://www.thehindu.com/news/national/telangana/softening-the-blow-of-medical-costs/article71695335.ece",
-          "type": "reporting",
-          "date": "2026-11-13"
-        }
-      ],
-      "sections": {
-        "event": "Medical treatment can come at a crippling cost, particularly for families with limited means. But the Chief Minister’s Relief Fund has emerged as a source of support for patients across Telangana, helping them access treatment without having to shoulder the entire financial burden. Abhinay Deshpande examines the reach of the fund and the scale of assistance disbursed to those in need",
-        "background": "",
-        "causes": "",
-        "stakeholders": "",
-        "timeline": [
-          {
-            "date": "2026-11-13T01:26:31.000Z",
-            "text": "Reported by The Hindu — National"
-          }
-        ],
-        "data": [],
-        "geography": "",
-        "india": "Flagged as India-relevant by the classifier.",
-        "telangana": "",
-        "challenges": "",
-        "solutions": "",
-        "upsc": "Auto-tagged to no paper.",
-        "prelimsNotes": [],
-        "mainsNotes": []
-      },
-      "prelimsQuestions": [],
-      "mainsQuestions": []
-    },
-    {
-      "id": "csir-iict-hands-over-indigenous-etp-to-siripuram-v-2026-11-13",
-      "title": "CSIR-IICT hands over indigenous ETP to Siripuram village",
-      "region": "india",
-      "regions": [
-        "india"
-      ],
-      "category": "General Studies",
-      "tags": [],
-      "gsPapers": [],
-      "summary": "CSIR-IICT hands over indigenous ETP to Siripuram village",
-      "whyItMatters": "",
-      "image": "https://th-i.thgim.com/public/todays-paper/tp-national/tp-telangana/gfnzmg/article71260354.ece/alternates/LANDSCAPE_1200/CSIR-IICT-handsGBVG9S76P.3.jpg.jpg",
-      "imageCredit": "The Hindu — National",
-      "readTime": 3,
-      "published": "2026-11-13T01:21:03.000Z",
-      "updated": "2026-11-13T02:51:12.290Z",
-      "importance": 5,
-      "importanceReason": "Generic coverage with no clear syllabus anchor.",
-      "curated": false,
-      "sources": [
-        {
-          "title": "CSIR-IICT hands over indigenous ETP to Siripuram village",
-          "publisher": "The Hindu — National",
-          "url": "https://www.thehindu.com/news/national/telangana/csir-iict-hands-over-indigenous-etp-to-siripuram-village/article71257404.ece",
-          "type": "reporting",
-          "date": "2026-11-13"
-        }
-      ],
-      "sections": {
-        "event": "CSIR-IICT hands over indigenous ETP to Siripuram village",
-        "background": "",
-        "causes": "",
-        "stakeholders": "",
-        "timeline": [
-          {
-            "date": "2026-11-13T01:21:03.000Z",
-            "text": "Reported by The Hindu — National"
-          }
-        ],
-        "data": [],
-        "geography": "",
-        "india": "Flagged as India-relevant by the classifier.",
-        "telangana": "",
-        "challenges": "",
-        "solutions": "",
-        "upsc": "Auto-tagged to no paper.",
-        "prelimsNotes": [],
-        "mainsNotes": []
-      },
-      "prelimsQuestions": [],
-      "mainsQuestions": []
-    },
-    {
-      "id": "gig-and-platform-workers-plan-major-rally-2026-11-13",
-      "title": "Gig and platform workers’ plan major rally",
-      "region": "india",
-      "regions": [
-        "india"
-      ],
-      "category": "General Studies",
-      "tags": [],
-      "gsPapers": [],
-      "summary": "TGPWU office-bearer Shaik Salauddin said on Thursday that Leader of Opposition in the Lok Sabha Rahul Gandhi has been invited to join the rally",
+      "summary": "Five held for kidnapping, assaulting youth in Keralam’s Tirur",
       "whyItMatters": "",
       "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%23065f46%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EINDIA%3C%2Ftext%3E%3C%2Fsvg%3E",
       "imageCredit": "SanjanaIAS category illustration",
       "readTime": 3,
-      "published": "2026-11-13T01:20:56.000Z",
-      "updated": "2026-11-13T02:51:12.298Z",
+      "published": "2026-11-12T20:33:42.000Z",
+      "updated": "2026-11-13T03:15:57.331Z",
       "importance": 5,
       "importanceReason": "Generic coverage with no clear syllabus anchor.",
       "curated": false,
       "sources": [
         {
-          "title": "Gig and platform workers’ plan major rally",
+          "title": "Five held for kidnapping, assaulting youth in Keralam’s Tirur",
           "publisher": "The Hindu — National",
-          "url": "https://www.thehindu.com/news/cities/Hyderabad/gig-and-platform-workers-plan-major-rally/article71693845.ece",
+          "url": "https://www.thehindu.com/news/national/kerala/five-held-for-kidnapping-assaulting-youth-in-keralams-tirur/article71694235.ece",
           "type": "reporting",
-          "date": "2026-11-13"
+          "date": "2026-11-12"
         }
       ],
       "sections": {
-        "event": "TGPWU office-bearer Shaik Salauddin said on Thursday that Leader of Opposition in the Lok Sabha Rahul Gandhi has been invited to join the rally",
+        "event": "Five held for kidnapping, assaulting youth in Keralam’s Tirur",
         "background": "",
         "causes": "",
         "stakeholders": "",
         "timeline": [
           {
-            "date": "2026-11-13T01:20:56.000Z",
+            "date": "2026-11-12T20:33:42.000Z",
             "text": "Reported by The Hindu — National"
           }
         ],
@@ -22204,8 +21736,8 @@
       "mainsQuestions": []
     },
     {
-      "id": "every-role-in-it-is-getting-its-ai-powered-version-2026-11-13",
-      "title": "‘Every role in IT is getting its AI-powered version’",
+      "id": "three-of-malappuram-family-killed-in-fujairah-road-2026-11-12",
+      "title": "Three of Malappuram family killed in Fujairah road crash",
       "region": "india",
       "regions": [
         "india"
@@ -22213,33 +21745,33 @@
       "category": "General Studies",
       "tags": [],
       "gsPapers": [],
-      "summary": "‘Every role in IT is getting its AI-powered version’",
+      "summary": "Three of Malappuram family killed in Fujairah road crash",
       "whyItMatters": "",
       "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%23065f46%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EINDIA%3C%2Ftext%3E%3C%2Fsvg%3E",
       "imageCredit": "SanjanaIAS category illustration",
       "readTime": 3,
-      "published": "2026-11-13T01:19:17.000Z",
-      "updated": "2026-11-13T02:51:12.305Z",
+      "published": "2026-11-12T20:31:19.000Z",
+      "updated": "2026-11-13T03:15:57.336Z",
       "importance": 5,
       "importanceReason": "Generic coverage with no clear syllabus anchor.",
       "curated": false,
       "sources": [
         {
-          "title": "‘Every role in IT is getting its AI-powered version’",
+          "title": "Three of Malappuram family killed in Fujairah road crash",
           "publisher": "The Hindu — National",
-          "url": "https://www.thehindu.com/news/cities/Hyderabad/every-role-in-it-is-getting-its-ai-powered-version/article71694371.ece",
+          "url": "https://www.thehindu.com/news/national/kerala/three-of-malappuram-family-killed-in-fujairah-road-crash/article71694144.ece",
           "type": "reporting",
-          "date": "2026-11-13"
+          "date": "2026-11-12"
         }
       ],
       "sections": {
-        "event": "‘Every role in IT is getting its AI-powered version’",
+        "event": "Three of Malappuram family killed in Fujairah road crash",
         "background": "",
         "causes": "",
         "stakeholders": "",
         "timeline": [
           {
-            "date": "2026-11-13T01:19:17.000Z",
+            "date": "2026-11-12T20:31:19.000Z",
             "text": "Reported by The Hindu — National"
           }
         ],
@@ -22257,8 +21789,8 @@
       "mainsQuestions": []
     },
     {
-      "id": "bengal-church-attacks-choosing-faith-over-fear-2026-11-13",
-      "title": "Bengal Church attacks: Choosing faith over fear",
+      "id": "operation-cy-hunt-six-arrested-in-kozhikode-2026-11-12",
+      "title": "‘Operation Cy-Hunt’: six arrested in Kozhikode",
       "region": "india",
       "regions": [
         "india"
@@ -22266,33 +21798,510 @@
       "category": "General Studies",
       "tags": [],
       "gsPapers": [],
-      "summary": "West Bengal has witnessed a sudden, rapid spike in attacks on Christian home fellowships and churches since the summer of 2026, when the BJP government came to power in the State. Senjuti Sengupta and Shiv Sahay Singh report on the fear of the community that is less than 1% of…",
+      "summary": "Inspections conducted across Kozhikode city and rural police limits led to cases being registered against 37 individuals",
       "whyItMatters": "",
-      "image": "https://th-i.thgim.com/public/incoming/y39imz/article71693311.ece/alternates/LANDSCAPE_1200/Trinity%20of%20Joy%20Church%20%2008.JPG",
+      "image": "https://th-i.thgim.com/public/incoming/2672we/article71695386.ece/alternates/LANDSCAPE_1200/Cyber-Fraud-NetG75GIB901.3.jpg.jpg",
       "imageCredit": "The Hindu — National",
       "readTime": 3,
-      "published": "2026-11-13T01:16:05.000Z",
-      "updated": "2026-11-13T02:51:12.312Z",
+      "published": "2026-11-12T20:04:38.000Z",
+      "updated": "2026-11-13T03:15:57.345Z",
       "importance": 5,
       "importanceReason": "Generic coverage with no clear syllabus anchor.",
       "curated": false,
       "sources": [
         {
-          "title": "Bengal Church attacks: Choosing faith over fear",
+          "title": "‘Operation Cy-Hunt’: six arrested in Kozhikode",
           "publisher": "The Hindu — National",
-          "url": "https://www.thehindu.com/news/national/west-bengal/choosing-faith-over-fear/article71693306.ece",
+          "url": "https://www.thehindu.com/news/national/kerala/operation-cy-hunt-six-arrested-in-kozhikode/article71693435.ece",
           "type": "reporting",
-          "date": "2026-11-13"
+          "date": "2026-11-12"
         }
       ],
       "sections": {
-        "event": "West Bengal has witnessed a sudden, rapid spike in attacks on Christian home fellowships and churches since the summer of 2026, when the BJP government came to power in the State. Senjuti Sengupta and Shiv Sahay Singh report on the fear of the community that is less than 1% of the population in West Bengal",
+        "event": "Inspections conducted across Kozhikode city and rural police limits led to cases being registered against 37 individuals",
         "background": "",
         "causes": "",
         "stakeholders": "",
         "timeline": [
           {
-            "date": "2026-11-13T01:16:05.000Z",
+            "date": "2026-11-12T20:04:38.000Z",
+            "text": "Reported by The Hindu — National"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "Flagged as India-relevant by the classifier.",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "voluntary-transferof-priority-ration-cards-allowed-2026-11-12",
+      "title": "Voluntary transferof priority ration cards allowed till December 8",
+      "region": "india",
+      "regions": [
+        "india"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "Those required to surrender their cards include government and semi-government employees, teachers, employees of public sector or cooperative institutions, service pensioners, and income taxpayers",
+      "whyItMatters": "",
+      "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%23065f46%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EINDIA%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "imageCredit": "SanjanaIAS category illustration",
+      "readTime": 3,
+      "published": "2026-11-12T20:02:19.000Z",
+      "updated": "2026-11-13T03:15:57.350Z",
+      "importance": 5,
+      "importanceReason": "Generic coverage with no clear syllabus anchor.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Voluntary transferof priority ration cards allowed till December 8",
+          "publisher": "The Hindu — National",
+          "url": "https://www.thehindu.com/news/national/kerala/voluntary-transferof-priority-ration-cards-allowed-till-december-8/article71693635.ece",
+          "type": "reporting",
+          "date": "2026-11-12"
+        }
+      ],
+      "sections": {
+        "event": "Those required to surrender their cards include government and semi-government employees, teachers, employees of public sector or cooperative institutions, service pensioners, and income taxpayers",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-12T20:02:19.000Z",
+            "text": "Reported by The Hindu — National"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "Flagged as India-relevant by the classifier.",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "priyanka-gandhi-pays-tribute-to-cheruvayal-raman-v-2026-11-12",
+      "title": "Priyanka Gandhi pays tribute to Cheruvayal Raman, visits family in Wayanad",
+      "region": "india",
+      "regions": [
+        "india"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "Congress MP recalls Padma Shri awardee’s commitment to his people, traditional farming, and preservation of indigenous rice varieties",
+      "whyItMatters": "",
+      "image": "https://th-i.thgim.com/public/incoming/h2fqs1/article71694783.ece/alternates/LANDSCAPE_1200/PTI11_12_2026_000152B.jpg",
+      "imageCredit": "The Hindu — National",
+      "readTime": 3,
+      "published": "2026-11-12T20:00:01.000Z",
+      "updated": "2026-11-13T03:15:57.354Z",
+      "importance": 5,
+      "importanceReason": "Generic coverage with no clear syllabus anchor.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Priyanka Gandhi pays tribute to Cheruvayal Raman, visits family in Wayanad",
+          "publisher": "The Hindu — National",
+          "url": "https://www.thehindu.com/news/national/kerala/priyanka-gandhi-pays-tribute-to-cheruvayal-raman-visits-family-in-wayanad/article71693581.ece",
+          "type": "reporting",
+          "date": "2026-11-12"
+        }
+      ],
+      "sections": {
+        "event": "Congress MP recalls Padma Shri awardee’s commitment to his people, traditional farming, and preservation of indigenous rice varieties",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-12T20:00:01.000Z",
+            "text": "Reported by The Hindu — National"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "Flagged as India-relevant by the classifier.",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "private-passenger-ship-service-between-beypore-and-2026-11-12",
+      "title": "Private passenger ship service between Beypore and Lakshadweep soon",
+      "region": "india",
+      "regions": [
+        "india"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "As part of the trial, the ship, capable of accommodating 250 passengers, anchored safely at the port wharf. Maiden commercial run anticipated in November",
+      "whyItMatters": "",
+      "image": "https://th-i.thgim.com/public/incoming/xmztrh/article71695061.ece/alternates/LANDSCAPE_1200/beypore.JPG",
+      "imageCredit": "The Hindu — National",
+      "readTime": 3,
+      "published": "2026-11-12T19:57:55.000Z",
+      "updated": "2026-11-13T03:15:57.360Z",
+      "importance": 5,
+      "importanceReason": "Generic coverage with no clear syllabus anchor.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Private passenger ship service between Beypore and Lakshadweep soon",
+          "publisher": "The Hindu — National",
+          "url": "https://www.thehindu.com/news/national/kerala/private-sector-steps-in-to-resume-beypore-lakshadweep-passenger-ship-service/article71693792.ece",
+          "type": "reporting",
+          "date": "2026-11-12"
+        }
+      ],
+      "sections": {
+        "event": "As part of the trial, the ship, capable of accommodating 250 passengers, anchored safely at the port wharf. Maiden commercial run anticipated in November",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-12T19:57:55.000Z",
+            "text": "Reported by The Hindu — National"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "Flagged as India-relevant by the classifier.",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "kin-convicted-for-raping-minor-2026-11-12",
+      "title": "Kin convicted for raping minor",
+      "region": "india",
+      "regions": [
+        "india"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "Kin convicted for raping minor",
+      "whyItMatters": "",
+      "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20450%22%3E%3Crect%20width%3D%22800%22%20height%3D%22450%22%20fill%3D%22%23065f46%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22238%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20letter-spacing%3D%2210%22%3EINDIA%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "imageCredit": "SanjanaIAS category illustration",
+      "readTime": 3,
+      "published": "2026-11-12T19:57:02.000Z",
+      "updated": "2026-11-13T03:15:57.364Z",
+      "importance": 5,
+      "importanceReason": "Generic coverage with no clear syllabus anchor.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Kin convicted for raping minor",
+          "publisher": "The Hindu — National",
+          "url": "https://www.thehindu.com/news/cities/Kochi/kin-convicted-for-raping-minor/article71694222.ece",
+          "type": "reporting",
+          "date": "2026-11-12"
+        }
+      ],
+      "sections": {
+        "event": "Kin convicted for raping minor",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-12T19:57:02.000Z",
+            "text": "Reported by The Hindu — National"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "Flagged as India-relevant by the classifier.",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "eye-donation-awareness-programme-organised-at-erna-2026-11-12",
+      "title": "Eye donation awareness programme organised at Ernakulam MCH",
+      "region": "india",
+      "regions": [
+        "india"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "The event was held ahead of the hospital’s application for a licence to perform corneal transplantation",
+      "whyItMatters": "",
+      "image": "https://th-i.thgim.com/public/incoming/mzukdf/article71695382.ece/alternates/LANDSCAPE_1200/IMG_iStock-1273459095_2_1_F5DJDO2A.jpg",
+      "imageCredit": "The Hindu — National",
+      "readTime": 3,
+      "published": "2026-11-12T19:50:44.000Z",
+      "updated": "2026-11-13T03:15:57.371Z",
+      "importance": 5,
+      "importanceReason": "Generic coverage with no clear syllabus anchor.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Eye donation awareness programme organised at Ernakulam MCH",
+          "publisher": "The Hindu — National",
+          "url": "https://www.thehindu.com/news/national/kerala/eye-donation-awareness-programme-organised-at-ernakulam-mch/article71694719.ece",
+          "type": "reporting",
+          "date": "2026-11-12"
+        }
+      ],
+      "sections": {
+        "event": "The event was held ahead of the hospital’s application for a licence to perform corneal transplantation",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-12T19:50:44.000Z",
+            "text": "Reported by The Hindu — National"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "Flagged as India-relevant by the classifier.",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "palaniswami-rejects-speculation-of-dhinakaran-sasi-2026-11-12",
+      "title": "Palaniswami rejects speculation of Dhinakaran, Sasikala being readmitted into AIADMK",
+      "region": "india",
+      "regions": [
+        "india"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "Palaniswami rejects speculation of Dhinakaran, Sasikala being readmitted into AIADMK",
+      "whyItMatters": "",
+      "image": "https://th-i.thgim.com/public/incoming/f0i796/article71695316.ece/alternates/LANDSCAPE_1200/DMK-seeks-invesGJGGP7I85.5.jpg.jpg",
+      "imageCredit": "The Hindu — National",
+      "readTime": 3,
+      "published": "2026-11-12T19:44:37.000Z",
+      "updated": "2026-11-13T03:15:57.376Z",
+      "importance": 5,
+      "importanceReason": "Generic coverage with no clear syllabus anchor.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Palaniswami rejects speculation of Dhinakaran, Sasikala being readmitted into AIADMK",
+          "publisher": "The Hindu — National",
+          "url": "https://www.thehindu.com/news/national/tamil-nadu/palaniswami-rejects-speculation-of-dhinakaran-sasikala-being-readmitted-into-aiadmk/article71694996.ece",
+          "type": "reporting",
+          "date": "2026-11-12"
+        }
+      ],
+      "sections": {
+        "event": "Palaniswami rejects speculation of Dhinakaran, Sasikala being readmitted into AIADMK",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-12T19:44:37.000Z",
+            "text": "Reported by The Hindu — National"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "Flagged as India-relevant by the classifier.",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "no-government-school-will-be-closed-due-to-low-enr-2026-11-12",
+      "title": "No government school will be closed due to low enrolment: Minister Rajmohan",
+      "region": "india",
+      "regions": [
+        "india"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "No government school will be closed due to low enrolment: Minister Rajmohan",
+      "whyItMatters": "",
+      "image": "https://th-i.thgim.com/public/incoming/vwbora/article71694734.ece/alternates/LANDSCAPE_1200/_DSC4840.JPG",
+      "imageCredit": "The Hindu — National",
+      "readTime": 3,
+      "published": "2026-11-12T19:43:53.000Z",
+      "updated": "2026-11-13T03:15:57.381Z",
+      "importance": 5,
+      "importanceReason": "Generic coverage with no clear syllabus anchor.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "No government school will be closed due to low enrolment: Minister Rajmohan",
+          "publisher": "The Hindu — National",
+          "url": "https://www.thehindu.com/news/national/tamil-nadu/no-government-school-will-be-closed-due-to-low-enrolment-minister-rajmohan/article71694175.ece",
+          "type": "reporting",
+          "date": "2026-11-12"
+        }
+      ],
+      "sections": {
+        "event": "No government school will be closed due to low enrolment: Minister Rajmohan",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-12T19:43:53.000Z",
+            "text": "Reported by The Hindu — National"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "Flagged as India-relevant by the classifier.",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "gang-held-for-possession-of-500-kg-red-sanders-nea-2026-11-12",
+      "title": "Gang held for possession of 500 kg red sanders near Sholinghur in Ranipet",
+      "region": "india",
+      "regions": [
+        "india"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "Gang held for possession of 500 kg red sanders near Sholinghur in Ranipet",
+      "whyItMatters": "",
+      "image": "https://th-i.thgim.com/public/news/national/tamil-nadu/nm0c8i/article71694139.ece/alternates/LANDSCAPE_1200/red-4.jpeg",
+      "imageCredit": "The Hindu — National",
+      "readTime": 3,
+      "published": "2026-11-12T19:42:46.000Z",
+      "updated": "2026-11-13T03:15:57.386Z",
+      "importance": 5,
+      "importanceReason": "Generic coverage with no clear syllabus anchor.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Gang held for possession of 500 kg red sanders near Sholinghur in Ranipet",
+          "publisher": "The Hindu — National",
+          "url": "https://www.thehindu.com/news/national/tamil-nadu/gang-held-for-possession-of-500-kg-red-sanders-near-sholinghur-in-ranipet/article71692863.ece",
+          "type": "reporting",
+          "date": "2026-11-12"
+        }
+      ],
+      "sections": {
+        "event": "Gang held for possession of 500 kg red sanders near Sholinghur in Ranipet",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-12T19:42:46.000Z",
+            "text": "Reported by The Hindu — National"
+          }
+        ],
+        "data": [],
+        "geography": "",
+        "india": "Flagged as India-relevant by the classifier.",
+        "telangana": "",
+        "challenges": "",
+        "solutions": "",
+        "upsc": "Auto-tagged to no paper.",
+        "prelimsNotes": [],
+        "mainsNotes": []
+      },
+      "prelimsQuestions": [],
+      "mainsQuestions": []
+    },
+    {
+      "id": "dhinakaran-urges-quality-checks-on-children-s-day--2026-11-12",
+      "title": "Dhinakaran urges quality checks on Children’s Day cakes",
+      "region": "india",
+      "regions": [
+        "india"
+      ],
+      "category": "General Studies",
+      "tags": [],
+      "gsPapers": [],
+      "summary": "Dhinakaran urges quality checks on Children’s Day cakes",
+      "whyItMatters": "",
+      "image": "https://th-i.thgim.com/public/incoming/d7ts9u/article71695374.ece/alternates/LANDSCAPE_1200/We-only-tried-tG7QGN4647.3.jpg.jpg",
+      "imageCredit": "The Hindu — National",
+      "readTime": 3,
+      "published": "2026-11-12T19:41:20.000Z",
+      "updated": "2026-11-13T03:15:57.395Z",
+      "importance": 5,
+      "importanceReason": "Generic coverage with no clear syllabus anchor.",
+      "curated": false,
+      "sources": [
+        {
+          "title": "Dhinakaran urges quality checks on Children’s Day cakes",
+          "publisher": "The Hindu — National",
+          "url": "https://www.thehindu.com/news/national/tamil-nadu/dhinakaran-urges-quality-checks-on-childrens-day-cakes/article71692810.ece",
+          "type": "reporting",
+          "date": "2026-11-12"
+        }
+      ],
+      "sections": {
+        "event": "Dhinakaran urges quality checks on Children’s Day cakes",
+        "background": "",
+        "causes": "",
+        "stakeholders": "",
+        "timeline": [
+          {
+            "date": "2026-11-12T19:41:20.000Z",
             "text": "Reported by The Hindu — National"
           }
         ],
