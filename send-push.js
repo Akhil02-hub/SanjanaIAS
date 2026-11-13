@@ -69,8 +69,25 @@ const SUPA_KEY = "sb_publishable_8acY7UihRJ2tSpW3zmFDUA_n24G5Ayq";
                     }
                 })
             });
-            console.log(`Sent to ${token.slice(0, 10)}... Status: ${response.status}`);
+            console.log(`Sent to Web ${token.slice(0, 10)}... Status: ${response.status}`);
         }
+
+        // 🔥 NEW: Send to APK Users automatically via the "all" topic
+        console.log("Sending to APK users...");
+        const apkResponse = await fetch(`https://fcm.googleapis.com/v1/projects/${sa.project_id}/messages:send`, {
+            method: "POST",
+            headers: { Authorization: `Bearer ${access_token}`, "Content-Type": "application/json" },
+            body: JSON.stringify({
+                message: {
+                    topic: "all", // Most APK generators automatically subscribe to this topic
+                    notification: {
+                        title: process.argv[2] || "SanjanaIAS",
+                        body: process.argv[3] || "Update"
+                    }
+                }
+            })
+        });
+        console.log(`Sent to APK Broadcast... Status: ${apkResponse.status}`);
     } catch (err) {
         console.error("❌ CRASH ERROR:", err.message);
         process.exit(1);
