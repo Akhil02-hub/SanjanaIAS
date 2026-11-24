@@ -7,12 +7,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://sanjanaias.vercel.app/article/no-proof-from-eci-to-show-sir-was-a-unanimous-deci-2026-11-17</loc>
-    <lastmod>2026-11-17T04:58:54.851Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://sanjanaias.vercel.app/article/if-oppn-stops-participating-indian-democracy-would-2026-11-19</loc>
     <lastmod>2026-11-19T04:00:22.507Z</lastmod>
     <changefreq>monthly</changefreq>
@@ -33,12 +27,6 @@
   <url>
     <loc>https://sanjanaias.vercel.app/article/italian-workers-students-protest-over-wages-and-pu-2026-11-20</loc>
     <lastmod>2026-11-21T03:50:07.561Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://sanjanaias.vercel.app/article/indian-central-bank-seeks-review-of-supreme-court--2026-11-16</loc>
-    <lastmod>2026-11-17T04:58:55.042Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -121,6 +109,18 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://sanjanaias.vercel.app/article/how-did-the-cop31-climate-agreement-fall-apart-and-2026-11-23</loc>
+    <lastmod>2026-11-24T06:50:29.839Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://sanjanaias.vercel.app/article/pakistan-pm-shehbaz-sharif-to-undertake-official-v-2026-11-23</loc>
+    <lastmod>2026-11-24T06:50:29.854Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://sanjanaias.vercel.app/article/cop31-fails-to-reach-major-climate-deal-as-talks-e-2026-11-23</loc>
     <lastmod>2026-11-23T03:35:36.767Z</lastmod>
     <changefreq>monthly</changefreq>
@@ -151,8 +151,14 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://sanjanaias.vercel.app/article/divergent-positions-mark-draft-text-of-cop31-under-2026-11-16</loc>
-    <lastmod>2026-11-17T04:58:55.165Z</lastmod>
+    <loc>https://sanjanaias.vercel.app/article/no-winter-session-of-parliament-skipped-only-four--2026-11-23</loc>
+    <lastmod>2026-11-24T06:50:29.602Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://sanjanaias.vercel.app/article/rule-of-law-needed-not-rule-of-power-netherlands-f-2026-11-23</loc>
+    <lastmod>2026-11-24T06:50:29.757Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -265,8 +271,20 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://sanjanaias.vercel.app/article/voter-or-candidate-has-no-right-to-get-a-seat-rese-2026-11-16</loc>
-    <lastmod>2026-11-17T04:58:56.631Z</lastmod>
+    <loc>https://sanjanaias.vercel.app/article/guterres-laments-cop31-outcome-urges-climate-justi-2026-11-22</loc>
+    <lastmod>2026-11-24T06:50:25.715Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://sanjanaias.vercel.app/article/five-takeaways-from-the-failed-climate-talks-cop31-2026-11-23</loc>
+    <lastmod>2026-11-24T06:50:29.035Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://sanjanaias.vercel.app/article/rajasthan-women-s-varsity-signs-mou-with-brics-nat-2026-11-23</loc>
+    <lastmod>2026-11-24T06:50:29.590Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -337,24 +355,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://sanjanaias.vercel.app/article/ai-gets-climate-science-right-until-users-push-bac-2026-11-16</loc>
-    <lastmod>2026-11-17T04:58:52.200Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://sanjanaias.vercel.app/article/cop31-enters-decisive-week-as-climate-talks-face-p-2026-11-16</loc>
-    <lastmod>2026-11-17T04:58:52.211Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://sanjanaias.vercel.app/article/prince-and-princess-of-wales-in-mumbai-for-earthsh-2026-11-16</loc>
-    <lastmod>2026-11-17T04:58:55.335Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://sanjanaias.vercel.app/article/uk-to-explore-even-closer-ties-with-eu-after-agree-2026-11-20</loc>
     <lastmod>2026-11-21T03:50:06.595Z</lastmod>
     <changefreq>monthly</changefreq>
@@ -397,8 +397,20 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://sanjanaias.vercel.app/article/is-india-rethinking-its-short-term-military-recrui-2026-11-16</loc>
-    <lastmod>2026-11-17T04:58:54.378Z</lastmod>
+    <loc>https://sanjanaias.vercel.app/article/nato-chief-vows-defence-against-space-threat-after-2026-11-24</loc>
+    <lastmod>2026-11-24T06:50:28.893Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://sanjanaias.vercel.app/article/china-s-shenzhou-24-spaceship-to-include-first-for-2026-11-24</loc>
+    <lastmod>2026-11-24T06:50:29.708Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://sanjanaias.vercel.app/article/nia-court-frees-4-held-for-2020-srinagar-terror-at-2026-11-23</loc>
+    <lastmod>2026-11-24T06:50:31.437Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -535,44 +547,8 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://sanjanaias.vercel.app/article/estonia-to-close-russia-border-crossings-after-att-2026-11-16</loc>
-    <lastmod>2026-11-17T04:58:54.329Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://sanjanaias.vercel.app/article/kishtwar-killings-aftermath-remarks-by-congress-ka-2026-11-16</loc>
-    <lastmod>2026-11-17T04:58:54.879Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://sanjanaias.vercel.app/article/tokyo-lodges-protest-after-aircraft-believed-to-be-2026-11-17</loc>
-    <lastmod>2026-11-17T04:58:55.119Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://sanjanaias.vercel.app/article/estonia-to-close-russian-border-crossings-after-at-2026-11-16</loc>
-    <lastmod>2026-11-17T04:58:55.341Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://sanjanaias.vercel.app/article/government-has-asked-us-to-reconsider-restricting--2026-11-21</loc>
     <lastmod>2026-11-22T02:53:23.901Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://sanjanaias.vercel.app/article/india-bloc-seeks-sc-nod-for-48-posers-to-cec-ecs-2026-11-17</loc>
-    <lastmod>2026-11-17T04:58:56.588Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://sanjanaias.vercel.app/article/govt-plans-to-set-up-visual-library-of-stolen-arte-2026-11-16</loc>
-    <lastmod>2026-11-17T04:58:56.644Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -601,12 +577,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://sanjanaias.vercel.app/article/ties-with-asean-crucial-for-india-s-act-east-polic-2026-11-17</loc>
-    <lastmod>2026-11-17T04:58:56.600Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://sanjanaias.vercel.app/article/india-s-recurring-pollution-crisis-calls-for-a-sus-2026-11-22</loc>
     <lastmod>2026-11-23T03:35:37.681Z</lastmod>
     <changefreq>monthly</changefreq>
@@ -615,6 +585,36 @@
   <url>
     <loc>https://sanjanaias.vercel.app/article/women-in-high-public-office-doesn-t-mean-equality--2026-11-20</loc>
     <lastmod>2026-11-20T03:53:55.323Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://sanjanaias.vercel.app/article/punjab-assembly-polls-bjp-sad-to-hold-joint-presse-2026-11-24</loc>
+    <lastmod>2026-11-24T06:50:29.320Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://sanjanaias.vercel.app/article/zelenskyy-calls-for-four-way-talks-with-russia-as--2026-11-23</loc>
+    <lastmod>2026-11-24T06:50:29.792Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://sanjanaias.vercel.app/article/nepal-pm-balen-shah-s-india-visit-president-murmu--2026-11-23</loc>
+    <lastmod>2026-11-24T06:50:31.389Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://sanjanaias.vercel.app/article/farmer-consumes-pesticide-during-prajavani-program-2026-11-23</loc>
+    <lastmod>2026-11-24T06:50:31.549Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://sanjanaias.vercel.app/article/telangana-govt-seeks-12-month-gap-in-crop-loan-rep-2026-11-23</loc>
+    <lastmod>2026-11-24T06:50:31.692Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -781,44 +781,8 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://sanjanaias.vercel.app/article/farmers-staged-sit-in-protest-in-solapur-demanding-2026-11-17</loc>
-    <lastmod>2026-11-17T04:58:54.781Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://sanjanaias.vercel.app/article/cec-report-may-complicate-keralam-s-plan-to-resume-2026-11-17</loc>
-    <lastmod>2026-11-17T04:58:54.786Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://sanjanaias.vercel.app/article/rare-jaffarabadi-panchakalyani-steals-the-show-at--2026-11-16</loc>
-    <lastmod>2026-11-17T04:58:54.962Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://sanjanaias.vercel.app/article/watch-pm-modi-visits-gurudwara-khalsa-diwan-in-man-2026-11-17</loc>
-    <lastmod>2026-11-17T04:58:56.567Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://sanjanaias.vercel.app/article/dancing-girl-of-mohenjo-daro-to-find-new-home-in-n-2026-11-16</loc>
-    <lastmod>2026-11-17T04:58:56.650Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://sanjanaias.vercel.app/article/modi-government-favouring-corporates-at-the-cost-o-2026-11-16</loc>
-    <lastmod>2026-11-17T04:58:57.127Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://sanjanaias.vercel.app/article/telangana-to-return-house-pattas-to-pre-2014-housi-2026-11-16</loc>
-    <lastmod>2026-11-17T04:58:57.180Z</lastmod>
+    <loc>https://sanjanaias.vercel.app/article/india-nepal-usher-in-golden-chapter-in-ties-modi-a-2026-11-23</loc>
+    <lastmod>2026-11-24T06:50:31.396Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -853,8 +817,26 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://sanjanaias.vercel.app/article/sir-remedial-measures-don-t-validate-bihar-bengal--2026-11-17</loc>
-    <lastmod>2026-11-17T04:58:56.594Z</lastmod>
+    <loc>https://sanjanaias.vercel.app/article/comedian-impersonates-trump-s-dance-moves-mocks-tr-2026-11-23</loc>
+    <lastmod>2026-11-24T06:50:28.943Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://sanjanaias.vercel.app/article/invoking-bengal-famine-india-tells-unsc-costs-of-c-2026-11-24</loc>
+    <lastmod>2026-11-24T06:50:29.492Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://sanjanaias.vercel.app/article/intention-behind-withdrawing-papa-s-security-gandh-2026-11-24</loc>
+    <lastmod>2026-11-24T06:50:31.305Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://sanjanaias.vercel.app/article/china-s-mega-dam-takes-shape-near-arunachal-prades-2026-11-23</loc>
+    <lastmod>2026-11-24T06:50:31.411Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -937,8 +919,14 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://sanjanaias.vercel.app/article/india-and-egypt-form-working-group-to-explore-trad-2026-11-16</loc>
-    <lastmod>2026-11-17T04:58:55.160Z</lastmod>
+    <loc>https://sanjanaias.vercel.app/article/china-says-ready-to-work-with-india-to-facilitate--2026-11-23</loc>
+    <lastmod>2026-11-24T06:50:29.818Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://sanjanaias.vercel.app/article/bangladesh-vows-to-arrest-ex-pm-hasina-if-she-retu-2026-11-23</loc>
+    <lastmod>2026-11-24T06:50:29.825Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -1057,18 +1045,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://sanjanaias.vercel.app/article/an-unfulfilled-plan-helps-no-one-superbug-plans-ha-2026-11-16</loc>
-    <lastmod>2026-11-17T04:58:52.186Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://sanjanaias.vercel.app/article/china-southeast-asia-pledge-to-avoid-disputes-duri-2026-11-16</loc>
-    <lastmod>2026-11-17T04:58:55.232Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://sanjanaias.vercel.app/article/rampur-s-lavi-fair-storytelling-through-300-years--2026-11-22</loc>
     <lastmod>2026-11-23T03:35:37.705Z</lastmod>
     <changefreq>monthly</changefreq>
@@ -1083,12 +1059,6 @@
   <url>
     <loc>https://sanjanaias.vercel.app/article/jantar-mantar-protest-nod-denied-due-to-cjp-past-c-2026-11-18</loc>
     <lastmod>2026-11-18T04:04:18.183Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://sanjanaias.vercel.app/article/mlas-cannot-threaten-government-officials-and-brow-2026-11-16</loc>
-    <lastmod>2026-11-17T04:58:55.003Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -1129,20 +1099,104 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://sanjanaias.vercel.app/article/faisal-islam-what-s-in-the-brexit-reset-food-deal--2026-11-16</loc>
-    <lastmod>2026-11-17T04:58:54.385Z</lastmod>
+    <loc>https://sanjanaias.vercel.app/article/trump-faces-backlash-after-saying-he-convinced-nvi-2026-11-24</loc>
+    <lastmod>2026-11-24T06:50:28.879Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://sanjanaias.vercel.app/article/bjp-holds-key-party-meeting-in-mathura-for-assembl-2026-11-16</loc>
-    <lastmod>2026-11-17T04:58:54.868Z</lastmod>
+    <loc>https://sanjanaias.vercel.app/article/india-s-cockroach-party-leader-says-he-was-stopped-2026-11-24</loc>
+    <lastmod>2026-11-24T06:50:28.900Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://sanjanaias.vercel.app/article/u-s-federal-court-strikes-down-fixed-terms-for-stu-2026-11-17</loc>
-    <lastmod>2026-11-17T04:58:55.137Z</lastmod>
+    <loc>https://sanjanaias.vercel.app/article/ukraine-shares-video-of-strikes-on-russian-ships-o-2026-11-23</loc>
+    <lastmod>2026-11-24T06:50:28.989Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://sanjanaias.vercel.app/article/i-want-to-destroy-capitalism-not-france-on-the-str-2026-11-23</loc>
+    <lastmod>2026-11-24T06:50:29.016Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://sanjanaias.vercel.app/article/tncc-president-manickam-tagore-demands-legal-actio-2026-11-24</loc>
+    <lastmod>2026-11-24T06:50:29.389Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://sanjanaias.vercel.app/article/google-denies-rumours-of-large-scale-layoffs-in-in-2026-11-24</loc>
+    <lastmod>2026-11-24T06:50:29.498Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://sanjanaias.vercel.app/article/uttar-pradesh-polls-sp-congress-kick-off-seat-shar-2026-11-24</loc>
+    <lastmod>2026-11-24T06:50:29.547Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://sanjanaias.vercel.app/article/cbi-facilitates-return-of-murder-accused-from-kaza-2026-11-23</loc>
+    <lastmod>2026-11-24T06:50:29.561Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://sanjanaias.vercel.app/article/car-bomb-destroys-buildings-in-villavicencio-says--2026-11-24</loc>
+    <lastmod>2026-11-24T06:50:29.679Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://sanjanaias.vercel.app/article/india-and-israel-cut-from-different-cloths-2026-11-24</loc>
+    <lastmod>2026-11-24T06:50:29.685Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://sanjanaias.vercel.app/article/sheikh-hasina-plans-to-return-to-bangladesh-from-e-2026-11-24</loc>
+    <lastmod>2026-11-24T06:50:29.696Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://sanjanaias.vercel.app/article/why-u-s-president-donald-trump-believed-he-needed--2026-11-24</loc>
+    <lastmod>2026-11-24T06:50:29.714Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://sanjanaias.vercel.app/article/federal-appeals-court-gives-president-donald-trump-2026-11-23</loc>
+    <lastmod>2026-11-24T06:50:29.742Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://sanjanaias.vercel.app/article/nvidia-reinstates-jensen-huang-as-ceo-after-u-s-go-2026-11-23</loc>
+    <lastmod>2026-11-24T06:50:29.752Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://sanjanaias.vercel.app/article/u-s-panel-urges-india-dialogue-for-dalai-lama-succ-2026-11-23</loc>
+    <lastmod>2026-11-24T06:50:29.812Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://sanjanaias.vercel.app/article/pakistan-pm-cancels-trip-to-russia-over-regional-c-2026-11-23</loc>
+    <lastmod>2026-11-24T06:50:29.861Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://sanjanaias.vercel.app/article/democrats-win-u-s-congress-in-midterm-rout-of-u-s--2026-11-23</loc>
+    <lastmod>2026-11-24T06:50:29.912Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -1693,92 +1747,62 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://sanjanaias.vercel.app/article/street-cricket-with-a-legend-then-metro-ride-as-wi-2026-11-16</loc>
-    <lastmod>2026-11-17T04:58:54.336Z</lastmod>
+    <loc>https://sanjanaias.vercel.app/article/sc-to-hear-on-november-25-pleas-of-sharjeel-imam-u-2026-11-24</loc>
+    <lastmod>2026-11-24T06:50:29.369Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://sanjanaias.vercel.app/article/how-does-india-address-service-outages-2026-11-17</loc>
-    <lastmod>2026-11-17T04:58:54.797Z</lastmod>
+    <loc>https://sanjanaias.vercel.app/article/stalin-urges-tamil-nadu-government-to-act-against--2026-11-24</loc>
+    <lastmod>2026-11-24T06:50:29.382Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://sanjanaias.vercel.app/article/iskcon-tantric-gorak-nath-287-other-religions-brie-2026-11-17</loc>
-    <lastmod>2026-11-17T04:58:54.834Z</lastmod>
+    <loc>https://sanjanaias.vercel.app/article/why-has-the-musafirkhana-building-linked-to-dawood-2026-11-24</loc>
+    <lastmod>2026-11-24T06:50:29.395Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://sanjanaias.vercel.app/article/six-liangmai-naga-civilians-laid-to-rest-in-manipu-2026-11-17</loc>
-    <lastmod>2026-11-17T04:58:54.857Z</lastmod>
+    <loc>https://sanjanaias.vercel.app/article/keralam-devaswom-minister-cites-booking-system-gli-2026-11-24</loc>
+    <lastmod>2026-11-24T06:50:29.402Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://sanjanaias.vercel.app/article/christian-community-seeks-west-bengal-cm-s-interve-2026-11-16</loc>
-    <lastmod>2026-11-17T04:58:54.884Z</lastmod>
+    <loc>https://sanjanaias.vercel.app/article/delhi-police-constable-suspended-over-dowry-demand-2026-11-24</loc>
+    <lastmod>2026-11-24T06:50:29.452Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://sanjanaias.vercel.app/article/sonia-s-memoir-belonging-debuts-with-2-lakh-copies-2026-11-16</loc>
-    <lastmod>2026-11-17T04:58:54.985Z</lastmod>
+    <loc>https://sanjanaias.vercel.app/article/what-stands-atop-thiruparankundram-hill-is-a-surve-2026-11-24</loc>
+    <lastmod>2026-11-24T06:50:29.552Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://sanjanaias.vercel.app/article/trump-s-asia-trip-deals-in-manila-and-shenzhen-nuc-2026-11-16</loc>
-    <lastmod>2026-11-17T04:58:55.189Z</lastmod>
+    <loc>https://sanjanaias.vercel.app/article/will-bank-manager-accept-kayalvizhi-alagiri-s-apol-2026-11-23</loc>
+    <lastmod>2026-11-24T06:50:29.584Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://sanjanaias.vercel.app/article/italian-political-leader-s-speech-in-india-draws-c-2026-11-16</loc>
-    <lastmod>2026-11-17T04:58:55.202Z</lastmod>
+    <loc>https://sanjanaias.vercel.app/article/armenia-drops-nagorno-karabakh-claim-in-proposed-n-2026-11-23</loc>
+    <lastmod>2026-11-24T06:50:29.775Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://sanjanaias.vercel.app/article/pakistan-s-participation-in-sco-civilisational-for-2026-11-16</loc>
-    <lastmod>2026-11-17T04:58:55.297Z</lastmod>
+    <loc>https://sanjanaias.vercel.app/article/sp-s-jan-man-manifesto-akhilesh-yadav-to-unveil-20-2026-11-24</loc>
+    <lastmod>2026-11-24T06:50:31.323Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://sanjanaias.vercel.app/article/india-lost-1-765-elephants-in-17-years-karnataka-2-2026-11-17</loc>
-    <lastmod>2026-11-17T04:58:56.558Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://sanjanaias.vercel.app/article/amid-china-rivalry-india-joins-move-to-shield-ai-t-2026-11-16</loc>
-    <lastmod>2026-11-17T04:58:56.638Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://sanjanaias.vercel.app/article/indian-inventor-patents-new-technique-to-transmute-2026-11-16</loc>
-    <lastmod>2026-11-17T04:58:56.671Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://sanjanaias.vercel.app/article/man-dies-after-wife-attacks-him-during-domestic-di-2026-11-16</loc>
-    <lastmod>2026-11-17T04:58:57.049Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://sanjanaias.vercel.app/article/all-set-for-the-85th-indian-roads-congress-session-2026-11-16</loc>
-    <lastmod>2026-11-17T04:58:57.187Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://sanjanaias.vercel.app/article/bjp-seeks-action-against-italian-political-leader--2026-11-16</loc>
-    <lastmod>2026-11-17T04:58:57.207Z</lastmod>
+    <loc>https://sanjanaias.vercel.app/article/22-lakh-pleas-to-include-names-in-west-bengal-roll-2026-11-24</loc>
+    <lastmod>2026-11-24T06:50:31.376Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -2005,62 +2029,98 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://sanjanaias.vercel.app/article/empowering-faith-and-indigenous-leaders-to-combat--2026-11-15</loc>
-    <lastmod>2026-11-17T04:58:52.242Z</lastmod>
+    <loc>https://sanjanaias.vercel.app/article/security-council-live-winter-attacks-on-ukraine-03-2026-11-23</loc>
+    <lastmod>2026-11-24T06:50:25.675Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://sanjanaias.vercel.app/article/author-samina-mishra-explores-borders-identity-and-2026-11-17</loc>
-    <lastmod>2026-11-17T04:58:54.807Z</lastmod>
+    <loc>https://sanjanaias.vercel.app/article/world-news-in-brief-ebola-cases-double-in-dr-congo-2026-11-17</loc>
+    <lastmod>2026-11-24T06:50:25.821Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://sanjanaias.vercel.app/article/bilkis-bano-case-supreme-court-suspends-sentence-g-2026-11-17</loc>
-    <lastmod>2026-11-17T04:58:54.862Z</lastmod>
+    <loc>https://sanjanaias.vercel.app/article/haiti-atrocious-abuses-continue-as-un-warns-anti-g-2026-11-17</loc>
+    <lastmod>2026-11-24T06:50:25.828Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://sanjanaias.vercel.app/article/kerala-high-court-refers-petition-challenging-clea-2026-11-16</loc>
-    <lastmod>2026-11-17T04:58:54.908Z</lastmod>
+    <loc>https://sanjanaias.vercel.app/article/king-charles-and-elton-john-pay-tribute-to-austral-2026-11-24</loc>
+    <lastmod>2026-11-24T06:50:28.936Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://sanjanaias.vercel.app/article/former-judge-s-wife-killed-after-being-hit-by-truc-2026-11-16</loc>
-    <lastmod>2026-11-17T04:58:54.935Z</lastmod>
+    <loc>https://sanjanaias.vercel.app/article/dad-who-discovered-daughter-s-murder-on-facebook-f-2026-11-24</loc>
+    <lastmod>2026-11-24T06:50:29.007Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://sanjanaias.vercel.app/article/el-nino-impact-drives-record-surge-in-crop-insuran-2026-11-16</loc>
-    <lastmod>2026-11-17T04:58:54.952Z</lastmod>
+    <loc>https://sanjanaias.vercel.app/article/punjab-congress-chief-urges-pm-to-reopen-kartarpur-2026-11-24</loc>
+    <lastmod>2026-11-24T06:50:29.338Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://sanjanaias.vercel.app/article/ed-s-arrest-was-politically-motivated-azam-khan-te-2026-11-16</loc>
-    <lastmod>2026-11-17T04:58:55.049Z</lastmod>
+    <loc>https://sanjanaias.vercel.app/article/andhra-departments-meet-in-mangalagiri-to-plan-sch-2026-11-24</loc>
+    <lastmod>2026-11-24T06:50:29.356Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://sanjanaias.vercel.app/article/bilkis-bano-case-sc-suspends-life-sentences-grants-2026-11-17</loc>
-    <lastmod>2026-11-17T04:58:56.581Z</lastmod>
+    <loc>https://sanjanaias.vercel.app/article/black-friday-shopping-scam-telangana-police-warn-o-2026-11-24</loc>
+    <lastmod>2026-11-24T06:50:29.362Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://sanjanaias.vercel.app/article/interstate-drug-trafficker-detained-under-pit-ndps-2026-11-16</loc>
-    <lastmod>2026-11-17T04:58:57.075Z</lastmod>
+    <loc>https://sanjanaias.vercel.app/article/pav-to-organise-health-seminar-on-november-29-2026-11-24</loc>
+    <lastmod>2026-11-24T06:50:29.515Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://sanjanaias.vercel.app/article/cyclone-akvan-may-bring-rains-to-telangana-between-2026-11-16</loc>
-    <lastmod>2026-11-17T04:58:57.108Z</lastmod>
+    <loc>https://sanjanaias.vercel.app/article/sanjay-raut-accuses-state-assembly-speaker-rahul-n-2026-11-24</loc>
+    <lastmod>2026-11-24T06:50:29.532Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://sanjanaias.vercel.app/article/proposal-for-extending-scholarship-to-sri-lankan-s-2026-11-23</loc>
+    <lastmod>2026-11-24T06:50:29.596Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://sanjanaias.vercel.app/article/modi-s-canada-visit-is-set-to-move-ties-in-a-new-d-2026-11-23</loc>
+    <lastmod>2026-11-24T06:50:29.798Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://sanjanaias.vercel.app/article/swati-lakra-reviews-facilities-at-women-s-prison-c-2026-11-23</loc>
+    <lastmod>2026-11-24T06:50:31.575Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://sanjanaias.vercel.app/article/two-arrested-two-women-rescued-from-prostitution-r-2026-11-23</loc>
+    <lastmod>2026-11-24T06:50:31.614Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://sanjanaias.vercel.app/article/tifr-hyderabad-cmc-vellore-join-hands-to-advance-m-2026-11-23</loc>
+    <lastmod>2026-11-24T06:50:31.650Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://sanjanaias.vercel.app/article/karimnagar-medical-college-building-to-be-ready-by-2026-11-23</loc>
+    <lastmod>2026-11-24T06:50:31.676Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -2337,66 +2397,6 @@
   <url>
     <loc>https://sanjanaias.vercel.app/article/u-s-china-russia-hold-historic-summit-in-shenzhen-2026-11-19</loc>
     <lastmod>2026-11-20T03:53:55.665Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://sanjanaias.vercel.app/article/women-should-get-33-quota-in-legal-profession-says-2026-11-20</loc>
-    <lastmod>2026-11-20T03:53:57.074Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://sanjanaias.vercel.app/article/world-health-organisation-team-reviews-telangana-s-2026-11-19</loc>
-    <lastmod>2026-11-20T03:53:57.262Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://sanjanaias.vercel.app/article/over-400-women-staff-take-part-in-south-central-ra-2026-11-19</loc>
-    <lastmod>2026-11-20T03:53:57.312Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://sanjanaias.vercel.app/article/roundtable-on-healthy-longevity-preventive-healthc-2026-11-19</loc>
-    <lastmod>2026-11-20T03:53:57.338Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://sanjanaias.vercel.app/article/hyderabad-yacht-club-wins-award-for-empowering-chi-2026-11-19</loc>
-    <lastmod>2026-11-20T03:53:57.344Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://sanjanaias.vercel.app/article/high-growth-and-demographic-efficiency-turned-into-2026-11-19</loc>
-    <lastmod>2026-11-20T03:53:57.394Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://sanjanaias.vercel.app/article/patients-running-out-of-options-as-antibiotics-sto-2026-11-18</loc>
-    <lastmod>2026-11-19T04:00:16.642Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://sanjanaias.vercel.app/article/hyderabad-explores-35-km-personal-rapid-transit-ne-2026-11-19</loc>
-    <lastmod>2026-11-19T04:00:20.060Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://sanjanaias.vercel.app/article/congress-targets-modi-government-over-inflation-se-2026-11-19</loc>
-    <lastmod>2026-11-19T04:00:20.075Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://sanjanaias.vercel.app/article/panjab-university-improves-its-global-standing-in--2026-11-18</loc>
-    <lastmod>2026-11-19T04:00:20.130Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
